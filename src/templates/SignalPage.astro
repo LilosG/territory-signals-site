@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import StandardPage from './StandardPage.astro';
 import Section from '../components/layout/Section.astro';
 import QaSection from '../components/layout/QaSection.astro';
+import QaGrid from '../components/layout/QaGrid.astro';
 import DataTable from '../components/ui/DataTable.astro';
 import Badge from '../components/ui/Badge.astro';
 import FactCard from '../components/templates/FactCard.astro';
@@ -45,8 +46,8 @@ const facts = [
   <Fragment slot="intro">{d.status === 'coming' && <p class="mt-4"><Badge tone="outline">Coming: not loaded yet</Badge></p>}</Fragment>
   <Fragment slot="aside"><FactCard title="At a glance" rows={facts} note={d.visibility} /></Fragment>
 
-  <QaSection {...s.what} />
-  <QaSection {...s.why} layout="quote" />
+  <QaGrid items={[s.what, s.why]} />
+
   <QaSection {...s.scoring} layout="wide">
     <WeightTable caption={`Score weights for ${d.crumb.toLowerCase()}`} components={d.components} />
     {example && (
@@ -56,13 +57,14 @@ const facts = [
       </div>
     )}
   </QaSection>
+
   <QaSection {...s.source} layout="wide">
     <DataTable caption={`Sources for ${d.crumb.toLowerCase()}`} columns={['Source', 'What it provides', 'How it joins to a parcel', 'Limits']}
       rows={sources.map((src) => [{ text: src.name, href: src.url, icon: src.key }, src.provides, src.join, src.limits])} />
     <p class="max-w-measure text-sm text-ink-muted">{PIPELINE_CADENCE} <a class="link" href="/data-sources">All data sources</a>.</p>
   </QaSection>
-  <QaSection {...s.action} />
-  <QaSection {...s.limits} />
+
+  <QaGrid items={[s.action, s.limits]} />
 
   <Section>
     <h2 class="max-w-3xl">Seller playbooks that use this San Diego signal</h2>

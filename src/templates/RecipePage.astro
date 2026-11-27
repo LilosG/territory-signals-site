@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import StandardPage from './StandardPage.astro';
 import Section from '../components/layout/Section.astro';
 import QaSection from '../components/layout/QaSection.astro';
+import QaGrid from '../components/layout/QaGrid.astro';
 import DataTable from '../components/ui/DataTable.astro';
 import Badge from '../components/ui/Badge.astro';
 import RelatedLinks from '../components/ui/RelatedLinks.astro';
@@ -57,7 +58,7 @@ const sourceNote = `Facts come from ${sources.map((x) => x.publisher.replace(/^S
     </Section>
   )}
 
-  <QaSection {...s.what} />
+  <QaGrid items={[s.what, s.why]} />
 
   {sample && (
     <Section>
@@ -72,8 +73,6 @@ const sourceNote = `Facts come from ${sources.map((x) => x.publisher.replace(/^S
       </div>
     </Section>
   )}
-
-  <QaSection {...s.why} layout="quote" />
 
   <Section>
     <div class="grid-12 items-center gap-y-12">
@@ -98,8 +97,8 @@ const sourceNote = `Facts come from ${sources.map((x) => x.publisher.replace(/^S
   <QaSection {...s.scoring} layout="wide">
     <DataTable caption={`Component weights behind the ${d.label} recipe`} columns={['Signal page', 'Components this rule reads, with weights']} rows={weights} />
   </QaSection>
-  <QaSection {...s.action} />
-  <QaSection {...s.limits} />
+
+  <QaGrid items={[s.action, s.limits]} />
 
   <Section>
     <div class="grid gap-8 md:grid-cols-3">

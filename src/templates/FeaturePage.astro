@@ -2,7 +2,8 @@
 import type { CollectionEntry } from 'astro:content';
 import StandardPage from './StandardPage.astro';
 import Section from '../components/layout/Section.astro';
-import QaSection from '../components/layout/QaSection.astro';
+import QaGrid from '../components/layout/QaGrid.astro';
+import FactCard from '../components/templates/FactCard.astro';
 import RelatedLinks from '../components/ui/RelatedLinks.astro';
 import Surface from '../components/product/Surface.astro';
 import { entries, hrefOf, linkList } from '../lib/collections.ts';
@@ -23,12 +24,30 @@ const related = d.related.map((href) => {
 <StandardPage meta={metaOf('platform', entry)} answer={d.answer} eyebrow="Platform"
   request="See this surface set up around your own planning areas."
   cta={{ title: `See the ${d.headingTerm} with your own San Diego territory`, text: 'A walkthrough shows the product surfaces and the records behind them for the areas you work.' }}>
-  {d.visual !== 'none' && <Section><div class="mx-auto max-w-3xl"><Surface visual={d.visual} /></div></Section>}
-  <QaSection {...s.shows} />
-  <QaSection {...s.inputs} />
-  <QaSection {...s.uses} />
-  <QaSection {...s.never} />
-  <QaSection {...s.limits} />
+  <FactCard
+    slot="aside"
+    title={d.label}
+    rows={[
+      { label: 'Scope', value: 'Per-team deployment' },
+      { label: 'Cadence', value: 'Weekly refresh' },
+      { label: 'Linked items', value: `${related.length} related` },
+      { label: 'Guardrails', value: 'DRE & approval rules' },
+    ]}
+    note={d.summary}
+  />
+
+  {d.visual !== 'none' && (
+    <Section>
+      <div class="mx-auto max-w-4xl">
+        <Surface visual={d.visual} />
+      </div>
+    </Section>
+  )}
+
+  <QaGrid items={[s.shows, s.inputs]} />
+
+  <QaGrid columns={3} items={[s.uses, s.never, s.limits]} />
+
   <Section>
     <div class="grid-12">
       <div class="col-lead"><RelatedLinks title="Related" links={related} /></div>
