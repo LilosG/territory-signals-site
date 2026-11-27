@@ -1,0 +1,22 @@
+---
+/** Breadcrumbs, eyebrow, H1 and the answer-first paragraph. */
+import Container from './Container.astro';
+import Breadcrumbs from '../seo/Breadcrumbs.astro';
+import type { PageMeta } from '../../lib/page-meta.ts';
+import { crumbsFor } from '../../lib/crumbs.ts';
+interface Props { meta: PageMeta; eyebrow?: string; answer: string }
+const { meta, eyebrow, answer } = Astro.props;
+---
+<div class="pt-4 pb-12">
+  <Container>
+    <Breadcrumbs crumbs={crumbsFor(meta)} />
+    <div class="mt-8 grid-12">
+      <div class="lg:col-span-9">
+        {eyebrow && <p class="eyebrow mb-4">{eyebrow}</p>}
+        <h1>{meta.h1}</h1>
+        <p class="lede mt-6" data-answer>{answer}</p>
+        <slot />
+      </div>
+    </div>
+  </Container>
+</div>

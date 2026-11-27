@@ -1,0 +1,19 @@
+---
+import Section from './Section.astro';
+import Button from '../ui/Button.astro';
+import { CTA } from '../../data/site.ts';
+interface Props { title: string; text: string }
+const { title, text } = Astro.props;
+---
+<Section tone="dark">
+  <div class="grid-12 items-end" data-cta-band>
+    <div class="col-lead">
+      <h2>{title}</h2>
+      <p class="lede mt-4">{text}</p>
+    </div>
+    <div class="col-support flex flex-wrap gap-3 lg:justify-end">
+      <Button href={CTA.primary.href} location="cta-band">{CTA.primary.label}</Button>
+      <Button href={CTA.secondary.href} variant="secondary" location="cta-band">{CTA.secondary.label}</Button>
+    </div>
+  </div>
+</Section>

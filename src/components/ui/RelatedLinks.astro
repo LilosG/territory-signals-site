@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+interface Props { title: string; links: { href: string; label: string; note?: string }[] }
+const { title, links } = Astro.props;
+---
+{links.length > 0 && (
+  <nav aria-label={title}>
+    <p class="eyebrow">{title}</p>
+    <ul class="mt-3 border-t border-ink">
+      {links.map((l) => (
+        <li class="border-b border-line">
+          <a href={l.href} class="group flex min-h-tap items-center justify-between gap-4 py-3">
+            <span>
+              <span class="block font-semibold group-hover:underline group-hover:underline-offset-4">{l.label}</span>
+              {l.note && <span class="block text-sm text-ink-muted">{l.note}</span>}
+            </span>
+            <Icon name="arrow" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

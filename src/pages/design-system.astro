@@ -1,0 +1,73 @@
+---
+/** Internal reference of every token and UI component. Noindex and excluded from the sitemap. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import Section from '../components/layout/Section.astro';
+import Button from '../components/ui/Button.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import Prose from '../components/ui/Prose.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import DefinitionList from '../components/ui/DefinitionList.astro';
+import Badge from '../components/ui/Badge.astro';
+import SampleBadge from '../components/ui/SampleBadge.astro';
+import ScoreRing from '../components/ui/ScoreRing.astro';
+import TierLegend from '../components/ui/TierLegend.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import tokens from '../styles/tokens.css?raw';
+
+const declarations = [...tokens.matchAll(/^\s*(--[a-z0-9-]+):\s*([^;]+);/gm)].map((m) => [m[1]!, m[2]!] as const);
+const colors = declarations.filter(([n]) => n.startsWith('--color-') && !n.endsWith('*'));
+const others = declarations.filter(([n]) => !n.startsWith('--color-') && !n.endsWith('*'));
+const meta = {
+  path: '/design-system', crumb: 'Design system', keyword: 'design system', headingTerm: 'design', h1: 'Design system',
+  title: 'Design System Reference for Territory Signals Website', description: 'Internal reference page showing every design token and interface component used on the Territory Signals website. It is not part of the public site index.',
+  noindex: true, updated: '2026-11-26',
+};
+---
+<BaseLayout meta={meta}>
+  <PageIntro meta={meta} answer="Every token and shared component in one place." />
+  <Section>
+    <h2>Color tokens</h2>
+    <ul class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
+      {colors.map(([name, value]) => (
+        <li class="border border-line bg-surface p-2">
+          <svg class="h-14 w-full" viewBox="0 0 10 10" preserveAspectRatio="none" aria-hidden="true"><rect width="10" height="10" fill={`var(${name}, ${value})`} /></svg>
+          <p class="mono mt-2 text-2xs break-all">{name.replace('--color-', '')}<br />{value}</p>
+        </li>
+      ))}
+    </ul>
+  </Section>
+  <Section>
+    <h2>Type</h2>
+    <div class="stack mt-6">
+      <p class="font-serif text-4xl font-medium tracking-display">Serif display 4xl</p>
+      <p class="font-serif text-3xl font-medium">Serif 3xl</p>
+      <p class="font-serif text-2xl font-medium">Serif 2xl</p>
+      <p class="text-xl font-semibold">Sans xl</p>
+      <p class="text-base">Sans base for body copy.</p>
+      <p class="mono text-xs">MONO 123-456-78-90 PMT-0000000</p>
+      <Eyebrow>Eyebrow</Eyebrow>
+      <Eyebrow tone="gold">Briefing label</Eyebrow>
+    </div>
+  </Section>
+  <Section>
+    <h2>Scale, radius, shadow and motion tokens</h2>
+    <div class="mt-6"><DataTable caption="Non-color tokens" columns={['Token', 'Value']} rows={others.map(([n, v]) => [{ text: n, mono: true }, { text: v, mono: true }])} /></div>
+  </Section>
+  <Section>
+    <h2>Design components</h2>
+    <div class="stack mt-6">
+      <div class="flex flex-wrap gap-3"><Button>Primary</Button><Button variant="secondary">Secondary</Button></div>
+      <div class="flex flex-wrap items-center gap-3"><Badge>Neutral</Badge><Badge tone="solid">Solid</Badge><Badge tone="outline">Outline</Badge><SampleBadge /></div>
+      <div class="flex flex-wrap items-center gap-4"><ScoreRing score={91} size="xl" /><ScoreRing score={74} size="lg" /><ScoreRing score={52} /><ScoreRing score={21} size="sm" /></div>
+      <TierLegend />
+      <DataTable caption="Example table" showCaption columns={['Source', 'Verdict']} rows={[['Parcels', 'Usable'], ['Permits', 'Usable with limits']]} />
+      <DefinitionList items={[{ term: 'Parcel', definition: 'One assessor parcel number.' }]} />
+      <FaqList items={[{ id: 'q', question: 'A design question?', answer: 'An answer.' }]} />
+      <RelatedLinks title="Related" links={[{ href: '/', label: 'Home', note: 'Start here' }]} />
+      <Prose><p>Prose with a <a href="/">link</a>.</p><blockquote>A pull statement.</blockquote></Prose>
+    </div>
+  </Section>
+  <Section tone="dark"><h2>Dark design band</h2><div class="mt-6 flex gap-3"><Button>Primary</Button><Button variant="secondary">Secondary</Button></div></Section>
+</BaseLayout>

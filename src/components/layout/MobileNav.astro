@@ -1,0 +1,40 @@
+---
+/** A native disclosure, so the menu works without JavaScript. The script only adds Escape and outside-click closing. */
+import Icon from '../ui/Icon.astro';
+import { CTA, NAV } from '../../data/site.ts';
+interface Props { current: string }
+const { current } = Astro.props;
+---
+<details class="mobile-nav lg:hidden" data-mobile-nav>
+  <summary class="flex size-tap items-center justify-center rounded-md border border-line-strong bg-surface">
+    <span class="sr-only">Menu</span>
+    <Icon name="menu" class="nav-open-icon size-5" />
+    <Icon name="close" class="nav-close-icon size-5" />
+  </summary>
+  <nav aria-label="Mobile" class="absolute inset-x-0 top-header border-y border-line bg-surface shadow-lift">
+    <ul class="page-container py-3">
+      {NAV.map((l) => (
+        <li class="border-b border-line">
+          <a class="flex min-h-tap items-center font-medium" href={l.href} aria-current={current.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>
+        </li>
+      ))}
+      <li class="pt-4 pb-2"><a class="btn btn-primary w-full" href={CTA.primary.href} data-cta="primary" data-cta-location="mobile-nav">{CTA.primary.label}</a></li>
+    </ul>
+  </nav>
+</details>
+<style>
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  .mobile-nav .nav-close-icon, .mobile-nav[open] .nav-open-icon { display: none; }
+  .mobile-nav[open] .nav-close-icon { display: block; }
+</style>
+<script>
+  const nav = document.querySelector<HTMLDetailsElement>('[data-mobile-nav]');
+  if (nav) {
+    const close = () => { nav.open = false; };
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.open) { close(); nav.querySelector('summary')?.focus(); }
+    });
+    document.addEventListener('click', (e) => { if (nav.open && !nav.contains(e.target as Node)) close(); });
+  }
+</script>

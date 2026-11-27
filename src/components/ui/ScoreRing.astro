@@ -1,0 +1,24 @@
+---
+/** The product's score ring (lib/ring.ts), drawn with presentation attributes; the tier class supplies the color. */
+import { tierOf } from '../../lib/tiers.ts';
+interface Props { score: number; size?: 'sm' | 'md' | 'lg' | 'xl'; class?: string; live?: boolean }
+const { score, size = 'md', class: cls, live = false } = Astro.props;
+const tier = tierOf(score);
+const box = 48;
+const stroke = 4;
+const r = (box - stroke) / 2;
+const sizes = { sm: 'size-9', md: 'size-11', lg: 'size-16', xl: 'size-24' };
+---
+<svg class:list={['score-ring shrink-0', `tier-${tier.key}`, sizes[size], cls]} viewBox={`0 0 ${box} ${box}`} role="img" aria-label={`Score ${score} out of 100, ${tier.label}`} data-ring={live ? '' : undefined}>
+  <circle class="ring-track" cx={box / 2} cy={box / 2} r={r} fill="none" stroke-width={stroke} />
+  <circle class="ring-value" cx={box / 2} cy={box / 2} r={r} fill="none" stroke="currentColor" stroke-width={stroke} stroke-linecap="round" pathLength="100" stroke-dasharray={`${score} 100`} transform={`rotate(-90 ${box / 2} ${box / 2})`} />
+  <text class="ring-number" x="50%" y="50%" text-anchor="middle" dominant-baseline="central">{score}</text>
+</svg>
+<style is:global>
+  .tier-immediate { color: var(--color-tier-immediate); }
+  .tier-priority { color: var(--color-tier-priority); }
+  .tier-watchlist { color: var(--color-tier-watchlist); }
+  .tier-monitor { color: var(--color-tier-monitor); }
+  .ring-track { stroke: var(--color-line); }
+  .ring-number { fill: var(--color-ink); font-size: var(--text-base); font-weight: 600; font-variant-numeric: tabular-nums; }
+</style>

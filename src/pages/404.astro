@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import Button from '../components/ui/Button.astro';
+import { PAGES } from '../data/pages.ts';
+import { CTA } from '../data/site.ts';
+const meta = PAGES['/404'];
+---
+<BaseLayout meta={meta}>
+  <PageIntro meta={meta} answer="The address may have changed or been typed incorrectly. Start from the home page, read how seller scoring works one rule at a time, or ask for a walkthrough of your own territory.">
+    <div class="mt-8 flex flex-wrap gap-3">
+      <Button href="/">Go to the home page</Button>
+      <Button href={CTA.secondary.href} variant="secondary">{CTA.secondary.label}</Button>
+    </div>
+  </PageIntro>
+</BaseLayout>

@@ -1,0 +1,8 @@
+---
+/** The one in-body link to the request form that every content page carries. */
+import { CTA } from '../../data/site.ts';
+interface Props { lead: string; class?: string }
+---
+<p class:list={['max-w-measure border-l-2 border-ink pl-5', Astro.props.class]}>
+  {Astro.props.lead} <a class="link font-semibold" href={CTA.primary.href} data-cta="primary" data-cta-location="body">{CTA.primary.label}</a>.
+</p>

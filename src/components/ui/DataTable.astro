@@ -1,0 +1,40 @@
+---
+/** A real HTML table. Cells are strings or links; the first column is the row header. */
+export type Cell = string | { text: string; href?: string; note?: string; mono?: boolean };
+interface Props { caption: string; columns: string[]; rows: Cell[][]; showCaption?: boolean }
+const { caption, columns, rows, showCaption = false } = Astro.props;
+const norm = (c: Cell) => (typeof c === 'string' ? { text: c } : c) as Exclude<Cell, string>;
+---
+<div class="table-scroll" role="region" aria-label={caption} tabindex="0">
+  <table class="data-table">
+    <caption class:list={[showCaption ? 'eyebrow pb-3 text-left' : 'sr-only']}>{caption}</caption>
+    <thead>
+      <tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          {row.map((raw, i) => {
+            const cell = norm(raw);
+            const Tag = i === 0 ? 'th' : 'td';
+            const external = cell.href?.startsWith('http');
+            return (
+              <Tag scope={i === 0 ? 'row' : undefined} class:list={[cell.mono && 'mono text-xs']}>
+                {cell.href ? <a class="link" href={cell.href} rel={external ? 'noopener' : undefined}>{cell.text}</a> : cell.text}
+                {cell.note && <span class="mt-1 block text-xs text-ink-muted">{cell.note}</span>}
+              </Tag>
+            );
+          })}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<style is:global>
+  @reference "../../styles/global.css";
+  .table-scroll { @apply w-full overflow-x-auto; }
+  .data-table { @apply w-full border-t border-ink text-left text-sm; }
+  .data-table th, .data-table td { @apply min-w-32 border-b border-line py-3 pr-5 align-top; }
+  .data-table thead th { @apply font-mono text-2xs font-medium uppercase tracking-eyebrow text-ink-muted; }
+  .data-table tbody th { @apply font-semibold text-ink; }
+</style>

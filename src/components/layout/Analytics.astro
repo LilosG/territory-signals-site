@@ -1,0 +1,22 @@
+---
+/** GA4 only when PUBLIC_GA4_ID is set. Loaded after the page's load event; no tag manager, no Partytown. */
+const id = import.meta.env.PUBLIC_GA4_ID as string | undefined;
+---
+{id && (
+  <script is:inline define:vars={{ id }}>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', id);
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-cta]');
+      if (el) window.gtag('event', 'cta_click', { location: el.dataset.ctaLocation, cta: el.dataset.cta });
+    });
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+      document.head.appendChild(s);
+    });
+  </script>
+)}

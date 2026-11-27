@@ -1,0 +1,28 @@
+---
+import Container from './Container.astro';
+import MobileNav from './MobileNav.astro';
+import { CTA, NAV, SITE } from '../../data/site.ts';
+interface Props { current: string }
+const { current } = Astro.props;
+---
+<header class="sticky top-0 z-40 border-b border-line bg-canvas">
+  <Container class="flex h-header items-center justify-between gap-4">
+    <a href="/" class="tap-link gap-2.5 font-semibold tracking-heading">
+      <svg class="size-6" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 5.5 14 3l7 8-3 10-13-2Z" /><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none" />
+      </svg>
+      {SITE.name}
+    </a>
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-6 text-sm">
+        {NAV.map((l) => (
+          <li><a class="tap-link text-ink-muted transition-colors hover:text-ink aria-[current=page]:text-ink aria-[current=page]:underline aria-[current=page]:underline-offset-8" href={l.href} aria-current={current === l.href || current.startsWith(`${l.href}/`) ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a class="btn btn-primary hidden sm:inline-flex" href={CTA.primary.href} data-cta="primary" data-cta-location="header">{CTA.primary.short}</a>
+      <MobileNav current={current} />
+    </div>
+  </Container>
+</header>

@@ -1,0 +1,353 @@
+{
+  "catalog_version": 1,
+  "model_version": "v0.7-attom",
+  "signal_types": [
+    {
+      "key": "code_violation_closed",
+      "label": "Code enforcement case closed"
+    },
+    {
+      "key": "code_violation_open",
+      "label": "Open code enforcement case"
+    },
+    {
+      "key": "fire_hazard_zone",
+      "label": "Fire hazard severity zone"
+    },
+    {
+      "key": "notice_of_default",
+      "label": "Notice of default or trustee sale"
+    },
+    {
+      "key": "ownership_transfer",
+      "label": "Ownership transfer (death, trust or inheritance)"
+    },
+    {
+      "key": "ownership_transfer_inheritance",
+      "label": "Ownership transfer by inheritance"
+    },
+    {
+      "key": "permit_approved",
+      "label": "Permit approved"
+    },
+    {
+      "key": "permit_stalled",
+      "label": "Permit expired with no close date"
+    },
+    {
+      "key": "sb79_transit_estimate",
+      "label": "SB 79 transit eligibility (estimated)"
+    },
+    {
+      "key": "sb9_lot_split_estimate",
+      "label": "SB 9 lot-split eligibility (estimated)"
+    },
+    {
+      "key": "stro_license_active",
+      "label": "Active STR license"
+    },
+    {
+      "key": "stro_license_removed",
+      "label": "STR license removed"
+    },
+    {
+      "key": "tax_default",
+      "label": "Tax default (power-to-sell list)"
+    }
+  ],
+  "signal_groups": [
+    {
+      "key": "adu",
+      "label": "ADU"
+    },
+    {
+      "key": "demolition_lot_split",
+      "label": "Demolition or lot split"
+    },
+    {
+      "key": "distress",
+      "label": "Distress"
+    },
+    {
+      "key": "life_event",
+      "label": "Life events"
+    },
+    {
+      "key": "maintenance",
+      "label": "Routine systems work"
+    },
+    {
+      "key": "other",
+      "label": "Other permits"
+    },
+    {
+      "key": "pre_sale_prep",
+      "label": "Pre-sale prep work"
+    },
+    {
+      "key": "remodel_addition",
+      "label": "Remodel or addition"
+    },
+    {
+      "key": "risk",
+      "label": "Fire hazard"
+    },
+    {
+      "key": "solar_energy",
+      "label": "Solar and energy"
+    },
+    {
+      "key": "stro",
+      "label": "Short-term rentals"
+    },
+    {
+      "key": "upzoning",
+      "label": "Upzoning"
+    }
+  ],
+  "recipes": [
+    {
+      "key": "str_exit",
+      "label": "Short-term rental exit",
+      "short_description": "STR license removed in the last year",
+      "requires_data": []
+    },
+    {
+      "key": "tired_landlord",
+      "label": "Tired landlord",
+      "short_description": "Long-held absentee owner with a distress signal",
+      "requires_data": []
+    },
+    {
+      "key": "builder_bait",
+      "label": "Builder bait",
+      "short_description": "Estimated upzoning potential on a large lot",
+      "requires_data": []
+    },
+    {
+      "key": "pre_list_prep",
+      "label": "Pre-list prep",
+      "short_description": "Pre-sale permit on a long-held home",
+      "requires_data": []
+    },
+    {
+      "key": "stalled_project",
+      "label": "Stalled project",
+      "short_description": "Permit expired with no close date",
+      "requires_data": []
+    },
+    {
+      "key": "downsizer",
+      "label": "Downsizer",
+      "short_description": "Long-held owner-occupant with no mortgage",
+      "requires_data": []
+    },
+    {
+      "key": "insurance_squeeze",
+      "label": "Insurance squeeze",
+      "short_description": "High or very high fire hazard zone",
+      "requires_data": [
+        "fire_zones"
+      ]
+    },
+    {
+      "key": "financial_pressure",
+      "label": "Financial pressure",
+      "short_description": "Tax default, a recorder default notice, or lost rental income with a mortgage",
+      "requires_data": []
+    },
+    {
+      "key": "quiet_inheritance",
+      "label": "Quiet inheritance",
+      "short_description": "Recent transfer by death, trust or inheritance",
+      "requires_data": []
+    }
+  ],
+  "components": [
+    {
+      "key": "tax_default",
+      "kind": "signal",
+      "family": "financial",
+      "max_points": 40,
+      "label": "Tax default",
+      "family_label": "Financial"
+    },
+    {
+      "key": "code_violation_open",
+      "kind": "signal",
+      "family": "financial",
+      "max_points": 24,
+      "label": "Open code enforcement case",
+      "family_label": "Financial"
+    },
+    {
+      "key": "code_violation_closed",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 10,
+      "label": "Code enforcement case closed",
+      "family_label": "Permits"
+    },
+    {
+      "key": "notice_of_default",
+      "kind": "signal",
+      "family": "financial",
+      "max_points": 35,
+      "label": "Notice of default",
+      "family_label": "Financial"
+    },
+    {
+      "key": "ownership_transfer_inheritance",
+      "kind": "signal",
+      "family": "owner",
+      "max_points": 0,
+      "label": "Ownership transfer by inheritance (context only, no points)",
+      "family_label": "Owner"
+    },
+    {
+      "key": "stro_license_removed",
+      "kind": "signal",
+      "family": "rental",
+      "max_points": 40,
+      "label": "STR license removed",
+      "family_label": "Short-term rentals"
+    },
+    {
+      "key": "stro_license_active",
+      "kind": "signal",
+      "family": "rental",
+      "max_points": 5,
+      "label": "Active STR license",
+      "family_label": "Short-term rentals"
+    },
+    {
+      "key": "permit_approved:pre_sale_prep",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 36,
+      "label": "Pre-sale prep permit approved",
+      "family_label": "Permits"
+    },
+    {
+      "key": "permit_approved:demolition_lot_split",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 27,
+      "label": "Demolition or lot-split permit approved",
+      "family_label": "Permits"
+    },
+    {
+      "key": "permit_approved:adu",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 18,
+      "label": "ADU permit approved",
+      "family_label": "Permits"
+    },
+    {
+      "key": "permit_approved:remodel_addition",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 14,
+      "label": "Remodel or addition permit approved",
+      "family_label": "Permits"
+    },
+    {
+      "key": "permit_approved:solar_energy",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 3,
+      "label": "Solar or energy permit approved",
+      "family_label": "Permits"
+    },
+    {
+      "key": "permit_stalled",
+      "kind": "signal",
+      "family": "permits",
+      "max_points": 27,
+      "label": "Permit expired with no close date",
+      "family_label": "Permits"
+    },
+    {
+      "key": "sb79_transit_estimate",
+      "kind": "signal",
+      "family": "upzoning",
+      "max_points": 21,
+      "label": "SB 79 transit eligibility (estimated)",
+      "family_label": "Upzoning"
+    },
+    {
+      "key": "sb9_lot_split_estimate",
+      "kind": "signal",
+      "family": "upzoning",
+      "max_points": 14,
+      "label": "SB 9 lot-split eligibility (estimated)",
+      "family_label": "Upzoning"
+    },
+    {
+      "key": "fire_hazard_zone",
+      "kind": "signal",
+      "family": "fire",
+      "max_points": 15,
+      "label": "Fire hazard severity zone",
+      "family_label": "Fire hazard"
+    },
+    {
+      "key": "owner:years_owned",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 20,
+      "label": "Years owned",
+      "family_label": "Owner"
+    },
+    {
+      "key": "owner:absentee",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 13,
+      "label": "Absentee owner",
+      "family_label": "Owner"
+    },
+    {
+      "key": "owner:out_of_state",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 15,
+      "label": "Out-of-state owner",
+      "family_label": "Owner"
+    },
+    {
+      "key": "owner:mortgage_open_false",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 13,
+      "label": "No open mortgage",
+      "family_label": "Owner"
+    },
+    {
+      "key": "owner:est_equity_top_quartile",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 6,
+      "label": "Equity in the top quarter (estimated)",
+      "family_label": "Owner"
+    },
+    {
+      "key": "owner:portfolio_owner_multi",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 6,
+      "label": "Multiple parcels in the territory",
+      "family_label": "Owner"
+    },
+    {
+      "key": "owner:ownership_transfer",
+      "kind": "owner",
+      "family": "owner",
+      "max_points": 0,
+      "label": "Ownership transfer (context only, no points)",
+      "family_label": "Owner"
+    }
+  ],
+  "owner_modifier_cap": 40
+}

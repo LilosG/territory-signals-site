@@ -1,0 +1,16 @@
+---
+import type { Crumb } from '../../lib/crumbs.ts';
+interface Props { crumbs: Crumb[] }
+const { crumbs } = Astro.props;
+---
+<nav aria-label="Breadcrumb" class="eyebrow">
+  <ol class="flex flex-wrap items-center gap-x-2">
+    {crumbs.map((c, i) => (
+      <li class="flex items-center gap-x-2">
+        {i < crumbs.length - 1
+          ? <><a class="tap-link hover:text-ink" href={c.path}>{c.name}</a><span aria-hidden="true">/</span></>
+          : <span class="tap-link text-ink" aria-current="page">{c.name}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

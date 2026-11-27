@@ -1,0 +1,19 @@
+---
+/** One line icon set (Lucide), 1.5px stroke, for wayfinding only. */
+import arrowRight from 'lucide-static/icons/arrow-right.svg?raw';
+import arrowUpRight from 'lucide-static/icons/arrow-up-right.svg?raw';
+import menu from 'lucide-static/icons/menu.svg?raw';
+import x from 'lucide-static/icons/x.svg?raw';
+import alert from 'lucide-static/icons/circle-alert.svg?raw';
+import lock from 'lucide-static/icons/lock.svg?raw';
+
+const ICONS = { arrow: arrowRight, external: arrowUpRight, menu, close: x, alert, lock } as const;
+interface Props { name: keyof typeof ICONS; class?: string }
+const { name, class: cls = 'size-4' } = Astro.props;
+const svg = ICONS[name]
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/\s(width|height|class)="[^"]*"/g, '')
+  .replace('stroke-width="2"', 'stroke-width="1.5"')
+  .replace('<svg', `<svg class="shrink-0 ${cls}" aria-hidden="true" focusable="false"`);
+---
+<Fragment set:html={svg} />

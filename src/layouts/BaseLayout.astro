@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import sansUrl from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url';
+import serifUrl from '@fontsource/ibm-plex-serif/files/ibm-plex-serif-latin-500-normal.woff2?url';
+import Seo from '../components/seo/Seo.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Analytics from '../components/layout/Analytics.astro';
+import { crumbsFor } from '../lib/crumbs.ts';
+import type { JsonLdNode } from '../lib/schema.ts';
+import type { PageMeta } from '../lib/page-meta.ts';
+
+interface Props { meta: PageMeta; schema?: JsonLdNode[]; ogType?: 'website' | 'article'; location?: string }
+const { meta, schema, ogType, location } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={sansUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#fafaf9" />
+    <Seo meta={meta} crumbs={crumbsFor(meta)} schema={schema} ogType={ogType} />
+    <Analytics />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header current={meta.path} />
+    <main id="main" data-heading-term={meta.headingTerm} data-heading-location={location}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

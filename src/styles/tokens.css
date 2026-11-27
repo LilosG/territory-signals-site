@@ -1,0 +1,93 @@
+/*
+ * Design tokens: the single source of visual truth. Extends the product's "Alabaster & Obsidian" system.
+ * Components use these through Tailwind utilities or var(); they never hard-code a color or a scale value.
+ */
+@theme static {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-canvas: #fafaf9;
+  --color-surface: #ffffff;
+  --color-sunken: #f1f5f9;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+  --color-ink: #0b0f17;
+  --color-ink-muted: #475569;
+  --color-ink-faint: #64748b; /* canvas and surface only; below 4.5:1 on sunken */
+  --color-gold: #b8862d; /* focus ring on light (non-text) */
+  --color-gold-bright: #c6923a; /* text and focus on obsidian */
+  --color-gold-strong: #86671c; /* briefing labels on light */
+  --color-gold-soft: #f8f1df;
+  --color-obsidian: #0b0f17;
+  --color-obsidian-raised: #111b2e;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #cbd5e1;
+  --color-line-dark: rgb(255 255 255 / 0.14);
+  /* Score tiers (product lib/ring.ts). Used only to encode data. */
+  --color-tier-immediate: #b91c1c;
+  --color-tier-priority: #b45309;
+  --color-tier-watchlist: #1e3a8a;
+  --color-tier-monitor: #64748b;
+  /* Product UI recreations only: the product's own honesty markers. */
+  --color-sample: #8a5806;
+  --color-sample-soft: #fef8e7;
+
+  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'IBM Plex Serif', ui-serif, Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --text-*: initial;
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1.45;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+  --text-base: clamp(1rem, 0.98rem + 0.11vw, 1.0625rem);
+  --text-base--line-height: 1.6;
+  --text-lg: clamp(1.125rem, 1.08rem + 0.22vw, 1.25rem);
+  --text-lg--line-height: 1.55;
+  --text-xl: clamp(1.25rem, 1.15rem + 0.43vw, 1.5rem);
+  --text-xl--line-height: 1.35;
+  --text-2xl: clamp(1.5rem, 1.3rem + 0.87vw, 2rem);
+  --text-2xl--line-height: 1.2;
+  --text-3xl: clamp(1.875rem, 1.53rem + 1.52vw, 2.75rem);
+  --text-3xl--line-height: 1.15;
+  --text-4xl: clamp(2.25rem, 1.66rem + 2.61vw, 3.75rem);
+  --text-4xl--line-height: 1.08;
+
+  --tracking-display: -0.025em;
+  --tracking-heading: -0.015em;
+  --tracking-eyebrow: 0.09em;
+
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
+  --spacing-section: clamp(4rem, 8vw, 7.5rem);
+  --spacing-tap: 2.75rem;
+  --spacing-header: 4rem;
+
+  --container-page: 80rem;
+  --container-measure: 68ch;
+  --container-form: 36rem;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-full: 9999px;
+
+  --shadow-*: initial;
+  --shadow-xs: 0 1px 0 rgb(11 15 23 / 0.04);
+  --shadow-lift: 0 12px 32px -12px rgb(11 15 23 / 0.18), 0 2px 6px rgb(11 15 23 / 0.05);
+
+  --ease-quiet: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+}

@@ -1,0 +1,13 @@
+---
+import { TIERS } from '../../lib/tiers.ts';
+---
+<dl class="grid grid-cols-2 border-t border-ink sm:grid-cols-4">
+  {TIERS.map((t) => (
+    <div class="border-b border-line py-3 pr-4">
+      <dt class:list={['flex items-center gap-2 text-sm font-semibold', `tier-${t.key}`]}>
+        <svg class="size-2.5 shrink-0" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor" /></svg>{t.label}
+      </dt>
+      <dd class="mono mt-1 text-xs text-ink-muted">{t.min} to {t.max}</dd>
+    </div>
+  ))}
+</dl>

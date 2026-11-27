@@ -1,0 +1,12 @@
+---
+interface Props { items: { term: string; definition: string; id?: string; href?: string }[]; layout?: 'rows' | 'stacked'; class?: string }
+const { items, layout = 'rows', class: cls } = Astro.props;
+---
+<dl class:list={['border-t border-ink', cls]}>
+  {items.map((i) => (
+    <div id={i.id} class:list={['border-b border-line py-4', layout === 'rows' && 'sm:grid sm:grid-cols-3 sm:gap-6']}>
+      <dt class="font-semibold">{i.href ? <a class="link" href={i.href}>{i.term}</a> : i.term}</dt>
+      <dd class:list={['mt-1 max-w-measure text-ink-muted', layout === 'rows' && 'sm:col-span-2 sm:mt-0']}>{i.definition}</dd>
+    </div>
+  ))}
+</dl>

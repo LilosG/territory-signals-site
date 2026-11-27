@@ -1,0 +1,342 @@
+{
+  "model_version": "v0.7-attom",
+  "suppression": {
+    "recent_sale_months": 24
+  },
+  "stacking": {
+    "bonus_per_extra_family": 0.15,
+    "cap": 0.45,
+    "families": [
+      "financial",
+      "rental",
+      "permits",
+      "upzoning",
+      "fire",
+      "owner"
+    ]
+  },
+  "signals": {
+    "tax_default": {
+      "family": "financial",
+      "weight": 40,
+      "half_life_days": 365
+    },
+    "code_violation_open": {
+      "family": "financial",
+      "weight": 24,
+      "half_life_days": 180
+    },
+    "code_violation_closed": {
+      "family": "permits",
+      "weight": 10,
+      "half_life_days": 120
+    },
+    "notice_of_default": {
+      "family": "financial",
+      "weight": 35,
+      "half_life_days": 180
+    },
+    "ownership_transfer_inheritance": {
+      "family": "owner",
+      "weight": 0,
+      "half_life_days": null
+    },
+    "stro_license_removed": {
+      "family": "rental",
+      "weight": 40,
+      "half_life_days": 90
+    },
+    "stro_license_active": {
+      "family": "rental",
+      "weight": 5,
+      "half_life_days": null,
+      "snapshot": true
+    },
+    "permit_approved": {
+      "family": "permits",
+      "by_group": {
+        "pre_sale_prep": {
+          "weight": 36,
+          "half_life_days": 120
+        },
+        "maintenance": {
+          "weight": 0,
+          "half_life_days": 180
+        },
+        "demolition_lot_split": {
+          "weight": 27,
+          "half_life_days": 180
+        },
+        "adu": {
+          "weight": 18,
+          "half_life_days": 180
+        },
+        "remodel_addition": {
+          "weight": 14,
+          "half_life_days": 180
+        },
+        "solar_energy": {
+          "weight": 3,
+          "half_life_days": 180
+        },
+        "other": {
+          "weight": 0,
+          "half_life_days": 180
+        }
+      }
+    },
+    "permit_stalled": {
+      "family": "permits",
+      "weight": 27,
+      "half_life_days": 365,
+      "groups": [
+        "remodel_addition",
+        "adu",
+        "demolition_lot_split"
+      ]
+    },
+    "sb79_transit_estimate": {
+      "family": "upzoning",
+      "half_life_days": null,
+      "snapshot": true,
+      "by_detail": "distance_band",
+      "values": {
+        "within_200ft": 21,
+        "within_quarter_mile": 21,
+        "within_half_mile": 15
+      }
+    },
+    "sb9_lot_split_estimate": {
+      "family": "upzoning",
+      "weight": 14,
+      "half_life_days": null,
+      "snapshot": true
+    },
+    "fire_hazard_zone": {
+      "family": "fire",
+      "half_life_days": null,
+      "snapshot": true,
+      "by_detail": "hazard_class",
+      "values": {
+        "very high": 15,
+        "high": 9,
+        "moderate": 4
+      }
+    }
+  },
+  "owner_modifiers": {
+    "cap": 40,
+    "years_owned": [
+      {
+        "min_years": 30,
+        "weight": 20
+      },
+      {
+        "min_years": 20,
+        "weight": 13
+      }
+    ],
+    "absentee": {
+      "weight": 13
+    },
+    "out_of_state": {
+      "weight": 15
+    },
+    "mortgage_open_false": {
+      "weight": 13
+    },
+    "est_equity_top_quartile": {
+      "weight": 6,
+      "percentile": 75
+    },
+    "portfolio_owner_multi": {
+      "weight": 6,
+      "min_territory_parcels": 2
+    }
+  },
+  "recipes": {
+    "str_exit": {
+      "label": "Short-term rental exit",
+      "short_description": "STR license removed in the last year",
+      "description": "Short-term rental license removed in the last year.",
+      "rationale": "A short-term rental license for this property was removed in the last year, so the home may no longer earn that rental income and its future use is worth asking about.",
+      "when": {
+        "signal": "stro_license_removed",
+        "within_days": 365
+      }
+    },
+    "tired_landlord": {
+      "label": "Tired landlord",
+      "short_description": "Long-held absentee owner with a distress signal",
+      "description": "Long-held absentee owner with a distress or friction signal.",
+      "rationale": "The owner does not live at the property, has held it 15 or more years, and there is a sign of friction on it (an open code enforcement case, an expired permit or a removed rental license). Long-held rentals with friction are homes where a conversation about selling can be timely.",
+      "when": {
+        "all": [
+          {
+            "owner": "absentee",
+            "is": true
+          },
+          {
+            "owner": "years_owned",
+            "gte": 15
+          },
+          {
+            "any": [
+              {
+                "signal": "tax_default"
+              },
+              {
+                "signal": "code_violation_open"
+              },
+              {
+                "signal": "stro_license_removed",
+                "within_days": 730
+              },
+              {
+                "signal": "permit_stalled"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "builder_bait": {
+      "label": "Builder bait",
+      "short_description": "Estimated upzoning potential on a large lot",
+      "description": "Estimated upzoning potential on a large lot with a long-held owner.",
+      "rationale": "The lot is much larger than most in its area and an estimated state-law screen says it may allow splitting the lot or building more homes. The owner has held it 20 or more years, so a builder or investor may see more in the land than a typical buyer would.",
+      "when": {
+        "all": [
+          {
+            "any": [
+              {
+                "signal": "sb9_lot_split_estimate"
+              },
+              {
+                "signal": "sb79_transit_estimate"
+              }
+            ]
+          },
+          {
+            "parcel": "lot_vs_area_median",
+            "gte": 1.5
+          },
+          {
+            "owner": "years_owned",
+            "gte": 20
+          }
+        ]
+      }
+    },
+    "pre_list_prep": {
+      "label": "Pre-list prep",
+      "short_description": "Pre-sale permit on a long-held home",
+      "description": "Pre-sale type permit approved in the last 6 months on a long-held home.",
+      "rationale": "A permit for cosmetic or remodel work (kitchen, bath, windows, roof, paint, landscaping) was approved in the last six months on a home the owner has held 10 or more years. This is the kind of work that often goes in before a sale.",
+      "when": {
+        "all": [
+          {
+            "signal": "permit_approved",
+            "group": "pre_sale_prep",
+            "within_days": 180
+          },
+          {
+            "owner": "years_owned",
+            "gte": 10
+          }
+        ]
+      }
+    },
+    "stalled_project": {
+      "label": "Stalled project",
+      "short_description": "Permit expired with no close date",
+      "description": "Permit expired more than 90 days ago with no close date.",
+      "rationale": "A building permit expired more than 90 days ago and was never closed, so the project may be unfinished.",
+      "when": {
+        "signal": "permit_stalled"
+      }
+    },
+    "downsizer": {
+      "label": "Downsizer",
+      "short_description": "Long-held owner-occupant with no mortgage",
+      "description": "Owner-occupied, long-held, no open mortgage.",
+      "rationale": "The owner lives in the home, has held it 20 or more years and has no open mortgage. Owners with this profile may want a smaller or simpler home.",
+      "when": {
+        "all": [
+          {
+            "owner": "absentee",
+            "is": false
+          },
+          {
+            "owner": "years_owned",
+            "gte": 20
+          },
+          {
+            "owner": "mortgage_open",
+            "is": false
+          }
+        ]
+      }
+    },
+    "insurance_squeeze": {
+      "label": "Insurance squeeze",
+      "short_description": "High or very high fire hazard zone",
+      "description": "High or very high fire hazard zone.",
+      "rationale": "The home is in a high or very high fire hazard zone, where insurance can cost more or be harder to get.",
+      "when": {
+        "signal": "fire_hazard_zone",
+        "detail": {
+          "hazard_class": [
+            "high",
+            "very high"
+          ]
+        }
+      },
+      "requires_data": [
+        "fire_zones"
+      ]
+    },
+    "financial_pressure": {
+      "label": "Financial pressure",
+      "short_description": "Tax default, a recorder default notice, or lost rental income with a mortgage",
+      "description": "Tax default, a recorder notice of default, an open code enforcement case, or lost rental income with an open mortgage.",
+      "when": {
+        "any": [
+          {
+            "signal": "tax_default",
+            "within_days": 730
+          },
+          {
+            "signal": "notice_of_default",
+            "within_days": 730
+          },
+          {
+            "signal": "code_violation_open"
+          },
+          {
+            "all": [
+              {
+                "signal": "stro_license_removed",
+                "within_days": 365
+              },
+              {
+                "owner": "mortgage_open",
+                "is": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "quiet_inheritance": {
+      "label": "Quiet inheritance",
+      "short_description": "Recent transfer by death, trust or inheritance",
+      "description": "A recorded transfer by death, trust or inheritance in the last two years.",
+      "rationale": "A recorder document shows the home changed hands by death, trust or inheritance. A new owner or trustee may be deciding what to do with the property, and a neutral conversation about its value can be timely.",
+      "when": {
+        "signal": "ownership_transfer_inheritance",
+        "within_days": 730
+      }
+    }
+  }
+}

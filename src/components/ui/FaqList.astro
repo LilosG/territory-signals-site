@@ -1,0 +1,12 @@
+---
+interface Props { items: { id: string; question: string; answer: string }[]; level?: 'h3' | 'h4' }
+const { items, level: Heading = 'h3' } = Astro.props;
+---
+<div class="border-t border-ink">
+  {items.map((f) => (
+    <div class="border-b border-line py-5 lg:grid lg:grid-cols-12 lg:gap-8" id={f.id}>
+      <Heading class="text-base font-semibold lg:col-span-4">{f.question}</Heading>
+      <p class="mt-2 max-w-measure text-ink-muted lg:col-span-8 lg:mt-0">{f.answer}</p>
+    </div>
+  ))}
+</div>

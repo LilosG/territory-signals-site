@@ -1,0 +1,5 @@
+---
+interface Props { tone?: 'muted' | 'gold'; class?: string }
+const { tone = 'muted', class: cls } = Astro.props;
+---
+<p class:list={[tone === 'gold' ? 'eyebrow-gold' : 'eyebrow', cls]}><slot /></p>
