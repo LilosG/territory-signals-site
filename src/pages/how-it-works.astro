@@ -1,0 +1,90 @@
+---
+import StandardPage from '../templates/StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import TierLegend from '../components/ui/TierLegend.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import ScoreDemo from '../components/visuals/ScoreDemo.astro';
+import { PAGES } from '../data/pages.ts';
+import { CATALOG, SCORING, weightFor } from '../lib/product.ts';
+import { faqFor } from '../lib/collections.ts';
+import { faqPage } from '../lib/schema.ts';
+
+const meta = PAGES['/how-it-works'];
+const faqs = await faqFor('how-it-works');
+const weights = CATALOG.components.filter((c) => c.max_points > 0).map((c) => {
+  const w = weightFor(c.key);
+  return [c.label, w.weight, w.halfLife, w.family];
+});
+const pct = (n: number) => `${Math.round(n * 100)}%`;
+---
+<StandardPage meta={meta} eyebrow="Collect → Connect → Score → Act → Explain" schema={[faqPage(faqs)]}
+  answer="Predictive seller scoring here is transparent arithmetic. Records are collected, matched to parcels and given published weights that fade with age and reflect match confidence. Independent signal families stack, the total is capped at 100, and a person decides what happens next. AI explains in cited text and never sets a score."
+  request="To walk through these rules against your own planning areas,"
+  cta={{ title: 'Want to see seller scoring on your territory?', text: 'A walkthrough shows the records that cover your areas and the components behind each score.' }}>
+
+  <QaSection id="collect" q="What does seller scoring collect first?" p={['Seller scoring starts by collecting records from City, County and regional files plus owner and recorder data. A weekly run pulls each source in a fixed order, keeps every raw record without overwriting it and logs what succeeded. If one source fails, the failure is recorded and the others continue.']}>
+    <p><a class="link" href="/data-sources">Every source and its limits</a></p>
+  </QaSection>
+  <QaSection id="connect" q="How does seller scoring connect records to parcels?" p={['Seller scoring connects a record to a parcel using its parcel number first, then location, address or name where a source has no parcel number. Each signal stores its source, source record ID, match method and match confidence, so any line on a lead can be traced back to where it came from.']} />
+
+  <QaSection id="score" q="What is the seller scoring formula?" p={['The seller scoring formula adds up each signal’s weighted, age-adjusted contribution and then applies a bonus for independent families.']}>
+    <p class="mono border-y border-ink py-4 text-sm">contribution = weight × 0.5^(age ÷ half-life) × confidence<br />score = min(100, round(sum of contributions × (1 + stacking bonus)))</p>
+    <DataTable caption="Stacking and caps" showCaption columns={['Rule', 'Value']} rows={[
+      ['Bonus per independent family after the first', `+${pct(SCORING.stacking.bonus_per_extra_family)}`],
+      ['Largest stacking bonus', `+${pct(SCORING.stacking.cap)}`],
+      ['Cap on all owner modifiers together', `${SCORING.owner_modifiers.cap} points`],
+      ['Cap on the final score', '100'],
+      ['Repeat records of one signal type', 'Only the strongest, most recent one counts'],
+      ['Out-of-state and absentee owner', 'Not added together'],
+    ]} />
+  </QaSection>
+
+  <Section id="demo">
+    <div class="stack">
+      <h2>How does seller scoring change as signals stack?</h2>
+      <p class="max-w-measure">Seller scoring changes as you add or remove signals below. The parcel is invented; the weights and formula are the product’s.</p>
+      <ScoreDemo />
+    </div>
+  </Section>
+
+  <QaSection q="Which weights does seller scoring use?" p={[`Seller scoring uses the weights below, from scoring model ${SCORING.model_version}. They are set by hand and published to every team.`]}>
+    <DataTable caption={`Score component weights, model ${SCORING.model_version}`} columns={['Score component', 'Weight (points)', 'Half-life', 'Family']} rows={weights} />
+  </QaSection>
+
+  <QaSection q="What do the seller scoring tiers mean?" p={['Seller scoring tiers are display bands that tell your team what to look at first. They do not change the stored number.']}>
+    <TierLegend />
+  </QaSection>
+
+  <QaSection q="When does seller scoring skip a parcel?" p={['Seller scoring skips parcels where a score would mislead or waste time.']} list={[
+    'The parcel’s land use is not residential.',
+    `A recorded sale falls within the last ${SCORING.suppression.recent_sale_months} months. Transfers by death, trust or inheritance are not treated as sales.`,
+    'The team has an active suppression on the parcel.',
+  ]} />
+
+  <QaSection id="act" q="What happens after seller scoring?" p={['After seller scoring, parcels are matched to named recipes, ranked in the product and, where your team chooses, turned into drafted outreach. A person edits and approves each draft, your team sends it, and outcomes are logged so you can see what happened.']}>
+    <p><a class="link" href="/recipes">Recipes</a> · <a class="link" href="/platform/outreach-co-pilot">Outreach co-pilot</a></p>
+  </QaSection>
+
+  <QaSection id="explain" q="Does AI play a part in seller scoring?" p={[
+    'No part of seller scoring uses AI. Scores, counts, dates, equity and eligibility come from deterministic code.',
+    'The optional AI layer is for explanation. It writes lead and weekly summaries and reads permit text in a shadow mode that does not affect scores. Every output is checked: claims must cite records, numbers must appear in those records, and rejected output is never shown. AI facts packets leave out sensitive records.',
+  ]} />
+
+  <Section>
+    <div class="stack">
+      <h2>What else do teams ask about seller scoring?</h2>
+      <FaqList items={faqs} />
+    </div>
+  </Section>
+  <Section>
+    <div class="grid-12"><div class="col-lead"><RelatedLinks title="Keep reading" links={[
+      { href: '/signals', label: 'Signal families', note: 'Each source, weight and limit' },
+      { href: '/platform/lead-scoring', label: 'Lead scoring in the product' },
+      { href: '/platform/backtesting', label: 'Backtesting' },
+      { href: '/glossary', label: 'Glossary' },
+    ]} /></div></div>
+  </Section>
+</StandardPage>

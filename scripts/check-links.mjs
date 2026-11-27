@@ -27,7 +27,7 @@ for (const { file, path } of pages) {
     count += 1;
     const [pathname, hash] = ref.split('#');
     const target = (pathname.split('?')[0] || path).replace(/(.)\/$/, '$1');
-    if (pending.has(target) || /^\/(og\/|sitemap)/.test(target) && pending.size) continue;
+    if (pending.has(target) || /^\/og\//.test(target) && pending.size) continue;
     if (pathname && !(ids.has(target) || isFile(join(DIST, target)))) { problems.push(`${path}: broken link ${ref}`); continue; }
     if (hash && ids.has(target) && !ids.get(target).has(hash)) problems.push(`${path}: missing anchor ${ref}`);
   }

@@ -1,0 +1,9 @@
+---
+import FeaturePage from '../../templates/FeaturePage.astro';
+import { entries } from '../../lib/collections.ts';
+
+export async function getStaticPaths() {
+  return (await entries('platform')).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<FeaturePage entry={Astro.props.entry} />

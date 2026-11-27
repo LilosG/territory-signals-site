@@ -1,0 +1,11 @@
+{
+  "question": "Where does the data come from?",
+  "answer": "City of San Diego development permits, rental licenses and code enforcement case data, the County tax-default list, SanGIS parcels, SANDAG zoning, transit and planning-area layers, and ATTOM owner and recorder data. Fire hazard zones are coming. Court probate, legal notices and obituaries are not scraped.",
+  "topic": "Data",
+  "pages": [
+    "home",
+    "data-sources",
+    "faq"
+  ],
+  "order": 1
+}

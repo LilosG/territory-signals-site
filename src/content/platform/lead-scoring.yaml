@@ -1,0 +1,62 @@
+{
+  "crumb": "Lead scoring",
+  "keyword": "real estate lead scoring software",
+  "headingTerm": "lead scoring",
+  "h1": "Real estate lead scoring software you can audit",
+  "title": "Real Estate Lead Scoring Software You Can Audit Yourself",
+  "description": "Real estate lead scoring software with published weights, recency decay, match confidence and a per-parcel breakdown. AI never sets or changes a score.",
+  "updated": "2026-11-26",
+  "order": 1,
+  "label": "Lead scoring",
+  "summary": "Published weights, recency decay and a per-parcel breakdown",
+  "visual": "breakdown",
+  "answer": "Territory Signals scores each residential parcel with fixed arithmetic: a published weight for every signal, reduced as the record ages, adjusted for how confidently it matched the parcel, then raised when independent signal families stack. Your team sees every component, and no AI sets or changes a score.",
+  "related": [
+    "/platform/seller-dossier",
+    "/platform/backtesting",
+    "/signals/building-permits"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does the lead scoring breakdown show?",
+      "p": [
+        "The lead scoring breakdown shows every component behind a parcel’s number: its label, the points it contributed and the most it could contribute.",
+        "Each score also carries a plain reason line built only from the facts inside those components, the scoring model version and one of four display tiers: Immediate, Priority, Active Watchlist or Monitor."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into real estate lead scoring here?",
+      "p": [
+        "Real estate lead scoring here uses only matched signals and owner facts, combined by rules written in a configuration file.",
+        "Each signal’s weight is multiplied by a recency factor and by its match confidence. Static facts such as an estimated upzoning screen do not decay. Only the strongest instance of each signal type counts, so ten roof permits score once."
+      ],
+      "list": [
+        "+15% for each independent signal family beyond the first, capped at +45%",
+        "Owner modifiers capped at 40 points in total",
+        "A final score capped at 100",
+        "No score for non-residential parcels, recent sales or suppressed parcels"
+      ]
+    },
+    "uses": {
+      "q": "How does your team use lead scoring?",
+      "p": [
+        "Your team uses lead scoring to decide which parcels to research first, not to decide anything about a homeowner.",
+        "The ranked list is the starting point. An agent opens the dossier, checks the source records, applies local knowledge and decides whether an approach is appropriate."
+      ]
+    },
+    "never": {
+      "q": "What will lead scoring never do?",
+      "p": [
+        "Lead scoring never uses AI, randomness or hidden inputs to produce a number.",
+        "Scores, counts, dates, equity and eligibility are computed with deterministic code. Each run is stored with its model version and earlier rows are not overwritten, so a change in the rules does not silently rewrite history."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of lead scoring?",
+      "p": [
+        "A lead scoring result is a ranking of public and owner records, not a prediction that a particular owner will sell.",
+        "A record can be wrong, late or matched with less than full confidence. The weights are set by hand and reviewed as the rules change; the backtest checks them against recorded sales but does not prove cause."
+      ]
+    }
+  }
+}

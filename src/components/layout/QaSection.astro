@@ -1,0 +1,16 @@
+---
+/** A question-form H2 beside its answer. Extra blocks (tables, lists, visuals) follow the text. */
+import Section from './Section.astro';
+interface Props { q: string; p?: string[] | undefined; list?: string[] | undefined; id?: string; tone?: 'canvas' | 'surface' }
+const { q, p = [], list, id, tone } = Astro.props;
+---
+<Section id={id} tone={tone}>
+  <div class="grid-12">
+    <h2 class="col-aside">{q}</h2>
+    <div class="col-main stack">
+      {p.length > 0 && <div class="prose">{p.map((text) => <p>{text}</p>)}</div>}
+      {list && <ul class="max-w-measure border-t border-line">{list.map((item) => <li class="border-b border-line py-2.5">{item}</li>)}</ul>}
+      <slot />
+    </div>
+  </div>
+</Section>

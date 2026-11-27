@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import Surface from '../components/product/Surface.astro';
+import { entries, hrefOf, linkList } from '../lib/collections.ts';
+import { metaOf } from '../lib/entry-meta.ts';
+
+interface Props { entry: CollectionEntry<'platform'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const s = d.sections;
+const platform = await entries('platform');
+const signals = await entries('signals');
+const related = d.related.map((href) => {
+  const [, kind, id] = href.split('/');
+  const found = kind === 'platform' ? platform.find((p) => p.id === id) : signals.find((p) => p.id === id);
+  return found ? linkList(kind as 'platform' | 'signals', [found])[0]! : { href, label: id!.replaceAll('-', ' ') };
+});
+---
+<StandardPage meta={metaOf('platform', entry)} answer={d.answer} eyebrow="Platform"
+  request="See this surface set up around your own planning areas."
+  cta={{ title: `Want to see the ${d.headingTerm} on your territory?`, text: 'A walkthrough shows the product surfaces and the records behind them for the areas you work.' }}>
+  {d.visual !== 'none' && <Section><div class="mx-auto max-w-3xl"><Surface visual={d.visual} /></div></Section>}
+  <QaSection {...s.shows} />
+  <QaSection {...s.inputs} />
+  <QaSection {...s.uses} />
+  <QaSection {...s.never} />
+  <QaSection {...s.limits} />
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead"><RelatedLinks title="Related" links={related} /></div>
+      <div class="col-support"><RelatedLinks title="More" links={[{ href: hrefOf('platform', '').slice(0, -1), label: 'All platform surfaces' }, { href: '/compliance', label: 'Compliance' }]} /></div>
+    </div>
+  </Section>
+</StandardPage>

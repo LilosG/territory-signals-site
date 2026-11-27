@@ -1,0 +1,27 @@
+---
+import LegalPage from '../templates/LegalPage.astro';
+import { PAGES } from '../data/pages.ts';
+import { COMPANY, SITE } from '../data/site.ts';
+const a = COMPANY.address;
+---
+<LegalPage meta={PAGES['/privacy']}
+  intro={`This privacy policy covers the public ${SITE.name} website, run by ${COMPANY.name}. It does not cover a client’s product deployment, which is governed by that client’s agreement.`}
+  sections={[
+    { q: 'What does this privacy policy say the website collects?', p: ['This website collects only what you submit in the walkthrough form, plus the technical data needed to serve and protect the site.'], list: [
+      'Form fields: name, work email, team or brokerage, market or neighborhoods, team size and an optional note.',
+      'Technical data: your IP address and browser details, processed by our hosting and spam-protection provider.',
+    ] },
+    { q: 'How is information used under this privacy policy?', p: ['Information from the form is used to reply to your request and arrange a walkthrough. We do not sell it and do not use it for advertising.', 'Your submission is delivered to our team by email. This website does not store form submissions in a database of its own.'] },
+    { q: 'Which providers process data under this privacy policy?', p: ['The providers below process data for this website, each under its own terms.'], list: [
+      'Cloudflare: website hosting, security logs and the Turnstile spam check on the form.',
+      'Resend: delivery of the email that carries your form submission.',
+      'Our email provider: receiving and keeping that message.',
+    ] },
+    { q: 'Does this privacy policy cover analytics and cookies?', p: [
+      'Yes. When analytics is enabled, this site loads Google Analytics 4 after the page loads, without a consent prompt. Google Analytics sets cookies and records page views, button clicks and form start and submit events. The contents of form fields are not sent to analytics.',
+      'You can block or delete cookies in your browser, or use Google’s browser opt-out add-on. Turnstile may use technical signals from your browser to tell people from automated traffic.',
+    ] },
+    { q: 'How long is information kept under this privacy policy?', p: ['Information is kept for as long as it is needed to respond to you and to keep ordinary business records. You can ask us to delete it.'] },
+    { q: 'What choices does this privacy policy give you?', p: ['You can ask to see, correct or delete the information you sent us. Depending on where you live, including California, you may have further rights under privacy law. We will not treat you differently for using them.'] },
+    { q: 'How can you ask about this privacy policy?', p: [`Send privacy questions to ${COMPANY.email}, or write to ${COMPANY.name}, ${a.street}, ${a.city}, ${a.region} ${a.postalCode}. If this policy changes, the new version appears here with a new effective date.`] },
+  ]} />

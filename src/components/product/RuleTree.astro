@@ -1,0 +1,10 @@
+---
+/** A recipe's conditions, generated from the product config. */
+import type { RuleLine } from '../../lib/product.ts';
+interface Props { line: RuleLine }
+const { line } = Astro.props;
+---
+<li class="py-1.5">
+  <span class:list={[line.children && 'font-semibold']}>{line.text}{line.children ? ':' : ''}</span>
+  {line.children && <ul class="mt-1 border-l border-line-strong pl-4">{line.children.map((c) => <Astro.self line={c} />)}</ul>}
+</li>

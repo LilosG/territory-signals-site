@@ -1,0 +1,11 @@
+{
+  "question": "Does the system contact homeowners on its own?",
+  "answer": "No. It prepares letters, email drafts and call scripts. A person on your team edits and approves each one, and your team sends it. The system never sends, texts or dials a homeowner.",
+  "topic": "Outreach and compliance",
+  "pages": [
+    "home",
+    "compliance",
+    "faq"
+  ],
+  "order": 5
+}

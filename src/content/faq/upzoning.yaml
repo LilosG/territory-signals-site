@@ -1,0 +1,10 @@
+{
+  "question": "Is upzoning eligibility official?",
+  "answer": "No. SB 9 and SB 79 results are an in-house screen of zoning, lot size and transit distance, always labeled estimated. They are not a determination by the City, SANDAG or the State. Confirm any parcel with the City.",
+  "topic": "Data",
+  "pages": [
+    "data-sources",
+    "faq"
+  ],
+  "order": 10
+}

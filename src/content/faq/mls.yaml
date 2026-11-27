@@ -1,0 +1,10 @@
+{
+  "question": "Do we need MLS access?",
+  "answer": "No. The core product runs without MLS. MLS data is an optional add-on, scoped per client, that requires your broker’s signed back-office data agreement.",
+  "topic": "Setup",
+  "pages": [
+    "how-we-build",
+    "faq"
+  ],
+  "order": 7
+}

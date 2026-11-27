@@ -1,0 +1,9 @@
+---
+import SignalPage from '../../templates/SignalPage.astro';
+import { entries } from '../../lib/collections.ts';
+
+export async function getStaticPaths() {
+  return (await entries('signals')).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<SignalPage entry={Astro.props.entry} />

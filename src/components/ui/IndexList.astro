@@ -1,0 +1,8 @@
+---
+/** The index table every section hub uses, generated from a collection. */
+import RecipeTile from '../product/RecipeTile.astro';
+interface Props { items: { href: string; label: string; note?: string | undefined; mark?: string | undefined }[] }
+---
+<ul class="border-t border-ink">
+  {Astro.props.items.map((i) => <RecipeTile href={i.href} label={i.label} description={i.note ?? ''} mark={i.mark} />)}
+</ul>

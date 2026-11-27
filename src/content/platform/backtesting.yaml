@@ -1,0 +1,56 @@
+{
+  "crumb": "Backtesting",
+  "keyword": "seller lead score backtesting",
+  "headingTerm": "backtest",
+  "h1": "Seller lead score backtesting against recorded sales",
+  "title": "Seller Lead Score Backtesting Against Recorded Home Sales",
+  "description": "Seller lead score backtesting checks which recorded sales had a public signal 14 to 365 days earlier. See what it measures and what it cannot tell you.",
+  "updated": "2026-11-26",
+  "order": 7,
+  "label": "Backtesting",
+  "summary": "Which recorded sales had a public signal beforehand",
+  "visual": "none",
+  "answer": "The backtest asks a narrow question: for recorded arm’s-length sales in the trailing 24 months, did the parcel carry a public signal dated 14 to 365 days before the sale? It reports how many did, how early the first signal appeared and which sources were involved. It is deterministic, and this site publishes no results.",
+  "related": [
+    "/platform/lead-scoring",
+    "/signals/building-permits",
+    "/signals/tax-default"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does the backtest measure?",
+      "p": [
+        "The backtest measures how often a recorded sale was preceded by a qualifying public signal on the same parcel.",
+        "It also measures the days between the earliest qualifying signal and the sale, and breaks the matches down by source."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into the backtest?",
+      "p": [
+        "The backtest uses recorded sales plus public signals from permits, rental licenses, the tax-default list, code enforcement and the upzoning screen.",
+        "Owner traits are not counted, and transfers by death, trust or inheritance are excluded because they are not arm’s-length sales. A result is flagged if any sample record was involved."
+      ]
+    },
+    "uses": {
+      "q": "How does your team use the backtest?",
+      "p": [
+        "Your team uses the backtest to question the signals in your own territory, not to promise an outcome.",
+        "It runs inside each deployment against that territory’s records, and the results appear on the performance view for the team that owns them."
+      ]
+    },
+    "never": {
+      "q": "What will the backtest never tell you?",
+      "p": [
+        "The backtest never shows that a signal caused a sale or that a flagged owner would have listed with you.",
+        "It does not measure outreach response, appointments or listings. Your own logged outcomes are the record for those."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of the backtest?",
+      "p": [
+        "A backtest looks backward at the records available, so gaps in sales or signal history change what it can see.",
+        "It does not measure how many flagged parcels never sold, so it should not be read alone as a measure of accuracy."
+      ]
+    }
+  }
+}

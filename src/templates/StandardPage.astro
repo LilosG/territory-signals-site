@@ -1,0 +1,28 @@
+---
+/** Intro, slotted sections, the single in-body request link and the closing band. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import Section from '../components/layout/Section.astro';
+import InlineRequest from '../components/layout/InlineRequest.astro';
+import CtaBand from '../components/layout/CtaBand.astro';
+import type { PageMeta } from '../lib/page-meta.ts';
+import type { JsonLdNode } from '../lib/schema.ts';
+
+interface Props {
+  meta: PageMeta;
+  answer: string;
+  eyebrow?: string;
+  schema?: JsonLdNode[];
+  ogType?: 'website' | 'article';
+  location?: string;
+  request?: string | undefined;
+  cta?: { title: string; text: string } | undefined;
+}
+const { meta, answer, eyebrow, schema, ogType, location, request, cta } = Astro.props;
+---
+<BaseLayout meta={meta} schema={schema} ogType={ogType} location={location}>
+  <PageIntro meta={meta} answer={answer} eyebrow={eyebrow}><slot name="intro" /></PageIntro>
+  <slot />
+  {request && <Section ruled={false}><InlineRequest lead={request} /></Section>}
+  {cta && <CtaBand title={cta.title} text={cta.text} />}
+</BaseLayout>

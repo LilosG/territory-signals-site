@@ -1,0 +1,21 @@
+---
+/** Picks the product recreation a platform page shows. */
+import LeadRow from './LeadRow.astro';
+import DossierPanel from './DossierPanel.astro';
+import OutreachCoPilot from './OutreachCoPilot.astro';
+import BriefingCard from './BriefingCard.astro';
+import SignalTimeline from './SignalTimeline.astro';
+import TerritoryMap from '../visuals/TerritoryMap.astro';
+import Frame from './Frame.astro';
+import ScoreBreakdown from './ScoreBreakdown.astro';
+import { LEAD } from '../../data/demo.ts';
+interface Props { visual: 'lead' | 'dossier' | 'copilot' | 'briefing' | 'map' | 'timeline' | 'breakdown' | 'none' }
+const { visual } = Astro.props;
+---
+{visual === 'lead' && <LeadRow />}
+{visual === 'dossier' && <DossierPanel />}
+{visual === 'copilot' && <OutreachCoPilot />}
+{visual === 'briefing' && <BriefingCard />}
+{visual === 'timeline' && <SignalTimeline />}
+{visual === 'map' && <TerritoryMap class="mx-auto max-w-sm" />}
+{visual === 'breakdown' && <Frame title="Score components"><div class="p-4"><ScoreBreakdown items={LEAD.breakdown} score={LEAD.score} /></div></Frame>}

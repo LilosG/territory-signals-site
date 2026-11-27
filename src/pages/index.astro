@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/layout/Container.astro';
+import Section from '../components/layout/Section.astro';
+import CtaBand from '../components/layout/CtaBand.astro';
+import Button from '../components/ui/Button.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import DefinitionList from '../components/ui/DefinitionList.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import SignalStack from '../components/visuals/SignalStack.astro';
+import TerritoryMap from '../components/visuals/TerritoryMap.astro';
+import LeadRow from '../components/product/LeadRow.astro';
+import DossierPanel from '../components/product/DossierPanel.astro';
+import SignalTimeline from '../components/product/SignalTimeline.astro';
+import BriefingCard from '../components/product/BriefingCard.astro';
+import OutreachCoPilot from '../components/product/OutreachCoPilot.astro';
+import RecipeTile from '../components/product/RecipeTile.astro';
+import { PAGES } from '../data/pages.ts';
+import { CTA } from '../data/site.ts';
+import { NOT_SCRAPED, SOURCES } from '../data/sources.ts';
+import { CATALOG } from '../lib/product.ts';
+import { recipeSlug } from '../lib/recipe-slug.ts';
+import { faqFor } from '../lib/collections.ts';
+import { faqPage, service } from '../lib/schema.ts';
+
+const meta = PAGES['/'];
+const faqs = await faqFor('home');
+const APPROVAL = ['quiet_inheritance', 'financial_pressure'];
+const mark = (key: string, requires: string[]) =>
+  APPROVAL.includes(key) ? 'Approval required' : requires.includes('fire_zones') ? 'Waiting on fire data' : undefined;
+
+const scattered = [
+  ['Building permit approval', 'City development services', 'What work was approved, and when'],
+  ['Rental license file', 'City treasurer', 'Whether an address still appears as licensed'],
+  ['Tax-default list', 'County treasurer-tax collector', 'Which parcels are subject to power to sell'],
+  ['Parcel and zoning layers', 'SanGIS and SANDAG', 'Lot size, zone and planning area'],
+  ['Owner and recorder history', 'ATTOM', 'Tenure, mortgage status and recorded documents'],
+];
+const steps = [
+  ['01', 'Collect', 'Public files and owner records are pulled on a weekly run. Each raw record is kept, never overwritten.'],
+  ['02', 'Connect', 'Records are cleaned and matched to a parcel by parcel number, location, address or name. Every match keeps its confidence.'],
+  ['03', 'Score', 'Published weights, recency decay and stacking rules turn matched signals into a score from 0 to 100.'],
+  ['04', 'Act', 'Ranked parcels become dossiers and drafted outreach. A person approves each draft, and your team sends it.'],
+];
+---
+<BaseLayout meta={meta} schema={[service(), faqPage(faqs)]}>
+  <div class="pt-10 pb-section">
+    <Container>
+      <div class="grid-12 items-center">
+        <div class="col-lead">
+          <p class="eyebrow">Territory intelligence for real estate teams</p>
+          <h1 class="mt-4">{meta.h1}</h1>
+          <p class="lede mt-6" data-answer>Territory Signals pulls permits, rental licenses, tax-roll lines and owner records into one place, matches each to a parcel, scores it with published rules and hands your team ranked properties, the evidence behind them and drafted outreach that a person approves before your team sends it.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button href={CTA.primary.href} location="hero">{CTA.primary.label}</Button>
+            <Button href={CTA.secondary.href} variant="secondary" location="hero">{CTA.secondary.label}</Button>
+          </div>
+        </div>
+        <div class="col-support"><SignalStack /></div>
+      </div>
+    </Container>
+  </div>
+
+  <Section>
+    <div class="grid-12">
+      <div class="col-support stack">
+        <h2>Where do seller signals sit before a home is listed?</h2>
+        <p>Seller signals sit in separate public and owner records that no listing search brings together. Each has its own publisher, format and schedule, and most carry no hint of the others.</p>
+        <p class="pull">The MLS shows what everyone can see. The records that can come first are scattered.</p>
+      </div>
+      <div class="col-lead">
+        <DataTable caption="Where the records live" showCaption columns={['Record', 'Publisher', 'What it can show']} rows={scattered} />
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="surface">
+    <h2 class="max-w-3xl">How do seller signals become a worked lead?</h2>
+    <p class="mt-4 max-w-measure">Seller signals become a worked lead in four steps, each of which leaves a record your team can check.</p>
+    <ol class="mt-10 grid border-t border-ink sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map(([n, name, text]) => (
+        <li class="border-b border-line py-6 pr-6">
+          <p class="mono text-xs text-ink-muted">{n}</p>
+          <h3 class="sr-only">{name}: seller signals</h3>
+          <p class="mt-2 font-serif text-xl font-medium" aria-hidden="true">{name}</p>
+          <p class="mt-3 text-ink-muted">{text}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="mt-6 max-w-measure text-sm text-ink-muted">An optional AI layer explains: it writes short, validated summaries that cite their records. It never scores.</p>
+  </Section>
+
+  <Section>
+    <div class="grid-12">
+      <div class="col-aside stack">
+        <h2>Which seller signals does each recipe combine?</h2>
+        <p>Each recipe combines specific seller signals and owner facts under a written rule. These are the product’s own labels.</p>
+        <p><a class="link" href="/recipes">Read every recipe rule</a></p>
+      </div>
+      <ul class="col-main border-t border-ink">
+        {CATALOG.recipes.map((r) => <RecipeTile href={`/recipes/${recipeSlug(r.key)}`} label={r.label} description={r.short_description} mark={mark(r.key, r.requires_data)} />)}
+      </ul>
+    </div>
+  </Section>
+
+  <Section tone="surface">
+    <div class="max-w-3xl">
+      <h2>How does your team work these seller signals?</h2>
+      <p class="mt-4">Your team works seller signals from a ranked list, opens the evidence behind a parcel and approves a draft. These are the product’s surfaces, shown with invented sample records.</p>
+      <p class="mt-3"><a class="link" href="/platform">Explore the platform</a></p>
+    </div>
+    <div class="mt-10 grid-12">
+      <div class="col-lead stack"><LeadRow /><SignalTimeline /><BriefingCard /></div>
+      <div class="col-support stack"><DossierPanel /></div>
+    </div>
+    <div class="mt-10 grid-12">
+      <div class="col-support"><p class="pull">A draft stays blocked until the agent’s name and license number are on it.</p></div>
+      <div class="col-lead"><OutreachCoPilot /></div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-3xl">
+      <h2>Which data sources feed the seller signals?</h2>
+      <p class="mt-4">The seller signals come from the sources below, each carrying the verdict from our own source review.</p>
+    </div>
+    <div class="mt-8">
+      <DataTable caption="Data sources and verdicts" columns={['Source', 'Verdict', 'What it provides']} rows={SOURCES.map((s) => [{ text: s.name, href: s.url }, s.verdict, s.provides])} />
+      <p class="mt-4 max-w-measure text-sm text-ink-muted">Not scraped: {NOT_SCRAPED.map((n) => n.term.toLowerCase()).join(', ')}. <a class="link" href="/data-sources">Why, and every source limit</a>.</p>
+    </div>
+    <div class="mt-section grid-12 items-center">
+      <div class="col-support stack">
+        <p class="eyebrow">The market</p>
+        <p class="font-serif text-2xl">San Diego is the live market. A territory is any set of City planning areas your team chooses.</p>
+        <p><a class="link" href="/markets/san-diego">San Diego coverage</a></p>
+      </div>
+      <div class="col-lead"><TerritoryMap class="mx-auto max-w-sm" /></div>
+    </div>
+  </Section>
+
+  <Section tone="dark">
+    <div class="grid-12">
+      <div class="col-aside stack">
+        <h2>Who approves outreach built on seller signals?</h2>
+        <p class="text-on-dark-muted">A person on your team approves every piece of outreach built on seller signals, and your team sends it.</p>
+        <p><a class="link" href="/compliance">Compliance in detail</a></p>
+      </div>
+      <dl class="col-main border-t border-on-dark">
+        {[
+          ['Human approval', 'Drafts are edited and approved one by one. Bulk approval still applies every rule to each draft.'],
+          ['DRE license rule', 'A draft cannot be approved without the agent’s name and DRE license number.'],
+          ['No automatic contact', 'The system never sends, texts or dials a homeowner.'],
+          ['Sensitive records', 'They stay off lead cards, lists and share pages, and homeowner text never mentions them.'],
+        ].map(([t, d]) => (
+          <div class="border-b border-line-dark py-4 sm:grid sm:grid-cols-3 sm:gap-6">
+            <dt class="font-semibold">{t}</dt>
+            <dd class="mt-1 text-on-dark-muted sm:col-span-2 sm:mt-0">{d}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Section>
+
+  <Section ruled={false}>
+    <div class="grid-12">
+      <div class="col-main stack">
+        <h2>How are seller signals set up for your team?</h2>
+        <p class="max-w-measure">Seller signals are set up per team or brokerage: one deployment per client, configured to the planning areas you choose and run as a managed service. It is not self-serve software, and it is not priced per lead.</p>
+        <DefinitionList items={[
+          { term: 'Your territory', definition: 'The City planning areas you choose, with your agents and license details.' },
+          { term: 'Managed', definition: 'Built and run for you, with a weekly data run and visible source health.' },
+          { term: 'MLS add-on', definition: 'Optional and scoped per client. It requires your broker’s signed back-office data agreement. The core product runs without it.' },
+        ]} />
+        <p><a class="link" href="/how-we-build">What onboarding involves</a></p>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-3xl">
+      <h2>What do teams ask about seller signals?</h2>
+      <p class="mt-4">Teams ask where seller signals come from, how they are scored and what happens before anyone is contacted.</p>
+    </div>
+    <div class="mt-8"><FaqList items={faqs} /></div>
+    <p class="mt-6"><a class="link" href="/faq">All questions</a></p>
+  </Section>
+
+  <CtaBand title="Which seller signals are in your territory?" text="Tell us the market and neighborhoods you work. We walk through the records that cover them and how each would score." />
+</BaseLayout>

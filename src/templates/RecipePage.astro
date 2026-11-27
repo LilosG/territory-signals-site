@@ -1,0 +1,79 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import Badge from '../components/ui/Badge.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import RuleTree from '../components/product/RuleTree.astro';
+import { describeCondition, RECIPES, weightFor } from '../lib/product.ts';
+import { guidesFor, hrefOf, linkList, signalsForRecipe } from '../lib/collections.ts';
+import { sourceByKey } from '../data/sources.ts';
+import { metaOf } from '../lib/entry-meta.ts';
+import { service } from '../lib/schema.ts';
+
+interface Props { entry: CollectionEntry<'recipes'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const meta = metaOf('recipes', entry);
+const s = d.sections;
+const rule = RECIPES[d.recipeKey]!;
+const signals = await signalsForRecipe(d.recipeKey);
+const guides = await guidesFor('recipes', [entry.id]);
+const sources = [...new Set(signals.flatMap((x) => x.data.sources))].map(sourceByKey);
+const weights = signals.map((x) => [
+  { text: x.data.crumb, href: hrefOf('signals', x.id) },
+  x.data.components.map((c) => `${c.label}: ${weightFor(c.key).weight}`).join('; '),
+]);
+---
+<StandardPage meta={meta} answer={d.answer} eyebrow="Seller lead recipe" schema={[service()]}
+  request={`See how this recipe would read your own planning areas.`}
+  cta={{ title: `Where would ${d.headingTerm} leads come from in your territory?`, text: 'We walk through the records behind each recipe and which of them your territory has.' }}>
+  <Fragment slot="intro">{d.mark && <p class="mt-4"><Badge tone="outline">{d.mark}</Badge></p>}</Fragment>
+
+  <Section>
+    <div class="grid-12">
+      <figure class="col-lead">
+        <figcaption class="eyebrow">The product’s own wording</figcaption>
+        <p class="mt-4 text-lg font-semibold">{d.shortDescription}</p>
+        <blockquote class="pull mt-5">{d.rationale}</blockquote>
+      </figure>
+      {d.approval && (
+        <div class="col-support border border-ink p-5" data-approval>
+          <p class="eyebrow">Team approval required</p>
+          <p class="mt-3">{d.approval}</p>
+          <p class="mt-3"><a class="link" href="/compliance">How sensitive records are handled</a></p>
+        </div>
+      )}
+    </div>
+  </Section>
+
+  <QaSection {...s.what}>
+    <div>
+      <p class="eyebrow">The exact rule</p>
+      <ul class="mt-2 max-w-measure border-y border-line py-2"><RuleTree line={describeCondition(rule.when)} /></ul>
+    </div>
+  </QaSection>
+  <QaSection {...s.why} />
+  <QaSection {...s.source}>
+    <DataTable caption={`Data sources behind the ${d.label} recipe`} columns={['Source', 'What it provides', 'Verdict']}
+      rows={sources.map((src) => [{ text: src.name, href: src.url }, src.provides, src.verdict])} />
+  </QaSection>
+  <QaSection {...s.scoring}>
+    <DataTable caption={`Component weights behind the ${d.label} recipe`} columns={['Signal family', 'Score components and weights']} rows={weights} />
+    <p class="max-w-measure text-sm text-ink-muted">Matching a recipe adds no points. The parcel score comes only from its components. <a class="link" href="/how-it-works">How the score is built</a>.</p>
+  </QaSection>
+  <QaSection {...s.action} />
+  <QaSection {...s.limits} />
+
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead"><RelatedLinks title="Signals this recipe reads" links={linkList('signals', signals)} /></div>
+      <div class="col-support stack">
+        <RelatedLinks title="Related guides" links={guides.map((g) => ({ href: hrefOf('guides', g.id), label: g.data.h1 }))} />
+        <RelatedLinks title="More" links={[{ href: '/recipes', label: 'All recipes' }, { href: '/glossary', label: 'Glossary' }]} />
+      </div>
+    </div>
+  </Section>
+</StandardPage>

@@ -1,0 +1,11 @@
+{
+  "question": "Do you scrape probate or obituaries?",
+  "answer": "No. Court probate records, published legal notices and obituaries are not scraped. Inheritance-related signals come from recorder documents in ATTOM data, such as a transfer by death, trust or inheritance.",
+  "topic": "Data",
+  "pages": [
+    "data-sources",
+    "compliance",
+    "faq"
+  ],
+  "order": 9
+}

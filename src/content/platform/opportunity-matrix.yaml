@@ -1,0 +1,56 @@
+{
+  "crumb": "Opportunity matrix",
+  "keyword": "real estate opportunity matrix",
+  "headingTerm": "opportunity matrix",
+  "h1": "The real estate opportunity matrix: equity by momentum",
+  "title": "Real Estate Opportunity Matrix: Equity by Seller Momentum",
+  "description": "The real estate opportunity matrix plots estimated equity against stored seller score, sized by estimated commission, with a table view for every lead.",
+  "updated": "2026-11-26",
+  "order": 6,
+  "label": "Opportunity matrix",
+  "summary": "Estimated equity against stored seller score, with a table view",
+  "visual": "lead",
+  "answer": "The opportunity matrix plots estimated equity across and the stored seller score up, with bubble size showing estimated gross commission and color showing the score tier. Dashed lines mark the Priority threshold and the median equity. It displays existing scores without recalculating them, and an accessible table lists the same leads for anyone who prefers rows.",
+  "related": [
+    "/platform/territory-map",
+    "/platform/lead-scoring",
+    "/platform/seller-dossier"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does the opportunity matrix show?",
+      "p": [
+        "The opportunity matrix shows which high-scoring parcels also carry the most estimated equity.",
+        "It draws up to 300 top-scored leads that score 30 or higher and have an equity estimate. Hovering previews a property and selecting it opens the quick dossier."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into the opportunity matrix?",
+      "p": [
+        "The opportunity matrix uses three stored values: estimated equity, seller score and estimated value.",
+        "Estimated gross commission is a flat 2.5 percent of estimated value, used only to size the bubble, and is labeled as an estimate."
+      ]
+    },
+    "uses": {
+      "q": "How does your team use the opportunity matrix?",
+      "p": [
+        "Your team uses the opportunity matrix to choose where limited prospecting time goes first.",
+        "The upper right holds parcels with both a higher score and more estimated equity. The table view lists the top 40 with the same actions."
+      ]
+    },
+    "never": {
+      "q": "What will the opportunity matrix never do?",
+      "p": [
+        "The opportunity matrix never rescores a parcel or adds a hidden weighting for value.",
+        "A large bubble does not move a point up the chart. Height is the stored score and nothing else."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of the opportunity matrix?",
+      "p": [
+        "The opportunity matrix rests on estimates, so treat positions as relative rather than exact.",
+        "Equity and value come from owner data models. The commission figure is arithmetic on an estimate, not a forecast of income."
+      ]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "crumb": "Share pages",
+  "keyword": "off-market property share pages",
+  "headingTerm": "share page",
+  "h1": "Off-market property share pages with no owner data",
+  "title": "Off-Market Property Share Pages Without Any Owner Data",
+  "description": "Off-market property share pages show neighborhood, lot size, zoning, estimated upzoning and your agent. No owner, equity, sales or sensitive records.",
+  "updated": "2026-11-26",
+  "order": 8,
+  "label": "Share pages",
+  "summary": "A link with property facts only, for off-market conversations",
+  "visual": "none",
+  "answer": "A share page is a link your team creates for one parcel, for example to show a builder or buyer a possible off-market opportunity. It shows the neighborhood, lot size, zoning, estimated upzoning types and your agent’s contact details, and nothing else. It carries no street address, owner, equity, sales history or sensitive record, and it can be revoked.",
+  "related": [
+    "/platform/seller-dossier",
+    "/platform/territory-map",
+    "/signals/sb9-sb79-upzoning"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does a share page show?",
+      "p": [
+        "A share page shows neighborhood, lot size, zoning, estimated upzoning types and the agent’s name and contact details.",
+        "The page is built from a fixed list of fields, so adding a record to a lead does not add it to the link. It has no street address by design."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into a share page?",
+      "p": [
+        "A share page takes only parcel facts and your team’s agent details.",
+        "Upzoning types come from the in-house screen and are labeled as estimates."
+      ]
+    },
+    "uses": {
+      "q": "How does your team use a share page?",
+      "p": [
+        "Your team creates a share page to start a property conversation without exposing a homeowner.",
+        "Links can be created one at a time or in small batches from the off-market view, and any link can be revoked."
+      ]
+    },
+    "never": {
+      "q": "What will a share page never show?",
+      "p": [
+        "A share page never shows the owner, address, equity, sales, mortgage or any sensitive record.",
+        "Anyone with the link can open it, which is why the field list is deliberately short."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of a share page?",
+      "p": [
+        "A share page is not a listing, an offer or a statement that the owner wants to sell.",
+        "Check agency, advertising and broker rules before sharing anything about a property you do not represent."
+      ]
+    }
+  }
+}

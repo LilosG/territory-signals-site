@@ -1,0 +1,56 @@
+{
+  "crumb": "Seller dossier",
+  "keyword": "seller dossier for listing appointments",
+  "headingTerm": "seller dossier",
+  "h1": "A seller dossier for listing appointments",
+  "title": "Seller Dossier for Listing Appointments | Territory Signals",
+  "description": "A seller dossier for listing appointments: a quick view for triage and a printable consultation page with estimates clearly labeled and records withheld.",
+  "updated": "2026-11-26",
+  "order": 2,
+  "label": "Seller dossier",
+  "summary": "A fast triage view and a printable consultation page",
+  "visual": "dossier",
+  "answer": "The seller dossier puts one parcel’s evidence on one screen. A quick view opens beside any lead list for triage, with the score, its breakdown, estimate-labeled facts and a draft to copy. A separate printable consultation page supports a conversation with the owner, with values and net proceeds shown as estimates.",
+  "related": [
+    "/platform/lead-scoring",
+    "/platform/outreach-co-pilot",
+    "/platform/share-pages"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does the seller dossier show?",
+      "p": [
+        "The quick seller dossier shows the parcel preview, score and tier, top signal, score breakdown, key facts and the current outreach draft.",
+        "It opens in place from a lead list, so an agent can move to the next or previous lead from the keyboard without losing the list. The full lead workspace adds the signal timeline, with the source and record ID behind each dated event."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into a seller dossier?",
+      "p": [
+        "A seller dossier is assembled from the same stored records and score components that produced the ranking.",
+        "Estimated value, equity and estimated gross commission are marked as estimates wherever they appear. When an AI summary is switched on for a client, it carries an AI summary tag and each of its claims cites a record."
+      ]
+    },
+    "uses": {
+      "q": "How does your team use the seller dossier?",
+      "p": [
+        "Your team uses the quick seller dossier to triage and the printable page to prepare for a listing conversation.",
+        "The printable consultation page shows estimated value, estimated equity and a range of net proceeds after 5 to 7 percent selling costs, all labeled as estimates. It is printed for the owner’s own conversation and is not shared by link."
+      ]
+    },
+    "never": {
+      "q": "What will the seller dossier never show?",
+      "p": [
+        "The quick seller dossier never shows owner identity, mailing address, sales history or sensitive records.",
+        "The printable consultation page also leaves out the owner’s name, mailing address, mortgage detail and every sensitive record. Sensitive records are visible only in a labeled card inside the signed-in lead workspace."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of a seller dossier?",
+      "p": [
+        "A seller dossier is not an appraisal, a title report or a statement of what an owner intends.",
+        "Value, equity and proceeds are estimates from records. Check them, and the property itself, before putting any figure in front of a homeowner."
+      ]
+    }
+  }
+}

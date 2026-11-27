@@ -1,0 +1,9 @@
+---
+import ComparePage from '../../templates/ComparePage.astro';
+import { entries } from '../../lib/collections.ts';
+
+export async function getStaticPaths() {
+  return (await entries('compare')).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<ComparePage entry={Astro.props.entry} />

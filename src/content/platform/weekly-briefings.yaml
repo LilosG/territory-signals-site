@@ -1,0 +1,56 @@
+{
+  "crumb": "Weekly briefings",
+  "keyword": "weekly real estate territory briefing",
+  "headingTerm": "territory briefing",
+  "h1": "The weekly real estate territory briefing",
+  "title": "Weekly Real Estate Territory Briefing for Your Whole Team",
+  "description": "A weekly real estate territory briefing built from database records: top leads, new signals and source health, with any AI summary labeled and validated.",
+  "updated": "2026-11-26",
+  "order": 4,
+  "label": "Weekly briefings",
+  "summary": "What changed this week, from database records",
+  "visual": "briefing",
+  "answer": "Each week a fixed run refreshes sources, rescores parcels and prepares a briefing. In the product, your team sees what is new, the top leads and drafts waiting for approval. An internal digest email can summarize the same week for team members, including source health. It never includes an owner’s name, email address or phone number.",
+  "related": [
+    "/platform/lead-scoring",
+    "/platform/outreach-co-pilot",
+    "/platform/territory-map"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does the weekly territory briefing show?",
+      "p": [
+        "The weekly territory briefing shows new signals, the top active leads and the health of each source.",
+        "When the AI layer is enabled, a short written summary appears with an AI summary tag, along with a neighborhood paragraph your team can copy into a newsletter. Past briefings are kept in an archive."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into a weekly territory briefing?",
+      "p": [
+        "A weekly territory briefing is built only from database rows produced by that week’s run.",
+        "The run follows one order: collect each source, re-derive permit groups, score parcels, refresh totals, then prepare any AI text within a monthly budget. If one source fails, the failure is recorded, the rest continues and the digest shows the gap."
+      ]
+    },
+    "uses": {
+      "q": "How does your team use the territory briefing?",
+      "p": [
+        "Your team uses the territory briefing to start the week from a short list instead of a pile of exports.",
+        "Open the top leads, review waiting drafts and note which sources updated. The newsletter paragraph is checked so it contains no street address or sensitive wording."
+      ]
+    },
+    "never": {
+      "q": "What will a territory briefing never include?",
+      "p": [
+        "The territory briefing digest never includes a homeowner’s name, email address or phone number.",
+        "The digest is for team members only. Recipients are checked against the team member list, and any other address stops it."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of the territory briefing?",
+      "p": [
+        "A territory briefing reflects what sources have published, which can lag the event itself.",
+        "Each source has its own publishing cadence. AI text that fails validation is not shown, and the briefing falls back to plain counts from the records."
+      ]
+    }
+  }
+}

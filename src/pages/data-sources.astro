@@ -1,0 +1,61 @@
+---
+import StandardPage from '../templates/StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import DefinitionList from '../components/ui/DefinitionList.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import { PAGES } from '../data/pages.ts';
+import { NOT_SCRAPED, PIPELINE_CADENCE, SOURCES, sourceByKey } from '../data/sources.ts';
+import { faqFor } from '../lib/collections.ts';
+import { faqPage } from '../lib/schema.ts';
+
+const faqs = await faqFor('data-sources');
+const attom = sourceByKey('attom');
+---
+<StandardPage meta={PAGES['/data-sources']} eyebrow="Every source, verdict and limit" schema={[faqPage(faqs)]}
+  answer="Territory Signals uses public records data for real estate prospecting from the City of San Diego, the County tax collector, SanGIS and SANDAG, plus ATTOM owner and recorder data. Each source carries a verdict and stated limits. Court probate, legal notices and obituaries are not scraped, and fire hazard zones are coming."
+  request="To see which of these records cover the areas you work,"
+  cta={{ title: 'Which public records cover your territory?', text: 'Name your planning areas and we walk through each source, its limits and how it matches to parcels.' }}>
+
+  <QaSection q="How are public records judged before use?" p={['Public records are given a verdict after a source review of access, terms and data quality. Only sources judged usable or usable with limits are ingested.']}>
+    <DefinitionList items={[
+      { term: 'Usable', definition: 'Open to use and joins cleanly to parcels.' },
+      { term: 'Usable with limits', definition: 'Used, with a stated gap in coverage, fields, matching or terms.' },
+      { term: 'Coming', definition: 'Planned. No data from it is shown or scored today.' },
+    ]} />
+  </QaSection>
+
+  <Section>
+    <div class="stack">
+      <h2>Which public records does Territory Signals use?</h2>
+      <p class="max-w-measure">These public records and owner sources feed the product. Publishing cadence is the publisher’s; it is separate from how often the pipeline runs.</p>
+      <DataTable caption="Sources, verdicts, matching and cadence" columns={['Source', 'Verdict', 'How it joins to a parcel', 'Publisher cadence', 'Limits']}
+        rows={SOURCES.map((s) => [{ text: s.name, href: s.url, note: s.provides }, s.verdict, s.join, s.publishes, s.limits])} />
+      <p class="max-w-measure text-sm text-ink-muted">Pipeline cadence for every ingested source: {PIPELINE_CADENCE.toLowerCase()}</p>
+    </div>
+  </Section>
+
+  <QaSection q="Where do owner details come from beyond public records?" p={[
+    `Owner details that open public records do not carry come from ${attom.publisher}: owner, mailing address, estimated value, mortgage status and recorder history. The county parcel file has no owner names.`,
+    'Estimated value and equity are labeled as estimates. Phone numbers, Social Security numbers and email addresses are not stored. Naming ATTOM here identifies a data source and does not imply a partnership or endorsement.',
+  ]} />
+
+  <QaSection q="Which public records are still coming?" p={['Fire hazard severity zones are the public records still coming. They are added from an authoritative state file, never inferred. The Insurance squeeze recipe activates when fire hazard data is loaded.']} />
+
+  <Section>
+    <div class="grid-12">
+      <h2 class="col-aside">Which public records are never scraped?</h2>
+      <div class="col-main stack">
+        <p>Three kinds of public records are never scraped. Inheritance-related signals come from recorder documents in ATTOM data instead.</p>
+        <DefinitionList items={NOT_SCRAPED} />
+      </div>
+    </div>
+  </Section>
+
+  <QaSection q="How are public records traced back to a source?" p={['Public records stay traceable because every signal stores its source, source record ID, match confidence and match method. Raw records and signals are append-only. Estimates are flagged and shown as estimated.']} />
+
+  <Section>
+    <div class="stack"><h2>What do teams ask about public records?</h2><FaqList items={faqs} /></div>
+  </Section>
+</StandardPage>

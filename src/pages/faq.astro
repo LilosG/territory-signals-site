@@ -1,0 +1,25 @@
+---
+import StandardPage from '../templates/StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import { PAGES } from '../data/pages.ts';
+import { entries } from '../lib/collections.ts';
+import { faqPage } from '../lib/schema.ts';
+
+const all = (await entries('faq')).map((f) => ({ id: f.id, ...f.data }));
+const groups = [
+  { topic: 'Product', q: 'What is territory intelligence?' },
+  { topic: 'Data', q: 'What data does territory intelligence use?' },
+  { topic: 'Scoring', q: 'How does territory intelligence score parcels?' },
+  { topic: 'Outreach and compliance', q: 'How does territory intelligence handle outreach and compliance?' },
+  { topic: 'Setup', q: 'How is territory intelligence set up?' },
+] as const;
+---
+<StandardPage meta={PAGES['/faq']} eyebrow="Questions teams ask" schema={[faqPage(all)]}
+  answer="This territory intelligence FAQ answers what Territory Signals is, where its data comes from, how parcels are scored, what AI does and does not do, how outreach is approved and how a deployment is set up. In short: published rules, traceable records, human approval and one managed deployment for each client."
+  request="If your question is not here,"
+  cta={{ title: 'Still weighing territory intelligence for your team?', text: 'A walkthrough answers the rest against the areas you actually work.' }}>
+  {groups.map((g) => (
+    <Section><div class="stack"><h2>{g.q}</h2><FaqList items={all.filter((f) => f.topic === g.topic)} /></div></Section>
+  ))}
+</StandardPage>

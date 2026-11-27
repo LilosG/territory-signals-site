@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import { formatDate } from '../lib/format.ts';
+import type { PageMeta } from '../lib/page-meta.ts';
+import type { QaBlock } from '../lib/qa.ts';
+interface Props { meta: PageMeta; intro: string; sections: QaBlock[] }
+const { meta, intro, sections } = Astro.props;
+---
+<BaseLayout meta={meta}>
+  <PageIntro meta={meta} eyebrow={`Effective ${formatDate(meta.updated)}`} answer={intro} />
+  {sections.map((s) => <QaSection {...s} />)}
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+import RecipePage from '../../templates/RecipePage.astro';
+import { entries } from '../../lib/collections.ts';
+
+export async function getStaticPaths() {
+  return (await entries('recipes')).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<RecipePage entry={Astro.props.entry} />

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/layout/PageIntro.astro';
+import Section from '../../components/layout/Section.astro';
+import RequestForm from '../../components/forms/RequestForm.astro';
+import { PAGES } from '../../data/pages.ts';
+import { COMPANY } from '../../data/site.ts';
+const meta = PAGES['/request'];
+---
+<BaseLayout meta={meta}>
+  <PageIntro meta={meta} answer="Request a territory walkthrough by telling us your team, your market and your team size. We reply by email to arrange a look at the records that cover your areas, how parcels would be scored and how drafts get approved. There is nothing to sign up for or install." />
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead"><RequestForm /></div>
+      <div class="col-support stack">
+        <h2>What happens in a walkthrough?</h2>
+        <p>A walkthrough shows how the product would read your own areas, using the sources that cover them.</p>
+        <ol class="border-t border-ink">
+          <li class="border-b border-line py-3">We reply by email to your request.</li>
+          <li class="border-b border-line py-3">We look at the planning areas or neighborhoods you named and which sources cover them.</li>
+          <li class="border-b border-line py-3">We walk through scoring, the dossier and the approval flow.</li>
+          <li class="border-b border-line py-3">You decide whether a deployment makes sense.</li>
+        </ol>
+        <p class="text-sm text-ink-muted">Prefer email? Write to <a class="link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.</p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

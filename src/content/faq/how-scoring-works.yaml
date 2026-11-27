@@ -1,0 +1,10 @@
+{
+  "question": "How is a parcel scored?",
+  "answer": "Each signal has a published weight that fades with age and is multiplied by match confidence. Independent signal families add a stacking bonus of 15% each, capped at 45%, and the total is capped at 100. Every component is visible.",
+  "topic": "Scoring",
+  "pages": [
+    "home",
+    "faq"
+  ],
+  "order": 3
+}

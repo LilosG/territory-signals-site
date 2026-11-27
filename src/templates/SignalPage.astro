@@ -1,0 +1,71 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import Badge from '../components/ui/Badge.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import { PIPELINE_CADENCE, sourceByKey } from '../data/sources.ts';
+import { weightFor } from '../lib/product.ts';
+import { guidesFor, hrefOf, linkList, recipesForSignal } from '../lib/collections.ts';
+import { metaOf } from '../lib/entry-meta.ts';
+import { service } from '../lib/schema.ts';
+
+interface Props { entry: CollectionEntry<'signals'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const meta = metaOf('signals', entry);
+const s = d.sections;
+const sources = d.sources.map(sourceByKey);
+const recipes = await recipesForSignal(entry.id);
+const guides = await guidesFor('signals', [entry.id]);
+const rows = d.components.map((c) => {
+  const w = weightFor(c.key);
+  return [c.label, w.weight, w.halfLife, w.family];
+});
+---
+<StandardPage meta={meta} answer={d.answer} eyebrow={`Signal family · ${d.family}`} schema={[service()]}
+  request={`See which of these records exist in your territory.`}
+  cta={{ title: `What would ${d.headingTerm} records show in your territory?`, text: 'We walk through your planning areas, the sources that cover them and how each record would score.' }}>
+  <Fragment slot="intro">{d.status === 'coming' && <p class="mt-4"><Badge tone="outline">Coming: not loaded yet</Badge></p>}</Fragment>
+
+  <Section ruled>
+    <dl class="grid border-t border-ink sm:grid-cols-2 lg:grid-cols-4">
+      {sources.map((src) => (
+        <div class="border-b border-line py-4 pr-6">
+          <dt class="eyebrow">Source · {src.verdict}</dt>
+          <dd class="mt-2 text-sm"><a class="link font-semibold" href={src.url} rel="noopener">{src.name}</a><span class="mt-1 block text-ink-muted">{src.publishes}</span></dd>
+        </div>
+      ))}
+    </dl>
+    {d.visibility && <p class="mt-6 max-w-measure border-l-2 border-ink pl-5"><strong>Where this record never appears.</strong> {d.visibility}</p>}
+  </Section>
+
+  <QaSection {...s.what} />
+  <QaSection {...s.why} />
+  <QaSection {...s.source}>
+    <DataTable caption={`Sources for ${d.crumb.toLowerCase()}`} columns={['Source', 'What it provides', 'How it joins to a parcel', 'Limits']}
+      rows={sources.map((src) => [{ text: src.name, href: src.url }, src.provides, src.join, src.limits])} />
+    <p class="max-w-measure text-sm text-ink-muted">{PIPELINE_CADENCE} <a class="link" href="/data-sources">All data sources</a>.</p>
+  </QaSection>
+  <QaSection {...s.scoring}>
+    <DataTable caption={`Score weights for ${d.crumb.toLowerCase()}`} columns={['Score component', 'Weight (points)', 'Half-life', 'Family']} rows={rows} />
+    <p class="max-w-measure text-sm text-ink-muted">Each component is weight × 0.5^(age ÷ half-life) × match confidence. <a class="link" href="/how-it-works">How the full score is built</a>.</p>
+  </QaSection>
+  <QaSection {...s.action} />
+  <QaSection {...s.limits} />
+
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead">
+        <RelatedLinks title="Recipes that use this signal" links={linkList('recipes', recipes)} />
+        {recipes.length === 0 && <p class="text-ink-muted">No recipe uses this signal on its own. It contributes to the parcel score.</p>}
+      </div>
+      <div class="col-support stack">
+        <RelatedLinks title="Related guides" links={guides.map((g) => ({ href: hrefOf('guides', g.id), label: g.data.h1 }))} />
+        <RelatedLinks title="More" links={[{ href: '/signals', label: 'All signal families' }, { href: '/glossary', label: 'Glossary' }]} />
+      </div>
+    </div>
+  </Section>
+</StandardPage>

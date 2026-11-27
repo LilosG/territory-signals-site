@@ -1,0 +1,9 @@
+---
+import ArticlePage from '../../templates/ArticlePage.astro';
+import { entries } from '../../lib/collections.ts';
+
+export async function getStaticPaths() {
+  return (await entries('guides')).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<ArticlePage entry={Astro.props.entry} />

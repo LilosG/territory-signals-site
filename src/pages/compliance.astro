@@ -1,0 +1,39 @@
+---
+import StandardPage from '../templates/StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import { PAGES } from '../data/pages.ts';
+import { faqFor } from '../lib/collections.ts';
+import { faqPage } from '../lib/schema.ts';
+const faqs = await faqFor('compliance');
+---
+<StandardPage meta={PAGES['/compliance']} eyebrow="Approval, licensing and sensitive records" schema={[faqPage(faqs)]}
+  answer="Compliant real estate prospecting depends on people, so Territory Signals builds the checks into the workflow. A team member approves every draft, a draft without the agent’s name and DRE license number stays blocked, nothing is texted or dialed to homeowners by the system, and sensitive records stay off lists and share pages."
+  request="To see the approval steps working on a draft,"
+  cta={{ title: 'Need compliant prospecting your broker can review?', text: 'We walk through the approval flow, the license check and how sensitive records are handled.' }}>
+
+  <QaSection q="Who has to approve outreach for compliant prospecting?" p={['A person on your team has to approve every draft, which is the base of compliant prospecting here. Drafts move from draft to awaiting approval to approved. Some recipes always require team approval. Edits keep the original text and record who changed it, and bulk approval checks each draft separately.']} />
+  <QaSection q="What is the license rule in compliant prospecting?" p={[
+    'California first-point-of-contact solicitation material must show the agent’s name and DRE license number, so compliant prospecting here will not let a draft be approved without both.',
+    'The block is enforced by a database rule as well as on screen. Email drafts also need an office address. Ask your broker whether your material must show anything more, such as the brokerage name or license.',
+  ]} />
+  <QaSection q="Does compliant prospecting allow automatic texts or calls?" p={['No automatic contact of any kind is part of compliant prospecting here. The system never sends, texts or dials a homeowner. It prepares letters, email drafts and call scripts; your team sends and calls, and remains responsible for consent, do-not-call and anti-spam rules.']} />
+  <QaSection q="How does compliant prospecting treat sensitive records?" p={['Compliant prospecting treats records about money trouble, death and ownership transfer as sensitive and keeps them out of view by default.']} list={[
+    'Tax default, default notices, ownership transfers and open code cases are not shown on lead cards or lists.',
+    'They appear only in a labeled sensitive-records card inside the signed-in lead workspace.',
+    'Recipes built on distress or inheritance need team approval.',
+    'AI facts packets never contain sensitive records.',
+    'Share pages never contain them.',
+  ]} />
+  <QaSection q="What may homeowner text never say under compliant prospecting?" p={['Homeowner text under compliant prospecting never mentions the record that prompted it. Automated tests reject sensitive words and internal labels.']} list={[
+    'Death, inheritance, probate or estate wording.',
+    'Tax default, debt, delinquency, foreclosure, liens or mortgage trouble.',
+    'Scores, signals, recipe names or estimate labels.',
+    'Phrases such as “public records”, “records show” or “we noticed”.',
+  ]} />
+  <QaSection q="What can a share page reveal and stay within compliant prospecting?" p={['A share page stays within compliant prospecting by carrying property facts only: neighborhood, lot size, zoning, estimated upzoning types and your agent’s contact details. It has no street address, owner, equity, sales history or sensitive record, and the link can be revoked.']} />
+  <QaSection q="How little data does compliant prospecting need?" p={['Compliant prospecting needs less than many files contain, so extra personal data is dropped. Phone numbers, Social Security numbers and email addresses are not stored from owner data, rental host names and phone numbers are not kept, and code enforcement investigator details are never stored. Each client runs in a separate deployment.']} />
+  <QaSection q="What stays your responsibility in compliant prospecting?" p={['Your broker and agents remain responsible for compliant prospecting: licensing, advertising rules, fair housing, privacy, consent and contact law, and the accuracy of anything sent. Territory Signals enforces specific checks. It is not legal advice and does not replace broker supervision.']} />
+  <Section><div class="stack"><h2>What do teams ask about compliant prospecting?</h2><FaqList items={faqs} /></div></Section>
+</StandardPage>

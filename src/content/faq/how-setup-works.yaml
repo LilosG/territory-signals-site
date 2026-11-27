@@ -1,0 +1,11 @@
+{
+  "question": "How is Territory Signals set up?",
+  "answer": "It is built and run for one team or brokerage at a time, in its own deployment, configured to the City planning areas you choose and your agent details. It is a managed service, not a self-serve signup.",
+  "topic": "Setup",
+  "pages": [
+    "home",
+    "how-we-build",
+    "faq"
+  ],
+  "order": 6
+}

@@ -1,0 +1,56 @@
+{
+  "crumb": "Outreach co-pilot",
+  "keyword": "real estate outreach drafting tool",
+  "headingTerm": "outreach draft",
+  "h1": "A real estate outreach drafting tool with human approval",
+  "title": "Real Estate Outreach Drafting Tool With Human Approval",
+  "description": "A real estate outreach drafting tool for letters, emails and call scripts built from stored facts. Drafts stay blocked without agent name and DRE license.",
+  "updated": "2026-11-26",
+  "order": 3,
+  "label": "Outreach co-pilot",
+  "summary": "Letters, emails and call scripts your team approves and sends",
+  "visual": "copilot",
+  "answer": "The outreach co-pilot prepares letters, emails and call scripts from recipe templates, using only the facts that were scored. A team member edits and approves each draft, and your team sends it. A draft cannot be approved without the agent’s name and DRE license number, and homeowner text never mentions scores or sensitive records.",
+  "related": [
+    "/platform/seller-dossier",
+    "/platform/weekly-briefings",
+    "/signals/recorder-documents"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does an outreach draft look like?",
+      "p": [
+        "Each outreach draft is a short letter, email or call script with one offer and one call to action.",
+        "The text comes from the template for the parcel’s primary recipe, with a general template as a fallback. Salutations are built from the owner record only when the name can be read reliably; otherwise the draft is addressed to the owners of the property."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into each outreach draft?",
+      "p": [
+        "Each outreach draft uses only the stored facts its template declares, plus the street and neighborhood.",
+        "Drafts are generated deterministically from templates, not written freely by a model. The facts behind each draft are saved with it, so a reviewer can see what the text relies on."
+      ]
+    },
+    "uses": {
+      "q": "How does your team approve an outreach draft?",
+      "p": [
+        "A team member reads, edits and approves each outreach draft before anyone on your team sends it.",
+        "Edits keep the original text and record who changed it. Bulk approval works one draft at a time, so every rule still applies and blocked drafts are skipped and named. Drafts can be assigned across agents in turn, and outcomes are logged on the lead."
+      ]
+    },
+    "never": {
+      "q": "What will an outreach draft never contain?",
+      "p": [
+        "An outreach draft never mentions a death, inheritance, tax default, debt, foreclosure, a score or a signal name.",
+        "Automated tests check template text against a banned list that also covers wording such as public records or our records. The system never sends, texts or dials a homeowner."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of an outreach draft?",
+      "p": [
+        "An outreach draft is a starting point, and the agent who approves it is responsible for what goes out.",
+        "The data sources do not supply homeowner phone numbers or email addresses, so contact details for a call or email are the team’s responsibility, as are consent, do-not-call and anti-spam rules. Have your broker or adviser review any tax wording."
+      ]
+    }
+  }
+}

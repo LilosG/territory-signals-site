@@ -1,0 +1,144 @@
+---
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { FIELDS, HONEYPOT, TEAM_SIZES } from '../../data/request-form.ts';
+import { COMPANY, CTA } from '../../data/site.ts';
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id, ...FIELDS[id] }));
+---
+<form method="post" action="/api/request" class="flex max-w-form flex-col gap-5" data-request-form data-sitekey={siteKey}>
+  <noscript><p class="border-l-2 border-ink pl-4">The spam check needs JavaScript. If it is turned off, email <a class="link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> instead.</p></noscript>
+  <div class="error-summary hidden rounded-md border-2 border-ink bg-surface p-4" tabindex="-1" role="alert" data-error-summary>
+    <p class="flex items-center gap-2 font-semibold"><Icon name="alert" class="size-5" /><span data-error-title>Check the highlighted fields.</span></p>
+    <ul class="mt-2" data-error-list></ul>
+  </div>
+
+  {text.map((f) => (
+    <div>
+      <label class="field-label" for={f.id}>{f.label}</label>
+      <input class="field" id={f.id} name={f.id} type={f.id === 'email' ? 'email' : 'text'} autocomplete={f.autocomplete} maxlength={f.max} required={f.required} data-error={f.error} />
+      <p class="field-error" id={`${f.id}-error`} hidden></p>
+    </div>
+  ))}
+  <div>
+    <label class="field-label" for="teamSize">{FIELDS.teamSize.label}</label>
+    <select class="field" id="teamSize" name="teamSize" required data-error={FIELDS.teamSize.error}>
+      <option value="">Choose one</option>
+      {TEAM_SIZES.map((s) => <option value={s}>{s}</option>)}
+    </select>
+    <p class="field-error" id="teamSize-error" hidden></p>
+  </div>
+  <div>
+    <label class="field-label" for="note">{FIELDS.note.label}</label>
+    <textarea class="field" id="note" name="note" rows="4" maxlength={FIELDS.note.max} data-error={FIELDS.note.error}></textarea>
+    <p class="field-error" id="note-error" hidden></p>
+  </div>
+
+  <div class="hp-field" aria-hidden="true">
+    <label for={HONEYPOT}>Leave this field empty</label>
+    <input id={HONEYPOT} name={HONEYPOT} type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div data-turnstile></div>
+  <p class="text-sm text-ink-muted">We use these details to reply to you. See the <a class="link" href="/privacy">privacy policy</a>.</p>
+  <div><Button type="submit" location="request-form">{CTA.primary.label}</Button></div>
+</form>
+<style is:global>
+  @reference "../../styles/global.css";
+  .field-label { @apply mb-1.5 block text-sm font-semibold; }
+  .field { @apply block min-h-tap w-full rounded-md border border-ink-faint bg-surface px-3 py-2.5 text-base text-ink; }
+  .field[aria-invalid='true'] { @apply border-2 border-ink; }
+  .field-error { @apply mt-1.5 text-sm font-semibold text-ink; }
+  .field-error::before { content: 'Error: '; }
+  .error-summary a { @apply inline-flex min-h-tap items-center underline underline-offset-4; }
+  .hp-field { position: absolute; left: -100vw; width: 1px; height: 1px; overflow: hidden; }
+</style>
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-request-form]');
+  if (form) {
+    type Control = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+    const controls = [...form.querySelectorAll<Control>('[data-error]')];
+    const summary = form.querySelector<HTMLElement>('[data-error-summary]')!;
+    const list = summary.querySelector('[data-error-list]')!;
+    const title = summary.querySelector('[data-error-title]')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    let started = false;
+    let widget: string | undefined;
+    form.noValidate = true;
+
+    // Turnstile loads on first interaction, so it costs nothing until someone uses the form.
+    const loadTurnstile = () => {
+      const key = form.dataset.sitekey;
+      if (!key) return;
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.onload = () => { widget = window.turnstile?.render(form.querySelector<HTMLElement>('[data-turnstile]')!, { sitekey: key, theme: 'light' }); };
+      document.head.appendChild(script);
+    };
+    form.addEventListener('focusin', () => {
+      if (started) return;
+      started = true;
+      window.gtag?.('event', 'request_form_start');
+      loadTurnstile();
+    });
+
+    const mark = (c: Control, message: string) => {
+      const out = form.querySelector<HTMLElement>(`#${c.id}-error`)!;
+      out.textContent = message;
+      out.hidden = !message;
+      c.setAttribute('aria-invalid', String(Boolean(message)));
+      if (message) c.setAttribute('aria-describedby', out.id);
+      else c.removeAttribute('aria-describedby');
+    };
+    const check = (c: Control) => {
+      const valid = c.checkValidity() && (!c.required || c.value.trim() !== '') && (c.type !== 'email' || !c.value || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.value.trim()));
+      mark(c, valid ? '' : c.dataset.error!);
+      return valid;
+    };
+    for (const c of controls) {
+      c.addEventListener('blur', () => { if (c.value) check(c); });
+      c.addEventListener('input', () => { if (c.getAttribute('aria-invalid') === 'true') check(c); });
+    }
+
+    const showSummary = (heading: string, invalid: Control[]) => {
+      title.textContent = heading;
+      list.replaceChildren(...invalid.map((c) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${c.id}`;
+        link.textContent = c.dataset.error!;
+        link.addEventListener('click', (e) => { e.preventDefault(); c.focus(); });
+        item.append(link);
+        return item;
+      }));
+      summary.classList.remove('hidden');
+      summary.focus();
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const invalid = controls.filter((c) => !check(c));
+      if (invalid.length) return showSummary('Check the highlighted fields.', invalid);
+      summary.classList.add('hidden');
+      button.disabled = true;
+      try {
+        const response = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        const result = (await response.json()) as { ok: boolean; message?: string; errors?: Record<string, string> };
+        if (result.ok) {
+          window.gtag?.('event', 'request_form_submit');
+          window.location.assign('/request/thanks');
+          return;
+        }
+        const failed = controls.filter((c) => result.errors?.[c.name]);
+        for (const c of failed) mark(c, result.errors![c.name]!);
+        showSummary(result.message ?? 'Your request could not be sent.', failed);
+      } catch {
+        showSummary('Your request could not be sent. Check your connection and try again.', []);
+      }
+      button.disabled = false;
+      window.turnstile?.reset(widget);
+    });
+  }
+</script>

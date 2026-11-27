@@ -1,0 +1,10 @@
+{
+  "question": "How often does the data update?",
+  "answer": "The pipeline runs weekly. Each source publishes on its own schedule, from daily permit files to an annual tax-default list, and the product shows source health so a gap is visible.",
+  "topic": "Data",
+  "pages": [
+    "data-sources",
+    "faq"
+  ],
+  "order": 16
+}

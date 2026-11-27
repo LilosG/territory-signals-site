@@ -1,0 +1,50 @@
+---
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import TerritoryMap from '../components/visuals/TerritoryMap.astro';
+import { SOURCES } from '../data/sources.ts';
+import { entries, guidesFor, hrefOf, linkList } from '../lib/collections.ts';
+import { service } from '../lib/schema.ts';
+import type { PageMeta } from '../lib/page-meta.ts';
+import type { QaBlock } from '../lib/qa.ts';
+
+interface Props {
+  meta: PageMeta; marketId: string; place: string; answer: string;
+  sections: { signals: QaBlock; territory: QaBlock; records: QaBlock; gaps: QaBlock; setup: QaBlock };
+}
+const { meta, marketId, place, answer, sections: s } = Astro.props;
+const signals = await entries('signals');
+const guides = await guidesFor('markets', [marketId]);
+---
+<StandardPage meta={meta} answer={answer} eyebrow={`Market · ${place}`} location={place} schema={[service()]}
+  request={`Tell us which ${place} planning areas you work.`}
+  cta={{ title: `Which ${place} off-market seller signals are in your areas?`, text: 'Name the planning areas you work and we walk through what the records show there.' }}>
+  <Section>
+    <div class="grid-12 items-center">
+      <div class="col-support">
+        <p class="max-w-measure font-serif text-xl">Your territory is the set of planning areas you choose. Nothing on this map is pre-selected.</p>
+      </div>
+      <div class="col-lead"><TerritoryMap class="mx-auto max-w-sm" /></div>
+    </div>
+  </Section>
+  <QaSection {...s.signals}>
+    <DataTable caption={`Signal families in ${place}`} columns={['Signal family', 'Status']}
+      rows={signals.map((x) => [{ text: x.data.crumb, href: hrefOf('signals', x.id) }, x.data.status === 'coming' ? 'Coming' : 'Live'])} />
+  </QaSection>
+  <QaSection {...s.territory} />
+  <QaSection {...s.records}>
+    <DataTable caption={`${place} data sources`} columns={['Source', 'What it provides', 'Verdict']}
+      rows={SOURCES.map((x) => [{ text: x.name, href: x.url }, x.provides, x.verdict])} />
+  </QaSection>
+  <QaSection {...s.gaps} />
+  <QaSection {...s.setup} />
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead"><RelatedLinks title="Related guides" links={linkList('guides', guides)} /></div>
+      <div class="col-support"><RelatedLinks title="More" links={[{ href: '/data-sources', label: 'Data sources' }, { href: '/markets', label: 'All markets' }]} /></div>
+    </div>
+  </Section>
+</StandardPage>

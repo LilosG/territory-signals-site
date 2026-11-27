@@ -1,0 +1,10 @@
+{
+  "question": "Where do owner details come from?",
+  "answer": "ATTOM supplies owner, mailing address, estimated value, mortgage status and recorder history. The county parcel file contains no owner names. Phone numbers, Social Security numbers and email addresses are not stored.",
+  "topic": "Data",
+  "pages": [
+    "data-sources",
+    "faq"
+  ],
+  "order": 8
+}

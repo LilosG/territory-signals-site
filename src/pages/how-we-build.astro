@@ -1,0 +1,44 @@
+---
+import StandardPage from '../templates/StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import DefinitionList from '../components/ui/DefinitionList.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import { PAGES } from '../data/pages.ts';
+import { faqFor } from '../lib/collections.ts';
+import { faqPage, service } from '../lib/schema.ts';
+const faqs = await faqFor('how-we-build');
+---
+<StandardPage meta={PAGES['/how-we-build']} eyebrow="Per team or brokerage, run as a service" schema={[service(), faqPage(faqs)]}
+  answer="Custom territory intelligence setup means Lilos Growth builds and runs a separate deployment for your team or brokerage, configured to the City planning areas and agents you name. It is a managed service rather than self-serve software. MLS data is an optional add-on scoped per client, and the core product runs without it."
+  request="To scope a deployment for your team,"
+  cta={{ title: 'Ready to scope your territory setup?', text: 'Bring your planning areas, team size and questions about data and approvals.' }}>
+
+  <QaSection q="What does a per-client setup look like?" p={['A per-client setup is one deployment for one client, from a shared codebase with its own configuration. Your territory, team and data are not pooled with another client’s deployment.']} />
+  <QaSection q="What does setup configure?" p={['Setup configures the product around how your team works.']} list={[
+    'Territory: the City of San Diego planning areas you choose.',
+    'Team: agents, roles and license details used on outreach.',
+    'Recipes: which patterns are on and which need approval.',
+    'Outreach: the templates and channels your team uses.',
+    'AI explanation layer: on or off, with the provider and monthly budget chosen for your deployment.',
+  ]} />
+  <Section>
+    <div class="grid-12">
+      <h2 class="col-aside">What does setup need from your team?</h2>
+      <div class="col-main stack">
+        <p>Setup needs a short list from you before outreach can be approved.</p>
+        <DefinitionList items={[
+          { term: 'Planning areas', definition: 'The areas that make up your territory.' },
+          { term: 'Team members', definition: 'Name, email, role, DRE license number and phone for each person.' },
+          { term: 'Brokerage and office', definition: 'Brokerage name and office address as they should appear on outreach.' },
+          { term: 'AI choice', definition: 'Whether to use the explanation layer, which provider processes your data and a monthly budget.' },
+          { term: 'MLS agreement', definition: 'Only for the MLS add-on: your broker’s signed back-office data agreement.' },
+        ]} />
+      </div>
+    </div>
+  </Section>
+  <QaSection q="What runs after setup?" p={['After setup, a weekly run refreshes sources, rescores parcels and prepares the briefing. Each step is logged, a failed source does not stop the rest, and source health is visible in the product. Your team works the list, approves drafts and logs outcomes.']} />
+  <QaSection q="How does the MLS add-on fit into setup?" p={['MLS is an optional add-on to setup, scoped per client, that requires your broker’s signed back-office data agreement. The core product runs without MLS.']} />
+  <QaSection q="What is setup not?" p={['Setup is not an account you create yourself. Territory Signals is not self-serve software, not a lead list and not priced per lead.']} />
+  <Section><div class="stack"><h2>What do teams ask about setup?</h2><FaqList items={faqs} /></div></Section>
+</StandardPage>

@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/layout/PageIntro.astro';
+import Button from '../../components/ui/Button.astro';
+import { PAGES } from '../../data/pages.ts';
+import { CTA } from '../../data/site.ts';
+const meta = PAGES['/request/thanks'];
+---
+<BaseLayout meta={meta}>
+  <PageIntro meta={meta} answer="Thank you. Your request has been passed to our team, and we will reply by email about your territory. While you wait, you can read how seller scoring works, see every data source with its limits or look through the signal recipes.">
+    <div class="mt-8 flex flex-wrap gap-3">
+      <Button href={CTA.secondary.href} location="thanks">{CTA.secondary.label}</Button>
+      <Button href="/data-sources" variant="secondary">See the data sources</Button>
+    </div>
+  </PageIntro>
+</BaseLayout>

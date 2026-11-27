@@ -1,0 +1,15 @@
+---
+import LegalPage from '../templates/LegalPage.astro';
+import { PAGES } from '../data/pages.ts';
+import { COMPANY, SITE } from '../data/site.ts';
+---
+<LegalPage meta={PAGES['/terms']}
+  intro={`These terms of use apply to the public ${SITE.name} website, run by ${COMPANY.name}. Use of a product deployment is governed by a separate client agreement.`}
+  sections={[
+    { q: 'What do these terms of use say this website is?', p: ['This website describes a product. Its content is general information, not an offer, a guarantee of results or legal, tax, financial or real estate advice.'] },
+    { q: 'How do these terms of use treat estimates and sample data?', p: ['Product screens on this website use invented records marked as samples. Upzoning eligibility, value and equity are estimates and are not official determinations or appraisals. No score predicts that any owner will sell.'] },
+    { q: 'How do these terms of use treat third-party sources?', p: ['Data sources and other companies named here belong to their owners. Naming one does not imply partnership or endorsement. We link to third-party pages for reference and do not control them. Statements about other products carry a source and date, and those products may have changed since.'] },
+    { q: 'What use is allowed under these terms of use?', p: ['You may read, link to and quote this website with attribution. Do not misrepresent the content as your own, interfere with the site or submit false or automated form entries.'] },
+    { q: 'What warranties do these terms of use give?', p: [`The website is provided as is, without warranties of any kind. To the extent the law allows, ${COMPANY.name} is not liable for loss arising from reliance on its content.`] },
+    { q: 'How can you ask about these terms of use?', p: [`Send questions to ${COMPANY.email}. We may update these terms; the version on this page with its effective date applies.`] },
+  ]} />

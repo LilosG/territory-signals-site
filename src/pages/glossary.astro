@@ -1,0 +1,28 @@
+---
+import StandardPage from '../templates/StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import DefinitionList from '../components/ui/DefinitionList.astro';
+import { PAGES } from '../data/pages.ts';
+import { SIGNAL_TERMS, RECIPE_TERMS, SCORING_TERMS } from '../data/glossary.ts';
+import { definedTermSet } from '../lib/schema.ts';
+
+const meta = PAGES['/glossary'];
+const groups = [
+  { q: 'What does each signal term mean?', lead: 'Each signal term names a record or owner fact that can add to a parcel’s score.', terms: SIGNAL_TERMS },
+  { q: 'What does each signal recipe term mean?', lead: 'Each signal recipe term names a pattern defined by a written rule.', terms: RECIPE_TERMS },
+  { q: 'Which terms describe how a signal is scored?', lead: 'These terms describe how a signal turns into a number.', terms: SCORING_TERMS },
+];
+---
+<StandardPage meta={meta} eyebrow="Defined terms" schema={[definedTermSet(meta.path, 'Territory Signals glossary', groups.flatMap((g) => g.terms))]}
+  answer="This seller signal glossary defines the terms used across Territory Signals: each signal that can add to a parcel score, each recipe that names a seller pattern and each scoring rule. Estimated terms are marked as estimated, and definitions follow the product’s own wording wherever the product already defines the term."
+  request="To see these terms applied to real parcels in your area,"
+  cta={{ title: 'Which signal terms matter in your territory?', text: 'We walk through the records behind each term for the planning areas you work.' }}>
+  {groups.map((g) => (
+    <Section>
+      <div class="grid-12">
+        <div class="col-aside stack"><h2>{g.q}</h2><p>{g.lead}</p></div>
+        <DefinitionList class="col-main" layout="stacked" items={g.terms.map((t) => ({ id: t.id, term: t.term, definition: t.definition, href: t.href }))} />
+      </div>
+    </Section>
+  ))}
+</StandardPage>

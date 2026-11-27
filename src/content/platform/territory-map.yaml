@@ -1,0 +1,56 @@
+{
+  "crumb": "Territory map",
+  "keyword": "real estate territory map software",
+  "headingTerm": "territory map",
+  "h1": "Real estate territory map software built on parcels",
+  "title": "Real Estate Territory Map Software Built on Parcel Data",
+  "description": "Real estate territory map software that plots scored parcels by tier, with lenses for estimated equity, SB 9 and SB 79 estimates and rental density.",
+  "updated": "2026-11-26",
+  "order": 5,
+  "label": "Territory map",
+  "summary": "Scored parcels by tier, with lenses for equity, upzoning and rentals",
+  "visual": "map",
+  "answer": "The territory map plots scored parcels inside your chosen planning areas, colored by the four score tiers. Lenses switch the view to estimated equity, estimated SB 9 and SB 79 eligibility, or short-term rental density. Selecting a parcel opens its quick dossier. The outline shown here uses the City’s real planning-area shapes.",
+  "related": [
+    "/platform/opportunity-matrix",
+    "/platform/lead-scoring",
+    "/signals/sb9-sb79-upzoning"
+  ],
+  "sections": {
+    "shows": {
+      "q": "What does the territory map show?",
+      "p": [
+        "The territory map shows where scored parcels sit and which tier each one falls in.",
+        "By default it shows parcels scoring 30 or higher, and a switch brings in the rest. A territory selector narrows every list and the map to one of your areas."
+      ]
+    },
+    "inputs": {
+      "q": "What goes into the territory map?",
+      "p": [
+        "The territory map is built from parcel records, planning-area boundaries and stored scores.",
+        "Lens values come from owner records and three signal types. Equity and upzoning views are estimates and are labeled that way."
+      ]
+    },
+    "uses": {
+      "q": "How does your team use the territory map?",
+      "p": [
+        "Your team uses the territory map to spot clusters and plan which streets deserve attention first.",
+        "Pair it with the lead list: the map answers where, and the dossier answers why."
+      ]
+    },
+    "never": {
+      "q": "What will the territory map never show?",
+      "p": [
+        "The territory map never turns a sensitive record into a pin label or a lens.",
+        "Tax default, default notices, ownership transfers and open code cases are not map lenses."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of the territory map?",
+      "p": [
+        "The territory map is a working view of scored data, not a survey or an official zoning map.",
+        "Parcel shapes come from the county parcel file, and upzoning colors come from an in-house estimate that official sources can contradict."
+      ]
+    }
+  }
+}

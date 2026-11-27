@@ -1,0 +1,54 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import Prose from '../components/ui/Prose.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import { entries, linkList } from '../lib/collections.ts';
+import { metaOf } from '../lib/entry-meta.ts';
+import { article } from '../lib/schema.ts';
+import { ogPath } from '../lib/paths.ts';
+import { COMPANY } from '../data/site.ts';
+import { formatDate } from '../lib/format.ts';
+
+interface Props { entry: CollectionEntry<'guides'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const meta = metaOf('guides', entry);
+const { Content, headings } = await render(entry);
+const signals = (await entries('signals')).filter((x) => d.signals.includes(x.id));
+const recipes = (await entries('recipes')).filter((x) => d.recipes.includes(x.id));
+const schema = [article({ path: meta.path, headline: d.h1, description: d.description, published: d.published, modified: d.updated, image: ogPath(meta.path) })];
+---
+<StandardPage meta={meta} answer={d.answer} eyebrow="Guide" ogType="article" schema={schema}
+  request="To see these records worked for your own area, start here:"
+  cta={{ title: `Ready to put ${d.headingTerm} research to work?`, text: 'We walk through how the records in this guide are collected, matched and scored for a team’s territory.' }}>
+  <Fragment slot="intro">
+    <p class="mt-6 text-sm text-ink-muted">By {COMPANY.guideAuthor}, {COMPANY.name} · Published <time datetime={d.published}>{formatDate(d.published)}</time> · Updated <time datetime={d.updated}>{formatDate(d.updated)}</time></p>
+  </Fragment>
+  <Section>
+    <div class="grid-12">
+      <nav class="col-aside" aria-label="On this page">
+        <p class="eyebrow">On this page</p>
+        <ol class="mt-3 border-t border-ink text-sm lg:sticky lg:top-24">
+          {headings.filter((h) => h.depth === 2).map((h) => <li class="border-b border-line"><a class="tap-link hover:underline" href={`#${h.slug}`}>{h.text}</a></li>)}
+        </ol>
+      </nav>
+      <article class="col-main">
+        <div data-article-body><Prose class="guide-body"><Content /></Prose></div>
+        <div class="mt-14 max-w-measure">
+          <p class="eyebrow">Sources</p>
+          <ol class="mt-3 border-t border-ink text-sm">
+            {d.sources.map((x) => <li class="border-b border-line py-3"><a class="link" href={x.url} rel="noopener">{x.name}</a> <span class="text-ink-muted">accessed {formatDate(x.accessed)}</span></li>)}
+          </ol>
+        </div>
+      </article>
+    </div>
+  </Section>
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead"><RelatedLinks title="Signals in this guide" links={linkList('signals', signals)} /></div>
+      <div class="col-support"><RelatedLinks title="Related recipes" links={linkList('recipes', recipes)} /></div>
+    </div>
+  </Section>
+</StandardPage>

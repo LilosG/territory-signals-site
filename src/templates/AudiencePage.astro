@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import RelatedLinks from '../components/ui/RelatedLinks.astro';
+import { entries, linkList } from '../lib/collections.ts';
+import { metaOf } from '../lib/entry-meta.ts';
+import { service } from '../lib/schema.ts';
+
+interface Props { entry: CollectionEntry<'audiences'> }
+const { entry } = Astro.props;
+const d = entry.data;
+const s = d.sections;
+const recipes = (await entries('recipes')).filter((r) => d.recipes.includes(r.id));
+const platform = (await entries('platform')).filter((p) => d.platform.includes(p.id));
+---
+<StandardPage meta={metaOf('audiences', entry)} answer={d.answer} eyebrow="Who it is for" schema={[service()]}
+  request="Tell us how your team works its area today."
+  cta={{ title: `Is Territory Signals a fit for ${d.headingTerm}?`, text: 'Bring your planning areas and your team size. We show what the records cover and where they stop.' }}>
+  <QaSection {...s.problem} />
+  <QaSection {...s.signals} />
+  <QaSection {...s.week} />
+  <QaSection {...s.setup} />
+  <QaSection {...s.fit} />
+  <Section>
+    <div class="grid-12">
+      <div class="col-lead"><RelatedLinks title="Recipes to start with" links={linkList('recipes', recipes)} /></div>
+      <div class="col-support"><RelatedLinks title="Platform surfaces" links={linkList('platform', platform)} /></div>
+    </div>
+  </Section>
+</StandardPage>
