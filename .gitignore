@@ -5,6 +5,7 @@ dist/
 test-results/
 playwright-report/
 .env
+.env.production
 .env.*
 !.env.example
 .dev.vars
