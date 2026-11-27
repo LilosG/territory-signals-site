@@ -1,14 +1,64 @@
 ---
-import HubPage from '../../templates/HubPage.astro';
+import StandardPage from '../../templates/StandardPage.astro';
+import Section from '../../components/layout/Section.astro';
+import QaGrid from '../../components/layout/QaGrid.astro';
+import ListCard from '../../components/templates/ListCard.astro';
+import StatusPill from '../../components/ui/StatusPill.astro';
+import Icon from '../../components/ui/Icon.astro';
 import { PAGES } from '../../data/pages.ts';
+import { SOURCES } from '../../data/sources.ts';
+import { entries } from '../../lib/collections.ts';
+
+const signals = await entries('signals');
+const liveSignals = signals.filter((s) => s.data.status === 'live').length;
+const liveSources = SOURCES.filter((s) => s.verdict !== 'Coming').length;
 ---
-<HubPage meta={PAGES['/markets']} eyebrow="Markets"
-  items={[{ href: '/markets/san-diego', label: 'San Diego', note: 'City of San Diego planning areas, configurable per team', mark: 'Live' }]}
+<StandardPage meta={PAGES['/markets']} eyebrow="Markets"
   answer="Real estate territory intelligence markets are the places where the data pipeline has been built and checked against local sources. San Diego is the live market, covering City of San Diego planning areas that each team chooses. No other market is listed as live, because each one needs its own source review before any data is shown."
   request="To ask about San Diego or another area,"
-  cta={{ title: 'Do you work one of these markets?', text: 'Tell us where you work and we will say plainly what the sources cover.' }}
-  index={{ q: 'Which markets are live today?', p: ['The markets that are live today are listed below.'] }}
-  sections={[
+  cta={{ title: 'Do you work one of these markets?', text: 'Tell us where you work and we will say plainly what the sources cover.' }}>
+  <ListCard
+    slot="aside"
+    title="Market availability"
+    stats={[
+      { value: '1', label: 'Live market' },
+      { value: String(liveSources), label: 'Data sources' },
+      { value: 'Weekly', label: 'Refresh' },
+    ]}
+    rows={[
+      { label: 'City of San Diego', value: 'Live' },
+      { label: 'Additional markets', value: 'By source review', muted: true },
+    ]}
+    note="Every market is verified against local public records before launch."
+  />
+
+  <Section>
+    <div class="max-w-3xl">
+      <h2>Which markets are live today?</h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-muted">The markets that are live today are listed below.</p>
+    </div>
+    <div class="mt-10">
+      <a href="/markets/san-diego" class="card group flex flex-col justify-between gap-8 border-t-[3px] border-t-gold shadow-lift transition-transform duration-150 hover:-translate-y-1 lg:flex-row lg:items-center">
+        <div class="max-w-2xl">
+          <div class="flex flex-wrap items-center gap-3">
+            <h3 class="font-serif text-3xl font-medium text-ink">San Diego</h3>
+            <StatusPill value="Live" />
+          </div>
+          <p class="mt-3 text-[15px] leading-relaxed text-ink-muted">City of San Diego planning areas, configurable per team. Covers residential parcels with weekly refreshes from City permits, STR licenses, County tax default, SanGIS, SANDAG and ATTOM owner data.</p>
+        </div>
+        <div class="flex shrink-0 flex-wrap items-center gap-8 border-t border-line pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <dl class="flex gap-8">
+            <div><dt class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">Live signals</dt><dd class="num mt-1 text-2xl font-semibold text-ink">{liveSignals}</dd></div>
+            <div><dt class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">Sources</dt><dd class="num mt-1 text-2xl font-semibold text-ink">{liveSources}</dd></div>
+          </dl>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-ink group-hover:text-gold-strong">Explore San Diego <Icon name="arrow" /></span>
+        </div>
+      </a>
+    </div>
+  </Section>
+
+  <QaGrid items={[
     { q: 'What do new markets require?', p: ['New markets require their own source review: which public records exist, what their terms allow, how they match to parcels and where the gaps are. A source that bars automated collection is not used.'] },
     { q: 'How are territories set inside markets?', p: ['Territories inside markets are set by official planning boundaries that each team chooses, so counts mean the same thing from week to week.'] },
   ]} />
+</StandardPage>

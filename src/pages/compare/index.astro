@@ -2,6 +2,7 @@
 import HubPage from '../../templates/HubPage.astro';
 import Section from '../../components/layout/Section.astro';
 import DataTable from '../../components/ui/DataTable.astro';
+import ListCard from '../../components/templates/ListCard.astro';
 import { PAGES } from '../../data/pages.ts';
 import { entries, hrefOf } from '../../lib/collections.ts';
 const list = await entries('compare');
@@ -12,14 +13,33 @@ const rows = list.map((c) => {
   return [{ text: c.data.competitor, href: hrefOf('compare', c.id) }, { text: first.them, note: `${source.name}, as of ${source.asOf}` }];
 });
 ---
-<HubPage meta={PAGES['/compare']} eyebrow="Comparisons" items={items}
+<HubPage meta={PAGES['/compare']} eyebrow="Comparisons" items={items} columns={4}
   answer="This seller lead software comparison sets Territory Signals beside SmartZip, Offrs, PropStream and Revaluate using only facts published by each company or a named review source, each with a date and link. It has no ratings, prices or accuracy claims. Territory Signals differs mainly in published scoring rules, traceable records and per-team setup."
   request="To compare against your own area,"
   cta={{ title: 'Want a comparison on your own territory?', text: 'A walkthrough shows the records and rules so you can judge them against what you use now.' }}
   index={{ q: 'Which products does this comparison cover?', p: ['This comparison covers the four products below.'] }}
   sections={[
-    { q: 'How was this comparison put together?', p: ['This comparison was put together from each company’s own pages where they could be read, and from named publications where they could not. Statements that could not be verified were left out. Check the linked source for current details.'] },
+    {
+      q: 'How was this comparison put together?',
+      p: ['This comparison was put together from each company’s own pages where they could be read, and from named publications where they could not. Statements that could not be verified were left out. Check the linked source for current details.'],
+    },
+    {
+      q: 'How should you use this comparison?',
+      p: ['Use this comparison to check how each tool handles data sources, scoring transparency and outreach controls, then verify how those differences play out on your own San Diego planning areas.'],
+      links: [{ href: '/how-it-works', label: 'How scoring works' }, { href: '/data-sources', label: 'Data sources' }],
+    },
   ]}>
+  <ListCard
+    slot="aside"
+    title="Comparison scope"
+    stats={[
+      { value: String(list.length), label: 'Products' },
+      { value: 'Dated', label: 'Sources' },
+      { value: 'Zero', label: 'Ratings' },
+    ]}
+    rows={list.map((c) => ({ label: c.data.competitor, value: `As of ${c.data.asOf}` }))}
+    note="Every claim links to a dated public source."
+  />
   <Section>
     <div class="stack">
       <h2>What does each product offer in this comparison?</h2>
