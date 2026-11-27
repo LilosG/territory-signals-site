@@ -1,0 +1,26 @@
+---
+/**
+ * Short question-and-answer pairs side by side instead of one sparse band each. Every question stays an H2 whose first
+ * sentence answers it. Optional links sit under each answer.
+ */
+import Section from './Section.astro';
+interface Item { q: string; p: string[]; list?: string[]; links?: { href: string; label: string }[]; id?: string }
+interface Props { items: Item[]; eyebrow?: string; columns?: 2 | 3 }
+const { items, eyebrow, columns = 2 } = Astro.props;
+---
+<Section>
+  {eyebrow && <p class="eyebrow mb-8">{eyebrow}</p>}
+  <div class:list={['grid gap-x-12 gap-y-14', columns === 3 ? 'lg:grid-cols-3' : 'md:grid-cols-2']}>
+    {items.map((i) => (
+      <div class="qa-item" id={i.id}>
+        <h2 class="text-[clamp(1.75rem,2.6vw,2.375rem)] leading-[1.12]">{i.q}</h2>
+        <div class="mt-5 space-y-4 text-[17px] leading-relaxed text-ink-muted">{i.p.map((t) => <p>{t}</p>)}</div>
+        {i.list && <ul class="mt-5 border-t border-line">{i.list.map((l) => <li class="border-b border-line py-3 text-[15px]">{l}</li>)}</ul>}
+        {i.links && <p class="mt-5 flex flex-wrap gap-x-6">{i.links.map((l) => <a class="arrow-link" href={l.href}>{l.label} →</a>)}</p>}
+      </div>
+    ))}
+  </div>
+</Section>
+<style>
+  .qa-item { padding-top: 1.75rem; border-top: 2px solid var(--color-ink); }
+</style>

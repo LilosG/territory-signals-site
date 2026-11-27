@@ -1,33 +1,41 @@
 ---
 import StandardPage from '../../templates/StandardPage.astro';
 import Section from '../../components/layout/Section.astro';
-import QaSection from '../../components/layout/QaSection.astro';
+import QaGrid from '../../components/layout/QaGrid.astro';
 import IndexList from '../../components/ui/IndexList.astro';
-import LeadRow from '../../components/product/LeadRow.astro';
 import Showcase from '../../components/product/Showcase.astro';
+import ListCard from '../../components/templates/ListCard.astro';
 import { PAGES } from '../../data/pages.ts';
 import { entries, linkList } from '../../lib/collections.ts';
 import { service } from '../../lib/schema.ts';
-const items = linkList('platform', await entries('platform'));
+const surfaces = await entries('platform');
+const items = linkList('platform', surfaces);
+const rows = surfaces.map((s) => ({ label: s.data.crumb }));
 ---
 <StandardPage meta={PAGES['/platform']} eyebrow="Product surfaces" schema={[service()]}
   answer="This territory intelligence platform gives a real estate team ranked parcels with explainable scores, a dossier for each one, drafted outreach that a person approves, weekly briefings, a territory map, an opportunity view, a backtest and share pages. Each deployment is configured to one client’s planning areas and team."
   request="To see these surfaces configured for your team,"
-  cta={{ title: 'Want a tour of the territory intelligence platform?', text: 'We walk through each surface against the planning areas you work.' }}>
+  cta={{ title: 'Tour the territory intelligence platform on your San Diego farm', text: 'We walk through each surface against the planning areas you work.' }}>
+  <ListCard slot="aside" title="In every deployment" stats={[{ value: String(surfaces.length), label: 'Surfaces' }, { value: 'Weekly', label: 'Data run' }, { value: 'Human', label: 'Approval' }]} rows={rows} />
+
   <Section tone="dark" id="showcase" label="Product surfaces, shown with sample records">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl"><p class="eyebrow">The workspace</p><h2 class="mt-4">Inside the territory intelligence platform</h2></div>
+      <p class="max-w-sm text-on-dark-muted">The Today view, a quick dossier and the outreach co-pilot, shown with invented sample records.</p>
+    </div>
     <Showcase />
   </Section>
+
   <Section>
-    <div class="stack">
+    <div class="max-w-3xl">
       <h2>What is in the territory intelligence platform?</h2>
-      <p class="max-w-measure">The territory intelligence platform is made of the surfaces below, all reading the same stored records and scores.</p>
-      <IndexList items={items} />
+      <p class="mt-5 text-lg leading-relaxed text-ink-muted">The territory intelligence platform is made of the surfaces below, all reading the same stored records and scores.</p>
     </div>
+    <div class="mt-10"><IndexList items={items} columns={4} /></div>
   </Section>
-  <QaSection q="How does a team move through the territory intelligence platform?" p={['A team moves through the territory intelligence platform from list to evidence to action: open the ranked list, check a dossier and its source records, approve a draft where outreach makes sense and log what happened.']}>
-    <LeadRow />
-  </QaSection>
-  <QaSection q="What ties the territory intelligence platform together?" p={['One set of rules ties the territory intelligence platform together: records stay traceable, estimates stay labeled, sensitive records stay off lists and AI never sets a score.']}>
-    <p><a class="link" href="/how-it-works">How scoring works</a> · <a class="link" href="/compliance">Compliance</a></p>
-  </QaSection>
+
+  <QaGrid items={[
+    { q: 'How does a team move through the territory intelligence platform?', p: ['A team moves through the territory intelligence platform from list to evidence to action: open the ranked list, check a dossier and its source records, approve a draft where outreach makes sense and log what happened.'], links: [{ href: '/platform/seller-dossier', label: 'The seller dossier' }, { href: '/platform/outreach-co-pilot', label: 'Outreach co-pilot' }] },
+    { q: 'What ties the territory intelligence platform together?', p: ['One set of rules ties the territory intelligence platform together: records stay traceable, estimates stay labeled, sensitive records stay off lists and AI never sets a score.'], links: [{ href: '/how-it-works', label: 'How scoring works' }, { href: '/compliance', label: 'Compliance' }] },
+  ]} />
 </StandardPage>

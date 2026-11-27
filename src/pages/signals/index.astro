@@ -1,16 +1,24 @@
 ---
 import HubPage from '../../templates/HubPage.astro';
+import ListCard from '../../components/templates/ListCard.astro';
 import { PAGES } from '../../data/pages.ts';
 import { entries, linkList } from '../../lib/collections.ts';
 const list = await entries('signals');
-const items = linkList('signals', list).map((item, i) => ({ ...item, note: list[i]!.data.sections.what.p[0], mark: list[i]!.data.status === 'coming' ? 'Coming' : undefined }));
+const items = linkList('signals', list).map((item, i) => ({ ...item, note: list[i]!.data.sections.what.p[0], mark: list[i]!.data.status === 'coming' ? 'Coming' : `${list[i]!.data.family} family` }));
+const live = list.filter((s) => s.data.status === 'live').length;
+const rows = list.map((s) => {
+  const top = Math.max(...s.data.components.map((c) => c.maxPoints));
+  return { label: s.data.crumb, value: s.data.status === 'coming' ? 'Coming' : top > 0 ? `up to ${top} pts` : 'context', muted: s.data.status === 'coming' };
+});
 ---
-<HubPage meta={PAGES['/signals']} eyebrow="Signal families" items={items}
+<HubPage meta={PAGES['/signals']} eyebrow="Signal families" items={items} columns={4}
   answer="The types of seller signals tracked here fall into eight families: building permits, short-term rental licenses, tax default, estimated SB 9 and SB 79 upzoning, code enforcement, ownership and tenure, recorder documents and fire hazard zones. Seven are live and fire zones are coming. Each page names its source, weight and limits."
   request="To see which signals show up in your own areas,"
-  cta={{ title: 'Which seller signal families matter in your area?', text: 'We walk through each source against the planning areas you work.' }}
-  index={{ q: 'What does each seller signal family cover?', p: ['Each seller signal family covers one kind of record or fact. Choose one to see why it can matter and where it falls short.'] }}
+  cta={{ title: 'Which seller signal families matter in your San Diego farm?', text: 'We walk through each source against the planning areas you work.' }}
+  index={{ q: 'What does each seller signal family cover?', p: ['Each seller signal family covers one kind of record or fact. Choose one to see why it can matter, how it is weighted and where it falls short.'] }}
   sections={[
-    { q: 'How should you weigh one seller signal against another?', p: ['Weigh one seller signal against another by its published weight, its age and how confidently it matched. No single record decides a score, and independent families that agree count for more than repeated records of one kind.'] },
-    { q: 'What makes a seller signal trustworthy?', p: ['A seller signal is trustworthy when you can trace it: every one stores its source, source record ID, match method and confidence. Estimates are labeled as estimates, and records that cannot be matched to a parcel are left out.'] },
-  ]} />
+    { q: 'How should you weigh one seller signal against another?', p: ['Weigh one seller signal against another by its published weight, its age and how confidently it matched. No single record decides a score, and independent families that agree count for more than repeated records of one kind.'], links: [{ href: '/how-it-works', label: 'How the score is built' }] },
+    { q: 'What makes a seller signal trustworthy?', p: ['A seller signal is trustworthy when you can trace it: every one stores its source, source record ID, match method and confidence. Estimates are labeled as estimates, and records that cannot be matched to a parcel are left out.'], links: [{ href: '/data-sources', label: 'Every source and its limits' }] },
+  ]}>
+  <ListCard slot="aside" title="Seller signal families" stats={[{ value: String(list.length), label: 'Families' }, { value: String(live), label: 'Live' }, { value: String(list.length - live), label: 'Coming' }]} rows={rows} note="Highest published weight in each family." />
+</HubPage>

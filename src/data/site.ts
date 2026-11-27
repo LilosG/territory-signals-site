@@ -25,7 +25,7 @@ export const COMPANY = {
 export const CTA = {
   primary: { label: 'Book a territory walkthrough', short: 'Book a walkthrough', href: '/request' },
   secondary: { label: 'See a sample weekly briefing', short: 'See a sample briefing', href: '/sample-briefing' },
-  demo: { label: 'Try the scoring demo', href: '/how-it-works#score' },
+  demo: { label: 'Try the scoring demo', href: '/how-it-works#demo' },
 } as const;
 
 export type NavLink = { label: string; href: string };

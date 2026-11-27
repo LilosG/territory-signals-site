@@ -1,0 +1,26 @@
+---
+/** The dark hero card for hub pages: two or three headline counts, then a short ranked list. */
+import ScoreRing from '../ui/ScoreRing.astro';
+interface Row { label: string; value?: string; score?: number; muted?: boolean }
+interface Props { title: string; stats: { value: string; label: string }[]; rows: Row[]; note?: string }
+const { title, stats, rows, note } = Astro.props;
+---
+<aside class="card-dark" aria-label={title}>
+  <p class="eyebrow">{title}</p>
+  <dl class="mt-4 grid grid-cols-3 gap-3">
+    {stats.map((s) => <div class="rounded-[10px] border border-line-dark bg-[rgb(255_255_255/0.04)] p-3"><dt class="text-xs text-on-dark-faint">{s.label}</dt><dd class="mt-1 text-2xl font-semibold text-on-dark">{s.value}</dd></div>)}
+  </dl>
+  <ul class="mt-4">
+    {rows.map((r) => (
+      <li class="flex items-center justify-between gap-4 border-b border-line-dark py-2.5 text-[14.5px] last:border-b-0">
+        <span class:list={[r.muted ? 'text-on-dark-faint' : 'text-on-dark']}>{r.label}</span>
+        {r.score !== undefined ? <span class="ring-dark"><ScoreRing score={r.score} size="sm" /></span> : <span class="mono text-xs text-on-dark-faint">{r.value}</span>}
+      </li>
+    ))}
+  </ul>
+  {note && <p class="mt-3 text-[13px] text-on-dark-faint">{note}</p>}
+</aside>
+<style>
+  .ring-dark :global(.ring-number) { fill: var(--color-on-dark); font-size: 15px; }
+  .ring-dark :global(.ring-track) { stroke: rgb(255 255 255 / 0.12); }
+</style>

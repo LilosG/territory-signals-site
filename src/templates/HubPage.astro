@@ -1,26 +1,29 @@
 ---
-/** Section index generated from a collection, with two explanatory blocks. */
+/** Section index generated from a collection, a hero card in the aside slot, and short answers laid out side by side. */
 import StandardPage from './StandardPage.astro';
 import Section from '../components/layout/Section.astro';
-import QaSection from '../components/layout/QaSection.astro';
+import QaGrid from '../components/layout/QaGrid.astro';
 import IndexList from '../components/ui/IndexList.astro';
 import type { PageMeta } from '../lib/page-meta.ts';
 import type { QaBlock } from '../lib/qa.ts';
 
 interface Props {
   meta: PageMeta; eyebrow: string; answer: string; request: string; cta: { title: string; text: string };
-  index: QaBlock; items: { href: string; label: string; note?: string | undefined; mark?: string | undefined }[]; sections: QaBlock[];
+  index: QaBlock; columns?: 3 | 4; items: { href: string; label: string; note?: string | undefined; mark?: string | undefined }[]; sections: (QaBlock & { links?: { href: string; label: string }[] })[];
 }
-const { meta, eyebrow, answer, request, cta, index, items, sections } = Astro.props;
+const { meta, eyebrow, answer, request, cta, index, items, sections, columns = 3 } = Astro.props;
 ---
 <StandardPage meta={meta} eyebrow={eyebrow} answer={answer} request={request} cta={cta}>
+  {Astro.slots.has('aside') && <Fragment slot="aside"><slot name="aside" /></Fragment>}
   <Section>
-    <div class="stack">
-      <h2>{index.q}</h2>
-      {index.p.map((p) => <p class="max-w-measure">{p}</p>)}
-      <slot name="index"><IndexList items={items} /></slot>
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-3xl">
+        <h2>{index.q}</h2>
+        {index.p.map((p) => <p class="mt-5 text-lg leading-relaxed text-ink-muted">{p}</p>)}
+      </div>
     </div>
+    <div class="mt-10"><slot name="index"><IndexList items={items} columns={columns} /></slot></div>
   </Section>
   <slot />
-  {sections.map((s) => <QaSection {...s} />)}
+  {sections.length > 0 && <QaGrid items={sections} />}
 </StandardPage>

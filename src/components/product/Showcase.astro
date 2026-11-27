@@ -1,5 +1,5 @@
 ---
-/** One composed product shot: the Today screen, with the quick dossier and the outreach co-pilot offset in front. */
+/** The product shot: the Today screen, then the quick dossier and the outreach co-pilot side by side beneath it. */
 import DashboardScreen from './DashboardScreen.astro';
 import DossierPanel from './DossierPanel.astro';
 import OutreachCoPilot from './OutreachCoPilot.astro';
@@ -12,16 +12,13 @@ import OutreachCoPilot from './OutreachCoPilot.astro';
   </div>
 </div>
 <style>
-  .showcase-tilt { border-radius: var(--radius-xl); box-shadow: var(--shadow-float); }
-  .showcase-cards { position: relative; z-index: 1; display: grid; gap: 1.5rem; margin-top: 1.5rem; }
-  .showcase-card { border-radius: var(--radius-xl); box-shadow: var(--shadow-float); align-self: start; }
+  .showcase-tilt { border-radius: var(--radius-xl); box-shadow: var(--shadow-window); }
+  .showcase-cards { display: grid; gap: 1.5rem; margin-top: 1.5rem; align-items: start; }
+  .showcase-card { border-radius: var(--radius-xl); box-shadow: var(--shadow-float); }
   @media (min-width: 64rem) {
+    .showcase-cards { grid-template-columns: 5fr 7fr; }
     .showcase-screen { perspective: 2000px; }
     .showcase-tilt { transform-origin: 50% 100%; }
-    .showcase-cards { grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top: -7rem; }
-    .showcase-dossier { grid-column: 1 / span 5; margin-left: -0.5rem; }
-    .showcase-copilot { grid-column: 7 / span 6; margin-top: 4rem; margin-right: -0.5rem; }
-    /* The screen starts tilted back and flattens as it scrolls into view. Browsers without scroll timelines show it flat. */
     @supports (animation-timeline: view()) {
       /* Longhands only: the CSS minifier folds the timeline into the shorthand, which browsers reject. */
       .showcase-tilt { animation-name: flatten; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: view(); animation-range: entry 10% cover 45%; }

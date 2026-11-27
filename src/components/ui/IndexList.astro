@@ -1,9 +1,9 @@
 ---
 /** The index grid every section hub uses, generated from a collection. The whole card is the link. */
 import Icon from './Icon.astro';
-interface Props { items: { href: string; label: string; note?: string | undefined; mark?: string | undefined }[] }
+interface Props { items: { href: string; label: string; note?: string | undefined; mark?: string | undefined }[]; columns?: 3 | 4 }
 ---
-<ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+<ul class:list={['grid gap-5 sm:grid-cols-2', Astro.props.columns === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3']}>
   {Astro.props.items.map((i) => (
     <li class="flex">
       <a href={i.href} class="index-card">

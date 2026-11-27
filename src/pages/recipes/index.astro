@@ -1,19 +1,25 @@
 ---
 import HubPage from '../../templates/HubPage.astro';
 import RecipeGrid from '../../components/product/RecipeGrid.astro';
+import ListCard from '../../components/templates/ListCard.astro';
 import { PAGES } from '../../data/pages.ts';
+import { RECIPE_EXAMPLES } from '../../data/demo.ts';
 import { entries, linkList } from '../../lib/collections.ts';
 const list = await entries('recipes');
 const items = linkList('recipes', list).map((item, i) => ({ ...item, mark: list[i]!.data.mark }));
+const approval = list.filter((r) => r.data.approval).length;
+const waiting = list.filter((r) => r.data.mark && /fire|waiting/i.test(r.data.mark)).length;
+const rows = list.map((r) => ({ label: r.data.label, score: RECIPE_EXAMPLES[r.data.recipeKey]?.score }));
 ---
 <HubPage meta={PAGES['/recipes']} eyebrow="Named patterns" items={items}
-  answer="Seller lead recipes are named patterns, each defined by a written rule over signals and owner facts. There are nine, from Downsizer to Stalled project. A parcel either meets a recipe or does not, and matching adds no points. Quiet inheritance and Financial pressure need team approval, and Insurance squeeze waits on fire data."
-  request="To see which recipes your territory would match,"
+  answer="Seller lead playbooks are named patterns, each defined by a written rule over signals and owner facts. There are nine, from Downsizer to Stalled project. A parcel either meets a playbook or does not, and matching adds no points. Quiet inheritance and Financial pressure need team approval, and Insurance squeeze waits on fire data."
+  request="To see which playbooks your territory would match,"
   cta={{ title: 'Which seller playbook would your team work first?', text: 'We walk through each rule against the planning areas you choose.' }}
   index={{ q: 'What does each seller playbook look for?', p: ['Each seller playbook looks for a specific combination of facts. The labels and short descriptions below are the product’s own.'] }}
   sections={[
-    { q: 'How is a recipe different from a score?', p: ['A recipe is different from a score because it answers what kind of situation a parcel is in, while the score answers how much recent evidence it carries. A parcel can match several recipes; the one whose components add the most points leads.'] },
-    { q: 'Which recipe needs extra care?', p: ['Any recipe built on distress or inheritance records needs extra care. Those records never appear on lead lists or share pages, outreach needs team approval and homeowner text never mentions them.'] },
+    { q: 'How is a playbook different from a score?', p: ['A playbook is different from a score because it answers what kind of situation a parcel is in, while the score answers how much recent evidence it carries. A parcel can match several playbooks; the one whose components add the most points leads.'], links: [{ href: '/how-it-works', label: 'How the score is built' }] },
+    { q: 'Which playbooks need extra care?', p: ['Any playbook built on distress or inheritance records needs extra care. Those records never appear on lead lists or share pages, outreach needs team approval and homeowner text never mentions them.'], links: [{ href: '/compliance', label: 'How sensitive records are handled' }] },
   ]}>
+  <ListCard slot="aside" title="Seller playbooks" stats={[{ value: String(list.length), label: 'Playbooks' }, { value: String(approval), label: 'Need approval' }, { value: String(waiting), label: 'Waiting on data' }]} rows={rows} note="Example scores on invented parcels, computed with the real formula." />
   <RecipeGrid slot="index" />
 </HubPage>

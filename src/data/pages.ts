@@ -39,7 +39,7 @@ export const PAGES = {
     crumb: "Signals",
     keyword: "types of seller signals",
     headingTerm: "seller signal",
-    h1: "The types of seller signals Territory Signals tracks",
+    h1: "Eight seller signal families, each with its source and weight",
     title: "Types of Seller Signals We Track | Territory Signals",
     description: "The types of seller signals we track, from building permits and rental licenses to tax-default lists and recorder documents, with each source and its limits.",
     updated: '2026-11-26',

@@ -1,0 +1,30 @@
+---
+/** The four display tiers as cards, each with a ring at an example score inside the band. */
+import ScoreRing from '../ui/ScoreRing.astro';
+import { TIERS } from '../../lib/tiers.ts';
+const EXAMPLE: Record<string, number> = { immediate: 91, priority: 74, watchlist: 50, monitor: 26 };
+const MEANING: Record<string, string> = {
+  immediate: 'Several independent signals agree and they are recent. Look at these first.',
+  priority: 'Strong evidence from more than one family. Worth a dossier this week.',
+  watchlist: 'A real signal with some support. Keep an eye on what changes.',
+  monitor: 'One fact or an old signal. Stays on file in case something new lands.',
+};
+---
+<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  {TIERS.map((t) => (
+    <li class:list={['card flex flex-col', `tier-top-${t.key}`]}>
+      <div class="flex items-center justify-between gap-3">
+        <p class:list={['card-title text-lg', `tier-${t.key}`]}>{t.label}</p>
+        <ScoreRing score={EXAMPLE[t.key]!} size="md" />
+      </div>
+      <p class="mono mt-1 text-xs text-ink-muted">Score {t.min} to {t.max}</p>
+      <p class="mt-4 text-[15px] leading-relaxed text-ink-muted">{MEANING[t.key]}</p>
+    </li>
+  ))}
+</ul>
+<style>
+  .tier-top-immediate { border-top: 3px solid var(--color-tier-immediate); }
+  .tier-top-priority { border-top: 3px solid var(--color-tier-priority); }
+  .tier-top-watchlist { border-top: 3px solid var(--color-tier-watchlist); }
+  .tier-top-monitor { border-top: 3px solid var(--color-tier-monitor); }
+</style>
