@@ -1,0 +1,60 @@
+{
+  "crumb": "Insurance squeeze",
+  "keyword": "insurance squeeze seller leads",
+  "headingTerm": "Insurance squeeze",
+  "h1": "Insurance squeeze seller leads (waiting on fire data)",
+  "title": "Insurance Squeeze Seller Leads: Waiting on Fire Zone Data",
+  "description": "Insurance squeeze seller leads will flag homes in high or very high fire hazard zones. The recipe stays idle until authoritative zone data has been loaded.",
+  "updated": "2026-11-26",
+  "order": 8,
+  "recipeKey": "insurance_squeeze",
+  "label": "Insurance squeeze",
+  "shortDescription": "High or very high fire hazard zone",
+  "rationale": "The home is in a high or very high fire hazard zone, where insurance can cost more or be harder to get.",
+  "answer": "Insurance squeeze seller leads are homes in high or very high fire hazard severity zones, where insurance can cost more or be harder to get. The recipe activates when fire hazard data is loaded. Until then no parcel matches it, no fire points are scored and the product does not guess which homes sit in a zone.",
+  "sections": {
+    "what": {
+      "q": "What is the Insurance squeeze recipe?",
+      "p": [
+        "The Insurance squeeze recipe matches homes mapped in high or very high fire hazard severity zones.",
+        "It activates when fire hazard data is loaded."
+      ]
+    },
+    "why": {
+      "q": "Why could Insurance squeeze point to a sale?",
+      "p": [
+        "Insurance squeeze could point to a sale because higher insurance cost or difficulty can change whether an owner wants to keep a home.",
+        "Many owners in these zones have workable coverage and no plan to move."
+      ]
+    },
+    "source": {
+      "q": "Where will Insurance squeeze data come from?",
+      "p": [
+        "Insurance squeeze data will come from an authoritative State Fire Marshal hazard zone file.",
+        "It is not inferred from unofficial copies."
+      ]
+    },
+    "scoring": {
+      "q": "How will an Insurance squeeze home be scored?",
+      "p": [
+        "An Insurance squeeze home will gain static fire points, more for very high than for high.",
+        "The recipe itself adds nothing; the fire component does."
+      ]
+    },
+    "action": {
+      "q": "What will an agent offer under Insurance squeeze?",
+      "p": [
+        "An agent will offer a neutral summary of what the home would likely sell for today.",
+        "The product’s template does not mention insurance, and homeowner text is checked for it."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Insurance squeeze?",
+      "p": [
+        "Insurance squeeze cannot know any owner’s insurer, premium or claims.",
+        "A mapped zone is a hazard classification, not an underwriting decision."
+      ]
+    }
+  },
+  "mark": "Waiting on fire data"
+}

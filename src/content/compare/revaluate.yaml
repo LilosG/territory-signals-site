@@ -1,0 +1,108 @@
+{
+  "crumb": "Revaluate alternative",
+  "keyword": "Revaluate alternative",
+  "headingTerm": "Revaluate alternative",
+  "h1": "A Revaluate alternative that starts from parcels",
+  "title": "Revaluate Alternative: Territory Signals Compared, 2026",
+  "description": "Looking for a Revaluate alternative? Compare scoring the contacts in your CRM with scoring parcels in your territory, using dated, linked public sources.",
+  "updated": "2026-11-26",
+  "order": 4,
+  "competitor": "Revaluate",
+  "answer": "A Revaluate alternative depends on where your opportunity sits. Revaluate scores the contacts already in your CRM for how likely they are to move. Territory Signals starts from parcels in the planning areas you choose, whether or not you know the owner, and scores them from public and owner records using rules you can read.",
+  "asOf": "Nov 2026",
+  "sources": [
+    {
+      "id": "home",
+      "name": "Revaluate home page",
+      "url": "https://revaluate.com/",
+      "asOf": "Nov 2026"
+    },
+    {
+      "id": "faq",
+      "name": "Revaluate FAQ",
+      "url": "https://revaluate.com/docs/faq",
+      "asOf": "Nov 2026"
+    },
+    {
+      "id": "tips",
+      "name": "Revaluate tips page",
+      "url": "https://revaluate.com/tips",
+      "asOf": "Nov 2026"
+    }
+  ],
+  "rows": [
+    {
+      "dimension": "What is scored?",
+      "us": "Parcels in your chosen planning areas",
+      "them": "Contacts in your CRM or database, for likelihood of moving",
+      "source": "home"
+    },
+    {
+      "dimension": "What is the scale?",
+      "us": "0 to 100, with four display tiers",
+      "them": "1 to 99, with 100 meaning an active listing; contacts are scored nightly",
+      "source": "tips"
+    },
+    {
+      "dimension": "What input is required?",
+      "us": "Your territory; records are collected for you",
+      "them": "An email address for each contact",
+      "source": "faq"
+    },
+    {
+      "dimension": "How are you notified?",
+      "us": "Weekly briefing and ranked lists in the product",
+      "them": "Text, email, dashboard or your CRM through its API",
+      "source": "faq"
+    },
+    {
+      "dimension": "Where does it work?",
+      "us": "San Diego is the live market",
+      "them": "Contacts who live in the United States",
+      "source": "faq"
+    },
+    {
+      "dimension": "How is it scoped?",
+      "us": "A managed deployment, scoped through a walkthrough",
+      "them": "A plan based on the number of contacts, with a demo or pricing meeting",
+      "source": "faq"
+    }
+  ],
+  "tableQuestion": "Where does this Revaluate alternative differ line by line?",
+  "tableAnswer": "This Revaluate alternative differs first in what gets scored; each Revaluate statement below links to the Revaluate page it came from.",
+  "sections": {
+    "differ": {
+      "q": "How is this Revaluate alternative different?",
+      "p": [
+        "This Revaluate alternative starts from property in a territory, not from people already in your database.",
+        "It can surface parcels whose owners you have never met, and it explains each score through its records."
+      ]
+    },
+    "publishes": {
+      "q": "What should a Revaluate alternative be compared against?",
+      "p": [
+        "A Revaluate alternative should be compared against what Revaluate publishes on its own pages.",
+        "It describes scoring CRM contacts nightly for likelihood of moving, with an email address as the required input and alerts delivered by text, email, dashboard or CRM."
+      ]
+    },
+    "better": {
+      "q": "When is Revaluate a better choice than a Revaluate alternative?",
+      "p": [
+        "Revaluate may be the better choice than a Revaluate alternative when your best opportunity is your existing contact database, anywhere in the United States.",
+        "The two answer different questions and can sit side by side."
+      ]
+    },
+    "evaluate": {
+      "q": "How should you test a Revaluate alternative?",
+      "p": [
+        "Test a Revaluate alternative by deciding first whether you are mining relationships or farming an area."
+      ],
+      "list": [
+        "How much of your business comes from existing contacts?",
+        "How complete are the email addresses in your CRM?",
+        "Do you need to see the records behind a score?",
+        "Which market do you work?"
+      ]
+    }
+  }
+}

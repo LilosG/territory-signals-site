@@ -1,0 +1,59 @@
+{
+  "crumb": "Downsizer",
+  "keyword": "downsizer seller leads",
+  "headingTerm": "Downsizer",
+  "h1": "Downsizer seller leads",
+  "title": "Downsizer Seller Leads: Long-Held, No Open Mortgage",
+  "description": "Downsizer seller leads are owner-occupied homes held 20 or more years with no open mortgage. See the rule, the owner data behind it and what it cannot know.",
+  "updated": "2026-11-26",
+  "order": 3,
+  "recipeKey": "downsizer",
+  "label": "Downsizer",
+  "shortDescription": "Long-held owner-occupant with no mortgage",
+  "rationale": "The owner lives in the home, has held it 20 or more years and has no open mortgage. Owners with this profile may want a smaller or simpler home.",
+  "answer": "Downsizer seller leads are owner-occupied homes held twenty years or more with no open mortgage on record. The three conditions are all owner facts from ATTOM, so the recipe says nothing about an owner’s age or plans. It marks homes where a conversation about value and options may be welcome, approached with care and without assumptions.",
+  "sections": {
+    "what": {
+      "q": "What is the Downsizer recipe?",
+      "p": [
+        "The Downsizer recipe is a rule for long-held, owner-occupied homes with no open mortgage.",
+        "All three conditions must be true. It uses no age data and no inference about the household."
+      ]
+    },
+    "why": {
+      "q": "Why can a Downsizer home point to a sale?",
+      "p": [
+        "A Downsizer home can point to a sale because long-time owners with no mortgage have room to change how they live.",
+        "Some want less space or fewer stairs. Many are exactly where they want to be."
+      ]
+    },
+    "source": {
+      "q": "Where does Downsizer data come from?",
+      "p": [
+        "Downsizer data comes from ATTOM occupancy, tenure and mortgage records.",
+        "A recorded transfer by death, trust or inheritance restarts tenure, so a new owner does not inherit the previous owner’s years."
+      ]
+    },
+    "scoring": {
+      "q": "How is a Downsizer home scored?",
+      "p": [
+        "A Downsizer home scores from its owner facts and any other signals on the parcel.",
+        "Owner facts alone stay under the owner cap, so a Downsizer rises in the ranking mainly when something else, such as a permit, is happening too."
+      ]
+    },
+    "action": {
+      "q": "What does an agent offer a Downsizer?",
+      "p": [
+        "An agent offers a Downsizer a value estimate and information about Proposition 19, to be confirmed with a tax advisor.",
+        "Proposition 19 lets eligible owners, including those over 55, transfer a property tax base value, subject to its conditions. Do not assume or mention the owner’s age."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Downsizer?",
+      "p": [
+        "Downsizer matches many homes and cannot tell which owners have any wish to move.",
+        "A mortgage record can be stale. Treat the match as the start of local knowledge, and follow fair housing rules in every approach."
+      ]
+    }
+  }
+}

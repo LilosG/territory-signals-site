@@ -1,0 +1,65 @@
+{
+  "crumb": "Solo agents",
+  "keyword": "seller lead tools for solo agents",
+  "headingTerm": "solo agents",
+  "h1": "Seller lead tools for solo agents who farm a territory",
+  "title": "Seller Lead Tools for Solo Agents Who Farm a Territory",
+  "description": "Seller lead tools for solo agents farming a defined area: a short ranked list, the records behind each score and drafts you review before anything goes out.",
+  "updated": "2026-11-26",
+  "order": 2,
+  "label": "Solo agents",
+  "summary": "A short ranked list for one farm area",
+  "answer": "Seller lead tools for solo agents need to save research time without adding another inbox. Territory Signals is built and run for you around the planning areas you farm, giving a short ranked list, the records behind each score and drafts you review. It is a managed deployment, not a self-serve subscription, so weigh the scope first.",
+  "recipes": [
+    "pre-list-prep",
+    "downsizer",
+    "stalled-project"
+  ],
+  "platform": [
+    "lead-scoring",
+    "seller-dossier",
+    "territory-map"
+  ],
+  "sections": {
+    "problem": {
+      "q": "What problem do solo agents bring to this?",
+      "p": [
+        "The problem solo agents bring is time: checking City files, tax lists and owner records by hand crowds out client work.",
+        "Spreadsheets also lose the reason a property was picked."
+      ]
+    },
+    "signals": {
+      "q": "Which signals matter to solo agents?",
+      "p": [
+        "The signals that matter to solo agents are the ones that support a small number of well-prepared approaches.",
+        "A recent remodel permit on a long-held home or a stalled project gives you something specific and useful to offer."
+      ]
+    },
+    "week": {
+      "q": "What does a week look like for solo agents?",
+      "p": [
+        "A week for solo agents is a short review rather than a research project."
+      ],
+      "list": [
+        "Check what changed in your areas.",
+        "Pick a few parcels and verify their records.",
+        "Edit, approve and send your own letters.",
+        "Note what happened for next time."
+      ]
+    },
+    "setup": {
+      "q": "What is set up for solo agents?",
+      "p": [
+        "Setup for solo agents is the same per-client deployment, scoped to one person.",
+        "Your planning areas, your name and DRE license number and your brokerage details are configured."
+      ]
+    },
+    "fit": {
+      "q": "When is this the wrong fit for solo agents?",
+      "p": [
+        "This is the wrong fit for solo agents who want an instant, low-commitment signup or purchased contacts.",
+        "If you only need an occasional export, a self-serve data product may suit you better."
+      ]
+    }
+  }
+}

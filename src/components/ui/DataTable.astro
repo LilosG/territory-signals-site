@@ -1,5 +1,6 @@
 ---
 /** A real HTML table. Cells are strings or links; the first column is the row header. */
+import '../../styles/table.css';
 export type Cell = string | { text: string; href?: string; note?: string; mono?: boolean };
 interface Props { caption: string; columns: string[]; rows: Cell[][]; showCaption?: boolean }
 const { caption, columns, rows, showCaption = false } = Astro.props;
@@ -30,11 +31,3 @@ const norm = (c: Cell) => (typeof c === 'string' ? { text: c } : c) as Exclude<C
     </tbody>
   </table>
 </div>
-<style is:global>
-  @reference "../../styles/global.css";
-  .table-scroll { @apply w-full overflow-x-auto; }
-  .data-table { @apply w-full border-t border-ink text-left text-sm; }
-  .data-table th, .data-table td { @apply min-w-32 border-b border-line py-3 pr-5 align-top; }
-  .data-table thead th { @apply font-mono text-2xs font-medium uppercase tracking-eyebrow text-ink-muted; }
-  .data-table tbody th { @apply font-semibold text-ink; }
-</style>

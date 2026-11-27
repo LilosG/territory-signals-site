@@ -8,7 +8,7 @@ import Badge from '../components/ui/Badge.astro';
 import RelatedLinks from '../components/ui/RelatedLinks.astro';
 import RuleTree from '../components/product/RuleTree.astro';
 import { describeCondition, RECIPES, weightFor } from '../lib/product.ts';
-import { guidesFor, hrefOf, linkList, signalsForRecipe } from '../lib/collections.ts';
+import { guidesFor, hrefOf, linkList, recipeReads, signalsForRecipe } from '../lib/collections.ts';
 import { sourceByKey } from '../data/sources.ts';
 import { metaOf } from '../lib/entry-meta.ts';
 import { service } from '../lib/schema.ts';
@@ -24,7 +24,7 @@ const guides = await guidesFor('recipes', [entry.id]);
 const sources = [...new Set(signals.flatMap((x) => x.data.sources))].map(sourceByKey);
 const weights = signals.map((x) => [
   { text: x.data.crumb, href: hrefOf('signals', x.id) },
-  x.data.components.map((c) => `${c.label}: ${weightFor(c.key).weight}`).join('; '),
+  x.data.components.filter((c) => recipeReads(d.recipeKey, c.key)).map((c) => `${c.label}: ${weightFor(c.key).weight}`).join('; '),
 ]);
 ---
 <StandardPage meta={meta} answer={d.answer} eyebrow="Seller lead recipe" schema={[service()]}
@@ -61,7 +61,7 @@ const weights = signals.map((x) => [
       rows={sources.map((src) => [{ text: src.name, href: src.url }, src.provides, src.verdict])} />
   </QaSection>
   <QaSection {...s.scoring}>
-    <DataTable caption={`Component weights behind the ${d.label} recipe`} columns={['Signal family', 'Score components and weights']} rows={weights} />
+    <DataTable caption={`Component weights behind the ${d.label} recipe`} columns={['Signal page', 'Components this rule reads, with weights']} rows={weights} />
     <p class="max-w-measure text-sm text-ink-muted">Matching a recipe adds no points. The parcel score comes only from its components. <a class="link" href="/how-it-works">How the score is built</a>.</p>
   </QaSection>
   <QaSection {...s.action} />

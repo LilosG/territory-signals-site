@@ -1,0 +1,61 @@
+{
+  "crumb": "Financial pressure",
+  "keyword": "financial pressure seller leads",
+  "headingTerm": "Financial pressure",
+  "h1": "Financial pressure seller leads, handled with approval",
+  "title": "Financial Pressure Seller Leads, Handled With Approval",
+  "description": "Financial pressure seller leads use tax default, default notices, open code cases or lost rental income. Team approval is required and records stay private.",
+  "updated": "2026-11-26",
+  "order": 9,
+  "recipeKey": "financial_pressure",
+  "label": "Financial pressure",
+  "shortDescription": "Tax default, a recorder default notice, or lost rental income with a mortgage",
+  "rationale": "Tax default, a recorder notice of default, an open code enforcement case, or lost rental income with an open mortgage.",
+  "answer": "Financial pressure seller leads match a tax-default listing or recorder default notice in the last two years, an open code enforcement case, or a short-term rental license removed in the last year where a mortgage is open. These records are sensitive, so outreach needs team approval, nothing about them appears on lists or share pages and drafts stay neutral.",
+  "sections": {
+    "what": {
+      "q": "What is the Financial pressure recipe?",
+      "p": [
+        "The Financial pressure recipe matches parcels with at least one of four signs of financial or property strain.",
+        "Any single condition is enough. The rental condition needs both a recent license removal and an open mortgage."
+      ]
+    },
+    "why": {
+      "q": "Why can Financial pressure point to a sale?",
+      "p": [
+        "Financial pressure can point to a sale because cost and deadlines can force a decision about a property.",
+        "These records show strain on a parcel, not an owner’s overall situation, and many are resolved without a sale."
+      ]
+    },
+    "source": {
+      "q": "Where does Financial pressure data come from?",
+      "p": [
+        "Financial pressure data comes from the County tax-default list, ATTOM recorder filings, City code enforcement and the rental license file.",
+        "Mortgage status comes from ATTOM."
+      ]
+    },
+    "scoring": {
+      "q": "How is a Financial pressure parcel scored?",
+      "p": [
+        "A Financial pressure parcel is scored from its individual components, several of which sit in the financial family.",
+        "Matching the recipe adds nothing by itself."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with Financial pressure?",
+      "p": [
+        "An agent gets team approval first, then offers only a neutral summary of what the home would likely sell for.",
+        "The message never mentions debt, default, taxes or a case. Speak with your broker first about the legal rules that apply to approaching owners in distress."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Financial pressure?",
+      "p": [
+        "Financial pressure data can be out of date, and acting on it carries real risk of causing harm.",
+        "Debts may be paid and notices cured. If you cannot offer something useful and respectful, do not make the approach."
+      ]
+    }
+  },
+  "approval": "Outreach drafts for this recipe need team approval. The records behind it are sensitive: they never appear on lead lists, cards or share pages, they are left out of AI facts packets and homeowner text never mentions them.",
+  "mark": "Approval required"
+}

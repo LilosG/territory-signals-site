@@ -52,9 +52,6 @@
   .prose li + li { @apply mt-2; }
   .prose a, .link { @apply text-ink underline decoration-line-strong decoration-1 underline-offset-4 transition-colors hover:decoration-ink; }
   .on-dark .link { @apply text-on-dark decoration-line-dark hover:decoration-on-dark; }
-  .prose table { @apply block w-full overflow-x-auto border-t border-ink text-sm; }
-  .prose th, .prose td { @apply border-b border-line py-3 pr-5 text-left align-top; }
-  .prose th { @apply font-semibold; }
   .prose blockquote { @apply border-l-2 border-ink pl-5 font-serif text-xl; }
 
   /* Controls */

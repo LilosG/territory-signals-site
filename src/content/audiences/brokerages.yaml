@@ -1,0 +1,65 @@
+{
+  "crumb": "Brokerages",
+  "keyword": "seller lead tools for brokerages",
+  "headingTerm": "brokerages",
+  "h1": "Seller lead tools for brokerages",
+  "title": "Seller Lead Tools for Brokerages: One Deployment Per Client",
+  "description": "Seller lead tools for brokerages: a separate deployment configured to your territory, DRE checks before approval and rules for how sensitive records appear.",
+  "updated": "2026-11-26",
+  "order": 3,
+  "label": "Brokerages",
+  "summary": "A dedicated deployment with approval rules",
+  "answer": "Seller lead tools for brokerages have to respect licensing and supervision as much as lead generation. Territory Signals runs a separate deployment for your brokerage, blocks approval of any draft missing the agent’s name and DRE license number, keeps sensitive records off lists and share pages and keeps every signal traceable to its source record.",
+  "recipes": [
+    "pre-list-prep",
+    "downsizer",
+    "short-term-rental-exit"
+  ],
+  "platform": [
+    "outreach-co-pilot",
+    "weekly-briefings",
+    "share-pages"
+  ],
+  "sections": {
+    "problem": {
+      "q": "What problem do brokerages bring to this?",
+      "p": [
+        "The problem brokerages bring is that prospecting done agent by agent is hard to supervise.",
+        "Different tools, templates and data habits make it difficult to know what was said and on what basis."
+      ]
+    },
+    "signals": {
+      "q": "Which signals matter to brokerages?",
+      "p": [
+        "The signals that matter to brokerages are the ones that can be used consistently and defended.",
+        "Each signal shows its source and record ID. Sensitive families have separate handling."
+      ]
+    },
+    "week": {
+      "q": "What does a week look like for brokerages?",
+      "p": [
+        "A week for brokerages combines agent work with oversight."
+      ],
+      "list": [
+        "The weekly run refreshes the territory.",
+        "Agents work ranked leads and prepare drafts.",
+        "Blocked drafts show what is missing.",
+        "Funnel views show recorded stages by recipe and agent."
+      ]
+    },
+    "setup": {
+      "q": "What is set up for brokerages?",
+      "p": [
+        "Setup for brokerages includes territory, agent roster, license details, office address and approval rules.",
+        "MLS data is an optional add-on, scoped per client, that requires your broker’s signed back-office data agreement. The core runs without it."
+      ]
+    },
+    "fit": {
+      "q": "When is this the wrong fit for brokerages?",
+      "p": [
+        "This is the wrong fit for brokerages looking for a nationwide self-serve tool for every agent today.",
+        "Each deployment is configured to a client’s territory, and San Diego is the live market. The product’s checks do not replace broker review."
+      ]
+    }
+  }
+}

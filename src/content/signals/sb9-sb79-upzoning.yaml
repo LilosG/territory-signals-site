@@ -1,0 +1,74 @@
+{
+  "crumb": "SB 9 and SB 79 upzoning",
+  "keyword": "SB 9 lot split leads",
+  "headingTerm": "SB 9",
+  "h1": "SB 9 lot split leads and SB 79 transit estimates",
+  "title": "SB 9 Lot Split Leads in San Diego: Estimated Eligibility",
+  "description": "SB 9 lot split leads and SB 79 transit parcels in San Diego, from an in-house screen of zoning, lot size and stops. All eligibility is labeled estimated.",
+  "updated": "2026-11-26",
+  "order": 4,
+  "family": "Upzoning",
+  "status": "live",
+  "sources": [
+    "zoning",
+    "transit",
+    "parcels"
+  ],
+  "components": [
+    {
+      "key": "sb9_lot_split_estimate",
+      "label": "SB 9 lot-split eligibility (estimated)",
+      "maxPoints": 14
+    },
+    {
+      "key": "sb79_transit_estimate",
+      "label": "SB 79 transit eligibility (estimated)",
+      "maxPoints": 21
+    }
+  ],
+  "answer": "SB 9 lot split leads here come from an in-house screen that flags single-family parcels in San Diego with enough lot area to possibly split. A second screen flags parcels near qualifying transit for SB 79. Both results are labeled estimated eligibility. Neither is a determination by the City, SANDAG or the State.",
+  "sections": {
+    "what": {
+      "q": "What is the SB 9 and SB 79 signal?",
+      "p": [
+        "The SB 9 and SB 79 signal is an estimate that state housing law may allow more on a parcel than stands there today.",
+        "The SB 9 screen looks at parcels in the City’s RS single-family base zones with lots of at least 2,400 square feet, enough for two lots of 1,200 square feet. The SB 79 screen measures distance from the parcel boundary to a rail station or rapid-bus stop, in bands of 200 feet, a quarter mile and a half mile."
+      ]
+    },
+    "why": {
+      "q": "Why can SB 9 or SB 79 potential point to a sale?",
+      "p": [
+        "SB 9 or SB 79 potential can point to a sale because a builder or investor may value the land differently from a typical home buyer.",
+        "That difference matters most when an owner has held the property a long time or the lot is large for its area. Potential alone does not mean an owner wants to sell, or that a project would pencil out."
+      ]
+    },
+    "source": {
+      "q": "Where does SB 9 screening data come from?",
+      "p": [
+        "SB 9 and SB 79 screening data comes from SANDAG base zoning, SANDAG transit stops and routes, and SanGIS parcels.",
+        "These are inputs to an estimate. The transit file has no service-frequency or dedicated-lane fields, so rapid-bus stops are identified by proxy. An official SB 79 layer is not confirmed as an input, and the City publishes its own SB 79 maps."
+      ]
+    },
+    "scoring": {
+      "q": "How is SB 9 and SB 79 eligibility scored?",
+      "p": [
+        "SB 9 and SB 79 eligibility scores as a static upzoning signal, discounted by a deliberately modest match confidence.",
+        "Because the screen is an estimate, its confidence is below 1, so it contributes less than its full weight. SB 79 weight depends on the distance band. Both belong to the upzoning family and do not fade with age. They feed the Builder bait recipe."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with SB 9 and SB 79 estimates?",
+      "p": [
+        "An agent treats SB 9 and SB 79 estimates as a research queue to confirm before saying anything to an owner or a buyer.",
+        "Check the City’s zoning and SB 79 layers, look for historic, hazard, coastal and tenant exclusions and consider a planner or land-use attorney. The Builder bait template offers a side-by-side of home value and lot value."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of the SB 9 screen?",
+      "p": [
+        "The SB 9 screen does not check most of the conditions that can disqualify a real project.",
+        "It does not check historic status, fire hazard zones, hillside or coastal limits, existing units, tenancy or prior lot splits. Planned-district zones are left out, so some single-family areas show no estimate. SB 79 frequency and lane tests are not applied."
+      ]
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "crumb": "Short-term rental licenses",
+  "keyword": "short-term rental license leads",
+  "headingTerm": "rental license",
+  "h1": "Short-term rental license leads in San Diego",
+  "title": "Short-Term Rental License Leads in San Diego, Explained",
+  "description": "Short-term rental license leads from City of San Diego STRO data: what a removed license can mean, how it is matched to a parcel and scored, and its limits.",
+  "updated": "2026-11-26",
+  "order": 2,
+  "family": "Short-term rentals",
+  "status": "live",
+  "sources": [
+    "str"
+  ],
+  "components": [
+    {
+      "key": "stro_license_removed",
+      "label": "STR license removed",
+      "maxPoints": 40
+    },
+    {
+      "key": "stro_license_active",
+      "label": "Active STR license",
+      "maxPoints": 5
+    }
+  ],
+  "answer": "Short-term rental license leads come from watching the City of San Diego STRO license file. When a license that was on the file stops appearing between data pulls, the parcel gets a strong, fast-fading signal. An active license is recorded as light context. A removal can mean lost rental income, but it never shows why.",
+  "sections": {
+    "what": {
+      "q": "What is the rental license signal?",
+      "p": [
+        "The rental license signal records that a short-term rental license was removed from a parcel, or that one is active there.",
+        "A removal is the stronger event. Removals are detected as licenses change between data pulls. An active license is context only: it tells you how a home is used, not that a sale is coming."
+      ]
+    },
+    "why": {
+      "q": "Why can a rental license change point to a sale?",
+      "p": [
+        "A removed rental license can point to a sale because the home may no longer earn the rental income it did before.",
+        "An owner who has lost or given up that use may be weighing whether to sell, rent long term or hold. That makes a neutral comparison of options useful. Many removals have other explanations, including an owner moving in."
+      ]
+    },
+    "source": {
+      "q": "Where does rental license data come from?",
+      "p": [
+        "Rental license data comes from the City of San Diego STRO licenses file, published through the City Treasurer.",
+        "The file lists active licenses with location and tier but no parcel number and no issue date, so each license is matched to the parcel that contains its point. Only the license ID, tier, location and status are stored. Host names and phone numbers are not kept."
+      ]
+    },
+    "scoring": {
+      "q": "How is a rental license change scored?",
+      "p": [
+        "A removed rental license carries one of the heaviest weights in the model and fades quickly.",
+        "An active license carries a small weight that does not fade, counted once from the latest data pull. A removal also activates the Short-term rental exit recipe for a year."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with a rental license change?",
+      "p": [
+        "An agent treats a rental license change as a reason to offer a side-by-side of the owner’s options.",
+        "Check the record, then consider what selling, renting long term or holding would look like for that home. The product’s template offers that comparison without claiming to know why the license changed."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of rental license data?",
+      "p": [
+        "Rental license data cannot say why a license was removed or what the owner plans to do.",
+        "Licenses expire, change hands or lapse for many reasons. Because the file has no parcel number, a match relies on coordinates, and the match confidence is recorded with the signal. The file has no license issue date, so the age of a license cannot be computed."
+      ]
+    }
+  }
+}

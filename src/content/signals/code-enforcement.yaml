@@ -1,0 +1,73 @@
+{
+  "crumb": "Code enforcement",
+  "keyword": "code enforcement property leads",
+  "headingTerm": "code enforcement",
+  "h1": "Code enforcement property leads in San Diego",
+  "title": "Code Enforcement Property Leads in San Diego, Explained",
+  "description": "Code enforcement property leads from City of San Diego records: how open and closed cases are scored, what stays private, and why the public file is old.",
+  "updated": "2026-11-26",
+  "order": 5,
+  "family": "Financial and permits",
+  "status": "live",
+  "sources": [
+    "code"
+  ],
+  "components": [
+    {
+      "key": "code_violation_open",
+      "label": "Open code enforcement case",
+      "maxPoints": 24
+    },
+    {
+      "key": "code_violation_closed",
+      "label": "Code enforcement case closed",
+      "maxPoints": 10
+    }
+  ],
+  "answer": "Code enforcement property leads come from City of San Diego case data, where the City publishes it. An open case is treated as a sensitive sign of friction on a parcel. A case closed within the last 180 days is treated as possible repair or cleanup work. Investigator details are never stored, and open cases stay off lead lists.",
+  "sections": {
+    "what": {
+      "q": "What is the code enforcement signal?",
+      "p": [
+        "The code enforcement signal marks a parcel with an open City case, or one whose case closed in the last 180 days.",
+        "Only the violation category is kept from the description. Any owner reference inside the source text is cut before storage."
+      ]
+    },
+    "why": {
+      "q": "Why can code enforcement activity point to a sale?",
+      "p": [
+        "Code enforcement activity can point to a sale because an unresolved case adds cost and effort to holding a property.",
+        "An open case is friction that can make a conversation timely, especially for an owner who lives elsewhere. A recently closed case often follows repair or cleanup work, which is one reason homes are readied for a change."
+      ]
+    },
+    "source": {
+      "q": "Where does code enforcement data come from?",
+      "p": [
+        "Code enforcement data comes from City of San Diego Development Services case files, where the City publishes case data.",
+        "Cases are matched by parcel number first and by location when needed. Investigator names, phone numbers and email addresses are dropped as the data is read."
+      ]
+    },
+    "scoring": {
+      "q": "How is code enforcement activity scored?",
+      "p": [
+        "Open code enforcement cases score in the financial family, and recently closed cases score lower in the permits family.",
+        "Both fade with age, dated from the day a case opened or closed. An open case also satisfies conditions in the Tired landlord and Financial pressure recipes."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with a code enforcement case?",
+      "p": [
+        "An agent verifies a code enforcement case and never raises it in a first approach.",
+        "Check the City record for current status. If outreach makes sense and is approved, offer something useful about the property without referring to the case."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of code enforcement data?",
+      "p": [
+        "Code enforcement data depends on what the City publishes and can lag the status of a case.",
+        "A case is an allegation or an administrative file, not a finding about an owner. Confirm status before relying on it."
+      ]
+    }
+  },
+  "visibility": "An open code enforcement case is sensitive. It is not shown on lead cards, lists, headlines or the signal timeline, and never on share pages. It appears only in a labeled sensitive-records card inside the signed-in lead workspace."
+}

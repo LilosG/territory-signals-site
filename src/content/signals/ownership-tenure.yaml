@@ -1,0 +1,92 @@
+{
+  "crumb": "Ownership and tenure",
+  "keyword": "homeowner tenure seller signal",
+  "headingTerm": "homeowner tenure",
+  "h1": "The homeowner tenure seller signal and owner profile",
+  "title": "Homeowner Tenure Seller Signal and Owner Profile Data",
+  "description": "The homeowner tenure seller signal: years owned, absentee and out-of-state status, open mortgage and estimated equity from ATTOM, and how each one scores.",
+  "updated": "2026-11-26",
+  "order": 6,
+  "family": "Owner",
+  "status": "live",
+  "sources": [
+    "attom"
+  ],
+  "components": [
+    {
+      "key": "owner:years_owned",
+      "label": "Years owned",
+      "maxPoints": 20
+    },
+    {
+      "key": "owner:absentee",
+      "label": "Absentee owner",
+      "maxPoints": 13
+    },
+    {
+      "key": "owner:out_of_state",
+      "label": "Out-of-state owner",
+      "maxPoints": 15
+    },
+    {
+      "key": "owner:mortgage_open_false",
+      "label": "No open mortgage",
+      "maxPoints": 13
+    },
+    {
+      "key": "owner:est_equity_top_quartile",
+      "label": "Equity in the top quarter (estimated)",
+      "maxPoints": 6
+    },
+    {
+      "key": "owner:portfolio_owner_multi",
+      "label": "Multiple parcels in the territory",
+      "maxPoints": 6
+    }
+  ],
+  "answer": "The homeowner tenure seller signal describes how long the current owner has held a property, whether they live there, whether a mortgage is open and where estimated equity sits. These owner facts come from ATTOM. They add to a parcel’s score as a capped family, so a long tenure alone can never outrank fresh activity.",
+  "sections": {
+    "what": {
+      "q": "What is the homeowner tenure signal?",
+      "p": [
+        "The homeowner tenure signal is a set of owner facts: years owned, occupancy, mortgage status, estimated equity and local holdings.",
+        "A transfer by death, trust or inheritance restarts the current owner’s tenure, so an earlier owner’s years are never presented as the current owner’s. The county parcel file’s last recorded document date is never treated as a purchase date."
+      ]
+    },
+    "why": {
+      "q": "Why can homeowner tenure point to a sale?",
+      "p": [
+        "Homeowner tenure can point to a sale because long holding usually means built-up equity and a life that may have changed since purchase.",
+        "An absentee or out-of-state owner carries a property from a distance. An owner with no open mortgage has more room to choose. An investor with several local parcels may review them together. These are reasons to look closer, not conclusions about any person."
+      ]
+    },
+    "source": {
+      "q": "Where does homeowner tenure data come from?",
+      "p": [
+        "Homeowner tenure data comes from ATTOM: owner, mailing address, estimated value, mortgage status and recorder history.",
+        "Occupancy is read from how the owner’s mailing address compares with the property. Portfolios are grouped only by an exact normalized mailing address or an exact corporate or trust name, never by fuzzy guessing."
+      ]
+    },
+    "scoring": {
+      "q": "How is homeowner tenure scored?",
+      "p": [
+        "Homeowner tenure and the other owner facts add fixed points that do not fade, under one shared cap.",
+        "All owner modifiers together cannot exceed 40 points; above that, each is scaled by the same factor. Out-of-state and absentee are not added together. The portfolio modifier applies only to absentee or investor-held owners with two or more parcels in the territory."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with homeowner tenure data?",
+      "p": [
+        "An agent uses homeowner tenure to choose a respectful, useful offer rather than to guess at someone’s plans.",
+        "A value summary suits a long-held owner-occupied home. A sell-versus-keep-renting comparison suits an absentee owner. Never write as if you know an owner’s age, family or finances."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of homeowner tenure data?",
+      "p": [
+        "Homeowner tenure data can be wrong or stale, and equity is a modeled estimate.",
+        "Records lag sales and refinances, mailing addresses can mislead and name matching cannot see every holding. Equity is always labeled as estimated."
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "crumb": "Recorder documents",
+  "keyword": "inherited property leads",
+  "headingTerm": "inherited property",
+  "h1": "Inherited property leads from recorder documents",
+  "title": "Inherited Property Leads From Recorder Document Data",
+  "description": "Inherited property leads from ATTOM recorder data, not obituaries or court scraping: transfers by death or trust, default notices, and approval rules.",
+  "updated": "2026-11-26",
+  "order": 7,
+  "family": "Owner and financial",
+  "status": "live",
+  "sources": [
+    "attom"
+  ],
+  "components": [
+    {
+      "key": "notice_of_default",
+      "label": "Notice of default",
+      "maxPoints": 35
+    },
+    {
+      "key": "ownership_transfer_inheritance",
+      "label": "Ownership transfer by inheritance (context only, no points)",
+      "maxPoints": 0
+    },
+    {
+      "key": "owner:ownership_transfer",
+      "label": "Ownership transfer (context only, no points)",
+      "maxPoints": 0
+    }
+  ],
+  "answer": "Inherited property leads here come from recorder documents in ATTOM data, not from obituaries or court scraping. A transfer by death, trust or inheritance adds no points but can place a parcel in the Quiet inheritance recipe, which needs team approval. Default notices are scored as a financial signal. Both stay off lists and share pages.",
+  "sections": {
+    "what": {
+      "q": "What is the inherited property signal?",
+      "p": [
+        "The inherited property signal is a recorded document showing that a property changed hands by death, trust or inheritance.",
+        "Examples include an affidavit of death, an executor or administrator deed, a trust transfer or a deed of distribution. The same recorder history carries distress filings: a notice of default, a notice of trustee sale or a lis pendens."
+      ]
+    },
+    "why": {
+      "q": "Why can an inherited property point to a sale?",
+      "p": [
+        "An inherited property can point to a sale because a new owner or trustee may be deciding what to do with it.",
+        "Some keep the home, some rent it and some sell. A default notice is a different matter: a public distress filing that shows pressure, not a completed sale."
+      ]
+    },
+    "source": {
+      "q": "Where does inherited property data come from?",
+      "p": [
+        "Inherited property data comes from ATTOM recorder history, with each document type mapped by a written table.",
+        "Court probate records, published legal notices and obituaries are not scraped. Distress recordings are never counted as sales and never suppress a score. Transfers by death or trust do not trigger the recent-sale suppression."
+      ]
+    },
+    "scoring": {
+      "q": "How is an inherited property record scored?",
+      "p": [
+        "An inherited property transfer is worth zero points: it restarts tenure and activates a recipe but never raises the score.",
+        "A notice of default, trustee sale or lis pendens does score, as a financial signal that fades over months. A parcel in Quiet inheritance is ranked by its other signals."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with an inherited property record?",
+      "p": [
+        "An agent approaches an inherited property only with team approval, patience and a neutral offer.",
+        "The Quiet inheritance template offers a neutral value summary and does not mention a death or inheritance. For default notices, speak with your broker first; homeowner text never mentions the filing."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of inherited property data?",
+      "p": [
+        "Inherited property data misses transfers that are never recorded or that use document types outside the mapped list.",
+        "A trust transfer can be routine estate planning with no death involved. A default notice may have been cured. Verify the document and its date before acting."
+      ]
+    }
+  },
+  "visibility": "Ownership transfers and default notices are sensitive records. They are not shown on lead cards, lists or share pages, they are kept out of AI facts packets and homeowner text never mentions them. Recipes built on them need team approval."
+}

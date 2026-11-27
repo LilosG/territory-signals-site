@@ -1,0 +1,67 @@
+{
+  "crumb": "Fire hazard zones",
+  "keyword": "fire hazard zone seller signal",
+  "headingTerm": "fire hazard zone",
+  "h1": "The fire hazard zone seller signal (coming)",
+  "title": "Fire Hazard Zone Seller Signal: Coming to San Diego Data",
+  "description": "The fire hazard zone seller signal is coming and not yet loaded. See what it will measure, why it waits on an authoritative state file, and how it scores.",
+  "updated": "2026-11-26",
+  "order": 8,
+  "family": "Fire hazard",
+  "status": "coming",
+  "sources": [
+    "fire"
+  ],
+  "components": [
+    {
+      "key": "fire_hazard_zone",
+      "label": "Fire hazard severity zone",
+      "maxPoints": 15
+    }
+  ],
+  "answer": "The fire hazard zone seller signal is coming and is not scored today. When loaded from an authoritative state file, it will mark homes in very high, high or moderate fire hazard severity zones, where insurance can cost more or be harder to get. Until then no parcel is shown as being in any zone.",
+  "sections": {
+    "what": {
+      "q": "What will the fire hazard zone signal be?",
+      "p": [
+        "The fire hazard zone signal will mark which mapped fire hazard severity class a parcel falls in.",
+        "It will be matched by parcel position inside the mapped zone, using the state’s hazard classes."
+      ]
+    },
+    "why": {
+      "q": "Why could a fire hazard zone point to a sale?",
+      "p": [
+        "A fire hazard zone could point to a sale because insurance in higher classes can cost more or be harder to obtain.",
+        "For some owners that changes the cost of keeping a home. It says nothing about any one owner’s policy or premium."
+      ]
+    },
+    "source": {
+      "q": "Where will fire hazard zone data come from?",
+      "p": [
+        "Fire hazard zone data will come from the Office of the State Fire Marshal’s fire hazard severity zone maps.",
+        "It is added from an authoritative file and never inferred from third-party copies or guessed from location."
+      ]
+    },
+    "scoring": {
+      "q": "How will a fire hazard zone be scored?",
+      "p": [
+        "A fire hazard zone will score as a static signal, with the most weight for very high and the least for moderate.",
+        "It will form its own signal family. High and very high zones will activate the Insurance squeeze recipe."
+      ]
+    },
+    "action": {
+      "q": "What can an agent do about fire hazard zones now?",
+      "p": [
+        "Until the fire hazard zone signal arrives, an agent should check official state and City maps for any specific property.",
+        "Do not rely on this product for fire zone status today, and do not describe a home’s zone from memory."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of fire hazard zone data?",
+      "p": [
+        "Fire hazard zone data describes mapped hazard, not an insurer’s decision about a particular home.",
+        "Maps are revised, and underwriting uses many factors beyond the zone."
+      ]
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "crumb": "SmartZip alternative",
+  "keyword": "SmartZip alternative",
+  "headingTerm": "SmartZip alternative",
+  "h1": "A SmartZip alternative built on parcel records",
+  "title": "SmartZip Alternative: Territory Signals Compared, 2026",
+  "description": "Looking for a SmartZip alternative? Compare approach, scoring, territory setup and outreach with Territory Signals, using dated and linked public sources.",
+  "updated": "2026-11-26",
+  "order": 1,
+  "competitor": "SmartZip",
+  "answer": "A SmartZip alternative is worth considering if you want to see exactly why a property ranks. HousingWire describes SmartZip as using predictive analytics to identify likely sellers in a farm area. Territory Signals scores parcels with published rules, shows every component and links each signal to its source record, in a deployment built for your team.",
+  "asOf": "Feb 2024 and June 2026 (HousingWire)",
+  "sources": [
+    {
+      "id": "hw",
+      "name": "HousingWire, SmartZip review (updated Feb 27, 2024)",
+      "url": "https://www.housingwire.com/articles/smartzip-review/",
+      "asOf": "Feb 2024"
+    },
+    {
+      "id": "hwlist",
+      "name": "HousingWire, top real estate lead generation companies (updated June 29, 2026)",
+      "url": "https://www.housingwire.com/articles/top-real-estate-lead-generation-companies/",
+      "asOf": "June 2026"
+    }
+  ],
+  "rows": [
+    {
+      "dimension": "What is the approach?",
+      "us": "Territory intelligence built and run per team or brokerage for chosen planning areas",
+      "them": "Predictive analytics to identify likely sellers",
+      "source": "hwlist"
+    },
+    {
+      "dimension": "How is territory chosen?",
+      "us": "The City planning areas your team chooses",
+      "them": "The customer chooses a territory by neighborhood or ZIP code",
+      "source": "hw"
+    },
+    {
+      "dimension": "What outreach is described?",
+      "us": "Drafted letters, emails and call scripts that a person approves and the team sends",
+      "them": "Marketing tools including email, online ads and direct mail",
+      "source": "hw"
+    },
+    {
+      "dimension": "Is a contract described?",
+      "us": "Scoped with each client",
+      "them": "HousingWire lists an annual contract as required",
+      "source": "hw"
+    },
+    {
+      "dimension": "Is territory exclusivity described?",
+      "us": "Each client has a separate deployment; no exclusivity claim is made here",
+      "them": "HousingWire lists exclusivity as “No”",
+      "source": "hw"
+    }
+  ],
+  "tableQuestion": "Where does this SmartZip alternative differ line by line?",
+  "tableAnswer": "This SmartZip alternative differs in what it shows and how it is delivered; each SmartZip statement below is attributed to HousingWire with its date.",
+  "sections": {
+    "differ": {
+      "q": "How is this SmartZip alternative different?",
+      "p": [
+        "This SmartZip alternative is different mainly in showing its rules and records.",
+        "Each weight, half-life and stacking rule is published to the team, and each signal links to a source record. It is built and run per client rather than bought as a package."
+      ]
+    },
+    "publishes": {
+      "q": "What should a SmartZip alternative be compared against?",
+      "p": [
+        "A SmartZip alternative should be compared against what is published about SmartZip, which here comes from HousingWire.",
+        "Its 2024 review describes predicting which homeowners in your farm area will soon be ready to sell, a territory chosen by neighborhood or ZIP code, and marketing by email, online ads or direct mail. HousingWire’s June 2026 list again describes predictive analytics for identifying likely sellers."
+      ]
+    },
+    "better": {
+      "q": "When is SmartZip a better choice than a SmartZip alternative?",
+      "p": [
+        "SmartZip may be a better choice than a SmartZip alternative if you want marketing campaigns delivered with the predictions, outside San Diego.",
+        "Territory Signals prepares drafts for your team to send and has one live market."
+      ]
+    },
+    "evaluate": {
+      "q": "How should you test a SmartZip alternative?",
+      "p": [
+        "Test a SmartZip alternative by asking both vendors the same questions about one area you know well."
+      ],
+      "list": [
+        "Why is this property ranked, and which records say so?",
+        "How old is each record, and where did it come from?",
+        "What goes to homeowners, and who approves it?",
+        "What are the contract terms today?"
+      ]
+    }
+  },
+  "note": "smartzip.com was not used as a source for this page. The statements come from HousingWire’s published review and list, and HousingWire discloses that it may earn commissions from some links."
+}

@@ -27,6 +27,9 @@ function conditionKeys(c: Condition): string[] {
 
 const covers = (componentKey: string, wanted: string) => componentKey === wanted || componentKey.startsWith(`${wanted}:`);
 
+/** True when a score component is one a recipe's rule reads. */
+export const recipeReads = (recipeKey: string, componentKey: string) => conditionKeys(RECIPES[recipeKey]!.when).some((w) => covers(componentKey, w));
+
 export async function signalsForRecipe(recipeKey: string) {
   const wanted = conditionKeys(RECIPES[recipeKey]!.when);
   return (await entries('signals')).filter((s) => s.data.components.some((c) => wanted.some((w) => covers(c.key, w))));

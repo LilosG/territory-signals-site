@@ -1,0 +1,30 @@
+---
+import HubPage from '../../templates/HubPage.astro';
+import Section from '../../components/layout/Section.astro';
+import DataTable from '../../components/ui/DataTable.astro';
+import { PAGES } from '../../data/pages.ts';
+import { entries, hrefOf } from '../../lib/collections.ts';
+const list = await entries('compare');
+const items = list.map((c) => ({ href: hrefOf('compare', c.id), label: c.data.competitor, note: c.data.h1, mark: `As of ${c.data.asOf}` }));
+const rows = list.map((c) => {
+  const first = c.data.rows[0]!;
+  const source = c.data.sources.find((s) => s.id === first.source)!;
+  return [{ text: c.data.competitor, href: hrefOf('compare', c.id) }, { text: first.them, note: `${source.name}, as of ${source.asOf}` }];
+});
+---
+<HubPage meta={PAGES['/compare']} eyebrow="Comparisons" items={items}
+  answer="This seller lead software comparison sets Territory Signals beside SmartZip, Offrs, PropStream and Revaluate using only facts published by each company or a named review source, each with a date and link. It has no ratings, prices or accuracy claims. Territory Signals differs mainly in published scoring rules, traceable records and per-team setup."
+  request="To compare against your own area,"
+  cta={{ title: 'Want a comparison on your own territory?', text: 'A walkthrough shows the records and rules so you can judge them against what you use now.' }}
+  index={{ q: 'Which products does this comparison cover?', p: ['This comparison covers the four products below.'] }}
+  sections={[
+    { q: 'How was this comparison put together?', p: ['This comparison was put together from each company’s own pages where they could be read, and from named publications where they could not. Statements that could not be verified were left out. Check the linked source for current details.'] },
+  ]}>
+  <Section>
+    <div class="stack">
+      <h2>What does each product offer in this comparison?</h2>
+      <p class="max-w-measure">In this comparison, Territory Signals is a per-team territory intelligence service. The table shows how each other product is described by the source named.</p>
+      <DataTable caption="How each product is described" columns={['Product', 'Described as']} rows={rows} />
+    </div>
+  </Section>
+</HubPage>

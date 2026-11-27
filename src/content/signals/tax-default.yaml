@@ -1,0 +1,68 @@
+{
+  "crumb": "Tax default",
+  "keyword": "tax default property list San Diego",
+  "headingTerm": "tax default",
+  "h1": "The tax default property list San Diego publishes",
+  "title": "Tax Default Property List San Diego: How Agents Use It",
+  "description": "The tax default property list San Diego County publishes each year: what it contains, how we match and score it, and why it never appears on lead lists.",
+  "updated": "2026-11-26",
+  "order": 3,
+  "family": "Financial",
+  "status": "live",
+  "sources": [
+    "tax"
+  ],
+  "components": [
+    {
+      "key": "tax_default",
+      "label": "Tax default",
+      "maxPoints": 40
+    }
+  ],
+  "answer": "The tax default property list San Diego County publishes names parcels that have become subject to the tax collector’s power to sell. Territory Signals matches each one by parcel number and scores it as a financial signal that fades over a year. It is a sensitive record, so it never appears on lead lists or share pages.",
+  "sections": {
+    "what": {
+      "q": "What is the tax default signal?",
+      "p": [
+        "The tax default signal marks a parcel that appears on the County’s notice of impending power to sell tax-defaulted property.",
+        "Under that notice, property that has stayed in default for years becomes subject to sale by the tax collector unless it is redeemed. It is a public filing about unpaid taxes, not a sale and not proof of an owner’s wider finances."
+      ]
+    },
+    "why": {
+      "q": "Why can a tax default point to a sale?",
+      "p": [
+        "A tax default can point to a sale because the owner faces a deadline that may force a decision about the property.",
+        "Some owners redeem the taxes and keep the home. Others sell. The record shows pressure on the parcel, not which path an owner will take, and it calls for particular care in any approach."
+      ]
+    },
+    "source": {
+      "q": "Where does tax default data come from?",
+      "p": [
+        "Tax default data comes from the San Diego County Treasurer-Tax Collector’s published legal notices.",
+        "The notice is a PDF carrying parcel numbers, assessee names, partial street addresses and redemption amounts. It is matched on parcel number. It is an annual list and covers few parcels, so treat it as a low-volume signal."
+      ]
+    },
+    "scoring": {
+      "q": "How is a tax default scored?",
+      "p": [
+        "A tax default carries a high weight that halves each year from the date of the notice the parcel appears on.",
+        "It belongs to the financial family, so it stacks with permits, rental, upzoning and owner signals. It also counts toward the Financial pressure recipe, and can satisfy the distress condition in Tired landlord."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with a tax default record?",
+      "p": [
+        "An agent handles a tax default record with approval, restraint and no mention of the debt.",
+        "Where the team uses it for outreach, the recipe requires team approval, and the template offers only a neutral summary of what the home would likely sell for. Homeowner text never mentions taxes, default or debt. Ask your broker how your office wants such approaches handled."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of tax default data?",
+      "p": [
+        "Tax default data is infrequent, can be out of date and says nothing about redemption after the notice.",
+        "Taxes may have been paid since publication. Confirm current status with the County before relying on it. Auction notices are not ingested."
+      ]
+    }
+  },
+  "visibility": "Tax default is a sensitive record. It is not shown on lead cards, lists or share pages, it is kept out of AI facts packets and homeowner text never mentions it. In the product it appears only in a labeled sensitive-records card inside the signed-in lead workspace."
+}

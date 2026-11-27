@@ -10,12 +10,16 @@ import { article } from '../lib/schema.ts';
 import { ogPath } from '../lib/paths.ts';
 import { COMPANY } from '../data/site.ts';
 import { formatDate } from '../lib/format.ts';
+import { wrapTables } from '../lib/guide-html.ts';
+import '../styles/table.css';
 
 interface Props { entry: CollectionEntry<'guides'> }
 const { entry } = Astro.props;
 const d = entry.data;
 const meta = metaOf('guides', entry);
-const { Content, headings } = await render(entry);
+const { headings } = await render(entry);
+if (!entry.rendered) throw new Error(`${entry.id}: the guide has no rendered body`);
+const body = wrapTables(entry.rendered.html);
 const signals = (await entries('signals')).filter((x) => d.signals.includes(x.id));
 const recipes = (await entries('recipes')).filter((x) => d.recipes.includes(x.id));
 const schema = [article({ path: meta.path, headline: d.h1, description: d.description, published: d.published, modified: d.updated, image: ogPath(meta.path) })];
@@ -35,7 +39,7 @@ const schema = [article({ path: meta.path, headline: d.h1, description: d.descri
         </ol>
       </nav>
       <article class="col-main">
-        <div data-article-body><Prose class="guide-body"><Content /></Prose></div>
+        <div data-article-body><Prose class="guide-body"><Fragment set:html={body} /></Prose></div>
         <div class="mt-14 max-w-measure">
           <p class="eyebrow">Sources</p>
           <ol class="mt-3 border-t border-ink text-sm">

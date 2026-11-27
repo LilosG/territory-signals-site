@@ -1,0 +1,14 @@
+---
+import HubPage from '../../templates/HubPage.astro';
+import { PAGES } from '../../data/pages.ts';
+---
+<HubPage meta={PAGES['/markets']} eyebrow="Markets"
+  items={[{ href: '/markets/san-diego', label: 'San Diego', note: 'City of San Diego planning areas, configurable per team', mark: 'Live' }]}
+  answer="Real estate territory intelligence markets are the places where the data pipeline has been built and checked against local sources. San Diego is the live market, covering City of San Diego planning areas that each team chooses. No other market is listed as live, because each one needs its own source review before any data is shown."
+  request="To ask about San Diego or another area,"
+  cta={{ title: 'Do you work one of these markets?', text: 'Tell us where you work and we will say plainly what the sources cover.' }}
+  index={{ q: 'Which markets are live today?', p: ['The markets that are live today are listed below.'] }}
+  sections={[
+    { q: 'What do new markets require?', p: ['New markets require their own source review: which public records exist, what their terms allow, how they match to parcels and where the gaps are. A source that bars automated collection is not used.'] },
+    { q: 'How are territories set inside markets?', p: ['Territories inside markets are set by official planning boundaries that each team chooses, so counts mean the same thing from week to week.'] },
+  ]} />

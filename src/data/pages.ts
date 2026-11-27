@@ -62,6 +62,16 @@ export const PAGES = {
     description: "Real estate territory intelligence markets: San Diego is live today. See how a territory is defined by City planning areas and configured for each team.",
     updated: '2026-11-26',
   },
+  "/markets/san-diego": {
+    path: "/markets/san-diego",
+    crumb: "San Diego",
+    keyword: "San Diego off-market seller signals",
+    headingTerm: "San Diego",
+    h1: "San Diego off-market seller signals by planning area",
+    title: "San Diego Off-Market Seller Signals by Planning Area",
+    description: "San Diego off-market seller signals from City, County and parcel records, plus owner data, for any set of City planning areas your team chooses to work.",
+    updated: '2026-11-26',
+  },
   "/data-sources": {
     path: "/data-sources",
     crumb: "Data sources",

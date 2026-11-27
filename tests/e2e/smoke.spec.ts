@@ -60,8 +60,9 @@ test('keyboard focus is visible and the skip link works', async ({ page }) => {
   expect(outline).toBe('solid');
 });
 
-test('robots.txt and the sitemap are served', async ({ request }) => {
-  test.skip(!routes.includes('/'), 'no indexable pages are built yet');
+test('robots.txt, the sitemap and llms.txt are served', async ({ request }) => {
+  const llms = await (await request.get('/llms.txt')).text();
+  for (const expected of ['# Territory Signals', '## Data sources', '/signals/building-permits', '/recipes/downsizer']) expect(llms).toContain(expected);
   const robots = await (await request.get('/robots.txt')).text();
   for (const bot of ['Googlebot', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended']) expect(robots).toContain(bot);
   const sitemap = await (await request.get('/sitemap-0.xml')).text();

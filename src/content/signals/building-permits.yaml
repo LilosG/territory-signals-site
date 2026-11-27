@@ -1,0 +1,93 @@
+{
+  "crumb": "Building permits",
+  "keyword": "building permit data for real estate agents",
+  "headingTerm": "building permit data",
+  "h1": "Building permit data for real estate agents",
+  "title": "Building Permit Data for Real Estate Agents in San Diego",
+  "description": "Building permit data for real estate agents: City of San Diego approvals, ADU, demolition and stalled permits matched to parcels, with weights and limits.",
+  "updated": "2026-11-26",
+  "order": 1,
+  "family": "Permits",
+  "status": "live",
+  "sources": [
+    "permits"
+  ],
+  "components": [
+    {
+      "key": "permit_approved:pre_sale_prep",
+      "label": "Pre-sale prep permit approved",
+      "maxPoints": 36
+    },
+    {
+      "key": "permit_approved:demolition_lot_split",
+      "label": "Demolition or lot-split permit approved",
+      "maxPoints": 27
+    },
+    {
+      "key": "permit_approved:adu",
+      "label": "ADU permit approved",
+      "maxPoints": 18
+    },
+    {
+      "key": "permit_approved:remodel_addition",
+      "label": "Remodel or addition permit approved",
+      "maxPoints": 14
+    },
+    {
+      "key": "permit_approved:solar_energy",
+      "label": "Solar or energy permit approved",
+      "maxPoints": 3
+    },
+    {
+      "key": "permit_stalled",
+      "label": "Permit expired with no close date",
+      "maxPoints": 27
+    }
+  ],
+  "answer": "Building permit data for real estate agents shows which parcels have work approved, what kind of work it is and whether it was ever closed out. Territory Signals reads City of San Diego approvals, groups them by their text, matches them to parcels and weights each group differently. Routine systems work carries no weight.",
+  "sections": {
+    "what": {
+      "q": "What is the building permit data signal?",
+      "p": [
+        "The building permit data signal is a City approval, or an expired and unclosed approval, matched to a specific parcel.",
+        "Approvals are sorted into groups: pre-sale prep, remodel or addition, ADU, demolition or lot split, and solar or energy. Electrical, plumbing and mechanical permits are only candidates for pre-sale prep. The permit text decides: cosmetic or remodel scope stays, while like-for-like work such as a furnace, water heater or repipe is treated as maintenance and scores nothing. MEP permits that name an ADU or a conversion into units count as ADU work.",
+        "A stalled permit is a remodel, ADU or demolition approval that expired more than 90 days ago, and no more than 36 months ago, with no close date."
+      ]
+    },
+    "why": {
+      "q": "Why can building permit data point to a sale?",
+      "p": [
+        "Building permit data can point to a sale because owners often put work into a home before changing what they do with it.",
+        "Cosmetic and remodel work is the kind of work that often goes in before a listing. A demolition or lot-split approval points to a redevelopment plan. An expired permit may mean an unfinished project, which can make a conversation about the home’s value timely. None of these shows that an owner has decided to sell."
+      ]
+    },
+    "source": {
+      "q": "Where does building permit data come from?",
+      "p": [
+        "The building permit data comes from the City of San Diego development permit approvals files, published by Development Services.",
+        "The City portal lists the dataset as updated daily. Where a row has a parcel number it is matched on that number; otherwise location or address is used. Rows that cannot be placed on a parcel are counted and left out. The permit holder’s name is not kept. The rules that read permit text are written patterns, not a model’s judgment."
+      ]
+    },
+    "scoring": {
+      "q": "How is building permit data scored?",
+      "p": [
+        "Building permit data is scored by group, with newer approvals worth more than old ones.",
+        "Each parcel counts the strongest, most recent approval in each group once, so a run of re-roof permits does not pile up. Several permits of one kind approved on the same day read as a single phrase in the reason line."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with building permit data?",
+      "p": [
+        "An agent uses building permit data to decide which parcels deserve a closer look and what a useful offer would be.",
+        "Open the source record, read the scope text and check the property. For a pre-sale prep permit, a short guide to which updates pay off is a natural offer. For a stalled project, an as-is versus finished comparison fits. Outreach never tells a homeowner that you saw a permit."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of building permit data?",
+      "p": [
+        "Building permit data misses unpermitted work and can misread permits that carry little or no description.",
+        "A permit with a blank description and no project text is treated as maintenance, which can under-count real preparation work. Some approvals lack a parcel number or project type. An approval shows that work was allowed, not that it happened."
+      ]
+    }
+  }
+}

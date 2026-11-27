@@ -1,0 +1,59 @@
+{
+  "crumb": "Pre-list prep",
+  "keyword": "pre-listing permit leads",
+  "headingTerm": "pre-listing permit",
+  "h1": "Pre-listing permit leads from the Pre-list prep recipe",
+  "title": "Pre-Listing Permit Leads: The Pre-List Prep Recipe Rules",
+  "description": "Pre-listing permit leads come from cosmetic or remodel permits approved in the last six months on homes held 10 or more years. See how the text is read.",
+  "updated": "2026-11-26",
+  "order": 4,
+  "recipeKey": "pre_list_prep",
+  "label": "Pre-list prep",
+  "shortDescription": "Pre-sale permit on a long-held home",
+  "rationale": "A permit for cosmetic or remodel work (kitchen, bath, windows, roof, paint, landscaping) was approved in the last six months on a home the owner has held 10 or more years. This is the kind of work that often goes in before a sale.",
+  "answer": "Pre-listing permit leads are homes held ten years or more with a pre-sale prep permit approved in the last six months. That means cosmetic or remodel scope, such as kitchen, bath, windows, roof, paint or landscaping, read from the permit’s own text. Routine systems work like a furnace or water heater replacement does not count.",
+  "sections": {
+    "what": {
+      "q": "What is the pre-listing permit recipe?",
+      "p": [
+        "The pre-listing permit recipe, called Pre-list prep, matches recent cosmetic or remodel work on a long-held home.",
+        "Both the permit and the tenure condition must be true."
+      ]
+    },
+    "why": {
+      "q": "Why can a pre-listing permit point to a sale?",
+      "p": [
+        "A pre-listing permit can point to a sale because this kind of work often goes in before a home is listed.",
+        "It is also what people do when they plan to stay. The recipe narrows the field and does not settle the question."
+      ]
+    },
+    "source": {
+      "q": "Where does pre-listing permit data come from?",
+      "p": [
+        "Pre-listing permit data comes from City development permit approvals, with years owned from ATTOM.",
+        "Written rules read the approval scope, then the job description, then the project text to separate cosmetic work from systems work."
+      ]
+    },
+    "scoring": {
+      "q": "How is a pre-listing permit home scored?",
+      "p": [
+        "A pre-listing permit is the heaviest permit group in the model, and its contribution fades with time.",
+        "Tenure adds owner points in a separate family, so the two stack."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with a pre-listing permit?",
+      "p": [
+        "An agent offers a short guide to which updates pay off before selling, which helps whether or not a listing follows.",
+        "The product’s template makes that offer without mentioning the permit."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of pre-listing permit data?",
+      "p": [
+        "Pre-listing permit data misses work done without a permit and permits filed with no useful description.",
+        "An approval is not proof that work happened. Open the record and read the scope before acting."
+      ]
+    }
+  }
+}

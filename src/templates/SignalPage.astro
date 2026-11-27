@@ -27,7 +27,7 @@ const rows = d.components.map((c) => {
 ---
 <StandardPage meta={meta} answer={d.answer} eyebrow={`Signal family · ${d.family}`} schema={[service()]}
   request={`See which of these records exist in your territory.`}
-  cta={{ title: `What would ${d.headingTerm} records show in your territory?`, text: 'We walk through your planning areas, the sources that cover them and how each record would score.' }}>
+  cta={{ title: d.status === 'coming' ? `Questions about the ${d.headingTerm} signal for your territory?` : `What would ${d.headingTerm} records show in your territory?`, text: 'We walk through your planning areas, the sources that cover them and how each record would score.' }}>
   <Fragment slot="intro">{d.status === 'coming' && <p class="mt-4"><Badge tone="outline">Coming: not loaded yet</Badge></p>}</Fragment>
 
   <Section ruled>

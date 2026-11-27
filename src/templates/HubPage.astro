@@ -1,0 +1,26 @@
+---
+/** Section index generated from a collection, with two explanatory blocks. */
+import StandardPage from './StandardPage.astro';
+import Section from '../components/layout/Section.astro';
+import QaSection from '../components/layout/QaSection.astro';
+import IndexList from '../components/ui/IndexList.astro';
+import type { PageMeta } from '../lib/page-meta.ts';
+import type { QaBlock } from '../lib/qa.ts';
+
+interface Props {
+  meta: PageMeta; eyebrow: string; answer: string; request: string; cta: { title: string; text: string };
+  index: QaBlock; items: { href: string; label: string; note?: string | undefined; mark?: string | undefined }[]; sections: QaBlock[];
+}
+const { meta, eyebrow, answer, request, cta, index, items, sections } = Astro.props;
+---
+<StandardPage meta={meta} eyebrow={eyebrow} answer={answer} request={request} cta={cta}>
+  <Section>
+    <div class="stack">
+      <h2>{index.q}</h2>
+      {index.p.map((p) => <p class="max-w-measure">{p}</p>)}
+      <IndexList items={items} />
+    </div>
+  </Section>
+  <slot />
+  {sections.map((s) => <QaSection {...s} />)}
+</StandardPage>

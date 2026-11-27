@@ -1,0 +1,7 @@
+@reference "./global.css";
+
+.table-scroll { @apply w-full overflow-x-auto; }
+.data-table { @apply w-full border-t border-ink text-left text-sm; }
+.data-table th, .data-table td { @apply min-w-32 border-b border-line py-3 pr-5 text-left align-top; }
+.data-table thead th { @apply font-mono text-2xs font-medium uppercase tracking-eyebrow text-ink-muted; }
+.data-table tbody th { @apply font-semibold text-ink; }

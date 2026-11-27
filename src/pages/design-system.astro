@@ -23,16 +23,13 @@ import SignalTimeline from '../components/product/SignalTimeline.astro';
 import BriefingCard from '../components/product/BriefingCard.astro';
 import OutreachCoPilot from '../components/product/OutreachCoPilot.astro';
 import RecipeTile from '../components/product/RecipeTile.astro';
+import { DESIGN_SYSTEM } from '../data/design-system.ts';
 import tokens from '../styles/tokens.css?raw';
 
 const declarations = [...tokens.matchAll(/^\s*(--[a-z0-9-]+):\s*([^;]+);/gm)].map((m) => [m[1]!, m[2]!] as const);
 const colors = declarations.filter(([n]) => n.startsWith('--color-') && !n.endsWith('*'));
 const others = declarations.filter(([n]) => !n.startsWith('--color-') && !n.endsWith('*'));
-const meta = {
-  path: '/design-system', crumb: 'Design system', keyword: 'design system', headingTerm: 'design', h1: 'Design system',
-  title: 'Design System Reference for Territory Signals Website', description: 'Internal reference page showing every design token and interface component used on the Territory Signals website. It is not part of the public site index.',
-  noindex: true, updated: '2026-11-26',
-};
+const meta = DESIGN_SYSTEM;
 ---
 <BaseLayout meta={meta}>
   <PageIntro meta={meta} answer="Every token and shared component in one place." />

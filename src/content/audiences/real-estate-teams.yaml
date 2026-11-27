@@ -1,0 +1,66 @@
+{
+  "crumb": "Real estate teams",
+  "keyword": "seller lead tools for real estate teams",
+  "headingTerm": "real estate teams",
+  "h1": "Seller lead tools for real estate teams",
+  "title": "Seller Lead Tools for Real Estate Teams | Territory Signals",
+  "description": "Seller lead tools for real estate teams: one shared territory, scored parcels, assigned outreach drafts, logged outcomes and a person approving each one.",
+  "updated": "2026-11-26",
+  "order": 1,
+  "label": "Real estate teams",
+  "summary": "One territory, shared rules, assigned drafts",
+  "answer": "Seller lead tools for real estate teams should give everyone the same evidence and the same rules. Territory Signals puts your chosen planning areas into one ranked list with source records behind every score, assigns drafted outreach across agents, requires human approval and logs outcomes, so the team lead can see what was worked and what happened.",
+  "recipes": [
+    "pre-list-prep",
+    "downsizer",
+    "stalled-project",
+    "tired-landlord"
+  ],
+  "platform": [
+    "lead-scoring",
+    "outreach-co-pilot",
+    "weekly-briefings"
+  ],
+  "sections": {
+    "problem": {
+      "q": "What problem do real estate teams bring to this?",
+      "p": [
+        "The problem real estate teams bring is that records, notes and follow-up live in too many places.",
+        "One agent watches permits, another exports a list, and nobody can say why a property was chosen or whether it was contacted."
+      ]
+    },
+    "signals": {
+      "q": "Which signals matter to real estate teams?",
+      "p": [
+        "The signals that matter to real estate teams are the ones an agent can act on with a useful offer.",
+        "Recent cosmetic permits, long tenure, stalled projects and rental license changes each suggest a different conversation. Sensitive records stay behind approval."
+      ]
+    },
+    "week": {
+      "q": "What does a week look like for real estate teams?",
+      "p": [
+        "A week for real estate teams starts with the briefing and ends with outcomes logged."
+      ],
+      "list": [
+        "Review what is new after the weekly run.",
+        "Open top dossiers and check source records.",
+        "Edit and approve drafts; each agent works their own.",
+        "Log contacted, conversation, appointment or listing."
+      ]
+    },
+    "setup": {
+      "q": "What is set up for real estate teams?",
+      "p": [
+        "Setup for real estate teams covers territory, people and approval rules.",
+        "You choose the planning areas, give agent names, roles and DRE license numbers, and decide which recipes need approval."
+      ]
+    },
+    "fit": {
+      "q": "When is this the wrong fit for real estate teams?",
+      "p": [
+        "This is the wrong fit for real estate teams that want to buy contacts by the lead or dial a large list automatically.",
+        "Territory Signals does not sell leads, supply homeowner phone numbers or dial anyone."
+      ]
+    }
+  }
+}

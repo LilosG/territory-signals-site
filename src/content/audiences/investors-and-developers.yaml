@@ -1,0 +1,64 @@
+{
+  "crumb": "Investors and developers",
+  "keyword": "off-market property leads for developers",
+  "headingTerm": "developers",
+  "h1": "Off-market property leads for developers and investors",
+  "title": "Off-Market Property Leads for Developers and Investors",
+  "description": "Off-market property leads for developers: estimated SB 9 and SB 79 parcels, demolition and lot-split permits, stalled projects and share pages for buyers.",
+  "updated": "2026-11-26",
+  "order": 4,
+  "label": "Investors and developers",
+  "summary": "Upzoning estimates, lot splits and off-market share pages",
+  "answer": "Off-market property leads for developers start with land that may allow more than it holds. Territory Signals screens parcels for estimated SB 9 and SB 79 potential, surfaces demolition, lot-split and stalled permits, and lets a team share property facts by link without exposing any owner. Every eligibility result is estimated and must be confirmed before use.",
+  "recipes": [
+    "builder-bait",
+    "stalled-project"
+  ],
+  "platform": [
+    "share-pages",
+    "territory-map",
+    "opportunity-matrix"
+  ],
+  "sections": {
+    "problem": {
+      "q": "What problem do developers bring to this?",
+      "p": [
+        "The problem developers bring is that finding candidate land means cross-checking zoning, transit, lot size and permit history by hand.",
+        "Most parcels fall away on closer review, so a good first screen saves time."
+      ]
+    },
+    "signals": {
+      "q": "Which signals matter to developers?",
+      "p": [
+        "The signals that matter to developers are upzoning estimates, lot size against the area median, demolition and lot-split permits and stalled projects.",
+        "Owner tenure helps judge which conversations may be worth having."
+      ]
+    },
+    "week": {
+      "q": "What does a week look like for developers?",
+      "p": [
+        "A week for developers working with a team is a screen, a check and a short list."
+      ],
+      "list": [
+        "Filter the map by the upzoning lens.",
+        "Open dossiers and verify zoning and constraints.",
+        "Receive share pages for parcels worth discussing.",
+        "Confirm eligibility with the City or a professional."
+      ]
+    },
+    "setup": {
+      "q": "What is set up for developers?",
+      "p": [
+        "Setup for developers starts with the planning areas you care about and the team that handles owner contact.",
+        "The product is built per team or brokerage, so developers often work with the agent side of a deployment."
+      ]
+    },
+    "fit": {
+      "q": "When is this the wrong fit for developers?",
+      "p": [
+        "This is the wrong fit for developers who need confirmed entitlements or a feasibility study.",
+        "The screen does not check most disqualifying conditions, does not model costs and never shows that an owner wants to sell."
+      ]
+    }
+  }
+}

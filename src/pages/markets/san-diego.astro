@@ -1,0 +1,13 @@
+---
+import MarketPage from '../../templates/MarketPage.astro';
+import { PAGES } from '../../data/pages.ts';
+---
+<MarketPage meta={PAGES['/markets/san-diego']} marketId="san-diego" place="San Diego"
+  answer="San Diego off-market seller signals come from City permit, rental license and code case data, the County tax-default list, parcel, zoning and transit layers and ATTOM owner and recorder data. Territory Signals matches them to parcels inside whichever City planning areas your team chooses, scores them by published rules and refreshes the territory weekly."
+  sections={{
+    signals: { q: 'Which San Diego off-market seller signals are live?', p: ['The live San Diego off-market seller signals cover permits, short-term rental licenses, tax default, estimated SB 9 and SB 79 upzoning, code enforcement, owner and tenure facts and recorder documents. Fire hazard zones are coming.'] },
+    territory: { q: 'How is a territory for San Diego off-market seller signals defined?', p: ['A territory for San Diego off-market seller signals is defined by City planning areas that the team chooses. Planning areas are official boundaries that do not line up with ZIP codes, so parcels are placed by where they sit, with ZIP kept only as an attribute.', 'Each team’s deployment is configured to its own selection. Only residential parcels inside it are scored.'] },
+    records: { q: 'Which public records sit behind San Diego off-market seller signals?', p: ['The records behind San Diego off-market seller signals are listed below, together with the owner data that open files do not carry. This is also the base for San Diego real estate farming data: parcels, boundaries and dated events in one place.'] },
+    gaps: { q: 'What do San Diego off-market seller signals not cover?', p: ['San Diego off-market seller signals do not cover court probate records, published legal notices or obituaries, which are not scraped. Fire hazard zones are not loaded yet. Coverage describes the City of San Diego; other cities in the county are not part of this market.', 'For agents using San Diego public records, remember that each publisher updates on its own schedule and can lag the event.'] },
+    setup: { q: 'How are San Diego off-market seller signals set up for a team?', p: ['San Diego off-market seller signals are set up as a dedicated deployment: choose planning areas, add agents and license details and decide which recipes need approval. The pipeline then runs weekly. MLS data is an optional add-on, scoped per client, that requires your broker’s signed back-office data agreement; the core runs without it.'] },
+  }} />

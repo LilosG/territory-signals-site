@@ -1,0 +1,59 @@
+{
+  "crumb": "Tired landlord",
+  "keyword": "tired landlord leads",
+  "headingTerm": "Tired landlord",
+  "h1": "Tired landlord leads: long-held rentals with friction",
+  "title": "Tired Landlord Leads: Absentee Owners With Friction Signs",
+  "description": "Tired landlord leads flag absentee owners of 15 years or more with a sign of friction on the property. See the exact conditions, sources and limits here.",
+  "updated": "2026-11-26",
+  "order": 2,
+  "recipeKey": "tired_landlord",
+  "label": "Tired landlord",
+  "shortDescription": "Long-held absentee owner with a distress signal",
+  "rationale": "The owner does not live at the property, has held it 15 or more years, and there is a sign of friction on it (an open code enforcement case, an expired permit or a removed rental license). Long-held rentals with friction are homes where a conversation about selling can be timely.",
+  "answer": "Tired landlord leads are properties whose owner lives elsewhere, has held them fifteen years or more and shows one sign of friction: a tax-default listing, an open code enforcement case, a short-term rental license removed in the last two years or a stalled permit. All the ownership conditions and at least one friction sign must be true.",
+  "sections": {
+    "what": {
+      "q": "What is the Tired landlord recipe?",
+      "p": [
+        "The Tired landlord recipe is a rule for long-held absentee-owned property with at least one friction signal.",
+        "Friction can be financial, regulatory or an unfinished project. Absentee and long-held alone are not enough."
+      ]
+    },
+    "why": {
+      "q": "Why can Tired landlord property point to a sale?",
+      "p": [
+        "Tired landlord property can point to a sale because friction raises the effort of holding a home the owner does not live in.",
+        "After fifteen or more years, an owner may be ready to compare keeping the property with selling it. Plenty of landlords simply fix the problem and carry on."
+      ]
+    },
+    "source": {
+      "q": "Where does Tired landlord data come from?",
+      "p": [
+        "Tired landlord data combines ATTOM owner facts with County tax-default, City code enforcement, rental license and permit records.",
+        "The occupancy and tenure facts come from owner data. Each friction signal keeps its own source and record ID."
+      ]
+    },
+    "scoring": {
+      "q": "How is a Tired landlord parcel scored?",
+      "p": [
+        "A Tired landlord parcel takes its score from the components present, not from matching the recipe.",
+        "Owner facts share a cap, while a friction signal in another family adds a stacking bonus. Where the friction is a tax default or open code case, that record stays off cards and lists."
+      ]
+    },
+    "action": {
+      "q": "What does an agent offer a Tired landlord?",
+      "p": [
+        "An agent offers a Tired landlord a plain comparison of selling today against continuing to rent.",
+        "The product’s template mentions a 1031 exchange only as something to review with a tax advisor. It never refers to taxes owed, cases or the license."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Tired landlord?",
+      "p": [
+        "Tired landlord cannot know whether an absentee owner is tired of anything.",
+        "A mailing address elsewhere does not prove a property is rented. Because two of its friction signals are sensitive, check how your broker wants such leads handled."
+      ]
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "crumb": "Short-term rental exit",
+  "keyword": "short-term rental exit seller leads",
+  "headingTerm": "rental exit",
+  "h1": "Short-term rental exit seller leads",
+  "title": "Short-Term Rental Exit Seller Leads | Territory Signals",
+  "description": "Short-term rental exit seller leads flag homes whose City license was removed in the last year. See how removals are detected and what they do not prove.",
+  "updated": "2026-11-26",
+  "order": 6,
+  "recipeKey": "str_exit",
+  "label": "Short-term rental exit",
+  "shortDescription": "STR license removed in the last year",
+  "rationale": "A short-term rental license for this property was removed in the last year, so the home may no longer earn that rental income and its future use is worth asking about.",
+  "answer": "Short-term rental exit seller leads are homes where a City short-term rental license was removed within the last year. Removals are detected as licenses change between data pulls. The change may mean the home no longer earns that rental income, so its future use is worth asking about. It does not show why the license went away.",
+  "sections": {
+    "what": {
+      "q": "What is the Short-term rental exit recipe?",
+      "p": [
+        "The Short-term rental exit recipe matches any parcel with a rental license removal in the last year.",
+        "It has a single condition and needs no owner data."
+      ]
+    },
+    "why": {
+      "q": "Why can a rental exit point to a sale?",
+      "p": [
+        "A rental exit can point to a sale because an owner who has lost or ended rental use may be weighing what comes next.",
+        "Selling, long-term renting and holding are all real options."
+      ]
+    },
+    "source": {
+      "q": "Where does rental exit data come from?",
+      "p": [
+        "Rental exit data comes from the City of San Diego STRO license file, compared from one data pull to the next.",
+        "Licenses are matched to parcels by their coordinates."
+      ]
+    },
+    "scoring": {
+      "q": "How is a rental exit scored?",
+      "p": [
+        "A rental exit carries one of the largest weights in the model and loses half its value quickly.",
+        "It forms the short-term rental family, so it stacks with permit, owner and upzoning signals."
+      ]
+    },
+    "action": {
+      "q": "What does an agent offer after a rental exit?",
+      "p": [
+        "An agent offers a side-by-side of selling, renting long term or holding, with a likely sale value.",
+        "The product’s template refers to changing short-term rental rules in general and never to the owner’s license."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of rental exit leads?",
+      "p": [
+        "A rental exit lead can reflect an expired license, an owner moving in or a change in records.",
+        "Verify that the home’s use has actually changed before drawing any conclusion."
+      ]
+    }
+  }
+}

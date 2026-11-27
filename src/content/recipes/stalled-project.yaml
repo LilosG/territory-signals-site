@@ -1,0 +1,59 @@
+{
+  "crumb": "Stalled project",
+  "keyword": "stalled project seller leads",
+  "headingTerm": "Stalled project",
+  "h1": "Stalled project seller leads",
+  "title": "Stalled Project Seller Leads From Expired Building Permits",
+  "description": "Stalled project seller leads start with a building permit that expired more than 90 days ago and was never closed. See which permit groups count and why.",
+  "updated": "2026-11-26",
+  "order": 5,
+  "recipeKey": "stalled_project",
+  "label": "Stalled project",
+  "shortDescription": "Permit expired with no close date",
+  "rationale": "A building permit expired more than 90 days ago and was never closed, so the project may be unfinished.",
+  "answer": "Stalled project seller leads start with a remodel, ADU or demolition permit that expired more than ninety days ago with no close date. Only permits that expired within the last thirty-six months are considered. The record suggests a project may be unfinished, which is a reason to look at the property, not proof that anything is wrong.",
+  "sections": {
+    "what": {
+      "q": "What is the Stalled project recipe?",
+      "p": [
+        "The Stalled project recipe matches an expired building permit that was never recorded as closed.",
+        "Short-lived permit types that often lapse without closing are excluded, because only three permit groups qualify."
+      ]
+    },
+    "why": {
+      "q": "Why can a Stalled project point to a sale?",
+      "p": [
+        "A Stalled project can point to a sale because an unfinished project can be costly to complete and awkward to live with.",
+        "Some owners finish. Some would rather sell as the home stands."
+      ]
+    },
+    "source": {
+      "q": "Where does Stalled project data come from?",
+      "p": [
+        "Stalled project data comes from the approval, expiry and close dates in City development permit records.",
+        "The City’s own bulletin sets out when building permits expire and how they can be extended, and those rules differ by project type."
+      ]
+    },
+    "scoring": {
+      "q": "How is a Stalled project scored?",
+      "p": [
+        "A Stalled project scores in the permits family with a long fade.",
+        "It can also satisfy the friction condition in Tired landlord when the owner is absentee and long-held."
+      ]
+    },
+    "action": {
+      "q": "What does an agent offer a Stalled project owner?",
+      "p": [
+        "An agent offers a Stalled project owner a comparison of the home’s likely value as it stands and once finished.",
+        "Check the permit record first. Leave the permit out of the message."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Stalled project?",
+      "p": [
+        "A Stalled project flag can be wrong when work finished but the record was never closed.",
+        "Extensions or follow-on permits may exist. The City record is the place to confirm."
+      ]
+    }
+  }
+}

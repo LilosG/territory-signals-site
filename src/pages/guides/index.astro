@@ -1,0 +1,14 @@
+---
+import HubPage from '../../templates/HubPage.astro';
+import { PAGES } from '../../data/pages.ts';
+import { entries, linkList } from '../../lib/collections.ts';
+const items = linkList('guides', await entries('guides'));
+---
+<HubPage meta={PAGES['/guides']} eyebrow="Guides" items={items}
+  answer="These real estate prospecting guides explain how to find likely sellers, how to read building permit records and how to screen San Diego parcels for SB 9 and SB 79 potential. Each names its sources with the date they were read, separates records from estimates and says where the method fails, so you can check it yourself."
+  request="To see these methods applied to your own areas,"
+  cta={{ title: 'Want a prospecting guide for your own territory?', text: 'A walkthrough applies these methods to the planning areas you name.' }}
+  index={{ q: 'Which prospecting guide should you read first?', p: ['The prospecting guide to read first is the one on finding likely sellers, which sets out the method the others build on.'] }}
+  sections={[
+    { q: 'How is each prospecting guide researched?', p: ['Each prospecting guide is written from official pages, public datasets and the product’s own rules. Sources are listed at the end with access dates. A guide is general information, not legal, tax or planning advice.'] },
+  ]} />

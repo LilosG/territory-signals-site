@@ -1,0 +1,61 @@
+{
+  "crumb": "Quiet inheritance",
+  "keyword": "quiet inheritance seller leads",
+  "headingTerm": "Quiet inheritance",
+  "h1": "Quiet inheritance seller leads, handled with approval",
+  "title": "Quiet Inheritance Seller Leads, Handled With Approval",
+  "description": "Quiet inheritance seller leads come from recorded transfers by death, trust or inheritance. Outreach needs team approval and stays off lists and shares.",
+  "updated": "2026-11-26",
+  "order": 7,
+  "recipeKey": "quiet_inheritance",
+  "label": "Quiet inheritance",
+  "shortDescription": "Recent transfer by death, trust or inheritance",
+  "rationale": "A recorder document shows the home changed hands by death, trust or inheritance. A new owner or trustee may be deciding what to do with the property, and a neutral conversation about its value can be timely.",
+  "answer": "Quiet inheritance seller leads come from a recorder document showing a transfer by death, trust or inheritance within the last two years. The transfer adds no points to the score. Because the record is sensitive, outreach needs team approval, it never appears on lead lists or share pages and the draft offers only a neutral summary of value.",
+  "sections": {
+    "what": {
+      "q": "What is the Quiet inheritance recipe?",
+      "p": [
+        "The Quiet inheritance recipe matches a recorded transfer by death, trust or inheritance in the last two years.",
+        "It reads recorder documents in ATTOM data. Obituaries, court probate records and legal notices are not scraped."
+      ]
+    },
+    "why": {
+      "q": "Why can Quiet inheritance point to a sale?",
+      "p": [
+        "Quiet inheritance can point to a sale because a new owner or trustee may be deciding what to do with the property.",
+        "It may also be routine estate planning, or a family that intends to stay."
+      ]
+    },
+    "source": {
+      "q": "Where does Quiet inheritance data come from?",
+      "p": [
+        "Quiet inheritance data comes from ATTOM recorder history, with document types mapped by a written table.",
+        "The transfer also restarts the current owner’s tenure."
+      ]
+    },
+    "scoring": {
+      "q": "How is a Quiet inheritance parcel scored?",
+      "p": [
+        "A Quiet inheritance parcel gets no points for the transfer itself.",
+        "Its rank comes from whatever other signals the parcel has."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with Quiet inheritance?",
+      "p": [
+        "An agent waits for team approval, then offers a neutral, no-pressure summary of what the home would likely sell for.",
+        "The message never mentions a death, an inheritance or an estate. Consider timing and your broker’s guidance before anything goes out."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Quiet inheritance?",
+      "p": [
+        "Quiet inheritance cannot tell a bereavement from paperwork, or know a family’s wishes.",
+        "Recording delays and unmapped document types mean some transfers appear late or not at all."
+      ]
+    }
+  },
+  "approval": "Outreach drafts for this recipe need team approval. The records behind it are sensitive: they never appear on lead lists, cards or share pages, they are left out of AI facts packets and homeowner text never mentions them.",
+  "mark": "Approval required"
+}

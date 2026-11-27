@@ -1,0 +1,59 @@
+{
+  "crumb": "Builder bait",
+  "keyword": "builder bait seller leads",
+  "headingTerm": "Builder bait",
+  "h1": "Builder bait seller leads",
+  "title": "Builder Bait Seller Leads: Estimated Upzoning Potential",
+  "description": "Builder bait seller leads combine estimated upzoning potential, a lot well above the area median and 20 or more years of ownership. See the exact rules.",
+  "updated": "2026-11-26",
+  "order": 1,
+  "recipeKey": "builder_bait",
+  "label": "Builder bait",
+  "shortDescription": "Estimated upzoning potential on a large lot",
+  "rationale": "The lot is much larger than most in its area and an estimated state-law screen says it may allow splitting the lot or building more homes. The owner has held it 20 or more years, so a builder or investor may see more in the land than a typical buyer would.",
+  "answer": "Builder bait seller leads are parcels with estimated SB 9 or SB 79 potential, a lot at least one and a half times the median residential lot in their planning area, and an owner of twenty years or more. All three must be true. The upzoning part is an estimate to confirm before anyone is approached.",
+  "sections": {
+    "what": {
+      "q": "What is the Builder bait recipe?",
+      "p": [
+        "The Builder bait recipe is a rule that finds large, long-held lots with estimated upzoning potential.",
+        "Every condition must hold. A large lot without an upzoning estimate does not match, and neither does an eligible lot held for only a few years."
+      ]
+    },
+    "why": {
+      "q": "Why can a Builder bait parcel point to a sale?",
+      "p": [
+        "A Builder bait parcel can point to a sale because the land may be worth more to a builder than the house is to a typical buyer.",
+        "A long holding period suggests built-up equity. An owner may not know the option exists, or may not want it."
+      ]
+    },
+    "source": {
+      "q": "Where does Builder bait data come from?",
+      "p": [
+        "Builder bait data comes from zoning, transit and parcel layers for the estimate, and from ATTOM for years owned.",
+        "Lot size is compared with the median residential lot in the same planning area, so large is judged locally."
+      ]
+    },
+    "scoring": {
+      "q": "How is a Builder bait parcel scored?",
+      "p": [
+        "A Builder bait parcel is scored like any other: the recipe is a yes-or-no match and the score comes from its components.",
+        "The upzoning estimate and years owned both contribute points, and they sit in different families, so they stack."
+      ]
+    },
+    "action": {
+      "q": "What does an agent do with a Builder bait lead?",
+      "p": [
+        "An agent confirms the estimate first, then offers a Builder bait owner a side-by-side of home value and lot value.",
+        "Check zoning, historic, hazard, coastal and tenant conditions. The product’s template offers the comparison without promising that a project is allowed or profitable."
+      ]
+    },
+    "limits": {
+      "q": "What are the limits of Builder bait?",
+      "p": [
+        "Builder bait rests on an estimated screen that skips many conditions able to stop a real project.",
+        "Planned-district zones are outside the SB 9 screen. Never tell an owner or buyer that a lot qualifies on the strength of this recipe alone."
+      ]
+    }
+  }
+}
