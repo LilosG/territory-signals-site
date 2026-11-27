@@ -24,20 +24,20 @@ const guides = await guidesFor('markets', [marketId]);
   cta={{ title: `Which ${place} off-market seller signals are in your areas?`, text: 'Name the planning areas you work and we walk through what the records show there.' }}>
   <Section>
     <div class="grid-12 items-center">
-      <div class="col-support">
-        <p class="max-w-measure font-serif text-xl">Your territory is the set of planning areas you choose. Nothing on this map is pre-selected.</p>
+      <div class="col-aside">
+        <p class="max-w-measure font-serif text-2xl">Your territory is the set of planning areas you choose. Nothing on this map is pre-selected.</p>
       </div>
-      <div class="col-lead"><TerritoryMap class="mx-auto max-w-sm" /></div>
+      <div class="col-main"><TerritoryMap /></div>
     </div>
   </Section>
-  <QaSection {...s.signals}>
+  <QaSection {...s.signals} layout="wide">
     <DataTable caption={`Signal families in ${place}`} columns={['Signal family', 'Status']}
-      rows={signals.map((x) => [{ text: x.data.crumb, href: hrefOf('signals', x.id) }, x.data.status === 'coming' ? 'Coming' : 'Live'])} />
+      rows={signals.map((x) => [{ text: x.data.crumb, href: hrefOf('signals', x.id) }, { text: x.data.status === 'coming' ? 'Coming' : 'Live', pill: true }])} />
   </QaSection>
   <QaSection {...s.territory} />
-  <QaSection {...s.records}>
+  <QaSection {...s.records} layout="wide">
     <DataTable caption={`${place} data sources`} columns={['Source', 'What it provides', 'Verdict']}
-      rows={SOURCES.map((x) => [{ text: x.name, href: x.url }, x.provides, x.verdict])} />
+      rows={SOURCES.map((x) => [{ text: x.name, href: x.url, icon: x.key }, x.provides, { text: x.verdict, pill: true }])} />
   </QaSection>
   <QaSection {...s.gaps} />
   <QaSection {...s.setup} />

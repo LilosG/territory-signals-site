@@ -31,7 +31,7 @@ const attom = sourceByKey('attom');
       <h2>Which public records does Territory Signals use?</h2>
       <p class="max-w-measure">These public records and owner sources feed the product. Publishing cadence is the publisher’s; it is separate from how often the pipeline runs.</p>
       <DataTable caption="Sources, verdicts, matching and cadence" columns={['Source', 'Verdict', 'How it joins to a parcel', 'Publisher cadence', 'Limits']}
-        rows={SOURCES.map((s) => [{ text: s.name, href: s.url, note: s.provides }, s.verdict, s.join, s.publishes, s.limits])} />
+        rows={SOURCES.map((s) => [{ text: s.name, href: s.url, note: s.provides, icon: s.key }, { text: s.verdict, pill: true }, s.join, s.publishes, s.limits])} />
       <p class="max-w-measure text-sm text-ink-muted">Pipeline cadence for every ingested source: {PIPELINE_CADENCE.toLowerCase()}</p>
     </div>
   </Section>

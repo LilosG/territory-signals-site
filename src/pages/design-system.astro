@@ -22,7 +22,7 @@ import DossierPanel from '../components/product/DossierPanel.astro';
 import SignalTimeline from '../components/product/SignalTimeline.astro';
 import BriefingCard from '../components/product/BriefingCard.astro';
 import OutreachCoPilot from '../components/product/OutreachCoPilot.astro';
-import RecipeTile from '../components/product/RecipeTile.astro';
+import RecipeGrid from '../components/product/RecipeGrid.astro';
 import { DESIGN_SYSTEM } from '../data/design-system.ts';
 import tokens from '../styles/tokens.css?raw';
 
@@ -78,7 +78,8 @@ const meta = DESIGN_SYSTEM;
   <Section>
     <h2>Design visuals</h2>
     <div class="stack mt-6">
-      <div class="grid-12"><div class="col-lead"><SignalStack /></div><div class="col-support"><TerritoryMap class="max-w-sm" /></div></div>
+      <div class="on-dark rounded-xl bg-obsidian p-6"><div class="max-w-xl"><SignalStack /></div></div>
+      <TerritoryMap />
       <ScoreDemo />
     </div>
   </Section>
@@ -88,7 +89,7 @@ const meta = DESIGN_SYSTEM;
       <div class="col-lead stack"><LeadRow /><BriefingCard /><SignalTimeline /></div>
       <div class="col-support stack"><DossierPanel /><OutreachCoPilot /></div>
     </div>
-    <ul class="mt-8 border-t border-ink"><RecipeTile href="/design-system" label="Downsizer" description="Long-held owner-occupant with no mortgage" /></ul>
+    <div class="mt-8"><RecipeGrid /></div>
   </Section>
   <Section tone="dark"><h2>Dark design band</h2><div class="mt-6 flex gap-3"><Button>Primary</Button><Button variant="secondary">Secondary</Button></div></Section>
 </BaseLayout>

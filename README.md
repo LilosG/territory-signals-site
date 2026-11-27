@@ -8,7 +8,9 @@ Static Astro site on Cloudflare Workers. The only on-demand route is `/api/reque
     npm run check          # types, forbidden terms, meta, catalog, links, unit and browser tests (build first)
     npm run lighthouse     # mobile Lighthouse against a running server (npx wrangler dev --port 4321)
     npm run sync:product   # re-vendor the allowlisted catalog and scoring rules from the product repo (read only)
-    npm run map -- [file]  # rebuild the planning-area SVG paths from Community_Plan_SD.geojson
+    npm run map -- [file]  # rebuild the map: planning-area paths plus SanGIS parcel-density dots (reads the cached files)
+    npm run parcels        # rebuild the example parcel block from the cached SanGIS shapefile (read only, no identifiers kept)
+    node scripts/screenshots.mjs <dir>  # full-page screenshots at 1440 and 390 against a running server
     npm run deploy         # build and deploy
 
 ## Configuration

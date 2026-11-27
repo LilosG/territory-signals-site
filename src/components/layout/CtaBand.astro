@@ -2,14 +2,14 @@
 import Section from './Section.astro';
 import Button from '../ui/Button.astro';
 import { CTA } from '../../data/site.ts';
-interface Props { title: string; text: string }
-const { title, text } = Astro.props;
+interface Props { title: string; text: string; tone?: 'light' | 'dark' }
+const { title, text, tone = 'dark' } = Astro.props;
 ---
-<Section tone="dark">
+<Section tone={tone} id="cta">
   <div class="grid-12 items-end" data-cta-band>
     <div class="col-lead">
       <h2>{title}</h2>
-      <p class="lede mt-4">{text}</p>
+      <p class="lede mt-5">{text}</p>
     </div>
     <div class="col-support flex flex-wrap gap-3 lg:justify-end">
       <Button href={CTA.primary.href} location="cta-band">{CTA.primary.label}</Button>

@@ -1,0 +1,23 @@
+---
+/** The kind of record a data source holds, from the same line icon set as Icon. Decorative beside the source name. */
+import permits from 'lucide-static/icons/file-check.svg?raw';
+import str from 'lucide-static/icons/bed-double.svg?raw';
+import tax from 'lucide-static/icons/receipt-text.svg?raw';
+import parcels from 'lucide-static/icons/map.svg?raw';
+import zoning from 'lucide-static/icons/layers.svg?raw';
+import transit from 'lucide-static/icons/train-front.svg?raw';
+import areas from 'lucide-static/icons/map-pinned.svg?raw';
+import code from 'lucide-static/icons/clipboard-list.svg?raw';
+import attom from 'lucide-static/icons/database.svg?raw';
+import fire from 'lucide-static/icons/flame.svg?raw';
+import type { SourceKey } from '../../data/sources.ts';
+
+const ICONS: Record<SourceKey, string> = { permits, str, tax, parcels, zoning, transit, areas, code, attom, fire };
+interface Props { source: SourceKey }
+const svg = ICONS[Astro.props.source]
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/\s(width|height|class)="[^"]*"/g, '')
+  .replace('stroke-width="2"', 'stroke-width="1.5"')
+  .replace('<svg', '<svg class="size-5 shrink-0 text-gold-strong" aria-hidden="true" focusable="false"');
+---
+<Fragment set:html={svg} />

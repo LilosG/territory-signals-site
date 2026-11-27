@@ -20,7 +20,7 @@ const weights = CATALOG.components.filter((c) => c.max_points > 0).map((c) => {
 });
 const pct = (n: number) => `${Math.round(n * 100)}%`;
 ---
-<StandardPage meta={meta} eyebrow="Collect → Connect → Score → Act → Explain" schema={[faqPage(faqs)]}
+<StandardPage block meta={meta} eyebrow="Collect → Connect → Score → Act → Explain" schema={[faqPage(faqs)]}
   answer="Predictive seller scoring here is transparent arithmetic. Records are collected, matched to parcels and given published weights that fade with age and reflect match confidence. Independent signal families stack, the total is capped at 100, and a person decides what happens next. AI explains in cited text and never sets a score."
   request="To walk through these rules against your own planning areas,"
   cta={{ title: 'Want to see seller scoring on your territory?', text: 'A walkthrough shows the records that cover your areas and the components behind each score.' }}>
@@ -50,11 +50,11 @@ const pct = (n: number) => `${Math.round(n * 100)}%`;
     </div>
   </Section>
 
-  <QaSection q="Which weights does seller scoring use?" p={[`Seller scoring uses the weights below, from scoring model ${SCORING.model_version}. They are set by hand and published to every team.`]}>
+  <QaSection layout="wide" q="Which weights does seller scoring use?" p={[`Seller scoring uses the weights below, from scoring model ${SCORING.model_version}. They are set by hand and published to every team.`]}>
     <DataTable caption={`Score component weights, model ${SCORING.model_version}`} columns={['Score component', 'Weight (points)', 'Half-life', 'Family']} rows={weights} />
   </QaSection>
 
-  <QaSection q="What do the seller scoring tiers mean?" p={['Seller scoring tiers are display bands that tell your team what to look at first. They do not change the stored number.']}>
+  <QaSection layout="wide" q="What do the seller scoring tiers mean?" p={['Seller scoring tiers are display bands that tell your team what to look at first. They do not change the stored number.']}>
     <TierLegend />
   </QaSection>
 

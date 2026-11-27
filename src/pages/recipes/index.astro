@@ -1,5 +1,6 @@
 ---
 import HubPage from '../../templates/HubPage.astro';
+import RecipeGrid from '../../components/product/RecipeGrid.astro';
 import { PAGES } from '../../data/pages.ts';
 import { entries, linkList } from '../../lib/collections.ts';
 const list = await entries('recipes');
@@ -13,4 +14,6 @@ const items = linkList('recipes', list).map((item, i) => ({ ...item, mark: list[
   sections={[
     { q: 'How is a recipe different from a score?', p: ['A recipe is different from a score because it answers what kind of situation a parcel is in, while the score answers how much recent evidence it carries. A parcel can match several recipes; the one whose components add the most points leads.'] },
     { q: 'Which recipe needs extra care?', p: ['Any recipe built on distress or inheritance records needs extra care. Those records never appear on lead lists or share pages, outreach needs team approval and homeowner text never mentions them.'] },
-  ]} />
+  ]}>
+  <RecipeGrid slot="index" />
+</HubPage>

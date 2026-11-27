@@ -1,7 +1,9 @@
 @reference "./global.css";
 
 .table-scroll { @apply w-full overflow-x-auto; }
-.data-table { @apply w-full border-t border-ink text-left text-sm; }
-.data-table th, .data-table td { @apply min-w-32 border-b border-line py-3 pr-5 text-left align-top; }
-.data-table thead th { @apply font-mono text-2xs font-medium uppercase tracking-eyebrow text-ink-muted; }
+.table-card { @apply rounded-lg border border-line bg-surface text-ink; border-top: 2px solid var(--color-ink); }
+.data-table { @apply w-full text-left text-sm; }
+.data-table th, .data-table td { @apply min-w-32 border-b border-line px-5 py-3.5 text-left align-top; }
+.data-table tbody tr:last-child > * { @apply border-b-0; }
+.data-table thead th { @apply bg-canvas font-mono text-2xs font-medium uppercase tracking-eyebrow text-ink-muted; }
 .data-table tbody th { @apply font-semibold text-ink; }

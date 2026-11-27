@@ -1,0 +1,80 @@
+---
+/** The product's Today screen at desktop scale, recreated with invented records for the demo workspace. */
+import ScoreRing from '../ui/ScoreRing.astro';
+import SampleBadge from '../ui/SampleBadge.astro';
+import { AREA, BRIEFING, TOP_LEADS, WORKSPACE } from '../../data/demo.ts';
+const RAIL = ['Today', 'Leads', 'Territory map', 'Opportunity matrix', 'Briefings', 'Backtesting', 'Share pages'];
+const APPROVALS = [
+  { address: TOP_LEADS[1]!.address, kind: 'Letter', status: 'Draft ready' },
+  { address: TOP_LEADS[0]!.address, kind: 'Email', status: 'Draft ready' },
+  { address: TOP_LEADS[2]!.address, kind: 'Call script', status: 'Draft' },
+];
+---
+<figure class="dashboard product-card" data-product-visual>
+  <figcaption class="sr-only">{WORKSPACE}, Today screen. Sample records.</figcaption>
+  <div class="dashboard-rail on-dark">
+    <p class="font-semibold">{WORKSPACE}</p>
+    <ul class="mt-6 flex flex-col gap-1 text-sm">
+      {RAIL.map((item, i) => <li class:list={['rounded-md px-3 py-2', i === 0 ? 'bg-obsidian-raised font-semibold text-gold-bright' : 'text-on-dark-muted']}>{item}</li>)}
+    </ul>
+    <p class="mt-auto pt-6"><SampleBadge /></p>
+  </div>
+  <div class="min-w-0 bg-canvas">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-surface px-5 py-3">
+      <p class="font-serif text-xl font-medium">Today</p>
+      <p class="flex items-center gap-3">
+        <span class="rounded-full border border-line-strong px-3 py-1 text-xs font-semibold">Territory: {AREA}</span>
+        <SampleBadge />
+      </p>
+    </div>
+    <div class="dashboard-body">
+      <div class="flex min-w-0 flex-col gap-4">
+        <div class="on-dark rounded-lg bg-obsidian p-5 text-on-dark">
+          <p class="eyebrow-gold">Weekly territory briefing · {BRIEFING.week}</p>
+          <p class="mt-2 flex flex-wrap items-center gap-2"><span class="text-lg font-semibold">{BRIEFING.title}</span><span class="ai-tag">AI summary</span></p>
+          <p class="mt-2 text-sm text-on-dark-muted">{BRIEFING.intro}</p>
+        </div>
+        <div class="rounded-lg border border-line bg-surface">
+          <p class="eyebrow border-b border-line px-4 py-2.5">Top leads</p>
+          <ol>
+            {TOP_LEADS.map((l, i) => (
+              <li class="flex items-center gap-4 border-b border-line px-4 py-3 last:border-b-0">
+                <span class="num text-xs font-semibold text-ink-muted">#{i + 1}</span>
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-center gap-x-2 gap-y-1"><strong class="text-sm">{l.address}</strong><span class="recipe-tag">{l.recipe}</span></span>
+                  <span class="mt-0.5 block text-xs text-ink-muted">{l.signal}</span>
+                </span>
+                <ScoreRing score={l.score} size="md" />
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+      <div class="flex min-w-0 flex-col rounded-lg border border-line bg-surface">
+        <p class="eyebrow border-b border-line px-4 py-2.5">Approvals</p>
+        <ul>
+          {APPROVALS.map((a) => (
+            <li class="border-b border-line px-4 py-3">
+              <p class="text-sm font-semibold">{a.address}</p>
+              <p class="mt-1.5 flex items-center justify-between gap-2 text-xs text-ink-muted">{a.kind}<span class="status-pill">{a.status}</span></p>
+            </li>
+          ))}
+        </ul>
+        <p class="px-4 py-3 text-xs text-ink-muted">A person approves before anything goes out, and your team sends it.</p>
+      </div>
+    </div>
+  </div>
+</figure>
+<style>
+  .dashboard { display: grid; container-type: inline-size; }
+  .dashboard-rail { display: none; flex-direction: column; padding: 1.25rem 1rem; background: var(--color-obsidian-raised); color: var(--color-on-dark); }
+  .dashboard-rail li:first-child { background: var(--color-obsidian); }
+  .dashboard-body { display: grid; gap: 1rem; padding: 1rem; }
+  @media (min-width: 48rem) {
+    .dashboard-body { grid-template-columns: minmax(0, 1fr) 15rem; padding: 1.25rem; }
+  }
+  @media (min-width: 64rem) {
+    .dashboard { grid-template-columns: 12.5rem minmax(0, 1fr); }
+    .dashboard-rail { display: flex; }
+  }
+</style>

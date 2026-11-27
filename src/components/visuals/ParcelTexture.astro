@@ -1,0 +1,19 @@
+---
+/** Faint parcel lines behind obsidian bands, repeated from the same block geometry. Decorative. */
+import block from '../../data/parcel-block.json';
+interface Props { id: string }
+const id = `parcel-texture-${Astro.props.id}`;
+const SCALE = 0.62;
+---
+<svg class="parcel-texture" aria-hidden="true" focusable="false" width="100%" height="100%">
+  <defs>
+    <pattern id={id} patternUnits="userSpaceOnUse" width={block.width * SCALE} height={block.height * SCALE}>
+      <path d={block.paths.join('')} transform={`scale(${SCALE})`} />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill={`url(#${id})`} />
+</svg>
+<style is:global>
+  .parcel-texture { position: absolute; inset: 0; z-index: -1; opacity: 0.04; pointer-events: none; }
+  .parcel-texture pattern path { fill: none; stroke: var(--color-on-dark); stroke-width: 1.8; }
+</style>

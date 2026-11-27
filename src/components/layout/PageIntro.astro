@@ -1,22 +1,26 @@
 ---
-/** Breadcrumbs, eyebrow, H1 and the answer-first paragraph. */
+/** Breadcrumbs, eyebrow, H1 and the answer-first paragraph. With `block`, an obsidian hero beside the parcel drawing. */
 import Container from './Container.astro';
 import Breadcrumbs from '../seo/Breadcrumbs.astro';
+import ParcelBlock from '../visuals/ParcelBlock.astro';
+import ParcelTexture from '../visuals/ParcelTexture.astro';
 import type { PageMeta } from '../../lib/page-meta.ts';
 import { crumbsFor } from '../../lib/crumbs.ts';
-interface Props { meta: PageMeta; eyebrow?: string; answer: string }
-const { meta, eyebrow, answer } = Astro.props;
+interface Props { meta: PageMeta; eyebrow?: string; answer: string; block?: boolean }
+const { meta, eyebrow, answer, block = false } = Astro.props;
 ---
-<div class="pt-4 pb-12">
+<div class:list={['pt-4', block ? 'on-dark section-dark pb-16 lg:pb-24' : 'bg-canvas pb-16']} data-dark-band={block ? '' : undefined}>
+  {block && <ParcelTexture id="intro" />}
   <Container>
     <Breadcrumbs crumbs={crumbsFor(meta)} />
-    <div class="mt-8 grid-12">
-      <div class="lg:col-span-9">
+    <div class="mt-8 grid-12 items-center">
+      <div class={block ? 'min-w-0 lg:col-span-7' : 'min-w-0 lg:col-span-9'}>
         {eyebrow && <p class="eyebrow mb-4">{eyebrow}</p>}
         <h1>{meta.h1}</h1>
         <p class="lede mt-6" data-answer>{answer}</p>
         <slot />
       </div>
+      {block && <div class="mx-auto w-full max-w-xl lg:col-span-5"><ParcelBlock tone="dark" /></div>}
     </div>
   </Container>
 </div>

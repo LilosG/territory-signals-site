@@ -27,7 +27,7 @@ const weights = signals.map((x) => [
   x.data.components.filter((c) => recipeReads(d.recipeKey, c.key)).map((c) => `${c.label}: ${weightFor(c.key).weight}`).join('; '),
 ]);
 ---
-<StandardPage meta={meta} answer={d.answer} eyebrow="Seller lead recipe" schema={[service()]}
+<StandardPage block meta={meta} answer={d.answer} eyebrow="Seller lead recipe" schema={[service()]}
   request={`See how this recipe would read your own planning areas.`}
   cta={{ title: `Where would ${d.headingTerm} leads come from in your territory?`, text: 'We walk through the records behind each recipe and which of them your territory has.' }}>
   <Fragment slot="intro">{d.mark && <p class="mt-4"><Badge tone="outline">{d.mark}</Badge></p>}</Fragment>
@@ -55,12 +55,12 @@ const weights = signals.map((x) => [
       <ul class="mt-2 max-w-measure border-y border-line py-2"><RuleTree line={describeCondition(rule.when)} /></ul>
     </div>
   </QaSection>
-  <QaSection {...s.why} />
-  <QaSection {...s.source}>
+  <QaSection {...s.why} layout="quote" />
+  <QaSection {...s.source} layout="wide">
     <DataTable caption={`Data sources behind the ${d.label} recipe`} columns={['Source', 'What it provides', 'Verdict']}
-      rows={sources.map((src) => [{ text: src.name, href: src.url }, src.provides, src.verdict])} />
+      rows={sources.map((src) => [{ text: src.name, href: src.url, icon: src.key }, src.provides, { text: src.verdict, pill: true }])} />
   </QaSection>
-  <QaSection {...s.scoring}>
+  <QaSection {...s.scoring} layout="wide">
     <DataTable caption={`Component weights behind the ${d.label} recipe`} columns={['Signal page', 'Components this rule reads, with weights']} rows={weights} />
     <p class="max-w-measure text-sm text-ink-muted">Matching a recipe adds no points. The parcel score comes only from its components. <a class="link" href="/how-it-works">How the score is built</a>.</p>
   </QaSection>

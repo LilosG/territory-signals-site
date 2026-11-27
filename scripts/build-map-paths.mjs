@@ -1,9 +1,14 @@
 // Projects and simplifies the City planning-area file into SVG path strings at build-prep time. No map library.
-// Only geometry is written: no names, codes or other properties, so no area can be singled out (DECISIONS.md S2).
+// Only geometry is written: no names or codes. One illustrative example area is marked by its position in the list
+// (DECISIONS.md S8). The dot texture is real parcel density from SanGIS, counted per grid cell; no parcel is kept.
 // Usage: npm run map -- [path/to/Community_Plan_SD.geojson]
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
+import { readPolygons } from './lib/shapefile-stream.mjs';
+import { toLonLat } from './lib/stateplane.mjs';
+import { insideRings, cacheFile } from './lib/geometry.mjs';
+import { EXAMPLE_AREA } from './lib/example-area.mjs';
 
 const cacheRoot = join(homedir(), 'territory-signals/data/raw/planning_areas');
 const source = process.argv[2] ?? join(cacheRoot, readdirSync(cacheRoot).sort().at(-1), 'Community_Plan_SD.geojson');
@@ -55,5 +60,27 @@ const paths = features.map((f) => {
   return rings.map((r) => `M${r.slice(0, -1).map((c) => project(c).map(fmt).join(' ')).join('L')}Z`).join('');
 });
 
-writeFileSync('src/data/map-paths.json', `${JSON.stringify({ width: WIDTH, height, count: paths.length, paths })}\n`);
+const example = features.findIndex((f) => f.properties.CPNAME === EXAMPLE_AREA);
+if (example < 0) throw new Error(`planning area ${EXAMPLE_AREA} not found`);
+
+const CELL = 8; // viewBox units between dots
+const counts = new Map();
+const zip = cacheFile('parcels', 'Parcels_shapefile.zip', { readdirSync, join, homedir });
+for await (const { bbox } of readPolygons(zip, 'Parcels.shp')) {
+  const [x, y] = project(toLonLat([(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2]));
+  if (x < 0 || y < 0 || x > WIDTH || y > height) continue;
+  const key = `${Math.floor(x / CELL)},${Math.floor(y / CELL)}`;
+  counts.set(key, (counts.get(key) ?? 0) + 1);
+}
+const shapes = features.map((f) => polygons(f.geometry).flat().map((r) => r.map(project)));
+const cells = [...counts].map(([key, n]) => ({ at: key.split(',').map((v) => (Number(v) + 0.5) * CELL), n }))
+  .filter((c) => shapes.some((rings) => insideRings(c.at, rings)))
+  .sort((a, b) => a.n - b.n);
+// Three density classes, one path each; every dot is a zero-length segment drawn with a round cap.
+const density = [0, 1, 2].map((third) => cells
+  .slice(Math.floor((cells.length * third) / 3), Math.floor((cells.length * (third + 1)) / 3))
+  .map((c) => `M${fmt(c.at[0])} ${fmt(c.at[1])}h0`).join(''));
+
+writeFileSync('src/data/map-paths.json', `${JSON.stringify({ width: WIDTH, height, count: paths.length, paths, example, density })}\n`);
+console.log(`${cells.length} density cells`);
 console.log(`${paths.length} shapes, ${WIDTH}x${height}, ${(JSON.stringify(paths).length / 1024).toFixed(1)} KB`);

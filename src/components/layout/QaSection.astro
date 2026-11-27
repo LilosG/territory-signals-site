@@ -1,16 +1,39 @@
 ---
-/** A question-form H2 beside its answer. Extra blocks (tables, lists, visuals) follow the text. */
+/**
+ * A question-form H2 and its answer. Three layouts keep long pages varied:
+ * split (5/7), wide (heading and text across the top, tables full width) and quote (the answer set large).
+ */
 import Section from './Section.astro';
-interface Props { q: string; p?: string[] | undefined; list?: string[] | undefined; id?: string; tone?: 'canvas' | 'surface' }
-const { q, p = [], list, id, tone } = Astro.props;
+interface Props { q: string; p?: string[] | undefined; list?: string[] | undefined; id?: string; layout?: 'split' | 'wide' | 'quote' }
+const { q, p = [], list, id, layout = 'split' } = Astro.props;
 ---
-<Section id={id} tone={tone}>
-  <div class="grid-12">
-    <h2 class="col-aside">{q}</h2>
-    <div class="col-main stack">
-      {p.length > 0 && <div class="prose">{p.map((text) => <p>{text}</p>)}</div>}
+<Section id={id}>
+  {layout === 'wide' ? (
+    <div class="stack">
+      <div class="grid-12">
+        <h2 class="col-support">{q}</h2>
+        <div class="col-lead">{p.length > 0 && <div class="prose">{p.map((text) => <p>{text}</p>)}</div>}</div>
+      </div>
       {list && <ul class="max-w-measure border-t border-line">{list.map((item) => <li class="border-b border-line py-2.5">{item}</li>)}</ul>}
-      <slot />
+      <div class="stack mt-4"><slot /></div>
     </div>
-  </div>
+  ) : layout === 'quote' ? (
+    <div class="mx-auto max-w-4xl">
+      <h2>{q}</h2>
+      {p[0] && <p class="mt-8 border-l-2 border-gold pl-6 font-serif text-2xl">{p[0]}</p>}
+      <div class="stack mt-6 pl-6">
+        {p.length > 1 && <div class="prose">{p.slice(1).map((text) => <p>{text}</p>)}</div>}
+        <slot />
+      </div>
+    </div>
+  ) : (
+    <div class="grid-12">
+      <h2 class="col-support">{q}</h2>
+      <div class="col-lead stack">
+        {p.length > 0 && <div class="prose">{p.map((text) => <p>{text}</p>)}</div>}
+        {list && <ul class="max-w-measure border-t border-line">{list.map((item) => <li class="border-b border-line py-2.5">{item}</li>)}</ul>}
+        <slot />
+      </div>
+    </div>
+  )}
 </Section>

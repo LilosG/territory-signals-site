@@ -1,19 +1,44 @@
 ---
-/** The real City planning-area shapes, every one drawn the same way, with no names and no highlight. */
-import { MAP_SOURCE, PLANNING_AREAS } from '../../lib/geo.ts';
+/**
+ * The real City planning-area shapes with no names. Dots show where parcels are, and how densely. One area is
+ * outlined in gold as an illustration of a territory.
+ */
+import { MAP_SOURCE, PARCEL_SOURCE, PLANNING_AREAS } from '../../lib/geo.ts';
 interface Props { class?: string }
+const { paths, density, example, width, height, count } = PLANNING_AREAS;
 ---
-<figure class:list={[Astro.props.class]}>
-  <svg class="h-auto w-full" viewBox={`-4 -4 ${PLANNING_AREAS.width + 8} ${PLANNING_AREAS.height + 8}`} width={PLANNING_AREAS.width} height={PLANNING_AREAS.height} role="img" aria-label={`Outline map of ${PLANNING_AREAS.count} City of San Diego community planning area shapes`}>
+<figure class:list={['territory-map', Astro.props.class]}>
+  <svg class="map-canvas" viewBox={`-4 -4 ${width + 8} ${height + 8}`} width={width} height={height} role="img" aria-label={`Outline map of ${count} City of San Diego community planning area shapes`}>
     <g class="map-shapes" fill-rule="evenodd">
-      {PLANNING_AREAS.paths.map((d) => <path d={d} />)}
+      {paths.map((d) => <path d={d} />)}
     </g>
+    <g class="map-density">{density.map((d, i) => <path class={`map-density-${i}`} d={d} />)}</g>
+    <path class="map-example" d={paths[example]} />
   </svg>
-  <figcaption class="mt-3 text-xs text-ink-muted">
-    {PLANNING_AREAS.count} planning-area shapes, simplified for this page. A team’s territory is whichever areas it chooses. Source:
-    <a class="link" href={MAP_SOURCE.url} rel="noopener">{MAP_SOURCE.label}</a>, under the City’s open data terms.
+  <figcaption class="mt-5 text-xs text-ink-muted">
+    <ul class="flex flex-wrap gap-x-6 gap-y-2">
+      <li class="flex items-center gap-2"><svg class="size-4" viewBox="0 0 16 16" aria-hidden="true"><rect class="key-area" x="1" y="1" width="14" height="14" /></svg>Planning area</li>
+      <li class="flex items-center gap-2"><svg class="size-4" viewBox="0 0 16 16" aria-hidden="true"><circle class="key-dot" cx="4" cy="8" r="1.2" /><circle class="key-dot" cx="11" cy="8" r="2.4" /></svg>Parcel density</li>
+      <li class="flex items-center gap-2"><svg class="size-4" viewBox="0 0 16 16" aria-hidden="true"><rect class="key-example" x="2" y="2" width="12" height="12" /></svg>Example territory, for illustration only</li>
+    </ul>
+    <p class="mt-3 max-w-measure">
+      {count} planning-area shapes, simplified for this page. A team’s territory is whichever areas it chooses. Source:
+      <a class="link" href={MAP_SOURCE.url} rel="noopener">{MAP_SOURCE.label}</a>, under the City’s open data terms. Parcel density:
+      <a class="link" href={PARCEL_SOURCE.url} rel="noopener">{PARCEL_SOURCE.label}</a>.
+    </p>
   </figcaption>
 </figure>
 <style>
-  .map-shapes path { fill: var(--color-surface); stroke: var(--color-ink-muted); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .map-canvas { display: block; width: 100%; height: auto; }
+  @media (min-width: 64rem) {
+    .map-canvas { height: clamp(40rem, 80vh, 52rem); }
+  }
+  .map-shapes path, .key-area { fill: var(--color-slate-pale); stroke: var(--color-surface); stroke-width: 1.25; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .key-area { stroke: var(--color-line-strong); }
+  .map-density path { fill: none; stroke: var(--color-slate-line); stroke-linecap: round; }
+  .map-density-0 { stroke-width: 1.4; stroke-opacity: 0.55; }
+  .map-density-1 { stroke-width: 2.2; stroke-opacity: 0.65; }
+  .map-density-2 { stroke-width: 3; stroke-opacity: 0.75; }
+  .key-dot { fill: var(--color-slate-line); }
+  .map-example, .key-example { fill: none; stroke: var(--color-gold); stroke-width: 3; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 </style>

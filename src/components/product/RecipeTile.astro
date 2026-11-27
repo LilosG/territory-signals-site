@@ -1,12 +1,32 @@
 ---
-/** One recipe, using the verbatim label and short description from the product catalog. */
-interface Props { href: string; label: string; description: string; mark?: string | undefined }
-const { href, label, description, mark } = Astro.props;
+/** One recipe card: the catalog's verbatim label and short description beside an invented example score. */
+import ScoreRing from '../ui/ScoreRing.astro';
+import { RECIPE_EXAMPLES } from '../../data/demo.ts';
+interface Props { href: string; recipeKey: string; label: string; description: string; mark?: string | undefined }
+const { href, recipeKey, label, description, mark } = Astro.props;
+const example = RECIPE_EXAMPLES[recipeKey]!;
 ---
-<li class="border-b border-line">
-  <a href={href} class="group grid min-h-tap gap-x-6 gap-y-1 py-4 sm:grid-cols-12 sm:items-baseline">
-    <span class="font-semibold group-hover:underline group-hover:underline-offset-4 sm:col-span-4">{label}</span>
-    <span class="text-ink-muted sm:col-span-5">{description}</span>
-    <span class="mono text-2xs uppercase tracking-eyebrow text-ink-muted sm:col-span-3 sm:text-right">{mark}</span>
+<li class="flex">
+  <a href={href} class="recipe-card">
+    <span class="flex items-start justify-between gap-4">
+      <span class="font-serif text-xl font-medium">{label}</span>
+      <ScoreRing score={example.score} size="md" />
+    </span>
+    <span class="text-base text-ink-muted">{description}</span>
+    <span class="mono mt-auto border-t border-line pt-3 text-xs">{example.signal}</span>
+    {mark && <span class="recipe-mark">{mark}</span>}
   </a>
 </li>
+<style>
+  .recipe-card {
+    display: flex; flex: 1; flex-direction: column; gap: 0.75rem; padding: 1.375rem 1.5rem;
+    border: 1px solid var(--color-line); border-top: 3px solid var(--color-line); border-radius: var(--radius-lg);
+    background: var(--color-surface); color: var(--color-ink); box-shadow: var(--shadow-xs);
+    transition: transform var(--duration-fast) var(--ease-quiet), box-shadow var(--duration-fast) var(--ease-quiet), border-color var(--duration-fast);
+  }
+  .recipe-card:hover, .recipe-card:focus-visible { transform: translateY(-4px); border-top-color: var(--color-gold); box-shadow: var(--shadow-lift); }
+  .recipe-mark {
+    align-self: flex-start; border: 1px solid var(--color-line-strong); border-radius: var(--radius-full); padding: 0.125rem 0.625rem;
+    font-family: var(--font-mono); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-ink-muted);
+  }
+</style>

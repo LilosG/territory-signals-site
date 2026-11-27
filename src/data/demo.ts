@@ -92,3 +92,45 @@ export const DRAFT = {
     `No obligation, just a guide you can keep. Reach out to ${WORKSPACE} to get started.`,
   ],
 };
+
+/** Invented signal sets for the example score on each recipe card and the sample leads on the dashboard. */
+const event = (key: string, r: { weight: number; half_life_days: number }, ageDays: number, confidence = 0.95) =>
+  input(key, { ...rule(r), ageDays, confidence });
+const fixed = (key: string, weight: number, confidence = 1, ownerModifier = true) =>
+  input(key, { weight, halfLifeDays: null, ageDays: 0, confidence, ownerModifier });
+const held30 = o.years_owned.find((t) => t.min_years === 30)!.weight;
+const owner = {
+  held20: () => fixed('owner:years_owned', yearsOwned20),
+  held30: () => fixed('owner:years_owned', held30),
+  absentee: () => fixed('owner:absentee', o.absentee.weight),
+  noMortgage: () => fixed('owner:mortgage_open_false', o.mortgage_open_false.weight),
+};
+const estimate = (key: string, weight: number) => fixed(key, weight, 0.5, false);
+const prep = (ageDays: number) => event('permit_approved:pre_sale_prep', s.permit_approved.by_group.pre_sale_prep, ageDays);
+const stalled = (ageDays: number) => event('permit_stalled', s.permit_stalled, ageDays);
+const stroRemoved = (ageDays: number) => event('stro_license_removed', s.stro_license_removed, ageDays, 0.9);
+
+const example = (signal: string, signals: DemoSignal[]) => ({ signal: componentByKey(signal).label, score: computeScore(signals, SCORE_RULES).score });
+
+/** One card per catalog recipe: the signal or fact that qualifies it, and the score of one invented matching parcel. */
+export const RECIPE_EXAMPLES: Record<string, { signal: string; score: number }> = {
+  str_exit: example('stro_license_removed', [stroRemoved(30), owner.held20(), owner.absentee()]),
+  tired_landlord: example('owner:absentee', [stroRemoved(60), stalled(100), owner.absentee(), owner.held20()]),
+  builder_bait: example('sb9_lot_split_estimate', [estimate('sb9_lot_split_estimate', s.sb9_lot_split_estimate.weight), estimate('sb79_transit_estimate', s.sb79_transit_estimate.values.within_quarter_mile), owner.held30()]),
+  pre_list_prep: { signal: componentByKey('permit_approved:pre_sale_prep').label, score: LEAD.score },
+  stalled_project: example('permit_stalled', [stalled(100), owner.held20()]),
+  downsizer: example('owner:mortgage_open_false', [owner.held30(), owner.noMortgage()]),
+  insurance_squeeze: example('fire_hazard_zone', [fixed('fire_hazard_zone', s.fire_hazard_zone.values['very high'], 0.95, false), owner.held20()]),
+  financial_pressure: example('tax_default', [event('tax_default', s.tax_default, 200), event('notice_of_default', s.notice_of_default, 60)]),
+  quiet_inheritance: example('ownership_transfer_inheritance', [owner.absentee(), owner.noMortgage()]),
+};
+
+/** The dashboard's ranked list. No sensitive record appears on a lead row, matching the product's rule. */
+export const TOP_LEADS = [
+  { address: '418 Sample Ct', recipe: 'tired_landlord', signal: 'Rental license no longer listed', signals: [stroRemoved(60), stalled(100), owner.absentee(), owner.held20()] },
+  { address: LEAD.address, recipe: 'pre_list_prep', signal: LEAD.topSignal, signals: [prep(60), estimate('sb9_lot_split_estimate', s.sb9_lot_split_estimate.weight), owner.held20(), owner.noMortgage()] },
+  { address: '77 Sample Way', recipe: 'pre_list_prep', signal: 'Window and roof permit approved Nov 6', signals: [prep(20), owner.held20(), owner.noMortgage()] },
+  { address: '2315 Sample St', recipe: 'str_exit', signal: 'Rental license no longer listed', signals: [stroRemoved(30), owner.held20(), owner.absentee()] },
+]
+  .map((l) => ({ address: l.address, signal: l.signal, recipe: SCORING.recipes[l.recipe as keyof typeof SCORING.recipes].label, score: computeScore(l.signals, SCORE_RULES).score }))
+  .sort((a, b) => b.score - a.score);

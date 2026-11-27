@@ -1,9 +1,11 @@
 ---
 import Container from './Container.astro';
-interface Props { tone?: 'canvas' | 'surface' | 'sunken' | 'dark'; ruled?: boolean; id?: string; label?: string; class?: string }
-const { tone = 'canvas', ruled = true, id, label, class: cls } = Astro.props;
-const tones = { canvas: '', surface: 'bg-surface', sunken: 'bg-sunken', dark: 'on-dark section-dark' };
+import ParcelTexture from '../visuals/ParcelTexture.astro';
+interface Props { tone?: 'light' | 'dark'; id?: string; label?: string; class?: string }
+const { tone = 'light', id, label, class: cls } = Astro.props;
+const dark = tone === 'dark';
 ---
-<section id={id} aria-label={label} data-dark-band={tone === 'dark' ? '' : undefined} class:list={['section', ruled && tone !== 'dark' && 'section-ruled', tones[tone], cls]}>
+<section id={id} aria-label={label} data-dark-band={dark ? '' : undefined} class:list={['section', dark && 'on-dark section-dark', cls]}>
+  {dark && <ParcelTexture id={id ?? 'band'} />}
   <Container><slot /></Container>
 </section>

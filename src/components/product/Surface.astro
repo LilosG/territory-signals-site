@@ -17,5 +17,5 @@ const { visual } = Astro.props;
 {visual === 'copilot' && <OutreachCoPilot />}
 {visual === 'briefing' && <BriefingCard />}
 {visual === 'timeline' && <SignalTimeline />}
-{visual === 'map' && <TerritoryMap class="mx-auto max-w-sm" />}
+{visual === 'map' && <TerritoryMap />}
 {visual === 'breakdown' && <Frame title="Score components"><div class="p-4"><ScoreBreakdown items={LEAD.breakdown} score={LEAD.score} /></div></Frame>}

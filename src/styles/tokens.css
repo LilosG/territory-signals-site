@@ -30,6 +30,12 @@
   /* Product UI recreations only: the product's own honesty markers. */
   --color-sample: #8a5806;
   --color-sample-soft: #fef8e7;
+  /* Source verdict pills: usable. Limits reuses the amber above; coming is slate. */
+  --color-usable: #166534;
+  --color-usable-soft: #ecfdf3;
+  /* Drawings: territory map and parcel block. */
+  --color-slate-pale: #e4eaf2;
+  --color-slate-line: #64748b;
 
   --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'IBM Plex Serif', ui-serif, Georgia, serif;
@@ -42,9 +48,9 @@
   --text-xs--line-height: 1.5;
   --text-sm: 0.875rem;
   --text-sm--line-height: 1.55;
-  --text-base: clamp(1rem, 0.98rem + 0.11vw, 1.0625rem);
+  --text-base: 1.125rem;
   --text-base--line-height: 1.6;
-  --text-lg: clamp(1.125rem, 1.08rem + 0.22vw, 1.25rem);
+  --text-lg: clamp(1.1875rem, 1.13rem + 0.26vw, 1.3125rem);
   --text-lg--line-height: 1.55;
   --text-xl: clamp(1.25rem, 1.15rem + 0.43vw, 1.5rem);
   --text-xl--line-height: 1.35;
@@ -52,8 +58,14 @@
   --text-2xl--line-height: 1.2;
   --text-3xl: clamp(1.875rem, 1.53rem + 1.52vw, 2.75rem);
   --text-3xl--line-height: 1.15;
-  --text-4xl: clamp(2.25rem, 1.66rem + 2.61vw, 3.75rem);
-  --text-4xl--line-height: 1.08;
+  --text-4xl: clamp(2.5rem, 1.75rem + 3.2vw, 4.5rem);
+  --text-4xl--line-height: 1.06;
+  --text-section: clamp(2.25rem, 3.6vw, 3.5rem);
+  --text-section--line-height: 1.1;
+  --text-hero: clamp(3.5rem, 6vw, 5.75rem);
+  --text-hero--line-height: 1;
+  --text-numeral: clamp(3.5rem, 6vw, 5.5rem);
+  --text-numeral--line-height: 1;
 
   --tracking-display: -0.025em;
   --tracking-heading: -0.015em;
@@ -64,6 +76,7 @@
   --spacing-section: clamp(4rem, 8vw, 7.5rem);
   --spacing-tap: 2.75rem;
   --spacing-header: 4rem;
+  --spacing-control: 3rem;
 
   --container-page: 80rem;
   --container-measure: 68ch;
@@ -73,11 +86,13 @@
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-xl: 10px;
+  --radius-2xl: 16px;
   --radius-full: 9999px;
 
   --shadow-*: initial;
   --shadow-xs: 0 1px 0 rgb(11 15 23 / 0.04);
   --shadow-lift: 0 12px 32px -12px rgb(11 15 23 / 0.18), 0 2px 6px rgb(11 15 23 / 0.05);
+  --shadow-float: 0 48px 96px -32px rgb(0 0 0 / 0.55), 0 18px 36px -18px rgb(11 15 23 / 0.35), 0 0 0 1px rgb(11 15 23 / 0.08);
 
   --ease-quiet: cubic-bezier(0.2, 0.8, 0.2, 1);
   --duration-fast: 150ms;

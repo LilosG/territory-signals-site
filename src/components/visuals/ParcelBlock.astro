@@ -1,0 +1,35 @@
+---
+/**
+ * A real block outline drawn as a cadastral sheet (scripts/build-parcel-block.mjs). The score fills and the gold
+ * subject parcel are illustrative. The data holds drawing coordinates only: no parcel numbers, addresses or owners.
+ */
+import block from '../../data/parcel-block.json';
+interface Props { tone?: 'light' | 'dark'; class?: string; label?: string }
+const { tone = 'light', class: cls, label } = Astro.props;
+const filled = new Map(block.filled.map((f) => [f.index, f.tier]));
+---
+<svg class:list={['parcel-block', `parcel-block-${tone}`, cls]} viewBox={`-24 -24 ${block.width + 48} ${block.height + 48}`} width={block.width} height={block.height}
+  role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : 'true'} focusable="false">
+  <g class="parcel-street">{block.paths.map((d) => <path d={d} />)}</g>
+  <g class="parcel-lots">{block.paths.map((d) => <path d={d} />)}</g>
+  <g>{block.paths.map((d, i) => filled.has(i) && <path class:list={['parcel-score', `tier-${filled.get(i)}`]} d={d} />)}</g>
+  <path class="parcel-subject-wash" d={block.paths[block.subject]} />
+  <path class="parcel-subject" d={block.paths[block.subject]} />
+</svg>
+<style is:global>
+  .parcel-block { display: block; height: auto; width: 100%; overflow: visible; }
+  .parcel-block path { vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+  /* A wide faint casing under the lots reads as the street edge around the block. */
+  .parcel-street path { fill: none; stroke-width: 18; }
+  .parcel-lots path { stroke-width: 1; }
+  .parcel-score { fill: currentColor; stroke: none; }
+  .parcel-subject-wash { fill: var(--color-gold-bright); fill-opacity: 0.14; stroke: none; }
+  .parcel-subject { fill: none; stroke: var(--color-gold); stroke-width: 3; }
+  .parcel-block-light .parcel-street path { stroke: var(--color-slate-pale); }
+  .parcel-block-light .parcel-lots path { fill: var(--color-surface); stroke: var(--color-slate-line); }
+  .parcel-block-light .parcel-score { fill-opacity: 0.2; }
+  .parcel-block-dark .parcel-street path { stroke: var(--color-obsidian-raised); }
+  .parcel-block-dark .parcel-lots path { fill: var(--color-obsidian); stroke: var(--color-slate-line); }
+  .parcel-block-dark .parcel-score { fill-opacity: 0.5; }
+  .parcel-block-dark .parcel-subject { stroke: var(--color-gold-bright); }
+</style>

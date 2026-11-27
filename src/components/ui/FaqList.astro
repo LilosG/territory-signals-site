@@ -1,11 +1,23 @@
 ---
+/** A native accordion: details and summary, no script. Answers stay in the HTML whether open or closed. */
+import Icon from './Icon.astro';
 interface Props { items: { id: string; question: string; answer: string }[] }
 ---
-<dl class="border-t border-ink">
+<div class="faq-list">
   {Astro.props.items.map((f) => (
-    <div class="border-b border-line py-5 lg:grid lg:grid-cols-12 lg:gap-8" id={f.id}>
-      <dt class="font-semibold lg:col-span-4">{f.question}</dt>
-      <dd class="mt-2 max-w-measure text-ink-muted lg:col-span-8 lg:mt-0">{f.answer}</dd>
-    </div>
+    <details class="faq-item" id={f.id}>
+      <summary><span>{f.question}</span><Icon name="plus" class="faq-icon size-5" /></summary>
+      <p>{f.answer}</p>
+    </details>
   ))}
-</dl>
+</div>
+<style>
+  .faq-list { border-top: 2px solid var(--color-ink); }
+  .faq-item { border-bottom: 1px solid var(--color-line-strong); }
+  .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 4rem; padding: 1.125rem 0.25rem; list-style: none; font-weight: 600; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover span { text-decoration: underline; text-underline-offset: 4px; }
+  .faq-item :global(.faq-icon) { color: var(--color-gold-strong); transition: transform var(--duration-fast) var(--ease-quiet); }
+  .faq-item[open] :global(.faq-icon) { transform: rotate(45deg); }
+  .faq-item p { max-width: var(--container-measure); padding: 0 0.25rem 1.5rem; color: var(--color-ink-muted); }
+</style>

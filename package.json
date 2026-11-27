@@ -15,7 +15,8 @@
     "sync:product": "node scripts/sync-product.mjs",
     "map": "node scripts/build-map-paths.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "parcels": "node scripts/build-parcel-block.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.9",

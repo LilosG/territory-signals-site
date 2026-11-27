@@ -3,14 +3,17 @@ import type { Crumb } from '../../lib/crumbs.ts';
 interface Props { crumbs: Crumb[] }
 const { crumbs } = Astro.props;
 ---
-<nav aria-label="Breadcrumb" class="eyebrow">
+<nav aria-label="Breadcrumb" class="crumbs font-mono text-xs uppercase tracking-eyebrow text-ink-muted">
   <ol class="flex flex-wrap items-center gap-x-2">
     {crumbs.map((c, i) => (
       <li class="flex items-center gap-x-2">
         {i < crumbs.length - 1
-          ? <><a class="tap-link hover:text-ink" href={c.path}>{c.name}</a><span aria-hidden="true">/</span></>
-          : <span class="tap-link text-ink" aria-current="page">{c.name}</span>}
+          ? <><a class="tap-link hover:underline" href={c.path}>{c.name}</a><span aria-hidden="true">/</span></>
+          : <span class="tap-link font-medium" aria-current="page">{c.name}</span>}
       </li>
     ))}
   </ol>
 </nav>
+<style is:global>
+  .on-dark .crumbs { color: var(--color-on-dark-muted); }
+</style>

@@ -1,0 +1,18 @@
+---
+/** Every catalog recipe as a card. */
+import RecipeTile from './RecipeTile.astro';
+import SampleBadge from '../ui/SampleBadge.astro';
+import { CATALOG } from '../../lib/product.ts';
+import { entries, hrefOf } from '../../lib/collections.ts';
+const recipes = await entries('recipes');
+const cards = CATALOG.recipes.map((r) => {
+  const entry = recipes.find((x) => x.data.recipeKey === r.key)!;
+  return { key: r.key, label: r.label, description: r.short_description, href: hrefOf('recipes', entry.id), mark: entry.data.mark, order: entry.data.order };
+}).sort((a, b) => a.order - b.order);
+---
+<div>
+  <p class="flex items-center gap-2 text-sm text-ink-muted"><SampleBadge /> Scores on these cards are examples.</p>
+  <ul class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {cards.map((c) => <RecipeTile href={c.href} recipeKey={c.key} label={c.label} description={c.description} mark={c.mark} />)}
+  </ul>
+</div>

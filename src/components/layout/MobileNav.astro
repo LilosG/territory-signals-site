@@ -25,8 +25,8 @@ const { current } = Astro.props;
 <style>
   summary { list-style: none; }
   summary::-webkit-details-marker { display: none; }
-  .mobile-nav .nav-close-icon, .mobile-nav[open] .nav-open-icon { display: none; }
-  .mobile-nav[open] .nav-close-icon { display: block; }
+  .mobile-nav :global(.nav-close-icon), .mobile-nav[open] :global(.nav-open-icon) { display: none; }
+  .mobile-nav[open] :global(.nav-close-icon) { display: block; }
 </style>
 <script>
   const nav = document.querySelector<HTMLDetailsElement>('[data-mobile-nav]');
