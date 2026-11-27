@@ -2,31 +2,65 @@
 import StandardPage from '../templates/StandardPage.astro';
 import Section from '../components/layout/Section.astro';
 import QaSection from '../components/layout/QaSection.astro';
+import QaGrid from '../components/layout/QaGrid.astro';
+import FactCard from '../components/templates/FactCard.astro';
 import DefinitionList from '../components/ui/DefinitionList.astro';
 import FaqList from '../components/ui/FaqList.astro';
 import { PAGES } from '../data/pages.ts';
 import { faqFor } from '../lib/collections.ts';
 import { faqPage, service } from '../lib/schema.ts';
+
 const faqs = await faqFor('how-we-build');
+const configures = [
+  { title: 'Territory', text: 'The City of San Diego planning areas you choose.' },
+  { title: 'Team', text: 'Agents, roles and license details used on outreach.' },
+  { title: 'Recipes', text: 'Which patterns are on and which need approval.' },
+  { title: 'Outreach', text: 'The templates and channels your team uses.' },
+  { title: 'AI explanation layer', text: 'On or off, with the provider and monthly budget chosen for your deployment.' },
+];
 ---
 <StandardPage meta={PAGES['/how-we-build']} eyebrow="Per team or brokerage, run as a service" schema={[service(), faqPage(faqs)]}
   answer="Custom territory intelligence setup means Lilos Growth builds and runs a separate deployment for your team or brokerage, configured to the City planning areas and agents you name. It is a managed service rather than self-serve software. MLS data is an optional add-on scoped per client, and the core product runs without it."
   request="To scope a deployment for your team,"
   cta={{ title: 'Ready to scope your territory setup?', text: 'Bring your planning areas, team size and questions about data and approvals.' }}>
+  <FactCard
+    slot="aside"
+    title="Deployment model"
+    rows={[
+      { label: 'Architecture', value: 'Dedicated per client' },
+      { label: 'Data isolation', value: 'Never pooled' },
+      { label: 'Refresh cadence', value: 'Weekly automated run' },
+      { label: 'MLS add-on', value: 'Optional, broker-signed' },
+    ]}
+    note="Managed service built and run by Lilos Growth."
+  />
 
   <QaSection q="What does a per-client setup look like?" p={['A per-client setup is one deployment for one client, from a shared codebase with its own configuration. Your territory, team and data are not pooled with another client’s deployment.']} />
-  <QaSection q="What does setup configure?" p={['Setup configures the product around how your team works.']} list={[
-    'Territory: the City of San Diego planning areas you choose.',
-    'Team: agents, roles and license details used on outreach.',
-    'Recipes: which patterns are on and which need approval.',
-    'Outreach: the templates and channels your team uses.',
-    'AI explanation layer: on or off, with the provider and monthly budget chosen for your deployment.',
-  ]} />
+
   <Section>
-    <div class="grid-12">
-      <h2 class="col-aside">What does setup need from your team?</h2>
-      <div class="col-main stack">
-        <p>Setup needs a short list from you before outreach can be approved.</p>
+    <div class="max-w-3xl">
+      <p class="eyebrow">Configuration</p>
+      <h2 class="mt-4">What does setup configure?</h2>
+      <p class="mt-4 text-lg leading-relaxed text-ink-muted">Setup configures the product around how your team works.</p>
+    </div>
+    <ol class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {configures.map((item, i) => (
+        <li class="card flex flex-col p-6">
+          <p class="mono text-xs font-semibold text-gold-strong">{String(i + 1).padStart(2, '0')}</p>
+          <p class="card-title mt-3 text-lg">{item.title}</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{item.text}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section>
+    <div class="grid-12 items-start">
+      <div class="col-aside">
+        <h2>What does setup need from your team?</h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-muted">Setup needs a short list from you before outreach can be approved.</p>
+      </div>
+      <div class="col-main card p-6 sm:p-8">
         <DefinitionList items={[
           { term: 'Planning areas', definition: 'The areas that make up your territory.' },
           { term: 'Team members', definition: 'Name, email, role, DRE license number and phone for each person.' },
@@ -37,8 +71,21 @@ const faqs = await faqFor('how-we-build');
       </div>
     </div>
   </Section>
-  <QaSection q="What runs after setup?" p={['After setup, a weekly run refreshes sources, rescores parcels and prepares the briefing. Each step is logged, a failed source does not stop the rest, and source health is visible in the product. Your team works the list, approves drafts and logs outcomes.']} />
-  <QaSection q="How does the MLS add-on fit into setup?" p={['MLS is an optional add-on to setup, scoped per client, that requires your broker’s signed back-office data agreement. The core product runs without MLS.']} />
-  <QaSection q="What is setup not?" p={['Setup is not an account you create yourself. Territory Signals is not self-serve software, not a lead list and not priced per lead.']} />
+
+  <QaGrid columns={3} items={[
+    {
+      q: 'What runs after setup?',
+      p: ['After setup, a weekly run refreshes sources, rescores parcels and prepares the briefing. Each step is logged, a failed source does not stop the rest, and source health is visible in the product. Your team works the list, approves drafts and logs outcomes.'],
+    },
+    {
+      q: 'How does the MLS add-on fit into setup?',
+      p: ['MLS is an optional add-on to setup, scoped per client, that requires your broker’s signed back-office data agreement. The core product runs without MLS.'],
+    },
+    {
+      q: 'What is setup not?',
+      p: ['Setup is not an account you create yourself. Territory Signals is not self-serve software, not a lead list and not priced per lead.'],
+    },
+  ]} />
+
   <Section><div class="stack"><h2>What do teams ask about setup?</h2><FaqList items={faqs} /></div></Section>
 </StandardPage>
