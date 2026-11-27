@@ -2,7 +2,9 @@
 import StandardPage from './StandardPage.astro';
 import Section from '../components/layout/Section.astro';
 import QaSection from '../components/layout/QaSection.astro';
+import QaGrid from '../components/layout/QaGrid.astro';
 import DataTable from '../components/ui/DataTable.astro';
+import ListCard from '../components/templates/ListCard.astro';
 import RelatedLinks from '../components/ui/RelatedLinks.astro';
 import TerritoryMap from '../components/visuals/TerritoryMap.astro';
 import { SOURCES } from '../data/sources.ts';
@@ -17,30 +19,72 @@ interface Props {
 }
 const { meta, marketId, place, answer, sections: s } = Astro.props;
 const signals = await entries('signals');
+const liveSignals = signals.filter((x) => x.data.status === 'live').length;
+const liveSources = SOURCES.filter((x) => x.verdict !== 'Coming').length;
 const guides = await guidesFor('markets', [marketId]);
 ---
 <StandardPage meta={meta} answer={answer} eyebrow={`Market · ${place}`} location={place} schema={[service()]}
   request={`Tell us which ${place} planning areas you work.`}
   cta={{ title: `See the seller signals in your ${place} planning areas`, text: 'Name the planning areas you work and we walk through what the records show there.' }}>
+  <ListCard
+    slot="aside"
+    title={`${place} coverage`}
+    stats={[
+      { value: String(liveSignals), label: 'Live signals' },
+      { value: String(liveSources), label: 'Data sources' },
+      { value: 'Weekly', label: 'Refresh' },
+    ]}
+    rows={signals.map((x) => ({
+      label: x.data.crumb,
+      value: x.data.status === 'coming' ? 'Coming' : 'Live',
+      muted: x.data.status === 'coming',
+    }))}
+    note="Configured to the City planning areas your team chooses."
+  />
+
   <Section>
-    <div class="grid-12 items-center">
+    <div class="grid-12 items-center gap-y-10">
       <div class="col-aside">
-        <p class="max-w-measure font-serif text-2xl">Your territory is the set of planning areas you choose. The outlined area is only an example.</p>
+        <p class="eyebrow">Territory boundaries</p>
+        <h2 class="mt-4 text-3xl">Your {place} territory, defined by planning area</h2>
+        <p class="mt-5 text-[15px] leading-relaxed text-ink-muted">Your territory is the exact set of City planning areas your team chooses. The gold outline on the map is only an example.</p>
+        <dl class="mt-7 grid grid-cols-2 gap-4 border-t border-line pt-5">
+          <div>
+            <dt class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">Boundary unit</dt>
+            <dd class="mt-1.5 text-sm font-semibold text-ink">City planning areas</dd>
+          </div>
+          <div>
+            <dt class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">Parcels scored</dt>
+            <dd class="mt-1.5 text-sm font-semibold text-ink">Residential only</dd>
+          </div>
+        </dl>
       </div>
       <div class="col-main"><TerritoryMap /></div>
     </div>
   </Section>
+
   <QaSection {...s.signals} layout="wide">
-    <DataTable caption={`Signal families in ${place}`} columns={['Signal family', 'Status']}
-      rows={signals.map((x) => [{ text: x.data.crumb, href: hrefOf('signals', x.id) }, { text: x.data.status === 'coming' ? 'Coming' : 'Live', pill: true }])} />
+    <DataTable
+      caption={`Signal families in ${place}`}
+      columns={['Signal family', 'What it tracks', 'Status']}
+      rows={signals.map((x) => [
+        { text: x.data.crumb, href: hrefOf('signals', x.id) },
+        x.data.sections.what.p[0] ?? x.data.description,
+        { text: x.data.status === 'coming' ? 'Coming' : 'Live', pill: true },
+      ])}
+    />
   </QaSection>
-  <QaSection {...s.territory} />
+
   <QaSection {...s.records} layout="wide">
-    <DataTable caption={`${place} data sources`} columns={['Source', 'What it provides', 'Verdict']}
-      rows={SOURCES.map((x) => [{ text: x.name, href: x.url, icon: x.key }, x.provides, { text: x.verdict, pill: true }])} />
+    <DataTable
+      caption={`${place} data sources`}
+      columns={['Source', 'What it provides', 'Verdict']}
+      rows={SOURCES.map((x) => [{ text: x.name, href: x.url, icon: x.key }, x.provides, { text: x.verdict, pill: true }])}
+    />
   </QaSection>
-  <QaSection {...s.gaps} />
-  <QaSection {...s.setup} />
+
+  <QaGrid columns={3} items={[s.territory, s.gaps, s.setup]} />
+
   <Section>
     <div class="grid-12">
       <div class="col-lead"><RelatedLinks title="Related guides" links={linkList('guides', guides)} /></div>

@@ -1,8 +1,10 @@
 ---
 import HubPage from '../../templates/HubPage.astro';
+import ListCard from '../../components/templates/ListCard.astro';
 import { PAGES } from '../../data/pages.ts';
 import { entries, linkList } from '../../lib/collections.ts';
-const items = linkList('guides', await entries('guides'));
+const list = await entries('guides');
+const items = linkList('guides', list).map((item) => ({ ...item, mark: 'Field guide' }));
 ---
 <HubPage meta={PAGES['/guides']} eyebrow="Guides" items={items}
   answer="These real estate prospecting guides explain how to find likely sellers, how to read building permit records and how to screen San Diego parcels for SB 9 and SB 79 potential. Each names its sources with the date they were read, separates records from estimates and says where the method fails, so you can check it yourself."
@@ -10,5 +12,26 @@ const items = linkList('guides', await entries('guides'));
   cta={{ title: 'Want a prospecting guide for your own territory?', text: 'A walkthrough applies these methods to the planning areas you name.' }}
   index={{ q: 'Which prospecting guide should you read first?', p: ['The prospecting guide to read first is the one on finding likely sellers, which sets out the method the others build on.'] }}
   sections={[
-    { q: 'How is each prospecting guide researched?', p: ['Each prospecting guide is written from official pages, public datasets and the product’s own rules. Sources are listed at the end with access dates. A guide is general information, not legal, tax or planning advice.'] },
-  ]} />
+    {
+      q: 'How is each prospecting guide researched?',
+      p: ['Each prospecting guide is written from official pages, public datasets and the product’s own rules. Sources are listed at the end with access dates. A guide is general information, not legal, tax or planning advice.'],
+      links: [{ href: '/data-sources', label: 'Every data source and its limits' }],
+    },
+    {
+      q: 'How do you apply a prospecting guide to your own farm?',
+      p: ['Every method in these guides maps directly to the published scoring weights and playbooks in Territory Signals. Start with the signals active in your planning areas, then verify each record against its source before outreach.'],
+      links: [{ href: '/how-it-works', label: 'How scoring works' }, { href: '/recipes', label: 'Seller playbooks' }],
+    },
+  ]}>
+  <ListCard
+    slot="aside"
+    title="Prospecting guides"
+    stats={[
+      { value: String(list.length), label: 'Guides' },
+      { value: 'Public', label: 'Sources' },
+      { value: 'Dated', label: 'Citations' },
+    ]}
+    rows={list.map((g, i) => ({ label: g.data.crumb, value: `0${i + 1}` }))}
+    note="Written from official San Diego datasets and published scoring rules."
+  />
+</HubPage>
