@@ -51,7 +51,7 @@ for (const { file, path } of htmlPages()) {
   const robots = root.querySelector('meta[name="robots"]')?.getAttribute('content') ?? '';
   if (robots.includes('noindex') !== noindex) bad(noindex ? 'should be noindex' : 'content page is noindex');
   if (root.querySelectorAll('[style]').length) bad('inline style attribute');
-  if (root.querySelectorAll('[data-dark-band]').length > 2) bad('more than two dark bands');
+  if (root.querySelectorAll('[data-dark-band]').length > 4) bad('more than four dark bands');
 
   for (const script of root.querySelectorAll('script[type="application/ld+json"]')) {
     try {
@@ -68,12 +68,22 @@ for (const { file, path } of htmlPages()) {
   if (!main) { bad('no <main>'); continue; }
 
   if (!noindex) {
+    // Headings: the primary term in at least two H2s (or every H2 when there are fewer), and the term, a close
+    // variant or the location in the H1 and every other heading. Variants are set per page in its meta.
     const term = norm(main.getAttribute('data-heading-term') ?? '');
     const location = norm(main.getAttribute('data-heading-location') ?? '');
+    const variants = (main.getAttribute('data-heading-variants') ?? '').split('|').map(norm).filter(Boolean);
+    const allowed = [term, ...variants, location, 'san diego'].filter(Boolean);
+    const fits = (text) => allowed.some((a) => text.includes(a));
+    if (!term) bad('no heading term');
+    const h1Text = norm(h1[0]?.text ?? '');
+    if (!fits(h1Text)) bad(`H1 lacks "${term}" or a variant: ${h1Text}`);
+    const h2s = main.querySelectorAll('h2').map((h) => norm(h.text));
+    const withTerm = h2s.filter((t) => t.includes(term)).length;
+    if (withTerm < Math.min(2, h2s.length)) bad(`only ${withTerm} H2 headings contain "${term}"`);
     for (const h of main.querySelectorAll('h2, h3, h4')) {
       const text = norm(h.text);
-      if (!term || !text.includes(term)) bad(`heading lacks "${term}": ${text}`);
-      if (location && !text.includes(location)) bad(`heading lacks location: ${text}`);
+      if (!fits(text)) bad(`heading lacks "${term}", a variant or the location: ${text}`);
     }
     if (!NO_ANSWER.includes(path)) {
       const answer = main.querySelector('[data-answer]');

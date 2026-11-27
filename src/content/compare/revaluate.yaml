@@ -68,34 +68,34 @@
       "source": "faq"
     }
   ],
-  "tableQuestion": "Where does this Revaluate alternative differ line by line?",
+  "tableQuestion": "Where do Territory Signals and Revaluate differ?",
   "tableAnswer": "This Revaluate alternative differs first in what gets scored; each Revaluate statement below links to the Revaluate page it came from.",
   "sections": {
     "differ": {
-      "q": "How is this Revaluate alternative different?",
+      "q": "How is Territory Signals different from Revaluate?",
       "p": [
-        "This Revaluate alternative starts from property in a territory, not from people already in your database.",
+        "Territory Signals starts from property in a territory, not from people already in your database.",
         "It can surface parcels whose owners you have never met, and it explains each score through its records."
       ]
     },
     "publishes": {
-      "q": "What should a Revaluate alternative be compared against?",
+      "q": "What is this Revaluate comparison based on?",
       "p": [
-        "A Revaluate alternative should be compared against what Revaluate publishes on its own pages.",
+        "This comparison is based on what Revaluate publishes on its own pages.",
         "It describes scoring CRM contacts nightly for likelihood of moving, with an email address as the required input and alerts delivered by text, email, dashboard or CRM."
       ]
     },
     "better": {
-      "q": "When is Revaluate a better choice than a Revaluate alternative?",
+      "q": "When is Revaluate the better choice?",
       "p": [
-        "Revaluate may be the better choice than a Revaluate alternative when your best opportunity is your existing contact database, anywhere in the United States.",
+        "Revaluate may be a better choice than Territory Signals when your best opportunity is your existing contact database, anywhere in the United States.",
         "The two answer different questions and can sit side by side."
       ]
     },
     "evaluate": {
       "q": "How should you test a Revaluate alternative?",
       "p": [
-        "Test a Revaluate alternative by deciding first whether you are mining relationships or farming an area."
+        "Test Territory Signals against Revaluate by deciding first whether you are mining relationships or farming an area."
       ],
       "list": [
         "How much of your business comes from existing contacts?",
@@ -104,5 +104,8 @@
         "Which market do you work?"
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "Revaluate"
+  ]
 }

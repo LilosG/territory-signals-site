@@ -1,0 +1,20 @@
+---
+/** A recipe's letter template from the product, filled with the demo workspace's invented names. */
+import letters from '../../data/product-letters.json';
+import { AREA, WORKSPACE } from '../../data/demo.ts';
+interface Props { recipeKey: string; address: string }
+const { recipeKey, address } = Astro.props;
+const body = (letters as Record<string, string[]>)[recipeKey] ?? letters.general;
+const fill = (p: string) => p.replaceAll('{neighborhood}', AREA).replaceAll('{street}', address).replace('{cta}', `Reach out to ${WORKSPACE} to get started.`).trim();
+const paragraphs = body.map(fill).filter(Boolean);
+---
+<figure class="letter" aria-label="Sample letter">
+  <p class="eyebrow">Sample letter · drafted from the facts</p>
+  <p class="mt-5">To the owners of {address},</p>
+  {paragraphs.map((p) => <p class="mt-3.5">{p}</p>)}
+  <p class="mt-5 font-sans text-[13px] text-ink-muted">J. Agent · DRE #00000000 · {WORKSPACE}</p>
+</figure>
+<style>
+  .letter { padding: 2.25rem; border-radius: 4px; background: var(--color-surface); box-shadow: var(--shadow-card); font-family: var(--font-serif); font-size: 18px; line-height: 1.65; color: #1f2937; }
+  .letter .eyebrow { color: var(--color-sample); }
+</style>

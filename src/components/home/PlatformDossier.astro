@@ -1,0 +1,33 @@
+---
+/** The platform section's product shot: the seller dossier for the demo lead, beside three plain statements. */
+import Frame from '../product/Frame.astro';
+import ScoreRing from '../ui/ScoreRing.astro';
+import ScoreBreakdown from '../product/ScoreBreakdown.astro';
+import { LEAD } from '../../data/demo.ts';
+import { tierOf } from '../../lib/tiers.ts';
+const tier = tierOf(LEAD.score);
+---
+<Frame title="Seller dossier" class="dossier">
+  <div class="flex flex-wrap gap-7 p-6">
+    <div class="min-w-0 flex-[1_1_16rem]">
+      <div class="flex items-center gap-4">
+        <ScoreRing score={LEAD.score} size="lg" />
+        <div>
+          <p class="text-xl font-semibold">{LEAD.address}</p>
+          <p class="mt-1 text-[13px] text-ink-muted"><span class:list={['font-semibold', `tier-${tier.key}`]}>{tier.label}</span> · {LEAD.recipe} · {LEAD.zoning} · {LEAD.lot}</p>
+        </div>
+      </div>
+      <p class="ai-tag mt-5 ml-0">AI summary · cites its records</p>
+      <p class="mt-2.5 text-[17px] font-semibold">{LEAD.headline}</p>
+      <p class="mt-2 text-[14.5px] leading-relaxed text-ink-muted">{LEAD.summary}</p>
+    </div>
+    <div class="min-w-0 flex-[1_1_15rem]">
+      <p class="mono text-[11px] tracking-[0.08em] text-ink-muted uppercase">Why it scored {LEAD.score}</p>
+      <div class="mt-3.5"><ScoreBreakdown items={LEAD.breakdown} score={LEAD.score} /></div>
+      <p class="mt-3.5 text-xs text-ink-muted">{LEAD.families} signal families · stacking ×{LEAD.multiplier.toFixed(2)}</p>
+    </div>
+  </div>
+</Frame>
+<style>
+  :global(.dossier) { box-shadow: 0 40px 100px -30px rgb(0 0 0 / 0.8); }
+</style>

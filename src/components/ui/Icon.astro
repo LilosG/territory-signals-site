@@ -7,8 +7,13 @@ import x from 'lucide-static/icons/x.svg?raw';
 import alert from 'lucide-static/icons/circle-alert.svg?raw';
 import lock from 'lucide-static/icons/lock.svg?raw';
 import plus from 'lucide-static/icons/plus.svg?raw';
+import check from 'lucide-static/icons/check.svg?raw';
+import shield from 'lucide-static/icons/shield-check.svg?raw';
+import user from 'lucide-static/icons/user.svg?raw';
+import phoneOff from 'lucide-static/icons/phone-off.svg?raw';
+import eyeOff from 'lucide-static/icons/eye-off.svg?raw';
 
-const ICONS = { arrow: arrowRight, external: arrowUpRight, menu, close: x, alert, lock, plus } as const;
+const ICONS = { arrow: arrowRight, external: arrowUpRight, menu, close: x, alert, lock, plus, check, shield, user, 'phone-off': phoneOff, 'eye-off': eyeOff } as const;
 interface Props { name: keyof typeof ICONS; class?: string }
 const { name, class: cls = 'size-4' } = Astro.props;
 const svg = ICONS[name]

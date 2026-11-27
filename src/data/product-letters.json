@@ -1,0 +1,52 @@
+{
+  "builder_bait": [
+    "I focus on {neighborhood}, and California's recent zoning changes have opened new options for some lots like yours on {street}.",
+    "If you've wondered whether your property is worth more as a home or as a lot, I can put together a short side-by-side: what it would likely sell for as it stands, and what comparable lots nearby have sold for.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "downsizer": [
+    "I focus on {neighborhood}, and many homeowners think about their next move well before they plan it.",
+    "I can put together what your home would likely sell for, and explain how California's Prop 19 lets owners 55 and over move their property tax base. That part is worth confirming with your tax advisor.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "financial_pressure": [
+    "I focus on {neighborhood}, and knowing what your home is worth is useful whenever you are planning ahead.",
+    "I can send a neutral, no-pressure summary of what your home at {street} would likely sell for today, based on how comparable homes nearby have sold.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "general": [
+    "I focus on {neighborhood}, and knowing what your home is worth is useful whenever you are planning ahead.",
+    "I can put together a current value summary for your home at {street}: what comparable homes nearby have sold for, and what that suggests for yours.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "insurance_squeeze": [
+    "I focus on {neighborhood}, and knowing what your home is worth is useful whenever you are planning ahead.",
+    "I can send a neutral, no-pressure summary of what your home at {street} would likely sell for today, based on how comparable homes nearby have sold.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "pre_list_prep": [
+    "I focus on {neighborhood}, and updates before a sale can be expensive, so it helps to know what pays off first.",
+    "I can put together a short guide to which updates actually pay off before selling in {neighborhood}, and which don't, so you can spend only where it counts.",
+    "No obligation, just a guide you can keep. {cta}"
+  ],
+  "quiet_inheritance": [
+    "I focus on {neighborhood}, and a recent change in ownership can be a natural moment to think about what comes next for a home.",
+    "If you are weighing your options, I can put together a neutral, no-pressure summary of what {street} would likely sell for today, based on comparable nearby sales. There is no obligation, and the numbers are yours to keep.",
+    "{cta}"
+  ],
+  "stalled_project": [
+    "I focus on {neighborhood}, and decisions about a home project are easier with real numbers.",
+    "For {street}, I can show what the home would likely sell for as it stands, and what it would likely sell for once finished, so you can see whether the finishing work is worth it.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "str_exit": [
+    "I focus on {neighborhood}, and the City's short-term rental rules have changed how some owners think about their property.",
+    "For {street}, I can lay out your options under those rules: sell, rent it long term, or hold. I'll include what the property would likely sell for, so you can compare the choices side by side.",
+    "No obligation, just numbers you can keep. {cta}"
+  ],
+  "tired_landlord": [
+    "I focus on {neighborhood}, and whether a rental still fits your plans is a question worth revisiting from time to time.",
+    "For {street}, I can put together a short comparison of what the property would likely net if sold today versus continuing to rent it. A 1031 exchange is something to review with your tax advisor.",
+    "No obligation, just numbers you can keep. {cta}"
+  ]
+}

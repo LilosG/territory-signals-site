@@ -4,10 +4,12 @@ import Icon from '../ui/Icon.astro';
 import { FIELDS, HONEYPOT, TEAM_SIZES } from '../../data/request-form.ts';
 import { COMPANY, CTA } from '../../data/site.ts';
 
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id, ...FIELDS[id] }));
 ---
-<form method="post" action="/api/request" class="flex max-w-form flex-col gap-5" data-request-form data-sitekey={siteKey}>
+<form method="post" action="/api/request" id="request-form" class:list={['flex flex-col gap-5', compact ? 'request-compact' : 'max-w-form']} data-request-form data-sitekey={siteKey}>
   <noscript><p class="border-l-2 border-ink pl-4">The spam check needs JavaScript. If it is turned off, email <a class="link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> instead.</p></noscript>
   <div class="error-summary hidden rounded-md border-2 border-ink bg-surface p-4" tabindex="-1" role="alert" data-error-summary>
     <p class="flex items-center gap-2 font-semibold"><Icon name="alert" class="size-5" /><span data-error-title>Check the highlighted fields.</span></p>
@@ -15,7 +17,7 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
   </div>
 
   {text.map((f) => (
-    <div>
+    <div class={`field-${f.id}`}>
       <label class="field-label" for={f.id}>{f.label}</label>
       <input class="field" id={f.id} name={f.id} type={f.id === 'email' ? 'email' : 'text'} autocomplete={f.autocomplete} maxlength={f.max} required={f.required} data-error={f.error} />
       <p class="field-error" id={`${f.id}-error`} hidden></p>
@@ -31,7 +33,7 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
   </div>
   <div>
     <label class="field-label" for="note">{FIELDS.note.label}</label>
-    <textarea class="field" id="note" name="note" rows="4" maxlength={FIELDS.note.max} data-error={FIELDS.note.error}></textarea>
+    <textarea class="field" id="note" name="note" rows={compact ? 2 : 4} maxlength={FIELDS.note.max} data-error={FIELDS.note.error}></textarea>
     <p class="field-error" id="note-error" hidden></p>
   </div>
 
@@ -52,6 +54,8 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
   .field-error { @apply mt-1.5 text-sm font-semibold text-ink; }
   .field-error::before { content: 'Error: '; }
   .error-summary a { @apply inline-flex min-h-tap items-center underline underline-offset-4; }
+  .request-compact { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; }
+  .request-compact > :not(.field-name):not(.field-email) { grid-column: 1 / -1; }
   .hp-field { position: absolute; left: -100vw; width: 1px; height: 1px; overflow: hidden; }
 </style>
 <script>

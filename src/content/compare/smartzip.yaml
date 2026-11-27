@@ -56,34 +56,34 @@
       "source": "hw"
     }
   ],
-  "tableQuestion": "Where does this SmartZip alternative differ line by line?",
+  "tableQuestion": "Where do Territory Signals and SmartZip differ?",
   "tableAnswer": "This SmartZip alternative differs in what it shows and how it is delivered; each SmartZip statement below is attributed to HousingWire with its date.",
   "sections": {
     "differ": {
-      "q": "How is this SmartZip alternative different?",
+      "q": "How is Territory Signals different from SmartZip?",
       "p": [
-        "This SmartZip alternative is different mainly in showing its rules and records.",
+        "Territory Signals is different mainly in showing its rules and records.",
         "Each weight, half-life and stacking rule is published to the team, and each signal links to a source record. It is built and run per client rather than bought as a package."
       ]
     },
     "publishes": {
-      "q": "What should a SmartZip alternative be compared against?",
+      "q": "What is this SmartZip comparison based on?",
       "p": [
-        "A SmartZip alternative should be compared against what is published about SmartZip, which here comes from HousingWire.",
+        "This comparison is based on what is published about SmartZip, which here comes from HousingWire.",
         "Its 2024 review describes predicting which homeowners in your farm area will soon be ready to sell, a territory chosen by neighborhood or ZIP code, and marketing by email, online ads or direct mail. HousingWire’s June 2026 list again describes predictive analytics for identifying likely sellers."
       ]
     },
     "better": {
-      "q": "When is SmartZip a better choice than a SmartZip alternative?",
+      "q": "When is SmartZip the better choice?",
       "p": [
-        "SmartZip may be a better choice than a SmartZip alternative if you want marketing campaigns delivered with the predictions, outside San Diego.",
+        "SmartZip may be a better choice than Territory Signals if you want marketing campaigns delivered with the predictions, outside San Diego.",
         "Territory Signals prepares drafts for your team to send and has one live market."
       ]
     },
     "evaluate": {
       "q": "How should you test a SmartZip alternative?",
       "p": [
-        "Test a SmartZip alternative by asking both vendors the same questions about one area you know well."
+        "Test Territory Signals against SmartZip by asking both vendors the same questions about one area you know well."
       ],
       "list": [
         "Why is this property ranked, and which records say so?",
@@ -93,5 +93,8 @@
       ]
     }
   },
-  "note": "smartzip.com was not used as a source for this page. The statements come from HousingWire’s published review and list, and HousingWire discloses that it may earn commissions from some links."
+  "note": "smartzip.com was not used as a source for this page. The statements come from HousingWire’s published review and list, and HousingWire discloses that it may earn commissions from some links.",
+  "headingVariants": [
+    "SmartZip"
+  ]
 }

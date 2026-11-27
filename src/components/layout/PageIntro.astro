@@ -1,26 +1,47 @@
 ---
-/** Breadcrumbs, eyebrow, H1 and the answer-first paragraph. With `block`, an obsidian hero beside the parcel drawing. */
+/**
+ * Breadcrumbs, eyebrow, H1 and the answer-first paragraph on an obsidian band. With `actions`, the page's one in-body
+ * request link and the sample briefing link sit under the answer. The `aside` slot holds a fact card; with `block`
+ * and no aside, the illustrative parcel block is shown instead.
+ */
 import Container from './Container.astro';
 import Breadcrumbs from '../seo/Breadcrumbs.astro';
+import Button from '../ui/Button.astro';
 import ParcelBlock from '../visuals/ParcelBlock.astro';
 import ParcelTexture from '../visuals/ParcelTexture.astro';
 import type { PageMeta } from '../../lib/page-meta.ts';
 import { crumbsFor } from '../../lib/crumbs.ts';
-interface Props { meta: PageMeta; eyebrow?: string; answer: string; block?: boolean }
-const { meta, eyebrow, answer, block = false } = Astro.props;
+import { CTA } from '../../data/site.ts';
+interface Props { meta: PageMeta; eyebrow?: string; answer: string; block?: boolean; actions?: boolean; tone?: 'dark' | 'light' }
+const { meta, eyebrow, answer, block = false, actions = false, tone = 'dark' } = Astro.props;
+const dark = tone === 'dark';
+const hasAside = Astro.slots.has('aside') || block;
 ---
-<div class:list={['pt-4', block ? 'on-dark section-dark pb-16 lg:pb-24' : 'bg-canvas pb-16']} data-dark-band={block ? '' : undefined}>
-  {block && <ParcelTexture id="intro" />}
+<div class:list={['page-intro', dark ? 'on-dark section-dark' : 'bg-canvas']} data-dark-band={dark ? '' : undefined}>
+  {dark && <ParcelTexture />}
   <Container>
     <Breadcrumbs crumbs={crumbsFor(meta)} />
-    <div class="mt-8 grid-12 items-center">
-      <div class={block ? 'min-w-0 lg:col-span-7' : 'min-w-0 lg:col-span-9'}>
-        {eyebrow && <p class="eyebrow mb-4">{eyebrow}</p>}
-        <h1>{meta.h1}</h1>
-        <p class="lede mt-6" data-answer>{answer}</p>
+    <div class="mt-10 grid-12 items-center">
+      <div class={hasAside ? 'min-w-0 lg:col-span-7' : 'min-w-0 lg:col-span-9'}>
+        {eyebrow && <p class="eyebrow mb-5">{eyebrow}</p>}
+        <h1 class="text-[clamp(2.5rem,5vw,4.25rem)] leading-[1.04]">{meta.h1}</h1>
+        <p class="lede mt-6 text-[1.1875rem]" data-answer>{answer}</p>
         <slot />
+        {actions && (
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button href={CTA.primary.href} location="intro">{CTA.primary.label}</Button>
+            <Button href={CTA.secondary.href} variant="secondary" location="intro">{CTA.secondary.short}</Button>
+          </div>
+        )}
       </div>
-      {block && <div class="mx-auto w-full max-w-xl lg:col-span-5"><ParcelBlock tone="dark" /></div>}
+      {hasAside && (
+        <div class="min-w-0 lg:col-span-5">
+          {Astro.slots.has('aside') ? <slot name="aside" /> : <div class="mx-auto w-full max-w-xl"><ParcelBlock tone="dark" /></div>}
+        </div>
+      )}
     </div>
   </Container>
 </div>
+<style>
+  .page-intro { padding-block: 2.5rem 5.5rem; }
+</style>

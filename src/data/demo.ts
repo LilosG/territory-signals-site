@@ -110,20 +110,40 @@ const prep = (ageDays: number) => event('permit_approved:pre_sale_prep', s.permi
 const stalled = (ageDays: number) => event('permit_stalled', s.permit_stalled, ageDays);
 const stroRemoved = (ageDays: number) => event('stro_license_removed', s.stro_license_removed, ageDays, 0.9);
 
-const example = (signal: string, signals: DemoSignal[]) => ({ signal: componentByKey(signal).label, score: computeScore(signals, SCORE_RULES).score });
+const remodel = (ageDays: number) => event('permit_approved:remodel_addition', s.permit_approved.by_group.remodel_addition, ageDays);
+
+/** Invented matching parcels, one per recipe: the qualifying signal, the full breakdown and the computed score. */
+const sample = (signal: string, signals: DemoSignal[]) => {
+  const result = computeScore(signals, SCORE_RULES);
+  return {
+    signal: componentByKey(signal).label,
+    score: result.score,
+    families: result.families.length,
+    multiplier: result.multiplier,
+    weightedSum: result.weightedSum,
+    breakdown: result.components
+      .map((c) => ({ label: componentByKey(c.key).label, points: c.contribution, max: componentByKey(c.key).max_points }))
+      .filter((c) => c.points > 0)
+      .sort((a, b) => b.points - a.points),
+  };
+};
+
+export const RECIPE_SAMPLES = {
+  str_exit: sample('stro_license_removed', [stroRemoved(30), owner.held20(), owner.absentee()]),
+  tired_landlord: sample('owner:absentee', [stroRemoved(60), stalled(100), owner.absentee(), owner.held20()]),
+  builder_bait: sample('sb9_lot_split_estimate', [estimate('sb9_lot_split_estimate', s.sb9_lot_split_estimate.weight), estimate('sb79_transit_estimate', s.sb79_transit_estimate.values.within_quarter_mile), owner.held30()]),
+  pre_list_prep: sample('permit_approved:pre_sale_prep', [prep(60), estimate('sb9_lot_split_estimate', s.sb9_lot_split_estimate.weight), owner.held20(), owner.noMortgage()]),
+  stalled_project: sample('permit_stalled', [stalled(100), owner.held20()]),
+  downsizer: sample('owner:mortgage_open_false', [owner.held30(), owner.noMortgage(), remodel(60)]),
+  insurance_squeeze: sample('fire_hazard_zone', [fixed('fire_hazard_zone', s.fire_hazard_zone.values['very high'], 0.95, false), owner.held20()]),
+  financial_pressure: sample('tax_default', [event('tax_default', s.tax_default, 200), event('notice_of_default', s.notice_of_default, 60)]),
+  quiet_inheritance: sample('ownership_transfer_inheritance', [owner.absentee(), owner.noMortgage()]),
+} as const;
 
 /** One card per catalog recipe: the signal or fact that qualifies it, and the score of one invented matching parcel. */
-export const RECIPE_EXAMPLES: Record<string, { signal: string; score: number }> = {
-  str_exit: example('stro_license_removed', [stroRemoved(30), owner.held20(), owner.absentee()]),
-  tired_landlord: example('owner:absentee', [stroRemoved(60), stalled(100), owner.absentee(), owner.held20()]),
-  builder_bait: example('sb9_lot_split_estimate', [estimate('sb9_lot_split_estimate', s.sb9_lot_split_estimate.weight), estimate('sb79_transit_estimate', s.sb79_transit_estimate.values.within_quarter_mile), owner.held30()]),
-  pre_list_prep: { signal: componentByKey('permit_approved:pre_sale_prep').label, score: LEAD.score },
-  stalled_project: example('permit_stalled', [stalled(100), owner.held20()]),
-  downsizer: example('owner:mortgage_open_false', [owner.held30(), owner.noMortgage()]),
-  insurance_squeeze: example('fire_hazard_zone', [fixed('fire_hazard_zone', s.fire_hazard_zone.values['very high'], 0.95, false), owner.held20()]),
-  financial_pressure: example('tax_default', [event('tax_default', s.tax_default, 200), event('notice_of_default', s.notice_of_default, 60)]),
-  quiet_inheritance: example('ownership_transfer_inheritance', [owner.absentee(), owner.noMortgage()]),
-};
+export const RECIPE_EXAMPLES: Record<string, { signal: string; score: number }> = Object.fromEntries(
+  Object.entries(RECIPE_SAMPLES).map(([k, v]) => [k, { signal: v.signal, score: v.score }]),
+);
 
 /** The dashboard's ranked list. No sensitive record appears on a lead row, matching the product's rule. */
 export const TOP_LEADS = [
@@ -134,3 +154,14 @@ export const TOP_LEADS = [
 ]
   .map((l) => ({ address: l.address, signal: l.signal, recipe: SCORING.recipes[l.recipe as keyof typeof SCORING.recipes].label, score: computeScore(l.signals, SCORE_RULES).score }))
   .sort((a, b) => b.score - a.score);
+
+/** The top lead's breakdown, shown beside the hero workspace. Same invented parcel and signals as TOP_LEADS[0]. */
+export const TOP_LEAD_DETAIL = { address: '418 Sample Ct', ...RECIPE_SAMPLES.tired_landlord };
+
+/** Sample counts inside the hero workspace and the sample briefing. Immediate and Priority come from TOP_LEADS. */
+export const WEEK = {
+  label: 'Week of Nov 16, 2026',
+  newSignals: 38,
+  drafts: 12,
+  conversations: 7,
+};

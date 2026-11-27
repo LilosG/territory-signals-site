@@ -23,9 +23,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem do real estate teams bring to this?",
+      "q": "What problem does Territory Signals solve for real estate teams?",
       "p": [
-        "The problem real estate teams bring is that records, notes and follow-up live in too many places.",
+        "Territory Signals solves a common problem for real estate teams: records, notes and follow-up live in too many places.",
         "One agent watches permits, another exports a list, and nobody can say why a property was chosen or whether it was contacted."
       ]
     },
@@ -56,11 +56,15 @@
       ]
     },
     "fit": {
-      "q": "When is this the wrong fit for real estate teams?",
+      "q": "When is Territory Signals the wrong fit for real estate teams?",
       "p": [
-        "This is the wrong fit for real estate teams that want to buy contacts by the lead or dial a large list automatically.",
+        "Territory Signals is the wrong fit for real estate teams that want to buy contacts by the lead or dial a large list automatically.",
         "Territory Signals does not sell leads, supply homeowner phone numbers or dial anyone."
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "team",
+    "Territory Signals"
+  ]
 }

@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-import sansUrl from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url';
-import serifUrl from '@fontsource/ibm-plex-serif/files/ibm-plex-serif-latin-500-normal.woff2?url';
+import sansUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import serifUrl from '@fontsource-variable/newsreader/files/newsreader-latin-standard-normal.woff2?url';
 import Seo from '../components/seo/Seo.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -21,14 +21,14 @@ const { meta, schema, ogType, location } = Astro.props;
     <link rel="preload" href={sansUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#fafaf9" />
+    <meta name="theme-color" content="#0a0e14" />
     <Seo meta={meta} crumbs={crumbsFor(meta)} schema={schema} ogType={ogType} />
     <Analytics />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header current={meta.path} />
-    <main id="main" data-heading-term={meta.headingTerm} data-heading-location={location}>
+    <main id="main" data-heading-term={meta.headingTerm} data-heading-variants={meta.headingVariants?.join('|')} data-heading-location={location}>
       <slot />
     </main>
     <Footer />

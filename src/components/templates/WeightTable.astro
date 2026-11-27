@@ -1,0 +1,37 @@
+---
+/** A signal's score components: what is in each, its published weight with a bar, and its half-life. */
+import { weightFor } from '../../lib/product.ts';
+interface Props { caption: string; components: { key: string; label: string; maxPoints: number }[] }
+const { caption, components } = Astro.props;
+const max = Math.max(...components.map((c) => c.maxPoints), 1);
+const rows = components.map((c) => ({ ...c, ...weightFor(c.key) })).sort((a, b) => b.maxPoints - a.maxPoints);
+---
+<div class="overflow-hidden rounded-2xl border border-line bg-surface">
+  <div class="overflow-x-auto" tabindex="0" role="region" aria-label={`${caption}, scrolls sideways`}>
+    <table class="weights">
+      <caption class="sr-only">{caption}</caption>
+      <thead><tr><th scope="col">Score component</th><th scope="col" class="num-col">Weight</th><th scope="col" class="num-col">Half-life</th></tr></thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr>
+            <th scope="row">{r.label}</th>
+            <td class="num-col">
+              <span class="inline-flex items-center gap-3">
+                <svg class="h-1.5 w-[4.5rem] text-tier-priority" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true"><rect class="bar-track" width="100" height="6" rx="3" /><rect width={((r.maxPoints / max) * 100).toFixed(1)} height="6" rx="3" fill="currentColor" /></svg>
+                <span class="mono">{r.weight}</span>
+              </span>
+            </td>
+            <td class="num-col mono">{r.halfLife}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+<style>
+  .weights { width: 100%; min-width: 36rem; border-collapse: collapse; font-size: 15px; text-align: left; }
+  .weights th, .weights td { padding: 1rem 1.25rem; border-top: 1px solid #eef0f3; }
+  .weights thead th { border-top: 0; background: #f8f9fb; font-weight: 600; color: var(--color-ink-muted); }
+  .weights tbody th { font-weight: 600; }
+  .num-col { text-align: right; white-space: nowrap; }
+</style>

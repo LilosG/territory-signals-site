@@ -21,9 +21,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem do developers bring to this?",
+      "q": "What problem does Territory Signals solve for developers?",
       "p": [
-        "The problem developers bring is that finding candidate land means cross-checking zoning, transit, lot size and permit history by hand.",
+        "Territory Signals solves a common problem for developers: finding candidate land means cross-checking zoning, transit, lot size and permit history by hand.",
         "Most parcels fall away on closer review, so a good first screen saves time."
       ]
     },
@@ -54,11 +54,16 @@
       ]
     },
     "fit": {
-      "q": "When is this the wrong fit for developers?",
+      "q": "When is Territory Signals the wrong fit for developers?",
       "p": [
-        "This is the wrong fit for developers who need confirmed entitlements or a feasibility study.",
+        "Territory Signals is the wrong fit for developers who need confirmed entitlements or a feasibility study.",
         "The screen does not check most disqualifying conditions, does not model costs and never shows that an owner wants to sell."
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "developer",
+    "investor",
+    "Territory Signals"
+  ]
 }

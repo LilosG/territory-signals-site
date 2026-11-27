@@ -22,9 +22,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem do brokerages bring to this?",
+      "q": "What problem does Territory Signals solve for brokerages?",
       "p": [
-        "The problem brokerages bring is that prospecting done agent by agent is hard to supervise.",
+        "Territory Signals solves a common problem for brokerages: prospecting done agent by agent is hard to supervise.",
         "Different tools, templates and data habits make it difficult to know what was said and on what basis."
       ]
     },
@@ -55,11 +55,15 @@
       ]
     },
     "fit": {
-      "q": "When is this the wrong fit for brokerages?",
+      "q": "When is Territory Signals the wrong fit for brokerages?",
       "p": [
-        "This is the wrong fit for brokerages looking for a nationwide self-serve tool for every agent today.",
+        "Territory Signals is the wrong fit for brokerages looking for a nationwide self-serve tool for every agent today.",
         "Each deployment is configured to a client’s territory, and San Diego is the live market. The product’s checks do not replace broker review."
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "brokerage",
+    "Territory Signals"
+  ]
 }

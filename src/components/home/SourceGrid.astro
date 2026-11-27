@@ -1,0 +1,21 @@
+---
+/** One tile per data source, with its live or coming status. Names come from data/sources.ts. */
+import { SOURCES } from '../../data/sources.ts';
+const SHORT: Record<string, string> = {
+  permits: 'Development permit approvals', str: 'Short-term rental licenses', tax: 'Tax-default list', attom: 'Owner and recorder history',
+  parcels: 'Parcels', zoning: 'Base zoning', transit: 'Transit stops and routes', areas: 'Community planning areas', code: 'Code enforcement cases', fire: 'Fire hazard severity zones',
+};
+---
+<ul class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
+  {SOURCES.map((s) => (
+    <li class:list={['tile', s.verdict === 'Coming' && 'tile-coming']}>
+      <p class="font-semibold"><a class="hover:underline" href={s.url} rel="noopener">{SHORT[s.key]}</a></p>
+      <p class="mt-1 text-[13px] text-ink-muted">{s.publisher}</p>
+      <p class:list={['mt-3.5 inline-flex items-center gap-1.5 text-xs font-semibold', s.verdict === 'Coming' ? 'text-ink-muted' : 'text-usable']}><span class:list={['size-[7px] rounded-full', s.verdict === 'Coming' ? 'bg-tier-monitor' : 'bg-usable']} aria-hidden="true"></span>{s.verdict === 'Coming' ? 'Coming' : 'Live'}</p>
+    </li>
+  ))}
+</ul>
+<style>
+  .tile { padding: 1.25rem; border-radius: 12px; background: var(--color-surface); border: 1px solid var(--color-line); }
+  .tile-coming { border-style: dashed; border-color: var(--color-line-strong); }
+</style>

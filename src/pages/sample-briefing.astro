@@ -1,0 +1,107 @@
+---
+/** A full weekly briefing for the demo workspace. Every address and record ID is invented; scores use the real formula. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/layout/PageIntro.astro';
+import Section from '../components/layout/Section.astro';
+import CtaBand from '../components/layout/CtaBand.astro';
+import Button from '../components/ui/Button.astro';
+import { PAGES } from '../data/pages.ts';
+import { CTA } from '../data/site.ts';
+import { AREA, TOP_LEADS, WEEK, WORKSPACE } from '../data/demo.ts';
+import { tierOf } from '../lib/tiers.ts';
+import { service } from '../lib/schema.ts';
+
+const meta = PAGES['/sample-briefing'];
+const count = (key: string) => TOP_LEADS.filter((l) => tierOf(l.score).key === key).length;
+const stats = [
+  { label: 'New signals', value: WEEK.newSignals, tone: '' },
+  { label: 'Immediate', value: count('immediate'), tone: 'tier-immediate' },
+  { label: 'Priority', value: count('priority'), tone: 'tier-priority' },
+  { label: 'Drafts ready', value: WEEK.drafts, tone: '' },
+];
+const top = TOP_LEADS[0]!;
+const newSignals = [
+  { what: 'ADU permit approved', where: '31 Sample Ln', record: 'PMT-0000301', date: 'Nov 17' },
+  { what: 'Remodel or addition permit approved', where: '8 Sample Ter', record: 'PMT-0000306', date: 'Nov 18' },
+  { what: 'Remodel or addition permit approved', where: '140 Sample Rd', record: 'PMT-0000311', date: 'Nov 19' },
+];
+const contents = [
+  { title: 'What changed', text: 'Only new or changed signals, so the team isn’t rereading last week.' },
+  { title: 'Who moved up', text: 'The homes that crossed into Immediate or Priority, with the reason.' },
+  { title: 'Drafts to approve', text: 'Letters, emails and call scripts waiting for an agent’s review.' },
+  { title: 'A newsletter paragraph', text: 'Market notes for your farm, with no owner details, ready to paste.' },
+];
+---
+<BaseLayout meta={meta} schema={[service()]}>
+  <PageIntro meta={meta} eyebrow="Sample · invented addresses and records" answer="Every Monday, your team gets a briefing on what changed in your farm: new seller signals, the homes that moved up the list, drafts ready to approve and a paragraph for your newsletter. This is what one looks like, built from sample data." />
+
+  <section class="briefing-wrap">
+    <div class="page-container">
+      <article class="briefing" aria-label="Sample weekly briefing">
+        <header class="window-bar px-7"><span class="mono text-[11.5px] tracking-[0.08em] text-ink-muted uppercase">{WORKSPACE} · Weekly territory briefing · {WEEK.label}</span><span class="sample-pill">Sample</span></header>
+        <div class="p-[clamp(1.5rem,4vw,3rem)]">
+          <div class="flex flex-wrap gap-12">
+            <div class="min-w-0 flex-[2_1_28rem]">
+              <p class="ai-tag ml-0">AI summary · cites its records</p>
+              <p class="mt-3.5 font-serif text-[clamp(1.75rem,3vw,2.5rem)] leading-tight font-medium tracking-heading">Two remodel permits and an ADU approval lead this week’s new signals</p>
+              <p class="mt-3.5 text-[17px] leading-relaxed text-[#374151]">Three new permit signals landed in {AREA} this week. {top.address} is still the top lead at {top.score}, with a rental license no longer listed and an expired permit on a long-held, absentee-owned home. {WEEK.drafts} drafts are ready for review.</p>
+            </div>
+            <dl class="grid min-w-0 flex-[1_1_16rem] grid-cols-2 content-start gap-3">
+              {stats.map((s) => <div class="rounded-xl border border-[#eef0f3] bg-[#f8f9fb] p-4"><dt class="text-[12.5px] text-ink-muted">{s.label}</dt><dd class:list={['mt-1.5 text-[28px] font-semibold', s.tone]}>{s.value}</dd></div>)}
+            </dl>
+          </div>
+
+          <p class="card-title mt-12 text-lg">Top leads this week</p>
+          <div class="mt-3.5 overflow-x-auto rounded-xl border border-[#eef0f3]" tabindex="0" role="region" aria-label="Top leads table, scrolls sideways">
+            <table class="leads">
+              <thead><tr><th scope="col">Home</th><th scope="col">Playbook</th><th scope="col">Top signal</th><th scope="col" class="text-right">Score</th></tr></thead>
+              <tbody>
+                {TOP_LEADS.map((l) => (
+                  <tr><th scope="row">{l.address}</th><td>{l.recipe}</td><td class="text-ink-muted">{l.signal}</td><td class="text-right"><span class:list={['tier-pill mono', `tier-pill-${tierOf(l.score).key}`]}>{l.score}</span></td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-6">
+            <div class="min-w-0 flex-[1_1_22rem]">
+              <p class="card-title text-lg">New signals in the territory</p>
+              <ul class="mt-3.5 border-t border-[#eef0f3]">
+                {newSignals.map((n) => (
+                  <li class="flex justify-between gap-4 border-b border-[#eef0f3] py-3.5">
+                    <span><span class="block text-[15px] font-semibold">{n.what}</span><span class="mono mt-1 block text-xs text-ink-muted">{n.where} · {n.record}</span></span>
+                    <span class="mono text-xs text-ink-muted">{n.date}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="on-dark min-w-0 flex-[1_1_22rem] rounded-2xl bg-obsidian p-6 text-on-dark">
+              <p class="eyebrow">For your newsletter</p>
+              <p class="mt-3 font-serif text-[19px] leading-relaxed">{AREA} saw two remodel permits and an accessory dwelling unit approved this week.</p>
+              <p class="mt-4 text-[13px] text-on-dark-faint">No owner names or addresses, ready to paste.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <Section>
+    <h2 class="max-w-3xl">What’s in every Monday territory briefing</h2>
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {contents.map((c) => <li class="border-t-2 border-ink pt-5"><p class="card-title text-lg">{c.title}</p><p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{c.text}</p></li>)}
+    </ul>
+    <p class="mt-10"><Button href={CTA.primary.href} location="body">{CTA.primary.label}</Button></p>
+  </Section>
+
+  <CtaBand title="Get this territory briefing for your San Diego farm every Monday" text="We set up your planning areas, your agents and your playbooks, then the briefing arrives each week." secondary={false} />
+</BaseLayout>
+
+<style>
+  .briefing-wrap { background: var(--color-canvas); padding-bottom: var(--spacing-section); }
+  .briefing { position: relative; margin-top: -3.5rem; overflow: hidden; border: 1px solid var(--color-line); border-radius: 18px; background: var(--color-surface); box-shadow: 0 40px 100px -40px rgb(11 15 23 / 0.45); }
+  .leads { width: 100%; min-width: 40rem; border-collapse: collapse; font-size: 14.5px; text-align: left; }
+  .leads th, .leads td { padding: 0.875rem 1rem; border-top: 1px solid #eef0f3; }
+  .leads thead th { border-top: 0; background: #f8f9fb; font-weight: 600; color: var(--color-ink-muted); }
+  .leads tbody th { font-weight: 600; }
+</style>

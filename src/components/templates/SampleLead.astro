@@ -1,0 +1,20 @@
+---
+/** An invented parcel that matches a recipe, scored with the real formula (data/demo.ts RECIPE_SAMPLES). */
+import Frame from '../product/Frame.astro';
+import ScoreRing from '../ui/ScoreRing.astro';
+import ScoreBreakdown from '../product/ScoreBreakdown.astro';
+import { tierOf } from '../../lib/tiers.ts';
+interface Props { address: string; recipe: string; sample: { score: number; families: number; multiplier: number; weightedSum: number; breakdown: { label: string; points: number; max: number }[] } }
+const { address, recipe, sample } = Astro.props;
+const tier = tierOf(sample.score);
+---
+<Frame title="Lead" class="shadow-card">
+  <div class="p-6">
+    <div class="flex items-center gap-4">
+      <ScoreRing score={sample.score} size="lg" />
+      <div><p class="text-[19px] font-semibold">{address}</p><p class="mt-1 text-[13px] text-ink-muted"><span class:list={['font-semibold', `tier-${tier.key}`]}>{tier.label}</span> · {recipe}</p></div>
+    </div>
+    <div class="mt-5"><ScoreBreakdown items={sample.breakdown} score={sample.score} /></div>
+    <p class="mt-3.5 text-xs text-ink-muted">{sample.families} signal {sample.families === 1 ? 'family' : 'families'} · stacking ×{sample.multiplier.toFixed(2)} · {sample.weightedSum.toFixed(1)} × {sample.multiplier.toFixed(2)} = {sample.score}</p>
+  </div>
+</Frame>

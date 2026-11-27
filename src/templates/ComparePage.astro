@@ -21,7 +21,7 @@ const others = (await entries('compare')).filter((c) => c.id !== entry.id);
 ---
 <StandardPage meta={metaOf('compare', entry)} answer={d.answer} eyebrow={`Comparison · facts as of ${d.asOf}`}
   request="Compare for yourself against your own planning areas."
-  cta={{ title: `Considering this ${d.headingTerm} for your team?`, text: 'A walkthrough shows the records, rules and approval steps so you can compare them with what you use now.' }}>
+  cta={{ title: `Is Territory Signals the right ${d.headingTerm} for your team?`, text: 'A walkthrough shows the records, rules and approval steps so you can compare them with what you use now.' }}>
   <QaSection {...s.differ} />
   <QaSection {...s.publishes} />
   <Section>

@@ -1,0 +1,33 @@
+---
+/** One illustrative parcel over 14 months: the records that came first, the score, then the listing. */
+const STEPS = [
+  { when: 'Month 1 · City STR licenses', what: 'Short-term rental license removed', kind: 'record' },
+  { when: 'Month 5 · City development permits', what: 'Kitchen and bath remodel permit approved', kind: 'record' },
+  { when: 'Month 5 · Territory Signals', what: 'Scored 74, Priority. Your team gets the dossier and a draft letter.', kind: 'signal' },
+  { when: 'Month 14 · MLS', what: 'Listed, with the agent who reached out first', kind: 'listing' },
+];
+---
+<figure class="timeline" aria-label="Illustrative timeline for a sample parcel">
+  <figcaption class="flex items-center justify-between gap-3">
+    <span class="mono text-[11px] tracking-[0.08em] text-ink-muted uppercase">One parcel · 14 months</span>
+    <span class="sample-pill">Illustrative</span>
+  </figcaption>
+  <ol class="mt-6">
+    {STEPS.map((s, i) => (
+      <li class:list={['step', `step-${s.kind}`, i === STEPS.length - 1 && 'step-last']}>
+        <span class="dot" aria-hidden="true"></span>
+        <p class:list={['mono text-xs uppercase', s.kind === 'signal' ? 'text-gold-strong' : 'text-ink-muted']}>{s.when}</p>
+        <p class="mt-1 text-base font-semibold">{s.what}</p>
+      </li>
+    ))}
+  </ol>
+</figure>
+<style>
+  .timeline { padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--color-line); border-radius: var(--radius-2xl); background: var(--color-canvas); }
+  .step { position: relative; margin-left: 7px; padding: 0 0 1.625rem 2.125rem; border-left: 2px solid #d7dce3; }
+  .step-signal { border-left-color: var(--color-gold); }
+  .step-last { padding-bottom: 0; border-left-color: transparent; }
+  .dot { position: absolute; left: -9px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--color-surface); border: 2px solid var(--color-tier-monitor); }
+  .step-signal .dot { left: -10px; width: 18px; height: 18px; background: var(--color-gold); border: 0; }
+  .step-listing .dot { background: var(--color-ink); border: 0; }
+</style>

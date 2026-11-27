@@ -1,0 +1,38 @@
+---
+/** Three featured recipes as dark cards, the other six as a ruled list. Labels and descriptions come from the collection. */
+import { entries, hrefOf } from '../../lib/collections.ts';
+const FEATURED: Record<string, { eyebrow: string; facts: string }> = {
+  downsizer: { eyebrow: 'Owner profile', facts: '20+ years owned · No open mortgage' },
+  'builder-bait': { eyebrow: 'Land potential', facts: 'Upzoning (estimated) · Large lot' },
+  'pre-list-prep': { eyebrow: 'Permit activity', facts: 'Remodel permit · 10+ years owned' },
+};
+const all = await entries('recipes');
+const featured = Object.keys(FEATURED).map((id) => all.find((r) => r.id === id)!);
+const rest = all.filter((r) => !(r.id in FEATURED));
+---
+<div class="grid gap-5 md:grid-cols-3">
+  {featured.map((r) => (
+    <a class="feature on-dark" href={hrefOf('recipes', r.id)}>
+      <p class="flex items-start justify-between"><span class="eyebrow">{FEATURED[r.id]!.eyebrow}</span><span aria-hidden="true" class="text-on-dark-faint">→</span></p>
+      <p class="mt-5 font-serif text-[30px] leading-tight font-medium">{r.data.label}</p>
+      <p class="mt-2.5 text-[15px] leading-relaxed text-on-dark-muted">{r.data.rationale.split(/(?<=\.)\s/)[0]}</p>
+      <p class="mono mt-6 border-t border-line-dark pt-3.5 text-xs text-on-dark-faint uppercase">{FEATURED[r.id]!.facts}</p>
+    </a>
+  ))}
+</div>
+<ul class="mt-5 grid border-t border-line md:grid-cols-2 lg:grid-cols-3">
+  {rest.map((r) => (
+    <li class="border-b border-line">
+      <a class="row" href={hrefOf('recipes', r.id)}>
+        <span><span class="block font-semibold">{r.data.label}</span><span class="mt-1 block text-sm text-ink-muted">{r.data.shortDescription}{r.data.approval ? ' · approval required' : ''}</span></span>
+        <span aria-hidden="true" class="text-gold-strong">→</span>
+      </a>
+    </li>
+  ))}
+</ul>
+<style>
+  .feature { display: block; padding: 1.75rem; border-radius: var(--radius-2xl); background: var(--color-obsidian); color: var(--color-on-dark); transition: transform var(--duration-base) var(--ease-quiet), box-shadow var(--duration-base) var(--ease-quiet); }
+  .feature:hover, .feature:focus-visible { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+  .row { display: flex; justify-content: space-between; gap: 1rem; padding: 1.25rem 0.25rem; min-height: var(--spacing-tap); }
+  .row:hover .font-semibold { text-decoration: underline; text-underline-offset: 4px; }
+</style>

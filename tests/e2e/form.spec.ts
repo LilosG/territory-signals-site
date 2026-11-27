@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 test('empty submit shows an accessible error summary and field errors', async ({ page }) => {
   await page.goto('/request');
-  await page.getByRole('button', { name: 'Request a territory walkthrough' }).click();
+  await page.getByRole('button', { name: 'Book a territory walkthrough' }).click();
   const summary = page.locator('[data-error-summary]');
   await expect(summary).toBeVisible();
   await expect(summary).toBeFocused();
@@ -27,7 +27,7 @@ test('the endpoint validates, ignores the honeypot and rejects other methods', a
 test('error and open-menu states have no accessibility violations', async ({ page }) => {
   const scan = async () => (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze()).violations.map((v) => v.id);
   await page.goto('/request');
-  await page.getByRole('button', { name: 'Request a territory walkthrough' }).click();
+  await page.getByRole('button', { name: 'Book a territory walkthrough' }).click();
   expect(await scan()).toEqual([]);
   await page.setViewportSize({ width: 390, height: 800 });
   await page.goto('/');
@@ -44,11 +44,11 @@ test('the form submits with valid fields and surfaces a server error without los
   await page.getByLabel('Market or neighborhoods').fill('Sample Area');
   await page.getByLabel('Team size').selectOption('2–5');
   await page.route('**/api/request', (route) => route.fulfill({ status: 502, contentType: 'application/json', body: JSON.stringify({ ok: false, message: 'Your request could not be sent.' }) }));
-  await page.getByRole('button', { name: 'Request a territory walkthrough' }).click();
+  await page.getByRole('button', { name: 'Book a territory walkthrough' }).click();
   await expect(page.locator('[data-error-summary]')).toContainText('could not be sent');
   await expect(page.getByLabel('Work email')).toHaveValue('alex@example.com');
   await page.unroute('**/api/request');
   await page.route('**/api/request', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
-  await page.getByRole('button', { name: 'Request a territory walkthrough' }).click();
+  await page.getByRole('button', { name: 'Book a territory walkthrough' }).click();
   await expect(page).toHaveURL(/\/request\/thanks$/);
 });

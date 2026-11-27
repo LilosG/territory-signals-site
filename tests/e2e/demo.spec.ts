@@ -22,9 +22,11 @@ test('the score demo recalculates with the real formula', async ({ page }) => {
 test('the hero shows its finished state under reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  const states = await page.locator('.signal-stack .stack-row, .signal-stack .stack-result').evaluateAll((els) => els.map((e) => [getComputedStyle(e).opacity, e.getAnimations().length]));
-  expect(states.length).toBe(5);
-  for (const [opacity, animations] of states) { expect(opacity).toBe('1'); expect(animations).toBe(0); }
+  // The approved home design leads with the workspace: three ranked leads, each with a computed score ring.
+  const rows = await page.locator('.hero-workspace .lead-row').evaluateAll((els) => els.map((e) => [getComputedStyle(e).opacity, e.getAnimations().length]));
+  expect(rows.length).toBe(3);
+  for (const [opacity, animations] of rows) { expect(opacity).toBe('1'); expect(animations).toBe(0); }
+  await expect(page.locator('.hero-workspace .sample-pill').first()).toBeVisible();
 });
 
 test('the mobile menu opens, closes with Escape and works without JavaScript', async ({ browser }) => {

@@ -6,6 +6,7 @@ const meta = {
   crumb: z.string(),
   keyword: z.string(),
   headingTerm: z.string(),
+  headingVariants: z.array(z.string()).optional(),
   h1: z.string(),
   title: z.string().min(50).max(60),
   description: z.string().min(140).max(158),

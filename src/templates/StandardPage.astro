@@ -1,9 +1,7 @@
 ---
-/** Intro, slotted sections, the single in-body request link and the closing band. */
+/** Intro (carrying the single in-body request link when `request` is set), slotted sections and the closing band. */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/layout/PageIntro.astro';
-import Section from '../components/layout/Section.astro';
-import InlineRequest from '../components/layout/InlineRequest.astro';
 import CtaBand from '../components/layout/CtaBand.astro';
 import type { PageMeta } from '../lib/page-meta.ts';
 import type { JsonLdNode } from '../lib/schema.ts';
@@ -22,8 +20,10 @@ interface Props {
 const { meta, answer, eyebrow, schema, ogType, location, request, cta, block } = Astro.props;
 ---
 <BaseLayout meta={meta} schema={schema} ogType={ogType} location={location}>
-  <PageIntro meta={meta} answer={answer} eyebrow={eyebrow} block={block}><slot name="intro" /></PageIntro>
+  <PageIntro meta={meta} answer={answer} eyebrow={eyebrow} block={block} actions={Boolean(request)}>
+    <slot name="intro" />
+    {Astro.slots.has('aside') && <Fragment slot="aside"><slot name="aside" /></Fragment>}
+  </PageIntro>
   <slot />
-  {request && <Section><InlineRequest lead={request} /></Section>}
   {cta && <CtaBand title={cta.title} text={cta.text} />}
 </BaseLayout>

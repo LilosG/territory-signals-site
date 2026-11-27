@@ -44,34 +44,34 @@
       "source": "offrs"
     }
   ],
-  "tableQuestion": "Where does this Offrs alternative differ line by line?",
+  "tableQuestion": "Where do Territory Signals and Offrs differ?",
   "tableAnswer": "This Offrs alternative differs most in transparency of scoring; the Offrs statements below come from its own website.",
   "sections": {
     "differ": {
-      "q": "How is this Offrs alternative different?",
+      "q": "How is Territory Signals different from Offrs?",
       "p": [
-        "This Offrs alternative scores with published rules and shows every component.",
+        "Territory Signals scores with published rules and shows every component.",
         "Each signal on a parcel links to its public record or names its data source, so an agent can check why a property ranks."
       ]
     },
     "publishes": {
-      "q": "What should an Offrs alternative be compared against?",
+      "q": "What is this Offrs comparison based on?",
       "p": [
-        "An Offrs alternative should be compared against what Offrs publishes about its own service.",
+        "This comparison is based on what Offrs publishes about its own service.",
         "As of November 2026, Offrs offers predictive analytics and lead generation for agents, uses data from real estate websites and portals that track homeowner interest, scores each property with a proprietary algorithm and supports outreach by email, phone, mail and online ads."
       ]
     },
     "better": {
-      "q": "When is Offrs a better choice than an Offrs alternative?",
+      "q": "When is Offrs the better choice?",
       "p": [
-        "Offrs may be a better choice than an Offrs alternative if you want its lead generation and outreach channels, including online ads.",
+        "Offrs may be a better choice than Territory Signals if you want its lead generation and outreach channels, including online ads.",
         "Territory Signals does not run ads and has one live market."
       ]
     },
     "evaluate": {
       "q": "How should you test an Offrs alternative?",
       "p": [
-        "Test an Offrs alternative by picking properties you know and asking each product to explain them."
+        "Test Territory Signals against Offrs by picking properties you know and asking each product to explain them."
       ],
       "list": [
         "What put this property on the list?",
@@ -80,5 +80,8 @@
         "What is the agreement for my area today?"
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "Offrs"
+  ]
 }

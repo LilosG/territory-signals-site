@@ -23,18 +23,19 @@ export const COMPANY = {
 } as const;
 
 export const CTA = {
-  primary: { label: 'Request a territory walkthrough', short: 'Request walkthrough', href: '/request' },
-  secondary: { label: 'See how scoring works', href: '/how-it-works' },
+  primary: { label: 'Book a territory walkthrough', short: 'Book a walkthrough', href: '/request' },
+  secondary: { label: 'See a sample weekly briefing', short: 'See a sample briefing', href: '/sample-briefing' },
+  demo: { label: 'Try the scoring demo', href: '/how-it-works#score' },
 } as const;
 
 export type NavLink = { label: string; href: string };
 
 export const NAV: NavLink[] = [
   { label: 'How it works', href: '/how-it-works' },
+  { label: 'Seller playbooks', href: '/recipes' },
   { label: 'Signals', href: '/signals' },
-  { label: 'Recipes', href: '/recipes' },
   { label: 'Platform', href: '/platform' },
-  { label: 'Data sources', href: '/data-sources' },
+  { label: 'San Diego data', href: '/data-sources' },
   { label: 'Guides', href: '/guides' },
 ];
 
@@ -44,8 +45,9 @@ export const FOOTER: { title: string; links: NavLink[] }[] = [
     links: [
       { label: 'How it works', href: '/how-it-works' },
       { label: 'Signals', href: '/signals' },
-      { label: 'Recipes', href: '/recipes' },
+      { label: 'Seller playbooks', href: '/recipes' },
       { label: 'Platform', href: '/platform' },
+      { label: 'Sample briefing', href: '/sample-briefing' },
       { label: 'How we build', href: '/how-we-build' },
     ],
   },

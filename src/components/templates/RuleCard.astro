@@ -1,0 +1,20 @@
+---
+/** A recipe's rule on a dark card: top-level conditions numbered, nested ones listed under their parent. */
+import type { RuleLine } from '../../lib/product.ts';
+interface Props { line: RuleLine; note?: string }
+const { line, note } = Astro.props;
+const items = line.children ?? [line];
+const heading = line.children ? line.text : 'The condition';
+---
+<aside class="card-dark" aria-label="The playbook rule">
+  <p class="eyebrow">The rule · {heading.toLowerCase()}</p>
+  <ol class="mt-4 grid gap-3">
+    {items.map((c, i) => (
+      <li class="rounded-[10px] border border-line-dark bg-[rgb(255_255_255/0.04)] px-3.5 py-3">
+        <p class="flex gap-3 text-[15px]"><span class="mono text-xs leading-6 text-gold-bright">{String(i + 1).padStart(2, '0')}</span><span>{c.text}{c.children ? ':' : ''}</span></p>
+        {c.children && <ul class="mt-2 ml-8 list-disc space-y-1 text-sm text-on-dark-muted">{c.children.map((g) => <li>{g.text}</li>)}</ul>}
+      </li>
+    ))}
+  </ol>
+  {note && <p class="mt-4 text-[13px] text-on-dark-faint">{note}</p>}
+</aside>

@@ -2,213 +2,210 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/layout/Container.astro';
 import Section from '../components/layout/Section.astro';
-import CtaBand from '../components/layout/CtaBand.astro';
-import Button from '../components/ui/Button.astro';
 import ParcelTexture from '../components/visuals/ParcelTexture.astro';
-import Showcase from '../components/product/Showcase.astro';
-import RecipeGrid from '../components/product/RecipeGrid.astro';
-import DataTable from '../components/ui/DataTable.astro';
-import DefinitionList from '../components/ui/DefinitionList.astro';
+import Button from '../components/ui/Button.astro';
+import Icon from '../components/ui/Icon.astro';
 import FaqList from '../components/ui/FaqList.astro';
-import SignalStack from '../components/visuals/SignalStack.astro';
+import HeroWorkspace from '../components/product/HeroWorkspace.astro';
+import SellerTimeline from '../components/home/SellerTimeline.astro';
+import PlaybookShowcase from '../components/home/PlaybookShowcase.astro';
+import PlatformDossier from '../components/home/PlatformDossier.astro';
+import SourceGrid from '../components/home/SourceGrid.astro';
 import TerritoryMap from '../components/visuals/TerritoryMap.astro';
-import BlockedDraft from '../components/product/BlockedDraft.astro';
+import RequestForm from '../components/forms/RequestForm.astro';
 import { PAGES } from '../data/pages.ts';
-import { CTA } from '../data/site.ts';
+import { COMPANY, CTA } from '../data/site.ts';
 import { NOT_SCRAPED, SOURCES } from '../data/sources.ts';
 import { faqFor } from '../lib/collections.ts';
 import { faqPage, service } from '../lib/schema.ts';
 
 const meta = PAGES['/'];
 const faqs = await faqFor('home');
-const scattered = [
-  ['Building permit approval', 'City development services', 'What work was approved, and when'],
-  ['Rental license file', 'City treasurer', 'Whether an address still appears as licensed'],
-  ['Tax-default list', 'County treasurer-tax collector', 'Which parcels are subject to power to sell'],
-  ['Parcel and zoning layers', 'SanGIS and SANDAG', 'Lot size, zone and planning area'],
-  ['Owner and recorder history', 'ATTOM', 'Tenure, mortgage status and recorded documents'],
-];
+const liveSources = SOURCES.filter((s) => s.verdict !== 'Coming').length;
+const proof = [`${liveSources} live public and licensed sources`, 'Refreshed every week', 'Every score shows its math', 'DRE-compliant, human-approved outreach'];
 const steps = [
-  ['01', 'Collect', 'Public files and owner records are pulled on a weekly run. Each raw record is kept, never overwritten.'],
-  ['02', 'Connect', 'Records are cleaned and matched to a parcel by parcel number, location, address or name. Every match keeps its confidence.'],
-  ['03', 'Score', 'Published weights, recency decay and stacking rules turn matched signals into a score from 0 to 100.'],
-  ['04', 'Act', 'Ranked parcels become dossiers and drafted outreach. A person approves each draft, and your team sends it.'],
+  { n: '01', title: 'Collect San Diego public records', text: 'City permits, STR licenses, the County tax-default list, parcel and zoning layers and ATTOM owner data are pulled every week. Raw records are kept, never overwritten.', chips: ['Permits', 'STR', 'Tax roll', 'ATTOM'] },
+  { n: '02', title: 'Match each seller signal to a parcel', text: 'Each record is matched by parcel number, location, address or owner name, and keeps its match confidence, so your team knows how sure the match is.', code: 'PMT-0000214 → APN 000-000-01-00 · 95%' },
+  { n: '03', title: 'Score likely sellers 0 to 100', text: 'Published weights, recency decay and signal stacking rank every home. No black box: every point traces to a record.', tiers: true },
+  { n: '04', title: 'Reach sellers with approved drafts', text: 'Letters, emails and call scripts are drafted from the facts. An agent approves each one, and your team sends it.', approved: true },
+];
+const platform = [
+  { title: 'Every lead explains itself', text: 'The dossier shows the score, each point behind it and the public record each fact came from.' },
+  { title: 'Drafts your agents approve', text: 'Letter, email and call script, written from the facts. Nothing goes out without an agent’s name and DRE number.' },
+  { title: 'A Monday briefing for the team', text: 'What changed in your farm this week, ready to drop into your newsletter.' },
+];
+const rules: { icon: 'shield' | 'user' | 'phone-off' | 'eye-off'; title: string; text: string }[] = [
+  { icon: 'shield', title: 'DRE number required', text: 'A draft can’t be approved until the agent’s name and DRE license number are on it.' },
+  { icon: 'user', title: 'A person approves everything', text: 'Every letter and email is reviewed by an agent before your team sends it.' },
+  { icon: 'phone-off', title: 'No auto texts or calls', text: 'The system never texts, dials or emails a homeowner on its own.' },
+  { icon: 'eye-off', title: 'Sensitive records stay private', text: 'Tax default and inheritance records never appear on lists, cards or homeowner letters.' },
+];
+const compare = [
+  ['Why a home is on it', 'A score, rarely explained', 'Every point traced to a public record'],
+  ['Data', 'National data, the same everywhere', 'San Diego permits, STR licenses and tax rolls'],
+  ['Follow-up', 'Up to you', 'Drafted letters, emails and call scripts'],
+  ['Setup', 'Self-serve sign-up', 'Built and run for your team, in your territory'],
 ];
 ---
 <BaseLayout meta={meta} schema={[service(), faqPage(faqs)]}>
   <div class="home-hero on-dark section-dark" data-dark-band>
-    <ParcelTexture id="hero" />
-    <Container>
-      <div class="grid-12 items-center">
-        <div class="min-w-0 lg:col-span-6">
-          <p class="eyebrow">Territory intelligence for real estate teams</p>
-          <h1 class="mt-5 text-hero">{meta.h1}</h1>
-          <p class="lede mt-7" data-answer>Territory Signals pulls permits, rental licenses, tax-roll lines and owner records into one place, matches each to a parcel, scores it with published rules and hands your team ranked properties, the evidence behind them and drafted outreach that a person approves before your team sends it.</p>
-          <div class="mt-9 flex flex-wrap gap-3">
-            <Button href={CTA.primary.href} location="hero">{CTA.primary.label}</Button>
-            <Button href={CTA.secondary.href} variant="secondary" location="hero">{CTA.secondary.label}</Button>
-          </div>
-        </div>
-        <div class="home-hero-visual min-w-0 lg:col-span-6"><SignalStack /></div>
+    <ParcelTexture />
+    <Container class="text-center">
+      <p class="hero-pill mono"><span aria-hidden="true"></span>Seller intelligence for San Diego real estate teams</p>
+      <h1 class="mx-auto mt-7 max-w-[61rem] text-hero">{meta.h1}</h1>
+      <p class="lede mx-auto mt-6 max-w-[45rem] text-[1.1875rem]" data-answer>Territory Signals turns City permits, rental license changes, tax-roll notices and owner records into one ranked seller list for your San Diego farm, with the evidence behind every score and outreach drafts your own team approves before anything is sent.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <Button href={CTA.primary.href} location="hero">{CTA.primary.label}</Button>
+        <Button href={CTA.secondary.href} variant="secondary" location="hero">{CTA.secondary.label}</Button>
       </div>
+      <ul class="mx-auto mt-9 flex flex-wrap justify-center gap-x-7 gap-y-2.5 text-sm text-on-dark-faint">
+        {proof.map((p) => <li class="flex items-center gap-2"><Icon name="check" class="size-4 text-gold" />{p}</li>)}
+      </ul>
+      <div class="mt-16"><HeroWorkspace /></div>
     </Container>
   </div>
 
   <Section>
-    <div class="grid-12">
-      <div class="col-support stack">
-        <h2>Where do seller signals sit before a home is listed?</h2>
-        <p>Seller signals sit in separate public and owner records that no listing search brings together. Each has its own publisher, format and schedule, and most carry no hint of the others.</p>
-        <p class="pull">The MLS shows what everyone can see. The records that can come first are scattered.</p>
+    <div class="grid-12 items-center gap-y-14">
+      <div class="min-w-0 lg:col-span-6">
+        <p class="eyebrow">Why Territory Signals</p>
+        <h2 class="mt-4">Off-market seller signals the MLS never shows you</h2>
+        <p class="mt-6 text-lg leading-relaxed text-ink-muted">By the time a home is on the MLS, every agent can see it. The reasons it sold usually showed up months earlier, spread across City permits, rental license files, the County tax roll and recorder documents. No one puts them together. Territory Signals does, parcel by parcel, every week.</p>
+        <dl class="mt-8 grid gap-6 sm:grid-cols-2">
+          <div class="border-t-2 border-ink pt-3.5"><dt class="font-semibold">What everyone sees</dt><dd class="mt-1.5 text-[15px] leading-relaxed text-ink-muted">The listing, after the seller has already chosen an agent.</dd></div>
+          <div class="border-t-2 border-gold pt-3.5"><dt class="font-semibold">What your team sees</dt><dd class="mt-1.5 text-[15px] leading-relaxed text-ink-muted">The permits, license changes and owner facts that came first.</dd></div>
+        </dl>
       </div>
-      <div class="col-lead self-center">
-        <DataTable caption="Where the records live" showCaption columns={['Record', 'Publisher', 'What it can show']} rows={scattered} />
-      </div>
+      <div class="min-w-0 lg:col-span-6"><SellerTimeline /></div>
     </div>
   </Section>
 
   <Section>
-    <div class="grid-12">
-      <div class="col-support stack lg:sticky lg:top-24 lg:self-start">
-        <h2>How do seller signals become a worked lead?</h2>
-        <p>Seller signals become a worked lead in four steps, each of which leaves a record your team can check.</p>
-        <p class="text-sm text-ink-muted">An optional AI layer explains: it writes short, validated summaries that cite their records. It never scores.</p>
-        <p><a class="link" href="/how-it-works">How scoring works, step by step</a></p>
-      </div>
-      <ol class="steps col-lead">
-        {steps.map(([n, name, text]) => (
-          <li class="step">
-            <p class="step-numeral">{n}</p>
-            <h3 class="sr-only">{name}: seller signals</h3>
-            <p class="mt-4 font-serif text-2xl font-medium" aria-hidden="true">{name}</p>
-            <p class="mt-3 text-ink-muted">{text}</p>
-          </li>
-        ))}
-      </ol>
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-[40rem]"><p class="eyebrow">How it works</p><h2 class="mt-4">How predictive seller scoring works, from public record to booked appointment</h2></div>
+      <a class="arrow-link" href={CTA.demo.href}>{CTA.demo.label} →</a>
     </div>
-  </Section>
-
-  <Section>
-    <div class="grid-12 items-end">
-      <h2 class="col-lead">Which seller signals does each recipe combine?</h2>
-      <div class="col-support stack">
-        <p>Each recipe combines specific seller signals and owner facts under a written rule. These are the product’s own labels.</p>
-        <p><a class="link" href="/recipes">Read every recipe rule</a></p>
-      </div>
-    </div>
-    <div class="mt-10"><RecipeGrid /></div>
-  </Section>
-
-  <Section tone="dark" id="showcase">
-    <div class="max-w-3xl">
-      <h2>How does your team work these seller signals?</h2>
-      <p class="lede mt-5">Your team works seller signals from a ranked list, opens the evidence behind a parcel and approves a draft. These are the product’s surfaces, shown with invented sample records.</p>
-      <p class="mt-4"><a class="link" href="/platform">Explore the platform</a></p>
-    </div>
-    <div class="mt-14"><Showcase /></div>
-  </Section>
-
-  <Section label="Approval rule">
-    <div class="grid-12 items-center">
-      <figure class="col-lead">
-        <p class="eyebrow">Approval rule</p>
-        <p class="mt-5 border-l-2 border-gold pl-6 font-serif text-section">A draft stays blocked until the agent’s name and license number are on it.</p>
-      </figure>
-      <div class="col-support"><BlockedDraft /></div>
-    </div>
-  </Section>
-
-  <Section>
-    <div class="max-w-3xl">
-      <h2>Which data sources feed the seller signals?</h2>
-      <p class="mt-4">The seller signals come from the sources below, each carrying the verdict from our own source review.</p>
-    </div>
-    <div class="mt-8">
-      <DataTable caption="Data sources and verdicts" columns={['Source', 'Verdict', 'What it provides']} rows={SOURCES.map((s) => [{ text: s.name, href: s.url, icon: s.key }, { text: s.verdict, pill: true }, s.provides])} />
-      <p class="mt-4 max-w-measure text-sm text-ink-muted">Not scraped: {NOT_SCRAPED.map((n) => n.term.toLowerCase()).join(', ')}. <a class="link" href="/data-sources">Why, and every source limit</a>.</p>
-    </div>
-  </Section>
-
-  <Section label="The market">
-    <div class="grid-12 items-center">
-      <div class="col-support stack">
-        <p class="eyebrow">The market</p>
-        <p class="font-serif text-2xl">San Diego is the live market. A territory is any set of City planning areas your team chooses.</p>
-        <p><a class="link" href="/markets/san-diego">San Diego coverage</a></p>
-      </div>
-      <div class="col-lead"><TerritoryMap /></div>
-    </div>
-  </Section>
-
-  <Section>
-    <div class="grid-12">
-      <div class="col-support stack">
-        <h2>Who approves outreach built on seller signals?</h2>
-        <p class="text-ink-muted">A person on your team approves every piece of outreach built on seller signals, and your team sends it.</p>
-        <p><a class="link" href="/compliance">Compliance in detail</a></p>
-      </div>
-      <dl class="col-lead border-t-2 border-ink">
-        {[
-          ['Human approval', 'Drafts are edited and approved one by one. Bulk approval still applies every rule to each draft.'],
-          ['DRE license rule', 'A draft cannot be approved without the agent’s name and DRE license number.'],
-          ['No automatic contact', 'The system never sends, texts or dials a homeowner.'],
-          ['Sensitive records', 'They stay off lead cards, lists and share pages, and homeowner text never mentions them.'],
-        ].map(([t, d]) => (
-          <div class="border-b border-line py-5 sm:grid sm:grid-cols-3 sm:gap-6">
-            <dt class="font-semibold">{t}</dt>
-            <dd class="mt-1 text-ink-muted sm:col-span-2 sm:mt-0">{d}</dd>
+    <ol class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map((s) => (
+        <li class="card flex flex-col">
+          <p class="mono text-[13px] text-gold-strong">{s.n}</p>
+          <h3 class="mt-3.5 text-xl font-semibold">{s.title}</h3>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-ink-muted">{s.text}</p>
+          <div class="mt-auto pt-5">
+            {s.chips && <p class="flex flex-wrap gap-1.5">{s.chips.map((c) => <span class="mono rounded-md bg-sunken px-2 py-1 text-[11px] uppercase">{c}</span>)}</p>}
+            {s.code && <p class="mono rounded-lg bg-sunken px-3 py-2.5 text-xs text-ink-muted">{s.code}</p>}
+            {s.tiers && <p class="flex flex-wrap gap-2"><span class="tier-pill tier-pill-immediate">80+ Immediate</span><span class="tier-pill tier-pill-priority">65 Priority</span><span class="tier-pill tier-pill-watchlist">45 Watch</span></p>}
+            {s.approved && <p class="flex items-center gap-2 text-[13px] font-semibold text-usable"><Icon name="check" class="size-4" />Approved by J. Agent · DRE on file</p>}
           </div>
-        ))}
-      </dl>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section>
+    <div class="max-w-[45rem]">
+      <p class="eyebrow">Seller playbooks</p>
+      <h2 class="mt-4">Seller lead playbooks built from San Diego public records</h2>
+      <p class="mt-5 text-lg leading-relaxed text-ink-muted">Each playbook is a written rule that combines specific signals and owner facts, so your team knows exactly why a home is on the list and what to say.</p>
+    </div>
+    <div class="mt-12"><PlaybookShowcase /></div>
+  </Section>
+
+  <Section tone="dark" id="platform">
+    <div class="flex flex-wrap items-end justify-between gap-10">
+      <div class="max-w-[39rem]"><p class="eyebrow">The platform</p><h2 class="mt-4">One workspace for every seller signal in your farm</h2></div>
+      <p class="max-w-sm text-on-dark-muted">From the first signal to the listing appointment: dossiers, drafts, maps and a weekly briefing, configured to your territory.</p>
+    </div>
+    <div class="mt-12 grid gap-6 lg:grid-cols-5">
+      <div class="min-w-0 lg:col-span-3"><PlatformDossier /></div>
+      <div class="flex min-w-0 flex-col gap-4 lg:col-span-2">
+        {platform.map((p) => <div class="card-dark"><p class="card-title">{p.title}</p><p class="mt-2 text-[15px] leading-relaxed">{p.text}</p></div>)}
+        <p><a class="btn btn-primary" href="#request-form" data-cta="primary" data-cta-location="platform">{CTA.primary.label}</a></p>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-[42rem]"><p class="eyebrow">The data</p><h2 class="mt-4">San Diego property data, cleaned and matched to every parcel</h2></div>
+      <a class="arrow-link" href="/data-sources">Every source and its limits →</a>
+    </div>
+    <div class="mt-12"><SourceGrid /></div>
+    <p class="mt-5 text-sm text-ink-muted">Never scraped: {NOT_SCRAPED.map((n) => n.term.toLowerCase()).join(', ')}.</p>
+  </Section>
+
+  <Section label="San Diego coverage">
+    <div class="grid-12 items-center gap-y-12">
+      <div class="min-w-0 lg:col-span-5">
+        <p class="eyebrow">San Diego</p>
+        <h2 class="mt-4">Your San Diego farm, defined by planning area</h2>
+        <p class="mt-6 text-lg leading-relaxed text-ink-muted">Pick the City planning areas you work. Territory Signals scores every residential parcel inside them each week, and only your team sees your territory.</p>
+        <dl class="mt-8 grid gap-5 sm:grid-cols-2">
+          <div class="border-t border-line pt-3.5"><dt class="text-sm text-ink-muted">Coverage</dt><dd class="mt-1.5 text-[17px] font-semibold">City of San Diego planning areas</dd></div>
+          <div class="border-t border-line pt-3.5"><dt class="text-sm text-ink-muted">Refresh</dt><dd class="mt-1.5 text-[17px] font-semibold">Every Monday morning</dd></div>
+        </dl>
+        <p class="mt-6"><a class="arrow-link" href="/markets/san-diego">San Diego coverage →</a></p>
+      </div>
+      <div class="min-w-0 lg:col-span-6 lg:col-start-7"><TerritoryMap /></div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-[45rem]"><p class="eyebrow">Built for California</p><h2 class="mt-4">Seller outreach that follows California DRE solicitation rules</h2></div>
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {rules.map((r) => <li class="card"><Icon name={r.icon} class="size-7 text-gold-strong" /><p class="card-title mt-4 text-lg">{r.title}</p><p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{r.text}</p></li>)}
+    </ul>
+    <div class="mt-16 overflow-hidden rounded-[20px] border border-line bg-surface">
+      <div class="px-7 pt-7"><h3 class="font-serif text-[30px] font-medium tracking-heading">Not another seller lead list</h3><p class="mt-2 text-ink-muted">How Territory Signals differs from buying predictive seller leads.</p></div>
+      <div class="overflow-x-auto px-7 pb-5" tabindex="0" role="region" aria-label="Comparison table, scrolls sideways">
+        <table class="compare">
+          <thead><tr><td></td><th scope="col">A purchased lead list</th><th scope="col" class="us">Territory Signals</th></tr></thead>
+          <tbody>{compare.map(([dim, them, us]) => <tr><th scope="row">{dim}</th><td>{them}</td><td class="us">{us}</td></tr>)}</tbody>
+        </table>
+      </div>
     </div>
   </Section>
 
   <Section>
     <div class="grid-12">
-      <div class="col-support stack">
-        <h2>How are seller signals set up for your team?</h2>
-        <p>Seller signals are set up per team or brokerage: one deployment per client, configured to the planning areas you choose and run as a managed service. It is not self-serve software, and it is not priced per lead.</p>
-        <p><a class="link" href="/how-we-build">What onboarding involves</a></p>
+      <div class="min-w-0 lg:col-span-4">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-4">Questions San Diego agents ask about seller signals</h2>
+        <p class="mt-6"><a class="arrow-link" href="/faq">All questions →</a></p>
       </div>
-      <div class="col-lead self-center">
-        <DefinitionList items={[
-          { term: 'Your territory', definition: 'The City planning areas you choose, with your agents and license details.' },
-          { term: 'Managed', definition: 'Built and run for you, with a weekly data run and visible source health.' },
-          { term: 'MLS add-on', definition: 'Optional and scoped per client. It requires your broker’s signed back-office data agreement. The core product runs without it.' },
-        ]} />
-      </div>
+      <div class="min-w-0 lg:col-span-7 lg:col-start-6"><FaqList items={faqs} /></div>
     </div>
   </Section>
 
-  <Section>
-    <div class="grid-12">
-      <div class="col-support stack">
-        <h2>What do teams ask about seller signals?</h2>
-        <p>Teams ask where seller signals come from, how they are scored and what happens before anyone is contacted.</p>
-        <p><a class="link" href="/faq">All questions</a></p>
+  <Section tone="dark" id="cta">
+    <div class="grid-12 items-center gap-y-12" data-cta-band>
+      <div class="min-w-0 lg:col-span-6">
+        <h2>See which homes in your farm are showing seller signals</h2>
+        <p class="lede mt-6">Tell us the San Diego neighborhoods you work. We’ll walk you through the records that cover them and how each home would score.</p>
+        <p class="mt-7 text-sm text-on-dark-faint">Built in San Diego by <a class="link" href={COMPANY.url}>{COMPANY.name}</a> · <a class="link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></p>
+        <p class="mt-2 text-sm text-on-dark-faint">Prefer a full page? <a class="link" href={CTA.primary.href} data-cta="primary" data-cta-location="cta-band">Open the walkthrough request</a>.</p>
       </div>
-      <div class="col-lead"><FaqList items={faqs} /></div>
+      <div class="form-card min-w-0 lg:col-span-6">
+        <p class="text-xl font-semibold">Book a territory walkthrough</p>
+        <p class="mt-1 text-sm text-ink-muted">No sign-up and no obligation.</p>
+        <div class="mt-5"><RequestForm compact /></div>
+      </div>
     </div>
   </Section>
-
-  <CtaBand tone="light" title="Which seller signals are in your territory?" text="Tell us the market and neighborhoods you work. We walk through the records that cover them and how each would score." />
 </BaseLayout>
 
 <style>
-  .home-hero { display: flex; align-items: center; min-height: 88vh; padding-block: 4rem 5rem; }
-  .home-hero > :global(.page-container) { flex: 1; }
-  .home-hero :global(.lede) { max-width: 36rem; }
-  @media (min-width: 64rem) {
-    .home-hero-visual { padding-left: 1rem; }
-  }
-  /* Four steps: a 2 x 2 grid beside the heading on wide screens, one column on narrow ones. */
-  .steps { display: grid; gap: 0; border-top: 1px solid var(--color-line-strong); }
-  .step { position: relative; padding: 2rem 0 2rem 1.5rem; border-bottom: 1px solid var(--color-line); }
-  .step::before { content: ''; position: absolute; top: 2.75rem; left: 0; width: 0.5rem; height: 0.5rem; border-radius: var(--radius-full); background: var(--color-gold); }
-  .step-numeral { font-family: var(--font-mono); font-size: var(--text-numeral); line-height: var(--text-numeral--line-height); letter-spacing: var(--tracking-display); color: var(--color-ink); font-variant-numeric: tabular-nums; }
-  @media (min-width: 48rem) {
-    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .step { padding: 2.25rem 2rem 2.25rem 1.75rem; }
-    .step:nth-child(odd) { border-right: 1px solid var(--color-line); }
-  }
+  .home-hero { padding-block: 5.5rem 0; }
+  .hero-pill { display: inline-flex; align-items: center; gap: 0.625rem; padding: 0.4375rem 0.875rem; border: 1px solid rgb(201 162 75 / 0.4); border-radius: var(--radius-full); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gold-bright); }
+  .hero-pill span { width: 6px; height: 6px; border-radius: 50%; background: var(--color-gold); }
+  .form-card { padding: 1.75rem; border-radius: var(--radius-2xl); background: var(--color-surface); color: var(--color-ink); box-shadow: 0 40px 100px -30px rgb(0 0 0 / 0.8); }
+  .form-card :global(.link) { color: var(--color-ink); text-decoration-color: var(--color-line-strong); }
+  .compare { width: 100%; min-width: 35rem; border-collapse: collapse; font-size: 15px; text-align: left; }
+  .compare th, .compare td { padding: 1rem; border-bottom: 1px solid #eef0f3; }
+  .compare thead th { font-weight: 600; color: var(--color-ink-muted); border-bottom-color: var(--color-line); }
+  .compare thead th.us { color: var(--color-ink); font-weight: 700; border-bottom: 2px solid var(--color-gold); }
+  .compare tbody th { padding-left: 0; font-weight: 600; width: 34%; }
+  .compare tbody td:not(.us) { color: var(--color-ink-muted); }
+  .compare .us { background: var(--color-gold-soft); }
+  .compare tbody tr:last-child > * { border-bottom: 0; }
 </style>

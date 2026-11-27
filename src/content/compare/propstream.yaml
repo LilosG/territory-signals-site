@@ -68,34 +68,34 @@
       "source": "price"
     }
   ],
-  "tableQuestion": "Where does this PropStream alternative differ line by line?",
+  "tableQuestion": "Where do Territory Signals and PropStream differ?",
   "tableAnswer": "This PropStream alternative differs in scope and delivery; each PropStream statement below links to the PropStream page it came from.",
   "sections": {
     "differ": {
-      "q": "How is this PropStream alternative different?",
+      "q": "How is Territory Signals different from PropStream?",
       "p": [
-        "This PropStream alternative is a configured service for one territory rather than a nationwide search tool.",
+        "Territory Signals is a configured service for one territory rather than a nationwide search tool.",
         "It does the matching, scoring and weekly refresh for the areas you choose, and its outreach stops at drafts a person approves."
       ]
     },
     "publishes": {
-      "q": "What should a PropStream alternative be compared against?",
+      "q": "What is this PropStream comparison based on?",
       "p": [
-        "A PropStream alternative should be compared against what PropStream publishes on its own pages.",
+        "This comparison is based on what PropStream publishes on its own pages.",
         "It describes a nationwide data provider that combines public records, MLS listings and private sources, with filters, lead lists, an assistant and built-in mail, email and dialing."
       ]
     },
     "better": {
-      "q": "When is PropStream a better choice than a PropStream alternative?",
+      "q": "When is PropStream the better choice?",
       "p": [
-        "PropStream is likely a better choice than a PropStream alternative when you need nationwide search, self-serve signup or built-in dialing.",
+        "PropStream is likely a better choice than Territory Signals when you need nationwide search, self-serve signup or built-in dialing.",
         "Territory Signals covers a configured territory, is set up for you and does not dial."
       ]
     },
     "evaluate": {
       "q": "How should you test a PropStream alternative?",
       "p": [
-        "Test a PropStream alternative against the work you do each week in your own area."
+        "Test Territory Signals and PropStream against the work you do each week in your own area."
       ],
       "list": [
         "How long does it take to get from raw data to a short list?",
@@ -104,5 +104,8 @@
         "Which outreach steps do you want automated, and which not?"
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "PropStream"
+  ]
 }

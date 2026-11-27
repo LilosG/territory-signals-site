@@ -5,28 +5,30 @@
 @theme static {
   --color-*: initial;
   --color-transparent: transparent;
-  --color-canvas: #fafaf9;
+  --color-canvas: #f7f6f2;
   --color-surface: #ffffff;
   --color-sunken: #f1f5f9;
   --color-line: #e2e8f0;
   --color-line-strong: #cbd5e1;
   --color-ink: #0b0f17;
-  --color-ink-muted: #475569;
+  --color-ink-muted: #4a5568;
   --color-ink-faint: #64748b; /* canvas and surface only; below 4.5:1 on sunken */
-  --color-gold: #b8862d; /* focus ring on light (non-text) */
-  --color-gold-bright: #c6923a; /* text and focus on obsidian */
-  --color-gold-strong: #86671c; /* briefing labels on light */
-  --color-gold-soft: #f8f1df;
-  --color-obsidian: #0b0f17;
-  --color-obsidian-raised: #111b2e;
+  --color-gold: #c9a24b; /* accent fills, focus ring */
+  --color-gold-bright: #e2c987; /* text on obsidian */
+  --color-gold-strong: #8a6a1f; /* eyebrows and links on light */
+  --color-gold-soft: #fbf7ec;
+  --color-obsidian: #0a0e14;
+  --color-obsidian-raised: #111a2b;
+  --color-obsidian-rail: #0e1522;
   --color-on-dark: #ffffff;
-  --color-on-dark-muted: #cbd5e1;
+  --color-on-dark-muted: #c3cad5;
+  --color-on-dark-faint: #9aa4b2;
   --color-line-dark: rgb(255 255 255 / 0.14);
   /* Score tiers (product lib/ring.ts). Used only to encode data. */
   --color-tier-immediate: #b91c1c;
   --color-tier-priority: #b45309;
   --color-tier-watchlist: #1e3a8a;
-  --color-tier-monitor: #64748b;
+  --color-tier-monitor: #5b6676; /* product #64748b, darkened for 4.5:1 on the alabaster canvas */
   /* The same tiers lifted for legibility on obsidian (parcel fills and strokes only). */
   --color-tier-immediate-on-dark: #f87171;
   --color-tier-priority-on-dark: #fbbf24;
@@ -42,8 +44,8 @@
   --color-slate-pale: #e4eaf2;
   --color-slate-line: #64748b;
 
-  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'IBM Plex Serif', ui-serif, Georgia, serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Newsreader Variable', ui-serif, Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
 
   --text-*: initial;
@@ -65,10 +67,10 @@
   --text-3xl--line-height: 1.15;
   --text-4xl: clamp(2.5rem, 1.75rem + 3.2vw, 4.5rem);
   --text-4xl--line-height: 1.06;
-  --text-section: clamp(2.25rem, 3.6vw, 3.5rem);
-  --text-section--line-height: 1.1;
-  --text-hero: clamp(3.5rem, 6vw, 5.75rem);
-  --text-hero--line-height: 1;
+  --text-section: clamp(2.125rem, 3.8vw, 3.25rem);
+  --text-section--line-height: 1.08;
+  --text-hero: clamp(2.75rem, 6.4vw, 5.25rem);
+  --text-hero--line-height: 1.02;
   --text-numeral: clamp(3.5rem, 6vw, 5.5rem);
   --text-numeral--line-height: 1;
 
@@ -78,12 +80,12 @@
 
   --spacing: 0.25rem;
   --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
-  --spacing-section: clamp(4rem, 7vw, 6.5rem);
+  --spacing-section: clamp(4.5rem, 8vw, 7rem);
   --spacing-tap: 2.75rem;
   --spacing-header: 4rem;
   --spacing-control: 3rem;
 
-  --container-page: 80rem;
+  --container-page: 75rem;
   --container-measure: 68ch;
   --container-form: 36rem;
 
@@ -97,6 +99,8 @@
   --shadow-*: initial;
   --shadow-xs: 0 1px 0 rgb(11 15 23 / 0.04);
   --shadow-lift: 0 12px 32px -12px rgb(11 15 23 / 0.18), 0 2px 6px rgb(11 15 23 / 0.05);
+  --shadow-window: 0 40px 120px -20px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.08);
+  --shadow-card: 0 30px 80px -30px rgb(11 15 23 / 0.35);
   --shadow-float: 0 48px 96px -32px rgb(0 0 0 / 0.55), 0 18px 36px -18px rgb(11 15 23 / 0.35), 0 0 0 1px rgb(11 15 23 / 0.08);
 
   --ease-quiet: cubic-bezier(0.2, 0.8, 0.2, 1);

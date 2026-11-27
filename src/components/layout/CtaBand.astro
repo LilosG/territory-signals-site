@@ -2,18 +2,18 @@
 import Section from './Section.astro';
 import Button from '../ui/Button.astro';
 import { CTA } from '../../data/site.ts';
-interface Props { title: string; text: string; tone?: 'light' | 'dark' }
-const { title, text, tone = 'dark' } = Astro.props;
+interface Props { title: string; text: string; tone?: 'light' | 'dark'; secondary?: boolean }
+const { title, text, tone = 'dark', secondary = true } = Astro.props;
 ---
 <Section tone={tone} id="cta">
-  <div class="grid-12 items-end" data-cta-band>
-    <div class="col-lead">
+  <div class="flex flex-wrap items-end justify-between gap-x-12 gap-y-8" data-cta-band>
+    <div class="min-w-0 max-w-2xl flex-[1_1_28rem]">
       <h2>{title}</h2>
       <p class="lede mt-5">{text}</p>
     </div>
-    <div class="col-support flex flex-wrap gap-3 lg:justify-end">
+    <div class="flex flex-wrap gap-3">
       <Button href={CTA.primary.href} location="cta-band">{CTA.primary.label}</Button>
-      <Button href={CTA.secondary.href} variant="secondary" location="cta-band">{CTA.secondary.label}</Button>
+      {secondary && <Button href={CTA.secondary.href} variant="secondary" location="cta-band">{CTA.secondary.short}</Button>}
     </div>
   </div>
 </Section>

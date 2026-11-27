@@ -22,9 +22,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem do solo agents bring to this?",
+      "q": "What problem does Territory Signals solve for solo agents?",
       "p": [
-        "The problem solo agents bring is time: checking City files, tax lists and owner records by hand crowds out client work.",
+        "Territory Signals gives solo agents back time: checking City files, tax lists and owner records by hand crowds out client work.",
         "Spreadsheets also lose the reason a property was picked."
       ]
     },
@@ -55,11 +55,16 @@
       ]
     },
     "fit": {
-      "q": "When is this the wrong fit for solo agents?",
+      "q": "When is Territory Signals the wrong fit for solo agents?",
       "p": [
-        "This is the wrong fit for solo agents who want an instant, low-commitment signup or purchased contacts.",
+        "Territory Signals is the wrong fit for solo agents who want an instant, low-commitment signup or purchased contacts.",
         "If you only need an occasional export, a self-serve data product may suit you better."
       ]
     }
-  }
+  },
+  "headingVariants": [
+    "solo agent",
+    "agent",
+    "Territory Signals"
+  ]
 }
