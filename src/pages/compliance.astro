@@ -15,9 +15,12 @@ const faqs = await faqFor('compliance');
 
   <QaSection q="Who has to approve outreach for compliant prospecting?" p={['A person on your team has to approve every draft, which is the base of compliant prospecting here. Drafts move from draft to awaiting approval to approved. Some recipes always require team approval. Edits keep the original text and record who changed it, and bulk approval checks each draft separately.']} />
   <QaSection q="What is the license rule in compliant prospecting?" p={[
-    'California first-point-of-contact solicitation material must show the agent’s name and DRE license number, so compliant prospecting here will not let a draft be approved without both.',
-    'The block is enforced by a database rule as well as on screen. Email drafts also need an office address. Ask your broker whether your material must show anything more, such as the brokerage name or license.',
-  ]} />
+    'The license rule in compliant prospecting here is that a draft cannot be approved without the agent’s name and DRE license number.',
+    'The block is enforced by a database rule as well as on screen. Email drafts also need an office address.',
+    'California regulation 10 CCR § 2773 requires the license identification number and the responsible broker’s name on first-point-of-contact solicitation materials. The approval block checks the agent’s name and license number; confirm that the broker’s name and anything else your office requires appear before you send.',
+  ]}>
+    <p><a class="link" href="https://law.cornell.edu/regulations/california/10-CCR-2773" rel="noopener">Read 10 CCR § 2773 (Cornell Legal Information Institute)</a></p>
+  </QaSection>
   <QaSection q="Does compliant prospecting allow automatic texts or calls?" p={['No automatic contact of any kind is part of compliant prospecting here. The system never sends, texts or dials a homeowner. It prepares letters, email drafts and call scripts; your team sends and calls, and remains responsible for consent, do-not-call and anti-spam rules.']} />
   <QaSection q="How does compliant prospecting treat sensitive records?" p={['Compliant prospecting treats records about money trouble, death and ownership transfer as sensitive and keeps them out of view by default.']} list={[
     'Tax default, default notices, ownership transfers and open code cases are not shown on lead cards or lists.',

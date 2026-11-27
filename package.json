@@ -35,6 +35,8 @@
     "@playwright/test": "1.65.1",
     "@resvg/resvg-js": "2.6.2",
     "@types/node": "22.20.7",
+    "chrome-launcher": "1.2.3",
+    "lighthouse": "13.6.0",
     "node-html-parser": "9.0.7",
     "satori": "0.63.2",
     "typescript": "5.9.3",

@@ -28,7 +28,7 @@
       "q": "What goes into the backtest?",
       "p": [
         "The backtest uses recorded sales plus public signals from permits, rental licenses, the tax-default list, code enforcement and the upzoning screen.",
-        "Owner traits are not counted, and transfers by death, trust or inheritance are excluded because they are not arm’s-length sales. A result is flagged if any sample record was involved."
+        "Owner traits are not counted, and transfers by death, trust or inheritance are excluded because they are not arm’s-length sales."
       ]
     },
     "uses": {

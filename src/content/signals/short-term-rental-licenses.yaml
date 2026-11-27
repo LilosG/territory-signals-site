@@ -65,7 +65,7 @@
       "q": "What are the limits of rental license data?",
       "p": [
         "Rental license data cannot say why a license was removed or what the owner plans to do.",
-        "Licenses expire, change hands or lapse for many reasons. Because the file has no parcel number, a match relies on coordinates, and the match confidence is recorded with the signal. The file has no license issue date, so the age of a license cannot be computed."
+        "Licenses expire, change hands or lapse for many reasons. Because the file has no parcel number, a match relies on coordinates, and the match confidence is recorded with the signal."
       ]
     }
   }
