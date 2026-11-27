@@ -55,10 +55,10 @@ const top = TOP_LEAD_DETAIL;
             {leads.map((l, i) => (
               <li class="lead-row">
                 <div class="min-w-0 flex-1">
-                  <p class="text-sm font-semibold">{l.address} <span class="tag-dark ml-1.5">{l.recipe}</span></p>
+                  <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold"><span>{l.address}</span><span class="tag-dark">{l.recipe}</span></p>
                   <p class="mt-1 text-[12.5px] text-ink-muted">{l.signal}</p>
                 </div>
-                <span class:list={['hidden rounded-full px-2 py-0.5 text-[11px] font-semibold sm:inline', status[i] === 'New' ? 'bg-sunken text-ink-muted' : 'bg-usable-soft text-usable']}>{status[i]}</span>
+                <span class:list={['hidden whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] leading-none font-semibold sm:inline-flex items-center', status[i] === 'New' ? 'bg-sunken text-ink-muted' : 'bg-usable-soft text-usable']}>{status[i]}</span>
                 <ScoreRing score={l.score} size="md" />
               </li>
             ))}
@@ -80,7 +80,7 @@ const top = TOP_LEAD_DETAIL;
 </div>
 <style>
   .hero-workspace { position: relative; max-width: 70rem; margin-inline: auto; text-align: left; }
-  .workspace-glow { position: absolute; inset: 2.5rem 8% auto; height: 26rem; background: radial-gradient(closest-side, rgb(201 162 75 / 0.18), transparent); filter: blur(30px); }
+  .workspace-glow { position: absolute; inset: 2.5rem 8% auto; height: 26rem; background: radial-gradient(closest-side, rgb(201 162 75 / 0.18), transparent 72%); }
   .workspace { position: relative; border-radius: 14px 14px 0 0; }
   .rail { width: 13rem; flex: none; padding: 1.25rem 0.875rem; background: var(--color-obsidian-rail); color: var(--color-on-dark-muted); font-size: 13px; }
   .rail-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 7px; background: var(--color-gold); color: var(--color-obsidian); font-size: 12px; font-weight: 700; }

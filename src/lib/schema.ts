@@ -7,13 +7,34 @@ const SITE_ID = `${SITE.url}/#website`;
 
 export type JsonLdNode = Record<string, unknown>;
 
+const SAN_DIEGO_AREA: JsonLdNode = {
+  '@type': 'City',
+  name: SERVICE_AREA,
+  sameAs: 'https://en.wikipedia.org/wiki/San_Diego',
+  containedInPlace: {
+    '@type': 'State',
+    name: 'California',
+    sameAs: 'https://en.wikipedia.org/wiki/California',
+  },
+};
+
 export const organization = (): JsonLdNode => ({
   '@type': 'Organization',
   '@id': ORG_ID,
   name: COMPANY.name,
   url: COMPANY.url,
+  logo: abs('/favicon.svg'),
   email: COMPANY.email,
   brand: { '@type': 'Brand', name: SITE.name, url: SITE.url },
+  areaServed: SAN_DIEGO_AREA,
+  knowsAbout: [
+    'Real estate territory intelligence',
+    'Predictive seller scoring',
+    'San Diego public property records',
+    'Building permit data analysis',
+    'California SB 9 and SB 79 upzoning',
+    'Off-market real estate lead generation',
+  ],
   address: {
     '@type': 'PostalAddress',
     streetAddress: COMPANY.address.street,
@@ -30,6 +51,7 @@ export const website = (): JsonLdNode => ({
   name: SITE.name,
   url: SITE.url,
   description: SITE.summary,
+  inLanguage: 'en-US',
   publisher: { '@id': ORG_ID },
 });
 
@@ -40,7 +62,11 @@ export const service = (): JsonLdNode => ({
   serviceType: 'Real estate territory intelligence',
   description: SITE.summary,
   provider: { '@id': ORG_ID },
-  areaServed: { '@type': 'City', name: SERVICE_AREA },
+  areaServed: SAN_DIEGO_AREA,
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'San Diego real estate teams, listing agents, brokerages, and investors',
+  },
 });
 
 export const breadcrumbList = (crumbs: { name: string; path: string }[]): JsonLdNode => ({

@@ -6,8 +6,8 @@ const tone = value === 'Usable' || value === 'Live' ? 'usable' : value === 'Usab
 ---
 <span class:list={['verdict-pill', `verdict-${tone}`]}>{value}</span>
 <style is:global>
-  .verdict-pill { display: inline-flex; align-items: center; gap: 0.375rem; border: 1px solid currentColor; border-radius: var(--radius-full); padding: 0.125rem 0.625rem; font-size: var(--text-xs); font-weight: 600; white-space: nowrap; }
-  .verdict-pill::before { content: ''; width: 0.4rem; height: 0.4rem; border-radius: var(--radius-full); background: currentColor; }
+  .verdict-pill { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid currentColor; border-radius: var(--radius-full); padding: 0.25rem 0.75rem; font-size: var(--text-xs); line-height: 1.2; font-weight: 600; white-space: nowrap; }
+  .verdict-pill::before { content: ''; width: 0.4rem; height: 0.4rem; flex-shrink: 0; border-radius: var(--radius-full); background: currentColor; }
   .verdict-usable { color: var(--color-usable); background: var(--color-usable-soft); }
   .verdict-limits { color: var(--color-sample); background: var(--color-sample-soft); }
   .verdict-coming { color: var(--color-ink-muted); background: var(--color-sunken); }

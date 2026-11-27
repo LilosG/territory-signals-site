@@ -31,7 +31,7 @@ const { paths, density, example, width, height, count } = PLANNING_AREAS;
 <style>
   .map-canvas { display: block; width: 100%; height: auto; }
   /* The map sits on its own sheet so the detached southern areas read as part of one drawing. */
-  .territory-map { overflow: hidden; padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--color-line); border-radius: var(--radius-2xl); background: var(--color-canvas); }
+  .territory-map { content-visibility: auto; contain-intrinsic-size: auto 42rem; overflow: hidden; padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--color-line); border-radius: var(--radius-2xl); background: var(--color-canvas); }
   @media (min-width: 64rem) {
     .map-canvas { height: clamp(36rem, 70vh, 46rem); }
   }

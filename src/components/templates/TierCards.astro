@@ -12,13 +12,13 @@ const MEANING: Record<string, string> = {
 ---
 <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
   {TIERS.map((t) => (
-    <li class:list={['card flex flex-col', `tier-top-${t.key}`]}>
-      <div class="flex items-center justify-between gap-3">
-        <p class:list={['card-title text-lg', `tier-${t.key}`]}>{t.label}</p>
+    <li class:list={['card flex flex-col p-6', `tier-top-${t.key}`]}>
+      <div class="flex min-h-12 items-start justify-between gap-3">
+        <p class:list={['card-title text-[1.0625rem] leading-snug', `tier-${t.key}`]}>{t.label}</p>
         <ScoreRing score={EXAMPLE[t.key]!} size="md" />
       </div>
-      <p class="mono mt-1 text-xs text-ink-muted">Score {t.min} to {t.max}</p>
-      <p class="mt-4 text-[15px] leading-relaxed text-ink-muted">{MEANING[t.key]}</p>
+      <p class="mono mt-2 text-xs text-ink-muted">Score {t.min} to {t.max}</p>
+      <p class="mt-3 text-[15px] leading-relaxed text-ink-muted">{MEANING[t.key]}</p>
     </li>
   ))}
 </ul>

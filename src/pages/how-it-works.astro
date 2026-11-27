@@ -3,6 +3,7 @@ import StandardPage from '../templates/StandardPage.astro';
 import Section from '../components/layout/Section.astro';
 import QaSection from '../components/layout/QaSection.astro';
 import DataTable from '../components/ui/DataTable.astro';
+import WeightTable from '../components/templates/WeightTable.astro';
 import TierCards from '../components/templates/TierCards.astro';
 import QaGrid from '../components/layout/QaGrid.astro';
 import ListCard from '../components/templates/ListCard.astro';
@@ -10,16 +11,13 @@ import FaqList from '../components/ui/FaqList.astro';
 import RelatedLinks from '../components/ui/RelatedLinks.astro';
 import ScoreDemo from '../components/visuals/ScoreDemo.astro';
 import { PAGES } from '../data/pages.ts';
-import { CATALOG, SCORING, weightFor } from '../lib/product.ts';
+import { CATALOG, SCORING } from '../lib/product.ts';
 import { faqFor } from '../lib/collections.ts';
 import { faqPage } from '../lib/schema.ts';
 
 const meta = PAGES['/how-it-works'];
 const faqs = await faqFor('how-it-works');
-const weights = CATALOG.components.filter((c) => c.max_points > 0).map((c) => {
-  const w = weightFor(c.key);
-  return [c.label, w.weight, w.halfLife, w.family];
-});
+const weightComponents = CATALOG.components.filter((c) => c.max_points > 0).map((c) => ({ key: c.key, label: c.label, maxPoints: c.max_points }));
 const pct = (n: number) => `${Math.round(n * 100)}%`;
 const steps = [
   { label: '01  Collect public and owner records', value: 'weekly' },
@@ -80,7 +78,7 @@ const steps = [
   </Section>
 
   <QaSection layout="wide" q="Which weights does seller scoring use?" p={[`Seller scoring uses the weights below, from scoring model ${SCORING.model_version}. They are set by hand and published to every team.`]}>
-    <DataTable caption={`Score component weights, model ${SCORING.model_version}`} columns={['Score component', 'Weight (points)', 'Half-life', 'Family']} rows={weights} />
+    <WeightTable caption={`Score component weights, model ${SCORING.model_version}`} components={weightComponents} showFamily />
   </QaSection>
 
   <QaGrid columns={3} items={[

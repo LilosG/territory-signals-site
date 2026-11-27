@@ -7,7 +7,8 @@ import { COMPANY, CTA } from '../../data/site.ts';
 interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id, ...FIELDS[id] }));
+const PLACEHOLDERS: Partial<Record<string, string>> = { email: 'name@brokerage.com', market: 'e.g. La Jolla, Pacific Beach, North Park' };
+const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id, placeholder: PLACEHOLDERS[id], ...FIELDS[id] }));
 ---
 <form method="post" action="/api/request" id="request-form" class:list={['flex flex-col gap-5', compact ? 'request-compact' : 'max-w-form']} data-request-form data-sitekey={siteKey}>
   <noscript><p class="border-l-2 border-ink pl-4">The spam check needs JavaScript. If it is turned off, email <a class="link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> instead.</p></noscript>
@@ -19,7 +20,7 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
   {text.map((f) => (
     <div class={`field-${f.id}`}>
       <label class="field-label" for={f.id}>{f.label}</label>
-      <input class="field" id={f.id} name={f.id} type={f.id === 'email' ? 'email' : 'text'} autocomplete={f.autocomplete} maxlength={f.max} required={f.required} data-error={f.error} />
+      <input class="field" id={f.id} name={f.id} type={f.id === 'email' ? 'email' : 'text'} placeholder={f.placeholder} autocomplete={f.autocomplete} maxlength={f.max} required={f.required} data-error={f.error} />
       <p class="field-error" id={`${f.id}-error`} hidden></p>
     </div>
   ))}
@@ -49,7 +50,7 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
 <style is:global>
   @reference "../../styles/global.css";
   .field-label { @apply mb-1.5 block text-sm font-semibold; }
-  .field { @apply block min-h-tap w-full rounded-md border border-ink-faint bg-surface px-3 py-2.5 text-base text-ink; }
+  .field { @apply block min-h-tap w-full rounded-md border border-line-strong bg-surface px-3 py-2.5 text-base text-ink transition-colors placeholder:text-ink-faint hover:border-ink-muted focus:border-ink; }
   .field[aria-invalid='true'] { @apply border-2 border-ink; }
   .field-error { @apply mt-1.5 text-sm font-semibold text-ink; }
   .field-error::before { content: 'Error: '; }
@@ -126,7 +127,9 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
       const invalid = controls.filter((c) => !check(c));
       if (invalid.length) return showSummary('Check the highlighted fields.', invalid);
       summary.classList.add('hidden');
+      const originalLabel = button.textContent;
       button.disabled = true;
+      button.textContent = 'Sending…';
       try {
         const response = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
         const result = (await response.json()) as { ok: boolean; message?: string; errors?: Record<string, string> };
@@ -142,6 +145,7 @@ const text = (['name', 'email', 'company', 'market'] as const).map((id) => ({ id
         showSummary('Your request could not be sent. Check your connection and try again.', []);
       }
       button.disabled = false;
+      button.textContent = originalLabel;
       window.turnstile?.reset(widget);
     });
   }

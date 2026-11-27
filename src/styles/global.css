@@ -88,8 +88,8 @@
   .ai-tag { @apply ml-1 inline-flex items-center rounded-full border border-current px-2 py-px align-middle text-2xs font-semibold uppercase tracking-eyebrow text-ink-muted; }
   .on-dark .ai-tag { @apply text-on-dark; }
   .est-tag { @apply ml-1 text-2xs not-italic text-ink-muted; }
-  .status-pill { @apply inline-flex items-center rounded-full border border-line bg-sunken px-2 py-0.5 text-2xs font-semibold text-ink-muted whitespace-nowrap; }
-  .recipe-tag { @apply inline-flex items-center rounded-full bg-ink px-2.5 py-0.5 text-xs font-semibold text-on-dark; }
+  .status-pill { @apply inline-flex items-center whitespace-nowrap rounded-full border border-line bg-sunken px-2.5 py-1 text-2xs leading-none font-semibold text-ink-muted; }
+  .recipe-tag { @apply inline-flex items-center whitespace-nowrap rounded-full bg-ink px-2.5 py-1 text-xs leading-none font-semibold text-on-dark; }
 }
 
 /* Product recreations: raised cards that keep the product's own quiet labels. */
@@ -112,9 +112,9 @@
   .display { @apply font-serif text-section font-medium tracking-display; }
   .window { @apply overflow-hidden rounded-[14px] bg-surface text-ink; box-shadow: var(--shadow-window); }
   .window-bar { @apply flex items-center justify-between gap-3 border-b border-line bg-[#f8f9fb] px-[18px] py-3; }
-  .sample-pill { @apply inline-flex items-center rounded-full border border-[#e7c873] bg-sample-soft px-2 py-[3px] font-mono text-2xs font-semibold tracking-[0.06em] text-sample; }
-  .tag-dark { @apply inline-flex items-center rounded-full bg-ink px-2 py-0.5 text-[11px] font-semibold text-on-dark; }
-  .tier-pill { @apply inline-flex items-center rounded-full px-2 py-1 text-[11px] font-semibold; }
+  .sample-pill { @apply inline-flex items-center whitespace-nowrap rounded-full border border-[#e7c873] bg-sample-soft px-2.5 py-1 font-mono text-2xs leading-none font-semibold tracking-[0.06em] text-sample; }
+  .tag-dark { @apply inline-flex items-center whitespace-nowrap rounded-full bg-ink px-2.5 py-1 text-[11px] leading-none font-semibold text-on-dark; }
+  .tier-pill { @apply inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] leading-none font-semibold; }
   .tier-pill-immediate { @apply bg-[#fdecec] text-tier-immediate; }
   .tier-pill-priority { @apply bg-[#fef3e2] text-tier-priority; }
   .tier-pill-watchlist { @apply bg-[#e8eefb] text-tier-watchlist; }

@@ -1,10 +1,10 @@
 @reference "./global.css";
 
 .table-scroll { @apply w-full overflow-x-auto; }
-.table-card { @apply overflow-hidden rounded-2xl border border-line bg-surface text-ink; }
+.table-card { @apply overflow-hidden rounded-2xl border border-line bg-surface text-ink shadow-lift; }
 .data-table { @apply w-full text-left text-[15px]; }
-.data-table th, .data-table td { @apply min-w-32 border-b border-[#eef0f3] px-5 py-4 text-left align-top; }
+.data-table th, .data-table td { @apply min-w-32 border-b border-line/70 px-5 py-4 text-left align-top; }
 .data-table tbody tr:last-child > * { @apply border-b-0; }
-.data-table thead th { @apply bg-[#f8f9fb] text-sm font-semibold text-ink-muted; }
+.data-table thead th { @apply border-b border-line bg-sunken/70 py-3.5 font-mono text-2xs font-semibold uppercase tracking-eyebrow text-ink-muted; }
 .data-table tbody th { @apply font-semibold text-ink; }
-.data-table tbody tr:hover > * { @apply bg-[#fbfbfa]; }
+.data-table tbody tr:hover > * { @apply bg-canvas/70; }

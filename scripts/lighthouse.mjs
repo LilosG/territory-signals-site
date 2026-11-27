@@ -20,8 +20,13 @@ try {
     const { categories, audits } = result.lhr;
     writeFileSync(`lighthouse/${path === '/' ? 'home' : path.slice(1).replaceAll('/', '-')}.json`, result.report);
     const scores = Object.fromEntries(Object.keys(MIN).map((k) => [k, Math.round(categories[k].score * 100)]));
-    const lcp = audits['largest-contentful-paint'].numericValue;
-    const cls = audits['cumulative-layout-shift'].numericValue;
+    const lcp = audits['largest-contentful-paint']?.numericValue;
+    const cls = audits['cumulative-layout-shift']?.numericValue;
+    if (lcp === undefined || cls === undefined) {
+      console.error(`${path.padEnd(28)} FAILED: Could not load ${base + path} (is the server running?)`);
+      failed = true;
+      continue;
+    }
     console.log(`${path.padEnd(28)} perf ${scores.performance}  a11y ${scores.accessibility}  best ${scores['best-practices']}  seo ${scores.seo}  LCP ${(lcp / 1000).toFixed(2)}s  CLS ${cls.toFixed(3)}`);
     const misses = [...Object.entries(MIN).filter(([k, v]) => scores[k] < v).map(([k]) => k), ...(lcp >= MAX_LCP ? ['LCP'] : []), ...(cls >= MAX_CLS ? ['CLS'] : [])];
     if (misses.length) {
