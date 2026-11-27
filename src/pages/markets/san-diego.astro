@@ -3,7 +3,7 @@ import MarketPage from '../../templates/MarketPage.astro';
 import { PAGES } from '../../data/pages.ts';
 ---
 <MarketPage meta={PAGES['/markets/san-diego']} marketId="san-diego" place="San Diego"
-  answer="San Diego off-market seller signals come from City permit, rental license and code case data, the County tax-default list, parcel, zoning and transit layers and ATTOM owner and recorder data. Territory Signals matches them to parcels inside whichever City planning areas your team chooses, scores them by published rules and refreshes the territory weekly."
+  answer="San Diego off-market seller signals come from City permit, rental license and code case data, the County tax-default list, parcel, zoning and transit layers and ATTOM owner and recorder data. Before They Sell matches them to parcels inside whichever City planning areas your team chooses, scores them by published rules and refreshes the territory weekly."
   sections={{
     signals: { q: 'Which San Diego off-market seller signals are live?', p: ['The live San Diego off-market seller signals cover permits, short-term rental licenses, tax default, estimated SB 9 and SB 79 upzoning, code enforcement, owner and tenure facts and recorder documents. Fire hazard zones are coming.'] },
     territory: { q: 'How is a San Diego territory defined?', p: ['A San Diego territory is defined by City planning areas that the team chooses. Planning areas are official boundaries that do not line up with ZIP codes, so parcels are placed by where they sit, with ZIP kept only as an attribute.', 'Each team’s deployment is configured to its own selection. Only residential parcels inside it are scored.'] },

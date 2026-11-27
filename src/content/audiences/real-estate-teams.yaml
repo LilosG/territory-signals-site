@@ -3,13 +3,13 @@
   "keyword": "seller lead tools for real estate teams",
   "headingTerm": "real estate teams",
   "h1": "Seller lead tools for real estate teams",
-  "title": "Seller Lead Tools for Real Estate Teams | Territory Signals",
+  "title": "Seller Lead Tools for Real Estate Teams | Before They Sell",
   "description": "Seller lead tools for real estate teams: one shared territory, scored parcels, assigned outreach drafts, logged outcomes and a person approving each one.",
   "updated": "2026-11-26",
   "order": 1,
   "label": "Real estate teams",
   "summary": "One territory, shared rules, assigned drafts",
-  "answer": "Seller lead tools for real estate teams should give everyone the same evidence and the same rules. Territory Signals puts your chosen planning areas into one ranked list with source records behind every score, assigns drafted outreach across agents, requires human approval and logs outcomes, so the team lead can see what was worked and what happened.",
+  "answer": "Seller lead tools for real estate teams should give everyone the same evidence and the same rules. Before They Sell puts your chosen planning areas into one ranked list with source records behind every score, assigns drafted outreach across agents, requires human approval and logs outcomes, so the team lead can see what was worked and what happened.",
   "recipes": [
     "pre-list-prep",
     "downsizer",
@@ -23,9 +23,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem does Territory Signals solve for real estate teams?",
+      "q": "What problem does Before They Sell solve for real estate teams?",
       "p": [
-        "Territory Signals solves a common problem for real estate teams: records, notes and follow-up live in too many places.",
+        "Before They Sell solves a common problem for real estate teams: records, notes and follow-up live in too many places.",
         "One agent watches permits, another exports a list, and nobody can say why a property was chosen or whether it was contacted."
       ]
     },
@@ -56,15 +56,15 @@
       ]
     },
     "fit": {
-      "q": "When is Territory Signals the wrong fit for real estate teams?",
+      "q": "When is Before They Sell the wrong fit for real estate teams?",
       "p": [
-        "Territory Signals is the wrong fit for real estate teams that want to buy contacts by the lead or dial a large list automatically.",
-        "Territory Signals does not sell leads, supply homeowner phone numbers or dial anyone."
+        "Before They Sell is the wrong fit for real estate teams that want to buy contacts by the lead or dial a large list automatically.",
+        "Before They Sell does not sell leads, supply homeowner phone numbers or dial anyone."
       ]
     }
   },
   "headingVariants": [
     "team",
-    "Territory Signals"
+    "Before They Sell"
   ]
 }

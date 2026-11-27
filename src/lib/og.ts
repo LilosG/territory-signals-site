@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import tokens from '../styles/tokens.css?raw';
-import { SITE } from '../data/site.ts';
+import { COMPANY, SITE } from '../data/site.ts';
 import type { PageMeta } from './page-meta.ts';
 
 const token = (name: string): string => {
@@ -28,7 +28,7 @@ export async function renderOg(meta: PageMeta): Promise<Uint8Array<ArrayBuffer>>
   const tree = el({ width: 1200, height: 630, boxSizing: 'border-box', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: token('--color-canvas'), color: token('--color-ink'), padding: 72, fontFamily: 'Plex Sans' }, [
     el({ justifyContent: 'space-between', fontFamily: 'Plex Mono', fontSize: 22, letterSpacing: 2, textTransform: 'uppercase', color: token('--color-ink-muted'), borderBottom: `2px solid ${token('--color-ink')}`, paddingBottom: 24 }, [el({}, section), el({}, new URL(SITE.url).host)]),
     el({ fontFamily: 'Plex Serif', fontSize: meta.h1.length > 55 ? 60 : 72, lineHeight: 1.1, letterSpacing: -1.5, maxWidth: 980 }, meta.h1),
-    el({ justifyContent: 'space-between', alignItems: 'center', fontSize: 28 }, [el({}, SITE.name), el({ color: token('--color-ink-muted'), fontSize: 24 }, SITE.tagline)]),
+    el({ justifyContent: 'space-between', alignItems: 'center', fontSize: 28 }, [el({ flexDirection: 'column' }, [el({}, SITE.name), el({ color: token('--color-ink-muted'), fontSize: 18, marginTop: 4 }, `by ${COMPANY.name}`)]), el({ color: token('--color-ink-muted'), fontSize: 24 }, SITE.tagline)]),
   ]);
   const svg = await satori(tree as unknown as Parameters<typeof satori>[0], { width: 1200, height: 630, fonts });
   return Uint8Array.from(new Resvg(svg).render().asPng());

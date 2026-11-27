@@ -4,7 +4,7 @@
   "keyword": "how to find homeowners likely to sell",
   "headingTerm": "likely to sell",
   "h1": "How to find homeowners likely to sell before they list",
-  "title": "How to Find Homeowners Likely to Sell Before They List",
+  "title": "How to Find Homeowners Likely to Sell | Before They Sell",
   "description": "Learn how to find homeowners likely to sell before they list: which public and owner records to watch, how to combine them and how to reach out with care.",
   "updated": "2026-11-26",
   "published": "2026-11-26",
@@ -96,7 +96,7 @@ San Diego publishes the active licenses for short-term residential occupancy. Be
 
 The County Treasurer-Tax Collector publishes legal notices, including default lists and the notice of impending power to sell tax-defaulted property. These are serious records about a person's situation. They are public, but public does not mean fair to quote back to someone. The same applies to notices of default and to transfers that follow a death.
 
-Some sources that agents hear about should be left alone. Court terms can bar automated collection from case search tools, and many newspaper and obituary sites bar scraping and database use. Read the terms before you collect anything. Territory Signals does not scrape probate records, legal notice sites or obituaries.
+Some sources that agents hear about should be left alone. Court terms can bar automated collection from case search tools, and many newspaper and obituary sites bar scraping and database use. Read the terms before you collect anything. Before They Sell does not scrape probate records, legal notice sites or obituaries.
 
 **Ownership facts.**
 
@@ -113,7 +113,7 @@ A workable method has four parts.
 3. **Discount weak matches.** A record joined to a parcel by parcel number is more reliable than one joined by a typed address. Record how each match was made.
 4. **Reward independence.** Add a modest bonus when separate families of evidence agree, such as permits plus ownership facts plus a rental change. Cap it, so that volume cannot overwhelm judgment.
 
-This is how Territory Signals scores parcels. Each signal's contribution is its weight multiplied by a decay factor and by match confidence. Each independent family beyond the first adds 15 percent, to a maximum of 45 percent, and the score cannot pass 100. Owner facts together are capped, so a long tenure on its own does not outrank fresh activity. [How the scoring works](/how-it-works) shows the arithmetic with a sample parcel you can change.
+This is how Before They Sell scores parcels. Each signal's contribution is its weight multiplied by a decay factor and by match confidence. Each independent family beyond the first adds 15 percent, to a maximum of 45 percent, and the score cannot pass 100. Owner facts together are capped, so a long tenure on its own does not outrank fresh activity. [How the scoring works](/how-it-works) shows the arithmetic with a sample parcel you can change.
 
 **A worked comparison.**
 
@@ -131,7 +131,7 @@ Before an address earns outreach, work through this:
 
 - **Open the source record.** Confirm the parcel number, the date and the description. A match made on an address can land on the wrong unit.
 - **Read the scope, not the label.** Make sure a permit is the kind of work you think it is.
-- **Check for a recent sale.** A home that just changed hands is rarely your next listing. Territory Signals does not score a parcel with a recorded sale in the last 24 months, though transfers by death, trust or inheritance are handled separately.
+- **Check for a recent sale.** A home that just changed hands is rarely your next listing. Before They Sell does not score a parcel with a recorded sale in the last 24 months, though transfers by death, trust or inheritance are handled separately.
 - **Check whether it is already listed.** Respect existing agency relationships and your local rules.
 - **Separate estimates from records.** Equity, value and upzoning potential are estimates. Label them that way in your own notes.
 - **Ask what would change your mind.** If one fact turned out to be wrong, would the address still be on the list?
@@ -164,7 +164,7 @@ Have a person approve every piece before it goes out. Templates drift, data erro
 
 **Handling sensitive records.**
 
-Decide your office policy before you ever see a distress record. A sensible default is that tax defaults, default notices, open code cases and ownership transfers are visible only to people who need them, never appear on printed lists and require a second approval before any outreach. In Territory Signals these records stay off lead cards, lists and share pages, and the recipes built on distress or inheritance need team approval. [Compliance](/compliance) explains the controls.
+Decide your office policy before you ever see a distress record. A sensible default is that tax defaults, default notices, open code cases and ownership transfers are visible only to people who need them, never appear on printed lists and require a second approval before any outreach. In Before They Sell these records stay off lead cards, lists and share pages, and the recipes built on distress or inheritance need team approval. [Compliance](/compliance) explains the controls.
 
 ## What should you do this week to find owners likely to sell?
 

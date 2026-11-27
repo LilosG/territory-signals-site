@@ -8,6 +8,7 @@ const year = new Date().getFullYear();
     <div class="grid-12">
       <div class="lg:col-span-4">
         <p class="text-base font-semibold text-on-dark">{SITE.name}</p>
+        <p class="text-xs leading-relaxed">by {COMPANY.name}</p>
         <p class="mt-2 max-w-xs leading-relaxed">{SITE.tagline}. Built and run by <a class="link" href={COMPANY.url}>{COMPANY.name}</a>.</p>
         <address class="mt-4 not-italic leading-relaxed">
           <a class="link tap-link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a><br />

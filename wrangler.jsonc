@@ -4,6 +4,12 @@
   "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2026-11-01",
   "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "beforetheysell.com", "custom_domain": true },
+    { "pattern": "www.beforetheysell.com", "custom_domain": true }
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist",

@@ -3,13 +3,13 @@
   "keyword": "seller lead tools for solo agents",
   "headingTerm": "solo agents",
   "h1": "Seller lead tools for solo agents who farm a territory",
-  "title": "Seller Lead Tools for Solo Agents Who Farm a Territory",
+  "title": "Seller Lead Tools for Solo Agents | Before They Sell",
   "description": "Seller lead tools for solo agents farming a defined area: a short ranked list, the records behind each score and drafts you review before anything goes out.",
   "updated": "2026-11-26",
   "order": 2,
   "label": "Solo agents",
   "summary": "A short ranked list for one farm area",
-  "answer": "Seller lead tools for solo agents need to save research time without adding another inbox. Territory Signals is built and run for you around the planning areas you farm, giving a short ranked list, the records behind each score and drafts you review. It is a managed deployment, not a self-serve subscription, so weigh the scope first.",
+  "answer": "Seller lead tools for solo agents need to save research time without adding another inbox. Before They Sell is built and run for you around the planning areas you farm, giving a short ranked list, the records behind each score and drafts you review. It is a managed deployment, not a self-serve subscription, so weigh the scope first.",
   "recipes": [
     "pre-list-prep",
     "downsizer",
@@ -22,9 +22,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem does Territory Signals solve for solo agents?",
+      "q": "What problem does Before They Sell solve for solo agents?",
       "p": [
-        "Territory Signals gives solo agents back time: checking City files, tax lists and owner records by hand crowds out client work.",
+        "Before They Sell gives solo agents back time: checking City files, tax lists and owner records by hand crowds out client work.",
         "Spreadsheets also lose the reason a property was picked."
       ]
     },
@@ -55,9 +55,9 @@
       ]
     },
     "fit": {
-      "q": "When is Territory Signals the wrong fit for solo agents?",
+      "q": "When is Before They Sell the wrong fit for solo agents?",
       "p": [
-        "Territory Signals is the wrong fit for solo agents who want an instant, low-commitment signup or purchased contacts.",
+        "Before They Sell is the wrong fit for solo agents who want an instant, low-commitment signup or purchased contacts.",
         "If you only need an occasional export, a self-serve data product may suit you better."
       ]
     }
@@ -65,6 +65,6 @@
   "headingVariants": [
     "solo agent",
     "agent",
-    "Territory Signals"
+    "Before They Sell"
   ]
 }

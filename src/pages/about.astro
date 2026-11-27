@@ -6,20 +6,20 @@ import { COMPANY } from '../data/site.ts';
 const a = COMPANY.address;
 ---
 <StandardPage meta={PAGES['/about']} eyebrow="Built by Lilos Growth, San Diego"
-  answer="About Territory Signals: it is a territory intelligence product for real estate teams, built and run by Lilos Growth in San Diego. It gathers scattered public and owner records, matches them to parcels, scores them with rules you can read and supports outreach that a person approves. Each client gets a separate deployment."
+  answer="About Before They Sell: it is a territory intelligence product for real estate teams, built and run by Lilos Growth in San Diego. It gathers scattered public and owner records, matches them to parcels, scores them with rules you can read and supports outreach that a person approves. Each client gets a separate deployment."
   request="To talk with the people who build it,"
-  cta={{ title: 'Want to see Territory Signals for your area?', text: 'Ask for a walkthrough of the records, rules and approval steps for your territory.' }}>
-  <QaSection q="What is Territory Signals?" p={['Territory Signals is first-to-know territory intelligence: public and owner records pulled into one place, cleaned, matched to parcels, scored with transparent rules and worked through drafted outreach a person approves. It is not a lead list and is not priced per lead.']} />
-  <QaSection q="Who builds Territory Signals?" p={[`Territory Signals is built and run by ${COMPANY.name}.`]}>
+  cta={{ title: 'Want to see Before They Sell for your area?', text: 'Ask for a walkthrough of the records, rules and approval steps for your territory.' }}>
+  <QaSection q="What is Before They Sell?" p={['Before They Sell is first-to-know territory intelligence: public and owner records pulled into one place, cleaned, matched to parcels, scored with transparent rules and worked through drafted outreach a person approves. It is not a lead list and is not priced per lead.']} />
+  <QaSection q="Who builds Before They Sell?" p={[`Before They Sell is built and run by ${COMPANY.name}.`]}>
     <p><a class="link" href={COMPANY.url} rel="noopener">{COMPANY.name}</a></p>
   </QaSection>
-  <QaSection q="What principles guide Territory Signals?" p={['Territory Signals follows a few rules that shape every screen.']} list={[
+  <QaSection q="What principles guide Before They Sell?" p={['Before They Sell follows a few rules that shape every screen.']} list={[
     'Every signal can be traced to a source record.',
     'Estimates are labeled as estimates.',
     'Scores come from deterministic rules, never from AI.',
     'A person approves outreach before anyone sends it.',
   ]} />
-  <QaSection q="How can you reach the Territory Signals team?" p={['You can reach the Territory Signals team by email or by post.']}>
+  <QaSection q="How can you reach the Before They Sell team?" p={['You can reach the Before They Sell team by email or by post.']}>
     <address class="not-italic">
       <a class="link tap-link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a><br />
       {COMPANY.name}<br />{a.street}<br />{a.city}, {a.region} {a.postalCode}

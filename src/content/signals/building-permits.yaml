@@ -3,7 +3,7 @@
   "keyword": "building permit data for real estate agents",
   "headingTerm": "building permit data",
   "h1": "Building permit data for real estate agents",
-  "title": "Building Permit Data for Real Estate Agents in San Diego",
+  "title": "Building Permit Data for Agents | Before They Sell",
   "description": "Building permit data for real estate agents: City of San Diego approvals, ADU, demolition and stalled permits matched to parcels, with weights and limits.",
   "updated": "2026-11-26",
   "order": 1,
@@ -44,7 +44,7 @@
       "maxPoints": 27
     }
   ],
-  "answer": "Building permit data for real estate agents shows which parcels have work approved, what kind of work it is and whether it was ever closed out. Territory Signals reads City of San Diego approvals, groups them by their text, matches them to parcels and weights each group differently. Routine systems work carries no weight.",
+  "answer": "Building permit data for real estate agents shows which parcels have work approved, what kind of work it is and whether it was ever closed out. Before They Sell reads City of San Diego approvals, groups them by their text, matches them to parcels and weights each group differently. Routine systems work carries no weight.",
   "sections": {
     "what": {
       "q": "What is the building permit data signal?",

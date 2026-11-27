@@ -4,7 +4,7 @@
   "keyword": "SB 9 and SB 79 for agents",
   "headingTerm": "SB 9 and SB 79",
   "h1": "SB 9 and SB 79 for agents: lot-split and transit leads in San Diego",
-  "title": "SB 9 and SB 79 for Agents: San Diego Lot-Split and Transit",
+  "title": "SB 9 and SB 79 for San Diego Agents | Before They Sell",
   "description": "SB 9 and SB 79 for agents: how to screen San Diego parcels for lot-split and transit upzoning potential, what a screen misses and where to confirm it.",
   "updated": "2026-11-26",
   "published": "2026-11-26",
@@ -140,7 +140,7 @@ You screen for SB 9 and SB 79 potential in two passes: a wide map-based pass tha
 
 For SB 9, join parcels to base zoning and keep those in single-family base zones with enough area for two lots of at least 1,200 square feet. For SB 79, measure from each parcel to qualifying rail and bus stops and sort into the three distance bands.
 
-Territory Signals runs this kind of screen, and it is open about what the screen is. Its SB 9 screen keeps parcels in the City's RS single-family base zones with lots of at least 2,400 square feet. It leaves planned-district zones out entirely, so some single-family neighborhoods show no estimate at all. Its SB 79 screen uses public transit stop and route files that carry no service frequency or dedicated-lane information, so it identifies rapid bus stops by proxy and does not apply the law's frequency or lane tests. It also does not apply the City's deferrals and exemptions. That means a candidate can appear inside an SB 79 distance band and still not be eligible today.
+Before They Sell runs this kind of screen, and it is open about what the screen is. Its SB 9 screen keeps parcels in the City's RS single-family base zones with lots of at least 2,400 square feet. It leaves planned-district zones out entirely, so some single-family neighborhoods show no estimate at all. Its SB 79 screen uses public transit stop and route files that carry no service frequency or dedicated-lane information, so it identifies rapid bus stops by proxy and does not apply the law's frequency or lane tests. It also does not apply the City's deferrals and exemptions. That means a candidate can appear inside an SB 79 distance band and still not be eligible today.
 
 Every result is stored and shown as **estimated eligibility**, with a deliberately modest match confidence that reduces its weight in the score.
 
@@ -172,10 +172,10 @@ Good practice in either direction:
 - Label every eligibility statement as estimated, in writing.
 - Name the official source and the date you looked.
 - Do not publish an address as eligible without confirmation.
-- Protect the owner. A candidate list does not mean anyone wants to sell. A share page from Territory Signals carries neighborhood, lot size, zoning, estimated upzoning types and agent contact, with no address or owner details.
+- Protect the owner. A candidate list does not mean anyone wants to sell. A share page from Before They Sell carries neighborhood, lot size, zoning, estimated upzoning types and agent contact, with no address or owner details.
 - Include the license number and responsible broker's name that California requires on first-contact materials.
 
-A screen is most valuable when it saves you from the wrong conversations. Rank candidates by what else is true: a lot well above the area's median size, a long holding period, a demolition or map approval already in the permit record. In Territory Signals the [Builder bait recipe](/recipes/builder-bait) requires all of an upzoning estimate, a lot at least one and a half times the area's median residential lot and twenty or more years of ownership.
+A screen is most valuable when it saves you from the wrong conversations. Rank candidates by what else is true: a lot well above the area's median size, a long holding period, a demolition or map approval already in the permit record. In Before They Sell the [Builder bait recipe](/recipes/builder-bait) requires all of an upzoning estimate, a lot at least one and a half times the area's median residential lot and twenty or more years of ownership.
 
 ## What should you verify before relying on SB 9 and SB 79?
 

@@ -4,7 +4,7 @@
   "keyword": "what building permit data tells a listing agent",
   "headingTerm": "permit data",
   "h1": "What building permit data tells a listing agent",
-  "title": "What Building Permit Data Tells a Listing Agent: A Guide",
+  "title": "What Permit Data Tells a Listing Agent | Before They Sell",
   "description": "What building permit data tells a listing agent: how to read approval types, scope text, expiry and parcel numbers, and where permit records mislead you.",
   "updated": "2026-11-26",
   "published": "2026-11-26",
@@ -105,7 +105,7 @@ Read the approval scope first. If it is blank, a job description or the project'
 - Treat weak words with suspicion. "Bathroom" next to "repipe" or "water heater" is usually systems work.
 - When the text is empty, do not guess. Count it as maintenance.
 
-Territory Signals follows this approach with written rules, not a model's judgment. Maintenance carries zero weight in its score. The cost of that choice is real: preparation work filed with no description is under-counted. The alternative, treating every blank trade permit as a sign of an upcoming sale, fills the top of a list with water heaters.
+Before They Sell follows this approach with written rules, not a model's judgment. Maintenance carries zero weight in its score. The cost of that choice is real: preparation work filed with no description is under-counted. The alternative, treating every blank trade permit as a sign of an upcoming sale, fills the top of a list with water heaters.
 
 **One address, several approvals.**
 
@@ -142,7 +142,7 @@ The City's Information Bulletin 117, dated April 2026, sets out building permit 
 
 Read the bulletin itself before you rely on any of these for a specific property, since it includes conditions and exceptions this summary leaves out.
 
-For prospecting, a narrower definition works better than "anything past its expiry date". Territory Signals counts a stalled project only when a remodel, ADU or demolition and lot-split approval expired more than 90 days ago, no more than 36 months ago, with no close date. The 90 days allows for paperwork to catch up. The 36-month limit keeps very old records from posing as news.
+For prospecting, a narrower definition works better than "anything past its expiry date". Before They Sell counts a stalled project only when a remodel, ADU or demolition and lot-split approval expired more than 90 days ago, no more than 36 months ago, with no close date. The 90 days allows for paperwork to catch up. The 36-month limit keeps very old records from posing as news.
 
 Even then, the flag is a question. The work may be complete and never closed out. A newer permit may have replaced the old one. An extension may exist. Look at the full record, and look at the house.
 

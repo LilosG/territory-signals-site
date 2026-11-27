@@ -33,7 +33,7 @@ export const SOURCES: DataSource[] = [
 ];
 
 export const NOT_SCRAPED = [
-  { term: 'Superior Court probate records', definition: 'The court’s terms bar bots and automated data gathering, so Territory Signals does not scrape them.' },
+  { term: 'Superior Court probate records', definition: 'The court’s terms bar bots and automated data gathering, so Before They Sell does not scrape them.' },
   { term: 'Published legal notices', definition: 'The statewide notice site bars automated collection without written permission, and individual newspaper pages are not confirmed as usable. Neither is scraped.' },
   { term: 'Obituaries', definition: 'Publisher and obituary-site terms bar scraping and database use. Obituaries are never collected.' },
 ];

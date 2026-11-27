@@ -1,11 +1,11 @@
 /** Site-wide facts. Pages read these; none of them repeats nav, contact details, brand names or CTA labels. */
 export const SITE = {
-  name: 'Territory Signals',
-  url: 'https://getterritorysignals.com',
+  name: 'Before They Sell',
+  url: 'https://beforetheysell.com',
   locale: 'en_US',
   tagline: 'Territory intelligence for real estate teams',
   summary:
-    'Territory Signals is first-to-know territory intelligence for real estate teams: public and owner records matched to parcels, scored by published rules and worked through drafted outreach a person approves.',
+    'Before They Sell is first-to-know territory intelligence for real estate teams: public and owner records matched to parcels, scored by published rules and worked through drafted outreach a person approves.',
 } as const;
 
 export const COMPANY = {

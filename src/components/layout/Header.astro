@@ -1,7 +1,7 @@
 ---
 import Container from './Container.astro';
 import MobileNav from './MobileNav.astro';
-import { CTA, NAV, SITE } from '../../data/site.ts';
+import { COMPANY, CTA, NAV, SITE } from '../../data/site.ts';
 interface Props { current: string }
 const { current } = Astro.props;
 ---
@@ -9,7 +9,10 @@ const { current } = Astro.props;
   <Container class="flex h-header items-center justify-between gap-4">
     <a href="/" class="tap-link gap-2.5 text-[17px] font-semibold tracking-heading text-on-dark">
       <svg class="size-7" viewBox="0 0 28 28" aria-hidden="true"><path d="M4 9 14 3l10 6v10l-10 6-10-6z" fill="none" stroke="currentColor" class="text-gold" stroke-width="1.6" /><path d="M9 12l5-3 5 3v5l-5 3-5-3z" class="fill-gold/20 text-gold" stroke="currentColor" stroke-width="1.2" /><circle cx="14" cy="14.5" r="1.8" class="fill-gold" /></svg>
-      {SITE.name}
+      <span class="flex flex-col leading-none">
+        <span>{SITE.name}</span>
+        <span class="mt-1 text-[11px] font-normal tracking-normal text-on-dark-muted">by {COMPANY.name}</span>
+      </span>
     </a>
     <nav aria-label="Primary" class="hidden lg:block">
       <ul class="flex items-center gap-7 text-sm">

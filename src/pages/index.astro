@@ -53,7 +53,7 @@ const compare = [
     <Container class="text-center">
       <p class="hero-pill mono"><span aria-hidden="true"></span>Seller intelligence for San Diego real estate teams</p>
       <h1 class="mx-auto mt-7 max-w-[61rem] text-hero">{meta.h1}</h1>
-      <p class="lede mx-auto mt-6 max-w-[45rem] text-[1.1875rem]" data-answer>Territory Signals turns City permits, rental license changes, tax-roll notices and owner records into one ranked seller list for your San Diego farm, with the evidence behind every score and outreach drafts your own team approves before anything is sent.</p>
+      <p class="lede mx-auto mt-6 max-w-[45rem] text-[1.1875rem]" data-answer>Before They Sell turns City permits, rental license changes, tax-roll notices and owner records into one ranked seller list for your San Diego farm, with the evidence behind every score and outreach drafts your own team approves before anything is sent.</p>
       <div class="mt-9 flex flex-wrap justify-center gap-3">
         <Button href={CTA.primary.href} location="hero">{CTA.primary.label}</Button>
         <Button href={CTA.secondary.href} variant="secondary" location="hero">{CTA.secondary.label}</Button>
@@ -68,9 +68,9 @@ const compare = [
   <Section>
     <div class="grid-12 items-center gap-y-14">
       <div class="min-w-0 lg:col-span-6">
-        <p class="eyebrow">Why Territory Signals</p>
+        <p class="eyebrow">Why Before They Sell</p>
         <h2 class="mt-4">Off-market seller signals the MLS never shows you</h2>
-        <p class="mt-6 text-lg leading-relaxed text-ink-muted">By the time a home is on the MLS, every agent can see it. The reasons it sold usually showed up months earlier, spread across City permits, rental license files, the County tax roll and recorder documents. No one puts them together. Territory Signals does, parcel by parcel, every week.</p>
+        <p class="mt-6 text-lg leading-relaxed text-ink-muted">By the time a home is on the MLS, every agent can see it. The reasons it sold usually showed up months earlier, spread across City permits, rental license files, the County tax roll and recorder documents. No one puts them together. Before They Sell does, parcel by parcel, every week.</p>
         <dl class="mt-8 grid gap-6 sm:grid-cols-2">
           <div class="border-t-2 border-ink pt-3.5"><dt class="font-semibold">What everyone sees</dt><dd class="mt-1.5 text-[15px] leading-relaxed text-ink-muted">The listing, after the seller has already chosen an agent.</dd></div>
           <div class="border-t-2 border-gold pt-3.5"><dt class="font-semibold">What your team sees</dt><dd class="mt-1.5 text-[15px] leading-relaxed text-ink-muted">The permits, license changes and owner facts that came first.</dd></div>
@@ -139,7 +139,7 @@ const compare = [
       <div class="min-w-0 lg:col-span-5">
         <p class="eyebrow">San Diego</p>
         <h2 class="mt-4">Your San Diego farm, defined by planning area</h2>
-        <p class="mt-6 text-lg leading-relaxed text-ink-muted">Pick the City planning areas you work. Territory Signals scores every residential parcel inside them each week, and only your team sees your territory.</p>
+        <p class="mt-6 text-lg leading-relaxed text-ink-muted">Pick the City planning areas you work. Before They Sell scores every residential parcel inside them each week, and only your team sees your territory.</p>
         <dl class="mt-8 grid gap-5 sm:grid-cols-2">
           <div class="border-t border-line pt-3.5"><dt class="text-sm text-ink-muted">Coverage</dt><dd class="mt-1.5 text-[17px] font-semibold">City of San Diego planning areas</dd></div>
           <div class="border-t border-line pt-3.5"><dt class="text-sm text-ink-muted">Refresh</dt><dd class="mt-1.5 text-[17px] font-semibold">Every Monday morning</dd></div>
@@ -156,10 +156,10 @@ const compare = [
       {rules.map((r) => <li class="card"><Icon name={r.icon} class="size-7 text-gold-strong" /><p class="card-title mt-4 text-lg">{r.title}</p><p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{r.text}</p></li>)}
     </ul>
     <div class="mt-16 overflow-hidden rounded-[20px] border border-line bg-surface">
-      <div class="px-7 pt-7"><h3 class="font-serif text-[30px] font-medium tracking-heading">Not another seller lead list</h3><p class="mt-2 text-ink-muted">How Territory Signals differs from buying predictive seller leads.</p></div>
+      <div class="px-7 pt-7"><h3 class="font-serif text-[30px] font-medium tracking-heading">Not another seller lead list</h3><p class="mt-2 text-ink-muted">How Before They Sell differs from buying predictive seller leads.</p></div>
       <div class="overflow-x-auto px-7 pb-5" tabindex="0" role="region" aria-label="Comparison table, scrolls sideways">
         <table class="compare">
-          <thead><tr><td></td><th scope="col">A purchased lead list</th><th scope="col" class="us">Territory Signals</th></tr></thead>
+          <thead><tr><td></td><th scope="col">A purchased lead list</th><th scope="col" class="us">Before They Sell</th></tr></thead>
           <tbody>{compare.map(([dim, them, us]) => <tr><th scope="row">{dim}</th><td>{them}</td><td class="us">{us}</td></tr>)}</tbody>
         </table>
       </div>

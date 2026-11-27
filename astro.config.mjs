@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { lastModified, isIndexable } from './scripts/lib/lastmod.mjs';
 
 export default defineConfig({
-  site: 'https://getterritorysignals.com',
+  site: 'https://beforetheysell.com',
   output: 'static',
   adapter: cloudflare({ imageService: 'compile', prerenderEnvironment: 'node' }),
   session: false,

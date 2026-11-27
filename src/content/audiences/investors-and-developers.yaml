@@ -3,13 +3,13 @@
   "keyword": "off-market property leads for developers",
   "headingTerm": "developers",
   "h1": "Off-market property leads for developers and investors",
-  "title": "Off-Market Property Leads for Developers and Investors",
+  "title": "Off-Market Property Leads for Developers | Before They Sell",
   "description": "Off-market property leads for developers: estimated SB 9 and SB 79 parcels, demolition and lot-split permits, stalled projects and share pages for buyers.",
   "updated": "2026-11-26",
   "order": 4,
   "label": "Investors and developers",
   "summary": "Upzoning estimates, lot splits and off-market share pages",
-  "answer": "Off-market property leads for developers start with land that may allow more than it holds. Territory Signals screens parcels for estimated SB 9 and SB 79 potential, surfaces demolition, lot-split and stalled permits, and lets a team share property facts by link without exposing any owner. Every eligibility result is estimated and must be confirmed before use.",
+  "answer": "Off-market property leads for developers start with land that may allow more than it holds. Before They Sell screens parcels for estimated SB 9 and SB 79 potential, surfaces demolition, lot-split and stalled permits, and lets a team share property facts by link without exposing any owner. Every eligibility result is estimated and must be confirmed before use.",
   "recipes": [
     "builder-bait",
     "stalled-project"
@@ -21,9 +21,9 @@
   ],
   "sections": {
     "problem": {
-      "q": "What problem does Territory Signals solve for developers?",
+      "q": "What problem does Before They Sell solve for developers?",
       "p": [
-        "Territory Signals solves a common problem for developers: finding candidate land means cross-checking zoning, transit, lot size and permit history by hand.",
+        "Before They Sell solves a common problem for developers: finding candidate land means cross-checking zoning, transit, lot size and permit history by hand.",
         "Most parcels fall away on closer review, so a good first screen saves time."
       ]
     },
@@ -54,9 +54,9 @@
       ]
     },
     "fit": {
-      "q": "When is Territory Signals the wrong fit for developers?",
+      "q": "When is Before They Sell the wrong fit for developers?",
       "p": [
-        "Territory Signals is the wrong fit for developers who need confirmed entitlements or a feasibility study.",
+        "Before They Sell is the wrong fit for developers who need confirmed entitlements or a feasibility study.",
         "The screen does not check most disqualifying conditions, does not model costs and never shows that an owner wants to sell."
       ]
     }
@@ -64,6 +64,6 @@
   "headingVariants": [
     "developer",
     "investor",
-    "Territory Signals"
+    "Before They Sell"
   ]
 }

@@ -21,14 +21,14 @@ const others = (await entries('compare')).filter((c) => c.id !== entry.id);
 ---
 <StandardPage meta={metaOf('compare', entry)} answer={d.answer} eyebrow={`Comparison · facts as of ${d.asOf}`}
   request="Compare for yourself against your own planning areas."
-  cta={{ title: `Is Territory Signals the right ${d.headingTerm} for your team?`, text: 'A walkthrough shows the records, rules and approval steps so you can compare them with what you use now.' }}>
+  cta={{ title: `Is Before They Sell the right ${d.headingTerm} for your team?`, text: 'A walkthrough shows the records, rules and approval steps so you can compare them with what you use now.' }}>
   <QaSection {...s.differ} />
   <QaSection {...s.publishes} />
   <Section>
     <div class="stack">
       <h2>{d.tableQuestion}</h2>
       <p class="max-w-measure">{d.tableAnswer}</p>
-      <DataTable caption={`Territory Signals and ${d.competitor}, side by side`} columns={['Question', 'Territory Signals', d.competitor]}
+      <DataTable caption={`Before They Sell and ${d.competitor}, side by side`} columns={['Question', 'Before They Sell', d.competitor]}
         rows={d.rows.map((r) => [r.dimension, r.us, { text: r.them, note: `${source(r.source).name}, as of ${source(r.source).asOf}` }])} />
     </div>
   </Section>
@@ -42,7 +42,7 @@ const others = (await entries('compare')).filter((c) => c.id !== entry.id);
           {d.sources.map((x) => <li class="border-b border-line py-3"><a class="link" href={x.url} rel="noopener nofollow">{x.name}</a> <span class="text-sm text-ink-muted">as of {x.asOf}</span></li>)}
         </ul>
         {d.note && <p class="mt-4 max-w-measure text-sm text-ink-muted">{d.note}</p>}
-        <p class="mt-4 max-w-measure text-sm text-ink-muted">{d.competitor} is a trademark of its owner. Territory Signals is not affiliated with or endorsed by that company. Products change, so check the source before you decide.</p>
+        <p class="mt-4 max-w-measure text-sm text-ink-muted">{d.competitor} is a trademark of its owner. Before They Sell is not affiliated with or endorsed by that company. Products change, so check the source before you decide.</p>
       </div>
       <div class="col-support"><RelatedLinks title="Other comparisons" links={linkList('compare', others)} /></div>
     </div>

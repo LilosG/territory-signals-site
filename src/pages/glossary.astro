@@ -13,8 +13,8 @@ const groups = [
   { q: 'Which terms describe how a signal is scored?', lead: 'These terms describe how a signal turns into a number.', terms: SCORING_TERMS },
 ];
 ---
-<StandardPage meta={meta} eyebrow="Defined terms" schema={[definedTermSet(meta.path, 'Territory Signals glossary', groups.flatMap((g) => g.terms))]}
-  answer="This seller signal glossary defines the terms used across Territory Signals: each signal that can add to a parcel score, each recipe that names a seller pattern and each scoring rule. Estimated terms are marked as estimated, and definitions follow the product’s own wording wherever the product already defines the term."
+<StandardPage meta={meta} eyebrow="Defined terms" schema={[definedTermSet(meta.path, 'Before They Sell glossary', groups.flatMap((g) => g.terms))]}
+  answer="This seller signal glossary defines the terms used across Before They Sell: each signal that can add to a parcel score, each recipe that names a seller pattern and each scoring rule. Estimated terms are marked as estimated, and definitions follow the product’s own wording wherever the product already defines the term."
   request="To see these terms applied to real parcels in your area,"
   cta={{ title: 'Which signal terms matter in your territory?', text: 'We walk through the records behind each term for the planning areas you work.' }}>
   {groups.map((g) => (
