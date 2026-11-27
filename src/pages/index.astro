@@ -12,6 +12,7 @@ import DefinitionList from '../components/ui/DefinitionList.astro';
 import FaqList from '../components/ui/FaqList.astro';
 import SignalStack from '../components/visuals/SignalStack.astro';
 import TerritoryMap from '../components/visuals/TerritoryMap.astro';
+import BlockedDraft from '../components/product/BlockedDraft.astro';
 import { PAGES } from '../data/pages.ts';
 import { CTA } from '../data/site.ts';
 import { NOT_SCRAPED, SOURCES } from '../data/sources.ts';
@@ -39,7 +40,7 @@ const steps = [
     <ParcelTexture id="hero" />
     <Container>
       <div class="grid-12 items-center">
-        <div class="col-lead">
+        <div class="min-w-0 lg:col-span-6">
           <p class="eyebrow">Territory intelligence for real estate teams</p>
           <h1 class="mt-5 text-hero">{meta.h1}</h1>
           <p class="lede mt-7" data-answer>Territory Signals pulls permits, rental licenses, tax-roll lines and owner records into one place, matches each to a parcel, scores it with published rules and hands your team ranked properties, the evidence behind them and drafted outreach that a person approves before your team sends it.</p>
@@ -48,7 +49,7 @@ const steps = [
             <Button href={CTA.secondary.href} variant="secondary" location="hero">{CTA.secondary.label}</Button>
           </div>
         </div>
-        <div class="home-hero-visual col-support"><SignalStack /></div>
+        <div class="home-hero-visual min-w-0 lg:col-span-6"><SignalStack /></div>
       </div>
     </Container>
   </div>
@@ -67,19 +68,24 @@ const steps = [
   </Section>
 
   <Section>
-    <h2 class="max-w-3xl">How do seller signals become a worked lead?</h2>
-    <p class="mt-4 max-w-measure">Seller signals become a worked lead in four steps, each of which leaves a record your team can check.</p>
-    <ol class="steps mt-14">
-      {steps.map(([n, name, text]) => (
-        <li class="step">
-          <p class="step-numeral">{n}</p>
-          <h3 class="sr-only">{name}: seller signals</h3>
-          <p class="mt-5 font-serif text-2xl font-medium" aria-hidden="true">{name}</p>
-          <p class="mt-3 text-ink-muted">{text}</p>
-        </li>
-      ))}
-    </ol>
-    <p class="mt-10 max-w-measure text-sm text-ink-muted">An optional AI layer explains: it writes short, validated summaries that cite their records. It never scores.</p>
+    <div class="grid-12">
+      <div class="col-support stack lg:sticky lg:top-24 lg:self-start">
+        <h2>How do seller signals become a worked lead?</h2>
+        <p>Seller signals become a worked lead in four steps, each of which leaves a record your team can check.</p>
+        <p class="text-sm text-ink-muted">An optional AI layer explains: it writes short, validated summaries that cite their records. It never scores.</p>
+        <p><a class="link" href="/how-it-works">How scoring works, step by step</a></p>
+      </div>
+      <ol class="steps col-lead">
+        {steps.map(([n, name, text]) => (
+          <li class="step">
+            <p class="step-numeral">{n}</p>
+            <h3 class="sr-only">{name}: seller signals</h3>
+            <p class="mt-4 font-serif text-2xl font-medium" aria-hidden="true">{name}</p>
+            <p class="mt-3 text-ink-muted">{text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
   </Section>
 
   <Section>
@@ -103,9 +109,13 @@ const steps = [
   </Section>
 
   <Section label="Approval rule">
-    <figure class="mx-auto max-w-4xl text-center">
-      <p class="font-serif text-section">A draft stays blocked until the agent’s name and license number are on it.</p>
-    </figure>
+    <div class="grid-12 items-center">
+      <figure class="col-lead">
+        <p class="eyebrow">Approval rule</p>
+        <p class="mt-5 border-l-2 border-gold pl-6 font-serif text-section">A draft stays blocked until the agent’s name and license number are on it.</p>
+      </figure>
+      <div class="col-support"><BlockedDraft /></div>
+    </div>
   </Section>
 
   <Section>
@@ -121,12 +131,12 @@ const steps = [
 
   <Section label="The market">
     <div class="grid-12 items-center">
-      <div class="col-aside stack">
+      <div class="col-support stack">
         <p class="eyebrow">The market</p>
         <p class="font-serif text-2xl">San Diego is the live market. A territory is any set of City planning areas your team chooses.</p>
         <p><a class="link" href="/markets/san-diego">San Diego coverage</a></p>
       </div>
-      <div class="col-main"><TerritoryMap /></div>
+      <div class="col-lead"><TerritoryMap /></div>
     </div>
   </Section>
 
@@ -155,26 +165,30 @@ const steps = [
 
   <Section>
     <div class="grid-12">
-      <div class="col-main stack">
+      <div class="col-support stack">
         <h2>How are seller signals set up for your team?</h2>
-        <p class="max-w-measure">Seller signals are set up per team or brokerage: one deployment per client, configured to the planning areas you choose and run as a managed service. It is not self-serve software, and it is not priced per lead.</p>
+        <p>Seller signals are set up per team or brokerage: one deployment per client, configured to the planning areas you choose and run as a managed service. It is not self-serve software, and it is not priced per lead.</p>
+        <p><a class="link" href="/how-we-build">What onboarding involves</a></p>
+      </div>
+      <div class="col-lead self-center">
         <DefinitionList items={[
           { term: 'Your territory', definition: 'The City planning areas you choose, with your agents and license details.' },
           { term: 'Managed', definition: 'Built and run for you, with a weekly data run and visible source health.' },
           { term: 'MLS add-on', definition: 'Optional and scoped per client. It requires your broker’s signed back-office data agreement. The core product runs without it.' },
         ]} />
-        <p><a class="link" href="/how-we-build">What onboarding involves</a></p>
       </div>
     </div>
   </Section>
 
   <Section>
-    <div class="max-w-3xl">
-      <h2>What do teams ask about seller signals?</h2>
-      <p class="mt-4">Teams ask where seller signals come from, how they are scored and what happens before anyone is contacted.</p>
+    <div class="grid-12">
+      <div class="col-support stack">
+        <h2>What do teams ask about seller signals?</h2>
+        <p>Teams ask where seller signals come from, how they are scored and what happens before anyone is contacted.</p>
+        <p><a class="link" href="/faq">All questions</a></p>
+      </div>
+      <div class="col-lead"><FaqList items={faqs} /></div>
     </div>
-    <div class="mt-8"><FaqList items={faqs} /></div>
-    <p class="mt-6"><a class="link" href="/faq">All questions</a></p>
   </Section>
 
   <CtaBand tone="light" title="Which seller signals are in your territory?" text="Tell us the market and neighborhoods you work. We walk through the records that cover them and how each would score." />
@@ -185,17 +199,16 @@ const steps = [
   .home-hero > :global(.page-container) { flex: 1; }
   .home-hero :global(.lede) { max-width: 36rem; }
   @media (min-width: 64rem) {
-    .home-hero-visual { margin-right: calc(-0.5 * var(--spacing-gutter)); }
+    .home-hero-visual { padding-left: 1rem; }
   }
-  /* Four steps on one rule: across on wide screens, down on narrow ones. */
-  .steps { display: grid; }
-  .step { position: relative; padding: 0 0 2.5rem 1.5rem; border-left: 1px solid var(--color-line-strong); }
-  .step::before { content: ''; position: absolute; top: 1.75rem; left: -0.3rem; width: 0.6rem; height: 0.6rem; border-radius: var(--radius-full); background: var(--color-gold); }
-  .step:last-child { padding-bottom: 0; }
+  /* Four steps: a 2 x 2 grid beside the heading on wide screens, one column on narrow ones. */
+  .steps { display: grid; gap: 0; border-top: 1px solid var(--color-line-strong); }
+  .step { position: relative; padding: 2rem 0 2rem 1.5rem; border-bottom: 1px solid var(--color-line); }
+  .step::before { content: ''; position: absolute; top: 2.75rem; left: 0; width: 0.5rem; height: 0.5rem; border-radius: var(--radius-full); background: var(--color-gold); }
   .step-numeral { font-family: var(--font-mono); font-size: var(--text-numeral); line-height: var(--text-numeral--line-height); letter-spacing: var(--tracking-display); color: var(--color-ink); font-variant-numeric: tabular-nums; }
-  @media (min-width: 64rem) {
-    .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .step { padding: 2.5rem 2rem 0 0; border-left: 0; border-top: 1px solid var(--color-line-strong); }
-    .step::before { top: -0.3rem; left: 0; }
+  @media (min-width: 48rem) {
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .step { padding: 2.25rem 2rem 2.25rem 1.75rem; }
+    .step:nth-child(odd) { border-right: 1px solid var(--color-line); }
   }
 </style>

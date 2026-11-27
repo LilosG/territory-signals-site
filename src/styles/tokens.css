@@ -27,6 +27,11 @@
   --color-tier-priority: #b45309;
   --color-tier-watchlist: #1e3a8a;
   --color-tier-monitor: #64748b;
+  /* The same tiers lifted for legibility on obsidian (parcel fills and strokes only). */
+  --color-tier-immediate-on-dark: #f87171;
+  --color-tier-priority-on-dark: #fbbf24;
+  --color-tier-watchlist-on-dark: #7aa2f7;
+  --color-tier-monitor-on-dark: #94a3b8;
   /* Product UI recreations only: the product's own honesty markers. */
   --color-sample: #8a5806;
   --color-sample-soft: #fef8e7;
@@ -73,7 +78,7 @@
 
   --spacing: 0.25rem;
   --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
-  --spacing-section: clamp(4rem, 8vw, 7.5rem);
+  --spacing-section: clamp(4rem, 7vw, 6.5rem);
   --spacing-tap: 2.75rem;
   --spacing-header: 4rem;
   --spacing-control: 3rem;

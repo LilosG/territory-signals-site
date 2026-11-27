@@ -1,9 +1,9 @@
 ---
 /**
- * The product's fallback lot drawing (D23), using real parcel geometry cropped around one lot. The lot facts printed
+ * The product's fallback lot drawing (D23), using the invented demo block cropped around one lot. The lot facts printed
  * on it are invented, it is not a survey, and it replaces any aerial imagery.
  */
-import block from '../../data/parcel-block.json';
+import block from '../../data/parcel-block-demo.json';
 import { LEAD } from '../../data/demo.ts';
 const [cx, cy] = block.subjectCenter as [number, number];
 const VIEW = { w: 600, h: 300 };

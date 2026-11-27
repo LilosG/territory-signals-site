@@ -7,38 +7,46 @@
 import ParcelBlock from './ParcelBlock.astro';
 import ScoreRing from '../ui/ScoreRing.astro';
 import SampleBadge from '../ui/SampleBadge.astro';
-import block from '../../data/parcel-block.json';
+import block from '../../data/parcel-block-demo.json';
 import { HERO, WORKSPACE } from '../../data/demo.ts';
 import { tierOf } from '../../lib/tiers.ts';
 const tier = tierOf(HERO.score);
 
-/* Stage coordinates are percentages. These match .stack-block and .stack-row in the styles below. */
-const BLOCK = { left: 4, top: 14, width: 118, height: 78.6 };
+/*
+ * Stage coordinates are percentages of a 600 x 500 stage. Records sit in a column on the left, the block on the right,
+ * and the score card under the block, so nothing covers the parcels. These match the styles below.
+ */
+const STAGE = { w: 600, h: 500 };
+const BLOCK = { left: 40, top: 3, width: 60 };
 const PAD = 24;
+const blockHeight = BLOCK.width * (STAGE.w / STAGE.h) * ((block.height + PAD * 2) / (block.width + PAD * 2));
 const end = {
   x: BLOCK.left + ((block.subjectCenter[0]! + PAD) / (block.width + PAD * 2)) * BLOCK.width,
-  y: BLOCK.top + ((block.subjectCenter[1]! + PAD) / (block.height + PAD * 2)) * BLOCK.height,
+  y: BLOCK.top + ((block.subjectCenter[1]! + PAD) / (block.height + PAD * 2)) * blockHeight,
 };
-const ROW = { width: 62, step: 13, height: 11.5 };
+const ROW = { width: 36, top: 3, step: 17.5, height: 15.5 };
 const links = HERO.records.map((_, i) => {
-  const y = i * ROW.step + ROW.height / 2;
-  return `M${ROW.width} ${y}C${74 - i * 2} ${y} ${end.x + 9 - i * 2} ${end.y - 20 + i * 3} ${end.x.toFixed(2)} ${end.y.toFixed(2)}`;
+  const y = ROW.top + i * ROW.step + ROW.height / 2;
+  const mid = (ROW.width + end.x) / 2;
+  return `M${ROW.width} ${y.toFixed(2)}C${mid.toFixed(2)} ${y.toFixed(2)} ${mid.toFixed(2)} ${end.y.toFixed(2)} ${end.x.toFixed(2)} ${end.y.toFixed(2)}`;
 });
+const RESULT_TOP = 70;
+const drop = `M${end.x.toFixed(2)} ${end.y.toFixed(2)}L${end.x.toFixed(2)} ${RESULT_TOP}`;
 ---
 <figure class="signal-stack" aria-label="Sample: four separate records attach to one parcel and resolve into a score">
   <div class="stack-stage">
     <div class="stack-block"><ParcelBlock tone="dark" /></div>
     <svg class="stack-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       {links.map((d) => <path class="stack-link" d={d} />)}
+      <path class="stack-drop" d={drop} />
     </svg>
     <svg class="stack-node" aria-hidden="true" focusable="false"><circle class="stack-dot" cx={`${end.x}%`} cy={`${end.y}%`} r="5" /></svg>
     <ol class="stack-rows">
       {HERO.records.map((r) => (
         <li class="stack-row">
           <span class="stack-source">{r.source}</span>
-          <span class="stack-record">{r.record}</span>
           <span class="stack-fact">{r.fact}</span>
-          <time class="stack-record" datetime={r.date}>{r.date}</time>
+          <span class="stack-meta"><span>{r.record}</span><time datetime={r.date}>{r.date}</time></span>
         </li>
       ))}
     </ol>
@@ -64,41 +72,34 @@ const links = HERO.records.map((_, i) => {
   .stack-block { order: 2; }
   .stack-links, .stack-node { display: none; }
   .stack-row {
-    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: center; column-gap: 0.75rem;
-    padding: 0.5rem 0.875rem; border: 1px solid var(--color-line-dark); border-radius: var(--radius-lg);
-    background: var(--color-obsidian-raised); box-shadow: var(--shadow-lift);
+    display: flex; flex-direction: column; justify-content: center; gap: 0.2rem;
+    padding: 0.625rem 0.875rem; border: 1px solid var(--color-line-dark); border-left: 2px solid var(--color-gold-bright);
+    border-radius: var(--radius-md); background: var(--color-obsidian-raised); box-shadow: var(--shadow-lift);
   }
-  .stack-source, .stack-record { font-family: var(--font-mono); font-size: var(--text-2xs); line-height: var(--text-2xs--line-height); color: var(--color-on-dark-muted); font-variant-numeric: tabular-nums; }
-  .stack-source { text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-gold-bright); }
-  .stack-record { text-align: right; white-space: nowrap; }
-  .stack-fact { font-size: var(--text-sm); line-height: 1.35; font-weight: 500; color: var(--color-on-dark); }
+  .stack-source, .stack-meta { font-family: var(--font-mono); font-size: var(--text-2xs); line-height: var(--text-2xs--line-height); font-variant-numeric: tabular-nums; }
+  .stack-source { text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-gold-bright); }
+  .stack-meta { display: flex; justify-content: space-between; gap: 0.75rem; color: var(--color-on-dark-muted); }
+  .stack-fact { font-size: var(--text-sm); line-height: 1.3; font-weight: 500; color: var(--color-on-dark); }
   .stack-result {
-    order: 3; position: relative; width: min(100%, 20rem); margin: -3rem 0 0 auto; overflow: hidden;
+    order: 3; position: relative; width: min(100%, 20rem); margin: -2rem 0 0 auto; overflow: hidden;
     border-radius: var(--radius-xl); background: var(--color-surface); color: var(--color-ink); box-shadow: var(--shadow-float);
   }
 
   @media (min-width: 40rem) {
-    .stack-stage { display: block; position: relative; aspect-ratio: 560 / 672; }
-    .stack-block { position: absolute; left: 4%; top: 14%; width: 118%; }
+    .stack-stage { display: block; position: relative; aspect-ratio: 600 / 500; }
+    .stack-block { position: absolute; left: 40%; top: 3%; width: 60%; }
     .stack-links, .stack-node { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
     .stack-rows { display: contents; }
-    .stack-row { position: absolute; left: 0; width: 62%; height: 11.5%; z-index: 1; }
-    .stack-row:nth-child(1) { top: 0; }
-    .stack-row:nth-child(2) { top: 13%; }
-    .stack-row:nth-child(3) { top: 26%; }
-    .stack-row:nth-child(4) { top: 39%; }
-    .stack-fact { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .stack-result { position: absolute; right: 0; bottom: 0; width: min(62%, 20rem); margin: 0; z-index: 2; }
-  }
-  /* The narrow two-column range: the fact takes the full row width and the date is kept for screen readers only. */
-  @media (min-width: 64rem) and (max-width: 79.99rem) {
-    .stack-row { width: 70%; padding-inline: 0.625rem; column-gap: 0.5rem; }
-    .stack-source { letter-spacing: 0; white-space: nowrap; }
-    .stack-fact { grid-column: 1 / -1; font-size: var(--text-xs); }
-    .stack-row time { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .stack-row { position: absolute; left: 0; width: 36%; height: 15.5%; z-index: 1; padding-block: 0.375rem; }
+    .stack-row:nth-child(1) { top: 3%; }
+    .stack-row:nth-child(2) { top: 20.5%; }
+    .stack-row:nth-child(3) { top: 38%; }
+    .stack-row:nth-child(4) { top: 55.5%; }
+    .stack-result { position: absolute; right: 0; top: 70%; width: min(56%, 21rem); margin: 0; z-index: 2; }
   }
 
-  .stack-link { fill: none; stroke: var(--color-gold-bright); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+  .stack-link, .stack-drop { fill: none; stroke: var(--color-gold-bright); stroke-width: 1.25; stroke-opacity: 0.85; vector-effect: non-scaling-stroke; }
+  .stack-drop { stroke-dasharray: 3 4; }
   .stack-dot { fill: var(--color-gold-bright); }
 
   .stack-row { animation: arrive var(--duration-slow) var(--ease-quiet) backwards; }
@@ -111,6 +112,7 @@ const links = HERO.records.map((_, i) => {
   .stack-link:nth-child(2) { animation-delay: 1000ms; }
   .stack-link:nth-child(3) { animation-delay: 1500ms; }
   .stack-link:nth-child(4) { animation-delay: 2000ms; }
+  .stack-drop { animation: appear 300ms var(--ease-quiet) 2250ms backwards; }
   .stack-dot { animation: appear var(--duration-slow) var(--ease-quiet) 700ms backwards; }
   .stack-result { animation: arrive 400ms var(--ease-quiet) 2350ms backwards; }
   .stack-result :global(.ring-value) { animation: fill-ring 700ms var(--ease-quiet) 2500ms backwards; }

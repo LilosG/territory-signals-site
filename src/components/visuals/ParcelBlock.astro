@@ -1,9 +1,9 @@
 ---
 /**
- * A real block outline drawn as a cadastral sheet (scripts/build-parcel-block.mjs). The score fills and the gold
+ * An invented block drawn as a cadastral sheet (scripts/build-demo-block.mjs). It traces no real parcel. The score fills and the gold
  * subject parcel are illustrative. The data holds drawing coordinates only: no parcel numbers, addresses or owners.
  */
-import block from '../../data/parcel-block.json';
+import block from '../../data/parcel-block-demo.json';
 interface Props { tone?: 'light' | 'dark'; class?: string; label?: string }
 const { tone = 'light', class: cls, label } = Astro.props;
 const filled = new Map(block.filled.map((f) => [f.index, f.tier]));
@@ -28,8 +28,13 @@ const filled = new Map(block.filled.map((f) => [f.index, f.tier]));
   .parcel-block-light .parcel-street path { stroke: var(--color-slate-pale); }
   .parcel-block-light .parcel-lots path { fill: var(--color-surface); stroke: var(--color-slate-line); }
   .parcel-block-light .parcel-score { fill-opacity: 0.2; }
-  .parcel-block-dark .parcel-street path { stroke: var(--color-obsidian-raised); }
-  .parcel-block-dark .parcel-lots path { fill: var(--color-obsidian); stroke: var(--color-slate-line); }
-  .parcel-block-dark .parcel-score { fill-opacity: 0.5; }
+  .parcel-block-dark .parcel-street path { stroke: rgb(255 255 255 / 0.06); }
+  .parcel-block-dark .parcel-lots path { fill: var(--color-obsidian-raised); stroke: rgb(148 163 184 / 0.55); }
+  .parcel-block-dark .parcel-score { fill-opacity: 0.32; stroke: currentColor; stroke-width: 1.5; }
+  .parcel-block-dark .parcel-score.tier-immediate { color: var(--color-tier-immediate-on-dark); }
+  .parcel-block-dark .parcel-score.tier-priority { color: var(--color-tier-priority-on-dark); }
+  .parcel-block-dark .parcel-score.tier-watchlist { color: var(--color-tier-watchlist-on-dark); }
+  .parcel-block-dark .parcel-score.tier-monitor { color: var(--color-tier-monitor-on-dark); }
+  .parcel-block-dark .parcel-subject-wash { fill-opacity: 0.12; }
   .parcel-block-dark .parcel-subject { stroke: var(--color-gold-bright); }
 </style>

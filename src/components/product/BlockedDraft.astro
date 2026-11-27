@@ -1,0 +1,21 @@
+---
+/** The co-pilot's blocked state on its own: what a team sees when the agent's name or DRE number is missing. Sample. */
+import Frame from './Frame.astro';
+import Icon from '../ui/Icon.astro';
+---
+  <Frame title="Outreach co-pilot">
+    <div class="p-4">
+      <div class="rounded-md bg-sunken px-3 py-2 text-sm">
+        <p class="eyebrow">Approval status</p>
+        <p class="mt-1">Letter: <strong>Draft</strong></p>
+      </div>
+      <div class="mt-3 flex gap-2 rounded-md border border-sample/30 bg-sample-soft px-3 py-2.5 text-sm text-sample" data-blocked>
+        <Icon name="lock" class="mt-0.5 size-4" />
+        <div>
+          <p class="font-semibold">Blocked: missing agent name or DRE license</p>
+          <p class="mt-1">Add the agent’s name and DRE license number to the team profile, then prepare the draft again.</p>
+        </div>
+      </div>
+      <p class="mt-3"><span class="inline-block rounded-md border border-line bg-sunken px-3 py-2 text-sm font-semibold text-ink-muted">Approve draft (unavailable while blocked)</span></p>
+    </div>
+  </Frame>

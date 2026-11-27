@@ -30,8 +30,10 @@ const { paths, density, example, width, height, count } = PLANNING_AREAS;
 </figure>
 <style>
   .map-canvas { display: block; width: 100%; height: auto; }
+  /* The map sits on its own sheet so the detached southern areas read as part of one drawing. */
+  .territory-map { overflow: hidden; padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--color-line); border-radius: var(--radius-2xl); background: var(--color-canvas); }
   @media (min-width: 64rem) {
-    .map-canvas { height: clamp(40rem, 80vh, 52rem); }
+    .map-canvas { height: clamp(36rem, 70vh, 46rem); }
   }
   .map-shapes path, .key-area { fill: var(--color-slate-pale); stroke: var(--color-surface); stroke-width: 1.25; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
   .key-area { stroke: var(--color-line-strong); }
