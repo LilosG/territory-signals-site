@@ -1,0 +1,87 @@
+---
+/**
+ * Toggle example signals on a sample parcel and watch the score change. Weights come from the product config and the
+ * arithmetic from lib/scoring.ts. The page renders the starting result, so it reads correctly without JavaScript.
+ */
+import ScoreRing from '../ui/ScoreRing.astro';
+import SampleBadge from '../ui/SampleBadge.astro';
+import { DEMO_SIGNALS, LEAD, WORKSPACE } from '../../data/demo.ts';
+import { SCORE_RULES } from '../../lib/product.ts';
+import { computeScore } from '../../lib/scoring.ts';
+import { TIERS, tierOf } from '../../lib/tiers.ts';
+
+const initial = computeScore(DEMO_SIGNALS.filter((s) => s.on), SCORE_RULES);
+const points = (key: string) => initial.components.find((c) => c.key === key)?.contribution ?? 0;
+const tier = tierOf(initial.score);
+const config = JSON.stringify({ rules: SCORE_RULES, tiers: TIERS });
+---
+<div class="border border-line-strong bg-surface" data-score-demo data-config={config}>
+  <div class="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-sunken px-4 py-2">
+    <p class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">{WORKSPACE} · sample parcel · {LEAD.address} · APN {LEAD.apn}</p>
+    <SampleBadge />
+  </div>
+  <div class="grid-12 p-4 sm:p-6">
+    <fieldset class="col-lead">
+      <legend class="eyebrow mb-2">Signals on this parcel</legend>
+      {DEMO_SIGNALS.map((s) => (
+        <label class="flex min-h-tap cursor-pointer items-start gap-3 border-b border-line py-3" data-target>
+          <input type="checkbox" class="mt-1 size-4 accent-ink" checked={s.on} data-signal={JSON.stringify({ key: s.key, family: s.family, weight: s.weight, halfLifeDays: s.halfLifeDays, ageDays: s.ageDays, confidence: s.confidence, ownerModifier: s.ownerModifier })} />
+          <span class="min-w-0 flex-1">
+            <span class="block text-sm font-semibold">{s.label}</span>
+            <span class="mono block text-2xs text-ink-muted">weight {s.weight} · {s.halfLifeDays ? `age ${s.ageDays}d, half-life ${s.halfLifeDays}d` : 'does not decay'} · confidence {s.confidence.toFixed(2)}</span>
+          </span>
+          <output class="num shrink-0 text-sm font-semibold" data-points={s.key}>+{points(s.key).toFixed(2)}</output>
+        </label>
+      ))}
+    </fieldset>
+    <div class="col-support">
+      <div class="flex items-center gap-4">
+        <ScoreRing score={initial.score} size="xl" live />
+        <div>
+          <p class:list={['text-lg font-semibold', `tier-${tier.key}`]} data-tier-label>{tier.label}</p>
+          <p class="text-sm text-ink-muted">Score out of 100</p>
+        </div>
+      </div>
+      <dl class="num mt-5 border-t border-ink text-sm">
+        <div class="flex justify-between gap-4 border-b border-line py-2"><dt>Sum of contributions</dt><dd data-sum>{initial.weightedSum.toFixed(2)}</dd></div>
+        <div class="flex justify-between gap-4 border-b border-line py-2"><dt>Independent signal families</dt><dd data-families>{initial.families.length}</dd></div>
+        <div class="flex justify-between gap-4 border-b border-line py-2"><dt>Stacking multiplier</dt><dd data-multiplier>×{initial.multiplier.toFixed(2)}</dd></div>
+        <div class="flex justify-between gap-4 border-b border-line py-2 font-semibold"><dt>Score</dt><dd data-total>{initial.score}</dd></div>
+      </dl>
+      <p class="sr-only" role="status" data-status></p>
+      <noscript><p class="mt-3 text-sm text-ink-muted">The toggles need JavaScript. The result shown is for the signals checked above.</p></noscript>
+    </div>
+  </div>
+</div>
+<script>
+  import { computeScore, type ScoreInput, type ScoreRules } from '../../lib/scoring.ts';
+  type Tier = { key: string; label: string; min: number };
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-score-demo]')) {
+    const { rules, tiers } = JSON.parse(root.dataset.config!) as { rules: ScoreRules; tiers: Tier[] };
+    const boxes = [...root.querySelectorAll<HTMLInputElement>('input[data-signal]')];
+    const set = (selector: string, text: string) => { root.querySelector(selector)!.textContent = text; };
+
+    root.addEventListener('change', () => {
+      const inputs = boxes.filter((b) => b.checked).map((b) => JSON.parse(b.dataset.signal!) as ScoreInput);
+      const result = computeScore(inputs, rules);
+      const tier = tiers.find((t) => result.score >= t.min)!;
+      for (const out of root.querySelectorAll<HTMLElement>('[data-points]')) {
+        const found = result.components.find((c) => c.key === out.dataset.points);
+        out.textContent = `+${(found?.contribution ?? 0).toFixed(2)}`;
+      }
+      set('[data-sum]', result.weightedSum.toFixed(2));
+      set('[data-families]', String(result.families.length));
+      set('[data-multiplier]', `×${result.multiplier.toFixed(2)}`);
+      set('[data-total]', String(result.score));
+      set('[data-tier-label]', tier.label);
+      set('[data-status]', `Score ${result.score} out of 100, ${tier.label}`);
+      root.querySelector('[data-tier-label]')!.className = `text-lg font-semibold tier-${tier.key}`;
+      const ring = root.querySelector<SVGElement>('[data-ring]')!;
+      ring.setAttribute('class', `score-ring shrink-0 size-24 tier-${tier.key}`);
+      ring.setAttribute('aria-label', `Score ${result.score} out of 100, ${tier.label}`);
+      ring.querySelector('.ring-value')!.setAttribute('stroke-dasharray', `${result.score} 100`);
+      ring.querySelector('.ring-number')!.textContent = String(result.score);
+    });
+  }
+</script>

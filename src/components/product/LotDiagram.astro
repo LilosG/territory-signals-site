@@ -1,0 +1,17 @@
+---
+/** The product's fallback lot drawing (D23). It is schematic, not a survey, and replaces any aerial imagery. */
+import { LEAD } from '../../data/demo.ts';
+---
+<svg class="lot-diagram h-auto w-full border border-line bg-sunken" viewBox="0 0 400 150" width="400" height="150" role="img" aria-label={`Schematic lot diagram, ${LEAD.lot}, zone ${LEAD.zoning}. Not a survey.`}>
+  <path class="lot-grid" d="M0 30H400M0 75H400M0 120H400M60 0V150M140 0V150M260 0V150M340 0V150" />
+  <path class="lot-line" d="M132 28L262 22L276 122L128 128Z" />
+  <path class="lot-footprint" d="M160 54h62v44h-62z" />
+  <text class="lot-text" x="12" y="20">SCHEMATIC · NOT A SURVEY</text>
+  <text class="lot-text" x="12" y="140">{LEAD.zoning} · {LEAD.lot.toUpperCase()}</text>
+</svg>
+<style>
+  .lot-grid { stroke: var(--color-line-strong); stroke-width: 0.5; fill: none; }
+  .lot-line { fill: var(--color-surface); stroke: var(--color-ink); stroke-width: 2; }
+  .lot-footprint { fill: var(--color-sunken); stroke: var(--color-ink-muted); stroke-dasharray: 4 3; }
+  .lot-text { fill: var(--color-ink-muted); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; }
+</style>

@@ -1,0 +1,40 @@
+---
+import Frame from './Frame.astro';
+import ScoreRing from '../ui/ScoreRing.astro';
+import ScoreBreakdown from './ScoreBreakdown.astro';
+import LotDiagram from './LotDiagram.astro';
+import { AREA, LEAD } from '../../data/demo.ts';
+import { tierOf } from '../../lib/tiers.ts';
+const tier = tierOf(LEAD.score);
+---
+<Frame title="Quick dossier">
+  <div class="border-b border-line px-4 py-3">
+    <p class="text-lg font-semibold tracking-heading">{LEAD.address}</p>
+    <p class="mono text-2xs text-ink-muted">{AREA} · APN {LEAD.apn}</p>
+  </div>
+  <div class="flex flex-col gap-4 p-4">
+    <LotDiagram />
+    <div class="flex items-center gap-3">
+      <ScoreRing score={LEAD.score} size="lg" />
+      <div>
+        <p class:list={['font-semibold', `tier-${tier.key}`]}>{tier.label}</p>
+        <p class="num text-xs text-ink-muted">Score {LEAD.score} / 100 · Model {LEAD.model}</p>
+        <p class="mt-1"><span class="recipe-tag">{LEAD.recipe}</span></p>
+      </div>
+    </div>
+    <div class="rounded-md border border-line bg-canvas px-3 py-2">
+      <p class="eyebrow">Top signal</p>
+      <p class="mt-1 text-sm font-medium">{LEAD.topSignal}</p>
+    </div>
+    <div>
+      <p class="flex items-center gap-2"><span class="eyebrow">Why this lead</span><span class="ai-tag">AI summary</span></p>
+      <p class="mt-1.5 font-semibold">{LEAD.headline}</p>
+      <p class="mt-1 text-sm text-ink-muted">{LEAD.summary}</p>
+    </div>
+    <div>
+      <p class="eyebrow mb-3">Score breakdown</p>
+      <ScoreBreakdown items={LEAD.breakdown} score={LEAD.score} />
+      <p class="num mt-3 text-xs text-ink-muted">{LEAD.families} signal families, multiplier ×{LEAD.multiplier.toFixed(2)}</p>
+    </div>
+  </div>
+</Frame>

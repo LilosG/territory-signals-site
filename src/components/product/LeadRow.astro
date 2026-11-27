@@ -1,0 +1,27 @@
+---
+import Frame from './Frame.astro';
+import ScoreRing from '../ui/ScoreRing.astro';
+import { AREA, LEAD } from '../../data/demo.ts';
+const chips = [{ text: 'SB 9 eligible', est: true }, { text: '1 permit', est: false }, { text: '24 years owned', est: false }];
+---
+<Frame title="Leads">
+  <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 p-4">
+    <div class="min-w-0">
+      <p class="flex flex-wrap items-baseline gap-x-2">
+        <span class="num text-2xs font-semibold text-ink-muted">#1</span>
+        <strong class="text-sm">{LEAD.address}</strong>
+        <span class="text-xs text-ink-muted">{AREA}</span>
+      </p>
+      <p class="mt-1 text-sm font-semibold">{LEAD.headline} <span class="ai-tag">AI summary</span></p>
+      <p class="mt-0.5 text-xs text-ink-muted">{LEAD.topSignal}</p>
+      <ul class="mt-2 flex flex-wrap gap-1.5">
+        {chips.map((c) => <li class="rounded-sm bg-sunken px-2 py-0.5 text-2xs font-medium text-ink-muted">{c.text}{c.est && <em class="est-tag">est.</em>}</li>)}
+      </ul>
+      <p class="num mt-2 text-2xs text-ink-muted">{LEAD.lot} · {LEAD.zoning}</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <ScoreRing score={LEAD.score} size="lg" />
+      <span class="status-pill">Draft ready</span>
+    </div>
+  </div>
+</Frame>

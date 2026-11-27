@@ -1,0 +1,63 @@
+---
+/**
+ * Hero sequence: four unrelated records arrive, attach to one parcel and resolve to a score and tier.
+ * CSS only. The resting styles are the finished state, so reduced motion and no-animation both show the result.
+ */
+import ScoreRing from '../ui/ScoreRing.astro';
+import SampleBadge from '../ui/SampleBadge.astro';
+import { HERO, WORKSPACE } from '../../data/demo.ts';
+import { tierOf } from '../../lib/tiers.ts';
+const tier = tierOf(HERO.score);
+---
+<figure class="signal-stack border border-line-strong bg-surface" aria-label="Sample: four separate records attach to one parcel and resolve into a score">
+  <figcaption class="flex items-center justify-between gap-2 border-b border-line bg-sunken px-4 py-2">
+    <span class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">{WORKSPACE} · one parcel</span>
+    <SampleBadge />
+  </figcaption>
+  <ol class="mono text-xs">
+    {HERO.records.map((r) => (
+      <li class="stack-row grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 border-b border-line px-4 py-2.5">
+        <span class="font-medium uppercase tracking-eyebrow text-ink-muted">{r.source}</span>
+        <span class="num text-right text-ink-muted">{r.record}</span>
+        <span class="font-sans text-sm font-medium text-ink">{r.fact}</span>
+        <time class="num self-end text-right text-ink-muted" datetime={r.date}>{r.date}</time>
+      </li>
+    ))}
+  </ol>
+  <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 p-4">
+    <svg class="h-auto w-full max-w-72" viewBox="0 0 260 120" width="260" height="120" role="img" aria-label={`Parcel outline, APN ${HERO.apn}, with four records attached`}>
+      <path class="parcel-outline" d="M52 18L206 12L222 100L44 108Z" pathLength="100" />
+      {[[80, 44], [128, 36], [176, 48], [120, 78]].map(([x, y]) => <circle class="parcel-pin" cx={x} cy={y} r="4" />)}
+      <text class="parcel-text" x="130" y="98" text-anchor="middle">APN {HERO.apn}</text>
+    </svg>
+    <div class="stack-result flex flex-col items-center text-center">
+      <ScoreRing score={HERO.score} size="xl" />
+      <p class:list={['mt-1 text-sm font-semibold', `tier-${tier.key}`]}>{tier.label}</p>
+      <p class="num text-2xs text-ink-muted">{HERO.families} families · ×{HERO.multiplier.toFixed(2)}</p>
+    </div>
+  </div>
+</figure>
+<style>
+  .parcel-outline { fill: var(--color-canvas); stroke: var(--color-ink); stroke-width: 1.5; stroke-dasharray: 100; stroke-dashoffset: 0; }
+  .parcel-pin { fill: var(--color-ink); }
+  .parcel-text { fill: var(--color-ink-muted); font-family: var(--font-mono); font-size: 10px; }
+
+  .stack-row { animation: arrive var(--duration-slow) var(--ease-quiet) backwards; }
+  .stack-row:nth-child(1) { animation-delay: 200ms; }
+  .stack-row:nth-child(2) { animation-delay: 650ms; }
+  .stack-row:nth-child(3) { animation-delay: 1100ms; }
+  .stack-row:nth-child(4) { animation-delay: 1550ms; }
+  .parcel-outline { animation: trace 900ms var(--ease-quiet) 200ms backwards; }
+  .parcel-pin { animation: appear var(--duration-slow) var(--ease-quiet) backwards; }
+  .parcel-pin:nth-of-type(1) { animation-delay: 450ms; }
+  .parcel-pin:nth-of-type(2) { animation-delay: 900ms; }
+  .parcel-pin:nth-of-type(3) { animation-delay: 1350ms; }
+  .parcel-pin:nth-of-type(4) { animation-delay: 1800ms; }
+  .stack-result { animation: appear var(--duration-slow) var(--ease-quiet) 2100ms backwards; }
+  .stack-result :global(.ring-value) { animation: fill-ring 700ms var(--ease-quiet) 2200ms backwards; }
+
+  @keyframes arrive { from { opacity: 0; transform: translateY(-0.5rem); } }
+  @keyframes appear { from { opacity: 0; } }
+  @keyframes trace { from { stroke-dashoffset: 100; } }
+  @keyframes fill-ring { from { stroke-dasharray: 0 100; } }
+</style>

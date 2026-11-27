@@ -1,0 +1,14 @@
+---
+/** Wrapper for every product recreation: names the demo workspace and carries the product's Sample badge. */
+import SampleBadge from '../ui/SampleBadge.astro';
+import { WORKSPACE } from '../../data/demo.ts';
+interface Props { title: string; class?: string }
+const { title, class: cls } = Astro.props;
+---
+<figure class:list={['min-w-0 border border-line-strong bg-surface', cls]} data-product-visual>
+  <figcaption class="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-sunken px-4 py-2">
+    <span class="mono text-2xs uppercase tracking-eyebrow text-ink-muted">{WORKSPACE} · {title}</span>
+    <SampleBadge />
+  </figcaption>
+  <slot />
+</figure>

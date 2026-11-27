@@ -1,0 +1,19 @@
+---
+/** The real City planning-area shapes, every one drawn the same way, with no names and no highlight. */
+import { MAP_SOURCE, PLANNING_AREAS } from '../../lib/geo.ts';
+interface Props { class?: string }
+---
+<figure class:list={[Astro.props.class]}>
+  <svg class="h-auto w-full" viewBox={`-4 -4 ${PLANNING_AREAS.width + 8} ${PLANNING_AREAS.height + 8}`} width={PLANNING_AREAS.width} height={PLANNING_AREAS.height} role="img" aria-label={`Outline map of ${PLANNING_AREAS.count} City of San Diego community planning area shapes`}>
+    <g class="map-shapes" fill-rule="evenodd">
+      {PLANNING_AREAS.paths.map((d) => <path d={d} />)}
+    </g>
+  </svg>
+  <figcaption class="mt-3 text-xs text-ink-muted">
+    {PLANNING_AREAS.count} planning-area shapes, simplified for this page. A team’s territory is whichever areas it chooses. Source:
+    <a class="link" href={MAP_SOURCE.url} rel="noopener">{MAP_SOURCE.label}</a>, under the City’s open data terms.
+  </figcaption>
+</figure>
+<style>
+  .map-shapes path { fill: var(--color-surface); stroke: var(--color-ink-muted); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+</style>

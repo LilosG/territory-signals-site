@@ -1,0 +1,31 @@
+---
+import Frame from './Frame.astro';
+import Icon from '../ui/Icon.astro';
+import { DRAFT } from '../../data/demo.ts';
+---
+<Frame title="Outreach co-pilot">
+  <div class="p-4">
+    <p class="font-semibold">Outreach and call co-pilot</p>
+    <p class="mt-1 text-sm text-ink-muted">Drafts use database facts only. A person approves before anything goes out, and your team sends it.</p>
+    <div class="mt-3 rounded-md bg-sunken px-3 py-2 text-sm">
+      <p class="eyebrow">Approval status</p>
+      <p class="mt-1">Letter: <strong>Draft</strong></p>
+    </div>
+    <p class="mt-3 flex gap-5 border-b border-line text-sm" aria-hidden="true">
+      <span class="border-b-2 border-ink pb-2 font-semibold">Letter</span><span class="pb-2 text-ink-muted">Email</span><span class="pb-2 text-ink-muted">Call script</span>
+    </p>
+    <div class="mt-3 flex gap-2 rounded-md border border-sample/30 bg-sample-soft px-3 py-2.5 text-sm text-sample" data-blocked>
+      <Icon name="lock" class="mt-0.5 size-4" />
+      <div>
+        <p class="font-semibold">Blocked: missing agent name or DRE license</p>
+        <p class="mt-1">Add the agent’s name and DRE license number to the team profile, then prepare the draft again.</p>
+      </div>
+    </div>
+    <p class="eyebrow mt-4">Draft text (edit before approving)</p>
+    <div class="mt-2 flex flex-col gap-3 rounded-md border border-line bg-canvas p-3 text-sm">
+      <p>{DRAFT.salutation}</p>
+      {DRAFT.body.map((p) => <p>{p}</p>)}
+    </div>
+    <p class="mt-3"><span class="inline-block rounded-md border border-line bg-sunken px-3 py-2 text-sm font-semibold text-ink-muted">Approve draft (unavailable while blocked)</span></p>
+  </div>
+</Frame>

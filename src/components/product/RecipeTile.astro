@@ -1,0 +1,12 @@
+---
+/** One recipe, using the verbatim label and short description from the product catalog. */
+interface Props { href: string; label: string; description: string; mark?: string | undefined }
+const { href, label, description, mark } = Astro.props;
+---
+<li class="border-b border-line">
+  <a href={href} class="group grid min-h-tap gap-x-6 gap-y-1 py-4 sm:grid-cols-12 sm:items-baseline">
+    <span class="font-semibold group-hover:underline group-hover:underline-offset-4 sm:col-span-4">{label}</span>
+    <span class="text-ink-muted sm:col-span-5">{description}</span>
+    <span class="mono text-2xs uppercase tracking-eyebrow text-ink-muted sm:col-span-3 sm:text-right">{mark}</span>
+  </a>
+</li>
